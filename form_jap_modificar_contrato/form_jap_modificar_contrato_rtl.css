@@ -1,0 +1,135 @@
+.css_con_id_label { }
+.css_con_id_line {text-align:left;}
+.css_con_id_obj {text-align:left;}
+.css_con_empresa_label { }
+.css_con_empresa_line { }
+.css_con_empresa_obj { }
+.css_con_propietario_label { }
+.css_con_propietario_line {text-align:left;}
+.css_con_propietario_obj {text-align:left;width:250px;}
+.css_con_pais_label { }
+.css_con_pais_line {text-align:left;}
+.css_con_pais_obj {text-align:left;width:250px;}
+.css_con_provincia_label { }
+.css_con_provincia_line {text-align:left;}
+.css_con_provincia_obj {text-align:left;width:250px;}
+.css_con_canton_label { }
+.css_con_canton_line {text-align:left;}
+.css_con_canton_obj {text-align:left;width:250px;}
+.css_con_parroquia_label { }
+.css_con_parroquia_line {text-align:left;}
+.css_con_parroquia_obj {text-align:left;width:250px;}
+.css_con_direccion_predio_label { }
+.css_con_direccion_predio_line { }
+.css_con_direccion_predio_obj {width:250px;}
+.css_con_toma_administrativa_label { }
+.css_con_toma_administrativa_line { }
+.css_con_toma_administrativa_obj {width:250px;}
+.css_con_toma_operativa_label { }
+.css_con_toma_operativa_line {text-align:left;}
+.css_con_toma_operativa_obj {text-align:left;width:250px;}
+.css_con_tipo_servicio_label { }
+.css_con_tipo_servicio_line {text-align:left;}
+.css_con_tipo_servicio_obj {text-align:left;width:250px;}
+.css_con_condicion_contrato_label { }
+.css_con_condicion_contrato_line { }
+.css_con_condicion_contrato_obj {width:250px;}
+.css_con_numero_medidor_label { }
+.css_con_numero_medidor_line { }
+.css_con_numero_medidor_obj {width:200px;}
+.css_con_fecha_label { }
+.css_con_fecha_line { }
+.css_con_fecha_obj {width:250px;}
+.css_con_estado_label { }
+.css_con_estado_line { }
+.css_con_estado_obj { }
+.css_con_motivo_anulacion_label { }
+.css_con_motivo_anulacion_line { }
+.css_con_motivo_anulacion_obj {width:500px;}
+.css_con_tipo_contrato_label { }
+.css_con_tipo_contrato_line { }
+.css_con_tipo_contrato_obj { }
+.css_con_total_a_pagar_label { }
+.css_con_total_a_pagar_line {text-align:right;width:120px;}
+.css_con_total_a_pagar_obj {text-align:right;width:120px;}
+.css_con_abono_label { }
+.css_con_abono_line {text-align:right;}
+.css_con_abono_obj {text-align:right;width:120px;}
+.css_con_plazo_label { }
+.css_con_plazo_line {text-align:right;}
+.css_con_plazo_obj {text-align:right;width:120px;}
+.css_con_fecha_instalacion_label { }
+.css_con_fecha_instalacion_line { }
+.css_con_fecha_instalacion_obj {width:200px;}
+.css_con_observaciones_label { }
+.css_con_observaciones_line { }
+.css_con_observaciones_obj {height:80px;}
+.css_con_usuario_instala_label { }
+.css_con_usuario_instala_line { }
+.css_con_usuario_instala_obj { }
+.css_con_numero_contrato_label { }
+.css_con_numero_contrato_line {text-align:left;}
+.css_con_numero_contrato_obj {text-align:left;}
+.css_con_maxima_lectura_label { }
+.css_con_maxima_lectura_line {text-align:left;}
+.css_con_maxima_lectura_obj {text-align:left;width:200px;}
+.css_con_lectura_actual_label { }
+.css_con_lectura_actual_line {text-align:left;}
+.css_con_lectura_actual_obj {text-align:left;width:200px;}
+.css_con_fecha_lectura_label { }
+.css_con_fecha_lectura_line { }
+.css_con_fecha_lectura_obj {width:200px;}
+.css_con_ruta_label { }
+.css_con_ruta_line {text-align:left;}
+.css_con_ruta_obj {text-align:left;width:250px;}
+.css_con_sino_label { }
+.css_con_sino_line { }
+.css_con_sino_obj { }
+.css_con_orden_lecturas_label { }
+.css_con_orden_lecturas_line {text-align:left;}
+.css_con_orden_lecturas_obj {text-align:left;}
+.css_con_numero_corte_label { }
+.css_con_numero_corte_line {text-align:left;}
+.css_con_numero_corte_obj {text-align:left;}
+.css_con_comunidad_label { }
+.css_con_comunidad_line {text-align:left;}
+.css_con_comunidad_obj {text-align:left;}
+.css_con_sector_label { }
+.css_con_sector_line {text-align:left;}
+.css_con_sector_obj {text-align:left;}
+.css_con_numero_censo_label { }
+.css_con_numero_censo_line { }
+.css_con_numero_censo_obj { }
+.css_con_cedula_label { }
+.css_con_cedula_line { }
+.css_con_cedula_obj { }
+.css_con_telefono_label { }
+.css_con_telefono_line { }
+.css_con_telefono_obj { }
+.css_con_celular_label { }
+.css_con_celular_line { }
+.css_con_celular_obj { }
+.css_con_correo_label { }
+.css_con_correo_line { }
+.css_con_correo_obj { }
+.css_con_direccion_propietario_label { }
+.css_con_direccion_propietario_line { }
+.css_con_direccion_propietario_obj { }
+.css_materiales_label { }
+.css_materiales_line { }
+.css_materiales_obj { }
+.css_con_valor_cuota_label { }
+.css_con_valor_cuota_line {font-size:14px;background-color:#00FF00;font-weight:bold;text-align:right;}
+.css_con_valor_cuota_obj {font-size:14px;background-color:#00FF00;font-weight:bold;text-align:right;width:120px;}
+.css_cuotas_label { }
+.css_cuotas_line { }
+.css_cuotas_obj { }
+.css_con_saldo_pagar_label { }
+.css_con_saldo_pagar_line {text-align:right;width:120px;}
+.css_con_saldo_pagar_obj {text-align:right;width:120px;}
+.css_rubros_label { }
+.css_rubros_line { }
+.css_rubros_obj { }
+.css_con_nombre_label { }
+.css_con_nombre_line { }
+.css_con_nombre_obj { }

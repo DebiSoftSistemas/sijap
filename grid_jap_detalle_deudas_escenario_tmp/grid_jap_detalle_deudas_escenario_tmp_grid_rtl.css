@@ -1,0 +1,26 @@
+.css_ddt_producto_label, .css_ddt_producto_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_ddt_producto_grid_line, .css_ddt_producto_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ddt_cantidad_label, .css_ddt_cantidad_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_ddt_cantidad_grid_line, .css_ddt_cantidad_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ddt_valor_label, .css_ddt_valor_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_ddt_valor_grid_line, .css_ddt_valor_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ddt_subtotal_label, .css_ddt_subtotal_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_ddt_subtotal_grid_line, .css_ddt_subtotal_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ddt_subtotal_tot_ger, .css_ddt_subtotal_tot_ger:hover {text-align: ;text-align: right;}
+.css_ddt_iva_label, .css_ddt_iva_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_ddt_iva_grid_line, .css_ddt_iva_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ddt_iva_tot_ger, .css_ddt_iva_tot_ger:hover {text-align: ;text-align: right;}
+.css_ddt_total_label, .css_ddt_total_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_ddt_total_grid_line, .css_ddt_total_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ddt_total_tot_ger, .css_ddt_total_tot_ger:hover {text-align: ;text-align: right;}
+.css_ddt_unidad_label, .css_ddt_unidad_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_ddt_unidad_grid_line, .css_ddt_unidad_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ddt_escenario_label, .css_ddt_escenario_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_ddt_escenario_grid_line, .css_ddt_escenario_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ddt_id_label, .css_ddt_id_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_ddt_id_grid_line, .css_ddt_id_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ddt_por_iva_label, .css_ddt_por_iva_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_ddt_por_iva_grid_line, .css_ddt_por_iva_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ddt_subtotal_S_tot_ger, .css_ddt_subtotal_S_tot_ger:hover {text-align: right;}
+.css_ddt_iva_S_tot_ger, .css_ddt_iva_S_tot_ger:hover {text-align: right;}
+.css_ddt_total_S_tot_ger, .css_ddt_total_S_tot_ger:hover {text-align: right;}

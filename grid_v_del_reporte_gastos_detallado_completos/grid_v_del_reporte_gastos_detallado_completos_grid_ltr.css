@@ -1,0 +1,74 @@
+.css_fc_fecha_label, .css_fc_fecha_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_fc_fecha_grid_line, .css_fc_fecha_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_pr_nombre_label, .css_pr_nombre_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_pr_nombre_grid_line, .css_pr_nombre_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_pr_identificacion_label, .css_pr_identificacion_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_pr_identificacion_grid_line, .css_pr_identificacion_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_fc_documento_label, .css_fc_documento_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_fc_documento_grid_line, .css_fc_documento_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_pro_descripcion_label, .css_pro_descripcion_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_pro_descripcion_grid_line, .css_pro_descripcion_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_dfc_cantidad_label, .css_dfc_cantidad_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_dfc_cantidad_grid_line, .css_dfc_cantidad_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_dfc_cantidad_tot_ger, .css_dfc_cantidad_tot_ger:hover {text-align: ;text-align: right;}
+.css_dfc_precio_unitario_label, .css_dfc_precio_unitario_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_dfc_precio_unitario_grid_line, .css_dfc_precio_unitario_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_dfc_subtotal_label, .css_dfc_subtotal_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_dfc_subtotal_grid_line, .css_dfc_subtotal_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_dfc_subtotal_tot_ger, .css_dfc_subtotal_tot_ger:hover {text-align: ;text-align: right;}
+.css_dfc_descuento_label, .css_dfc_descuento_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_dfc_descuento_grid_line, .css_dfc_descuento_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_dfc_descuento_tot_ger, .css_dfc_descuento_tot_ger:hover {text-align: ;text-align: right;}
+.css_dfc_valor_iva_label, .css_dfc_valor_iva_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_dfc_valor_iva_grid_line, .css_dfc_valor_iva_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_dfc_valor_iva_tot_ger, .css_dfc_valor_iva_tot_ger:hover {text-align: ;text-align: right;}
+.css_dfc_total_label, .css_dfc_total_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_dfc_total_grid_line, .css_dfc_total_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_dfc_total_tot_ger, .css_dfc_total_tot_ger:hover {text-align: ;text-align: right;}
+.css_fc_tipo_comprobante_label, .css_fc_tipo_comprobante_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_fc_tipo_comprobante_grid_line, .css_fc_tipo_comprobante_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_fc_sustento_gasto_label, .css_fc_sustento_gasto_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_fc_sustento_gasto_grid_line, .css_fc_sustento_gasto_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_pr_direccion_label, .css_pr_direccion_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_pr_direccion_grid_line, .css_pr_direccion_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_pr_telefono_label, .css_pr_telefono_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_pr_telefono_grid_line, .css_pr_telefono_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_pr_celular_label, .css_pr_celular_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_pr_celular_grid_line, .css_pr_celular_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_pr_email_label, .css_pr_email_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_pr_email_grid_line, .css_pr_email_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_documento_modificado_label, .css_documento_modificado_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_documento_modificado_grid_line, .css_documento_modificado_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_pro_codigo_label, .css_pro_codigo_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_pro_codigo_grid_line, .css_pro_codigo_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_dfc_porcentaje_ice_label, .css_dfc_porcentaje_ice_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_dfc_porcentaje_ice_grid_line, .css_dfc_porcentaje_ice_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_dfc_valor_ice_label, .css_dfc_valor_ice_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_dfc_valor_ice_grid_line, .css_dfc_valor_ice_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_dfc_valor_ice_tot_ger, .css_dfc_valor_ice_tot_ger:hover {text-align: ;text-align: right;}
+.css_dfc_base_iva_label, .css_dfc_base_iva_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_dfc_base_iva_grid_line, .css_dfc_base_iva_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_dfc_base_iva_tot_ger, .css_dfc_base_iva_tot_ger:hover {text-align: ;text-align: right;}
+.css_dfc_porcentaje_iva_label, .css_dfc_porcentaje_iva_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_dfc_porcentaje_iva_grid_line, .css_dfc_porcentaje_iva_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_dfc_porcentaje_irbpnr_label, .css_dfc_porcentaje_irbpnr_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_dfc_porcentaje_irbpnr_grid_line, .css_dfc_porcentaje_irbpnr_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_dfc_valor_irbpnr_label, .css_dfc_valor_irbpnr_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_dfc_valor_irbpnr_grid_line, .css_dfc_valor_irbpnr_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_dfc_valor_irbpnr_tot_ger, .css_dfc_valor_irbpnr_tot_ger:hover {text-align: ;text-align: right;}
+.css_dfc_cantidad_S_sub_tot, .css_dfc_cantidad_S_sub_tot:hover {text-align: left;text-align: right;}
+.css_dfc_cantidad_S_tot_ger, .css_dfc_cantidad_S_tot_ger:hover {text-align: right;}
+.css_dfc_subtotal_S_sub_tot, .css_dfc_subtotal_S_sub_tot:hover {text-align: left;text-align: right;}
+.css_dfc_subtotal_S_tot_ger, .css_dfc_subtotal_S_tot_ger:hover {text-align: right;}
+.css_dfc_descuento_S_sub_tot, .css_dfc_descuento_S_sub_tot:hover {text-align: left;text-align: right;}
+.css_dfc_descuento_S_tot_ger, .css_dfc_descuento_S_tot_ger:hover {text-align: right;}
+.css_dfc_valor_iva_S_sub_tot, .css_dfc_valor_iva_S_sub_tot:hover {text-align: left;text-align: right;}
+.css_dfc_valor_iva_S_tot_ger, .css_dfc_valor_iva_S_tot_ger:hover {text-align: right;}
+.css_dfc_total_S_sub_tot, .css_dfc_total_S_sub_tot:hover {text-align: left;text-align: right;}
+.css_dfc_total_S_tot_ger, .css_dfc_total_S_tot_ger:hover {text-align: right;}
+.css_dfc_valor_ice_S_sub_tot, .css_dfc_valor_ice_S_sub_tot:hover {text-align: left;text-align: right;}
+.css_dfc_valor_ice_S_tot_ger, .css_dfc_valor_ice_S_tot_ger:hover {text-align: right;}
+.css_dfc_valor_irbpnr_S_sub_tot, .css_dfc_valor_irbpnr_S_sub_tot:hover {text-align: left;text-align: right;}
+.css_dfc_valor_irbpnr_S_tot_ger, .css_dfc_valor_irbpnr_S_tot_ger:hover {text-align: right;}
+.css_dfc_base_iva_S_sub_tot, .css_dfc_base_iva_S_sub_tot:hover {text-align: left;text-align: right;}
+.css_dfc_base_iva_S_tot_ger, .css_dfc_base_iva_S_tot_ger:hover {text-align: right;}

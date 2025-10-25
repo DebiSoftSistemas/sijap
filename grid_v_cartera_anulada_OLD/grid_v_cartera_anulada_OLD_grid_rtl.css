@@ -1,0 +1,43 @@
+.css_periodo_label, .css_periodo_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_periodo_grid_line, .css_periodo_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_mes_label, .css_mes_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_mes_grid_line, .css_mes_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cl_identificacion_label, .css_cl_identificacion_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cl_identificacion_grid_line, .css_cl_identificacion_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cl_nombre_label, .css_cl_nombre_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cl_nombre_grid_line, .css_cl_nombre_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_op_comentario_label, .css_op_comentario_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_comentario_grid_line, .css_op_comentario_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_pro_descripcion_label, .css_pro_descripcion_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_pro_descripcion_grid_line, .css_pro_descripcion_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_do_subtotal_label, .css_do_subtotal_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_do_subtotal_grid_line, .css_do_subtotal_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_do_subtotal_tot_ger, .css_do_subtotal_tot_ger:hover {text-align: ;text-align: right;}
+.css_do_valor_iva_label, .css_do_valor_iva_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_do_valor_iva_grid_line, .css_do_valor_iva_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_do_valor_iva_tot_ger, .css_do_valor_iva_tot_ger:hover {text-align: ;text-align: right;}
+.css_do_total_label, .css_do_total_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_do_total_grid_line, .css_do_total_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_do_total_tot_ger, .css_do_total_tot_ger:hover {text-align: ;text-align: right;}
+.css_op_estado_label, .css_op_estado_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_estado_grid_line, .css_op_estado_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_op_operacion_label, .css_op_operacion_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_op_operacion_grid_line, .css_op_operacion_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_op_empresa_label, .css_op_empresa_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_empresa_grid_line, .css_op_empresa_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_dec_nombre_label, .css_dec_nombre_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_dec_nombre_grid_line, .css_dec_nombre_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cl_telefono_label, .css_cl_telefono_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cl_telefono_grid_line, .css_cl_telefono_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cl_email_label, .css_cl_email_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cl_email_grid_line, .css_cl_email_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cl_direccion_label, .css_cl_direccion_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cl_direccion_grid_line, .css_cl_direccion_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_pro_codigo_label, .css_pro_codigo_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_pro_codigo_grid_line, .css_pro_codigo_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_do_subtotal_S_sub_tot, .css_do_subtotal_S_sub_tot:hover {text-align: right;text-align: right;}
+.css_do_subtotal_S_tot_ger, .css_do_subtotal_S_tot_ger:hover {text-align: right;}
+.css_do_valor_iva_S_sub_tot, .css_do_valor_iva_S_sub_tot:hover {text-align: right;text-align: right;}
+.css_do_valor_iva_S_tot_ger, .css_do_valor_iva_S_tot_ger:hover {text-align: right;}
+.css_do_total_S_sub_tot, .css_do_total_S_sub_tot:hover {text-align: right;text-align: right;}
+.css_do_total_S_tot_ger, .css_do_total_S_tot_ger:hover {text-align: right;}

@@ -1,0 +1,16 @@
+.css_pro_imagen_label, .css_pro_imagen_label:hover {text-align:center;vertical-align:middle;justify-content:center;font-weight:bold;}
+.css_pro_imagen_grid_line, .css_pro_imagen_grid_line:hover {vertical-align: top;text-align: center;}
+.css_pro_codigo_label, .css_pro_codigo_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_pro_codigo_grid_line, .css_pro_codigo_grid_line:hover {vertical-align: top;text-align: right;}
+.css_pro_descripcion_label, .css_pro_descripcion_label:hover {text-align:center;vertical-align:middle;justify-content:center;font-weight:bold;}
+.css_pro_descripcion_grid_line, .css_pro_descripcion_grid_line:hover {vertical-align: top;text-align: center;}
+.css_inv_cantidad_label, .css_inv_cantidad_label:hover {text-align:center;vertical-align:middle;justify-content:center;font-weight:bold;}
+.css_inv_cantidad_grid_line, .css_inv_cantidad_grid_line:hover {vertical-align: top;text-align: center;}
+.css_agregar_label, .css_agregar_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_agregar_grid_line, .css_agregar_grid_line:hover {text-align: right;}
+.css_inv_bodega_label, .css_inv_bodega_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_inv_bodega_grid_line, .css_inv_bodega_grid_line:hover {vertical-align: top;text-align: right;}
+.css_inv_producto_label, .css_inv_producto_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_inv_producto_grid_line, .css_inv_producto_grid_line:hover {vertical-align: top;text-align: right;}
+.css_inv_unidad_label, .css_inv_unidad_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_inv_unidad_grid_line, .css_inv_unidad_grid_line:hover {vertical-align: top;text-align: right;}

@@ -1,0 +1,26 @@
+.css_ap_descripcion_label, .css_ap_descripcion_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_ap_descripcion_grid_line, .css_ap_descripcion_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ap_tipo_cartera_label, .css_ap_tipo_cartera_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_ap_tipo_cartera_grid_line, .css_ap_tipo_cartera_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ap_tipo_comprobante_label, .css_ap_tipo_comprobante_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_ap_tipo_comprobante_grid_line, .css_ap_tipo_comprobante_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ap_periodicidad_label, .css_ap_periodicidad_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_ap_periodicidad_grid_line, .css_ap_periodicidad_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ap_contrato_label, .css_ap_contrato_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_ap_contrato_grid_line, .css_ap_contrato_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ap_servicio_label, .css_ap_servicio_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_ap_servicio_grid_line, .css_ap_servicio_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ap_personalizada_label, .css_ap_personalizada_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_ap_personalizada_grid_line, .css_ap_personalizada_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ap_libre_label, .css_ap_libre_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_ap_libre_grid_line, .css_ap_libre_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ap_reconexion_label, .css_ap_reconexion_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_ap_reconexion_grid_line, .css_ap_reconexion_grid_line:hover {vertical-align: top;text-align: right;}
+.css_ap_materiales_label, .css_ap_materiales_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_ap_materiales_grid_line, .css_ap_materiales_grid_line:hover {vertical-align: top;text-align: right;}
+.css_ap_estado_label, .css_ap_estado_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_ap_estado_grid_line, .css_ap_estado_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ap_id_label, .css_ap_id_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_ap_id_grid_line, .css_ap_id_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ap_fecha_label, .css_ap_fecha_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_ap_fecha_grid_line, .css_ap_fecha_grid_line:hover {vertical-align: middle;text-align: right;}

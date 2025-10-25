@@ -1,0 +1,12 @@
+.css_lc_fecha_label, .css_lc_fecha_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_lc_fecha_grid_line, .css_lc_fecha_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_lc_contrato_label, .css_lc_contrato_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_lc_contrato_grid_line, .css_lc_contrato_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_lc_accion_label, .css_lc_accion_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_lc_accion_grid_line, .css_lc_accion_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_lc_usuario_label, .css_lc_usuario_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_lc_usuario_grid_line, .css_lc_usuario_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_lc_datos_label, .css_lc_datos_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_lc_datos_grid_line, .css_lc_datos_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_lc_id_label, .css_lc_id_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_lc_id_grid_line, .css_lc_id_grid_line:hover {vertical-align: middle;text-align: right;}

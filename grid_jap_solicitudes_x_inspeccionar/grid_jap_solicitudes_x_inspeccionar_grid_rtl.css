@@ -1,0 +1,24 @@
+.css_si_fecha_label, .css_si_fecha_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_si_fecha_grid_line, .css_si_fecha_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_si_secuecial_label, .css_si_secuecial_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_si_secuecial_grid_line, .css_si_secuecial_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_si_contrato_label, .css_si_contrato_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_si_contrato_grid_line, .css_si_contrato_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_si_tipo_inspeccion_label, .css_si_tipo_inspeccion_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_si_tipo_inspeccion_grid_line, .css_si_tipo_inspeccion_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_si_comentario_label, .css_si_comentario_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_si_comentario_grid_line, .css_si_comentario_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_si_id_label, .css_si_id_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_si_id_grid_line, .css_si_id_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_si_empresa_label, .css_si_empresa_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_si_empresa_grid_line, .css_si_empresa_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_si_usuario_registra_label, .css_si_usuario_registra_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_si_usuario_registra_grid_line, .css_si_usuario_registra_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_si_usuario_inspecciona_label, .css_si_usuario_inspecciona_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_si_usuario_inspecciona_grid_line, .css_si_usuario_inspecciona_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_si_fecha_inspeccion_label, .css_si_fecha_inspeccion_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_si_fecha_inspeccion_grid_line, .css_si_fecha_inspeccion_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_si_observacion_label, .css_si_observacion_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_si_observacion_grid_line, .css_si_observacion_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_si_estado_label, .css_si_estado_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_si_estado_grid_line, .css_si_estado_grid_line:hover {vertical-align: middle;text-align: right;}

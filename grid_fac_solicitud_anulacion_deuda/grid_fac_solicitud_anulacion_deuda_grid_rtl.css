@@ -1,0 +1,12 @@
+.css_sad_fecha_label, .css_sad_fecha_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_sad_fecha_grid_line, .css_sad_fecha_grid_line:hover {vertical-align: top;text-align: right;}
+.css_sad_propietario_label, .css_sad_propietario_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_sad_propietario_grid_line, .css_sad_propietario_grid_line:hover {vertical-align: top;text-align: right;}
+.css_sad_usuario_label, .css_sad_usuario_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_sad_usuario_grid_line, .css_sad_usuario_grid_line:hover {vertical-align: top;text-align: right;}
+.css_sad_estado_label, .css_sad_estado_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_sad_estado_grid_line, .css_sad_estado_grid_line:hover {vertical-align: top;text-align: right;}
+.css_sad_id_label, .css_sad_id_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_sad_id_grid_line, .css_sad_id_grid_line:hover {vertical-align: top;text-align: right;}
+.css_sad_ip_label, .css_sad_ip_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_sad_ip_grid_line, .css_sad_ip_grid_line:hover {vertical-align: top;text-align: right;}

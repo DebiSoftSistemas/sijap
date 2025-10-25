@@ -1,0 +1,38 @@
+.css_kar_fecha_label, .css_kar_fecha_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_kar_fecha_grid_line, .css_kar_fecha_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_pro_codigo_label, .css_pro_codigo_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_pro_codigo_grid_line, .css_pro_codigo_grid_line:hover {vertical-align: top;text-align: left;}
+.css_pro_descripcion_label, .css_pro_descripcion_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_pro_descripcion_grid_line, .css_pro_descripcion_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_kar_unidad_label, .css_kar_unidad_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_kar_unidad_grid_line, .css_kar_unidad_grid_line:hover {vertical-align: top;text-align: right;}
+.css_descripcion_label, .css_descripcion_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_descripcion_grid_line, .css_descripcion_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_kar_cantidad_ingreso_label, .css_kar_cantidad_ingreso_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_kar_cantidad_ingreso_grid_line, .css_kar_cantidad_ingreso_grid_line:hover {background-color:#FFCC66;vertical-align: middle;text-align: right;}
+.css_kar_cantidad_ingreso_tot_ger, .css_kar_cantidad_ingreso_tot_ger:hover {text-align: ;text-align: right;}
+.css_kar_costo_ingreso_label, .css_kar_costo_ingreso_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_kar_costo_ingreso_grid_line, .css_kar_costo_ingreso_grid_line:hover {background-color:#FFCC66;vertical-align: middle;text-align: right;}
+.css_kar_total_ingreso_label, .css_kar_total_ingreso_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_kar_total_ingreso_grid_line, .css_kar_total_ingreso_grid_line:hover {background-color:#FFCC66;vertical-align: middle;text-align: right;}
+.css_kar_total_ingreso_tot_ger, .css_kar_total_ingreso_tot_ger:hover {text-align: ;text-align: right;}
+.css_kar_cantidad_salida_label, .css_kar_cantidad_salida_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_kar_cantidad_salida_grid_line, .css_kar_cantidad_salida_grid_line:hover {background-color:#00CCFF;vertical-align: middle;text-align: right;}
+.css_kar_cantidad_salida_tot_ger, .css_kar_cantidad_salida_tot_ger:hover {text-align: ;text-align: right;}
+.css_kar_costo_salida_label, .css_kar_costo_salida_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_kar_costo_salida_grid_line, .css_kar_costo_salida_grid_line:hover {background-color:#00CCFF;vertical-align: middle;text-align: right;}
+.css_kar_total_salida_label, .css_kar_total_salida_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_kar_total_salida_grid_line, .css_kar_total_salida_grid_line:hover {background-color:#00CCFF;vertical-align: middle;text-align: right;}
+.css_kar_total_salida_tot_ger, .css_kar_total_salida_tot_ger:hover {text-align: ;text-align: right;}
+.css_kar_cantidad_existencia_label, .css_kar_cantidad_existencia_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_kar_cantidad_existencia_grid_line, .css_kar_cantidad_existencia_grid_line:hover {background-color:#33CC00;font-weight:bold;vertical-align: middle;text-align: right;}
+.css_kar_costo_existencia_label, .css_kar_costo_existencia_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_kar_costo_existencia_grid_line, .css_kar_costo_existencia_grid_line:hover {background-color:#33CC00;font-weight:bold;vertical-align: middle;text-align: right;}
+.css_kar_total_existencia_label, .css_kar_total_existencia_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_kar_total_existencia_grid_line, .css_kar_total_existencia_grid_line:hover {background-color:#33CC00;font-weight:bold;vertical-align: middle;text-align: right;}
+.css_kar_pvp_label, .css_kar_pvp_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_kar_pvp_grid_line, .css_kar_pvp_grid_line:hover {background-color:#FFFFCC;vertical-align: middle;text-align: right;}
+.css_kar_cantidad_ingreso_S_tot_ger, .css_kar_cantidad_ingreso_S_tot_ger:hover {text-align: right;}
+.css_kar_total_ingreso_S_tot_ger, .css_kar_total_ingreso_S_tot_ger:hover {text-align: right;}
+.css_kar_cantidad_salida_S_tot_ger, .css_kar_cantidad_salida_S_tot_ger:hover {text-align: right;}
+.css_kar_total_salida_S_tot_ger, .css_kar_total_salida_S_tot_ger:hover {text-align: right;}

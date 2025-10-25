@@ -1,0 +1,18 @@
+.css_des_propietario_label, .css_des_propietario_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_des_propietario_grid_line, .css_des_propietario_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_des_contrato_label, .css_des_contrato_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_des_contrato_grid_line, .css_des_contrato_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_des_numero_medidor_label, .css_des_numero_medidor_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_des_numero_medidor_grid_line, .css_des_numero_medidor_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_des_total_label, .css_des_total_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_des_total_grid_line, .css_des_total_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_des_estado_label, .css_des_estado_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_des_estado_grid_line, .css_des_estado_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_des_id_label, .css_des_id_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_des_id_grid_line, .css_des_id_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_des_escenario_label, .css_des_escenario_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_des_escenario_grid_line, .css_des_escenario_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_des_lectura_anterior_label, .css_des_lectura_anterior_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_des_lectura_anterior_grid_line, .css_des_lectura_anterior_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_des_lectura_actual_label, .css_des_lectura_actual_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_des_lectura_actual_grid_line, .css_des_lectura_actual_grid_line:hover {vertical-align: middle;text-align: right;}

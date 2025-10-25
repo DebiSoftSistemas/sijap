@@ -1,0 +1,20 @@
+.css_rc_orden_label, .css_rc_orden_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_rc_orden_grid_line, .css_rc_orden_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_con_nombre_label, .css_con_nombre_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_nombre_grid_line, .css_con_nombre_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_con_cedula_label, .css_con_cedula_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_cedula_grid_line, .css_con_cedula_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_con_numero_contrato_label, .css_con_numero_contrato_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_numero_contrato_grid_line, .css_con_numero_contrato_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_con_numero_medidor_label, .css_con_numero_medidor_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_numero_medidor_grid_line, .css_con_numero_medidor_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_rc_registra_danio_label, .css_rc_registra_danio_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_rc_registra_danio_grid_line, .css_rc_registra_danio_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_con_numero_censo_label, .css_con_numero_censo_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_numero_censo_grid_line, .css_con_numero_censo_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_rc_id_label, .css_rc_id_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_rc_id_grid_line, .css_rc_id_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_rc_ruta_label, .css_rc_ruta_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_rc_ruta_grid_line, .css_rc_ruta_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_rc_contrato_label, .css_rc_contrato_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_rc_contrato_grid_line, .css_rc_contrato_grid_line:hover {vertical-align: middle;text-align: right;}

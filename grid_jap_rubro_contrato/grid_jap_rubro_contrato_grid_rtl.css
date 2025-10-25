@@ -1,0 +1,20 @@
+.css_rc_producto_label, .css_rc_producto_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_rc_producto_grid_line, .css_rc_producto_grid_line:hover {vertical-align: top;text-align: right;}
+.css_rc_valor_label, .css_rc_valor_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_rc_valor_grid_line, .css_rc_valor_grid_line:hover {vertical-align: top;text-align: right;}
+.css_rc_valor_tot_ger, .css_rc_valor_tot_ger:hover {text-align: ;text-align: right;}
+.css_rc_por_iva_label, .css_rc_por_iva_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_rc_por_iva_grid_line, .css_rc_por_iva_grid_line:hover {vertical-align: top;text-align: right;}
+.css_rc_iva_label, .css_rc_iva_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_rc_iva_grid_line, .css_rc_iva_grid_line:hover {vertical-align: top;text-align: right;}
+.css_rc_iva_tot_ger, .css_rc_iva_tot_ger:hover {text-align: ;text-align: right;}
+.css_rc_total_label, .css_rc_total_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_rc_total_grid_line, .css_rc_total_grid_line:hover {vertical-align: top;text-align: right;}
+.css_rc_total_tot_ger, .css_rc_total_tot_ger:hover {text-align: ;text-align: right;}
+.css_rc_contrato_label, .css_rc_contrato_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_rc_contrato_grid_line, .css_rc_contrato_grid_line:hover {vertical-align: top;text-align: right;}
+.css_rc_estado_label, .css_rc_estado_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_rc_estado_grid_line, .css_rc_estado_grid_line:hover {vertical-align: top;text-align: right;}
+.css_rc_valor_S_tot_ger, .css_rc_valor_S_tot_ger:hover {text-align: right;}
+.css_rc_iva_S_tot_ger, .css_rc_iva_S_tot_ger:hover {text-align: right;}
+.css_rc_total_S_tot_ger, .css_rc_total_S_tot_ger:hover {text-align: right;}

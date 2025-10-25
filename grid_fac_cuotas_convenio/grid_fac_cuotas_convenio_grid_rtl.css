@@ -1,0 +1,26 @@
+.css_cc_cuota_label, .css_cc_cuota_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_cc_cuota_grid_line, .css_cc_cuota_grid_line:hover {vertical-align: top;text-align: right;}
+.css_cc_fecha_label, .css_cc_fecha_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cc_fecha_grid_line, .css_cc_fecha_grid_line:hover {vertical-align: top;text-align: right;}
+.css_cc_producto_label, .css_cc_producto_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cc_producto_grid_line, .css_cc_producto_grid_line:hover {vertical-align: top;text-align: right;}
+.css_cc_capital_label, .css_cc_capital_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_cc_capital_grid_line, .css_cc_capital_grid_line:hover {vertical-align: top;text-align: right;}
+.css_cc_capital_sub_tot, .css_cc_capital_sub_tot:hover {text-align: right;}
+.css_cc_capital_tot_ger, .css_cc_capital_tot_ger:hover {text-align: right;}
+.css_cc_interes_label, .css_cc_interes_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_cc_interes_grid_line, .css_cc_interes_grid_line:hover {vertical-align: top;text-align: right;}
+.css_cc_interes_sub_tot, .css_cc_interes_sub_tot:hover {text-align: right;}
+.css_cc_interes_tot_ger, .css_cc_interes_tot_ger:hover {text-align: right;}
+.css_cc_valor_iva_label, .css_cc_valor_iva_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_cc_valor_iva_grid_line, .css_cc_valor_iva_grid_line:hover {vertical-align: top;text-align: right;}
+.css_cc_valor_iva_sub_tot, .css_cc_valor_iva_sub_tot:hover {text-align: right;}
+.css_cc_valor_iva_tot_ger, .css_cc_valor_iva_tot_ger:hover {text-align: right;}
+.css_cc_valor_cuota_label, .css_cc_valor_cuota_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_cc_valor_cuota_grid_line, .css_cc_valor_cuota_grid_line:hover {vertical-align: top;text-align: right;}
+.css_cc_valor_cuota_sub_tot, .css_cc_valor_cuota_sub_tot:hover {text-align: right;}
+.css_cc_valor_cuota_tot_ger, .css_cc_valor_cuota_tot_ger:hover {text-align: right;}
+.css_cc_id_label, .css_cc_id_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cc_id_grid_line, .css_cc_id_grid_line:hover {vertical-align: top;text-align: right;}
+.css_cc_convenio_label, .css_cc_convenio_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_cc_convenio_grid_line, .css_cc_convenio_grid_line:hover {vertical-align: top;text-align: right;}

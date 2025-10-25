@@ -1,0 +1,9008 @@
+<?php
+//
+class form_jap_solicitud_inspeccion_apl
+{
+   var $has_where_params = false;
+   var $NM_is_redirected = false;
+   var $NM_non_ajax_info = false;
+   var $formatado = false;
+   var $use_100perc_fields = true;
+   var $classes_100perc_fields = array();
+   var $close_modal_after_insert = false;
+   var $NM_ajax_flag    = false;
+   var $NM_ajax_opcao   = '';
+   var $NM_ajax_retorno = '';
+   var $NM_ajax_info    = array('result'            => '',
+                                'param'             => array(),
+                                'autoComp'          => '',
+                                'rsSize'            => '',
+                                'msgDisplay'        => '',
+                                'errList'           => array(),
+                                'fldList'           => array(),
+                                'varList'           => array(),
+                                'focus'             => '',
+                                'navStatus'         => array(),
+                                'navSummary'        => array(),
+                                'navPage'           => array(),
+                                'redir'             => array(),
+                                'blockDisplay'      => array(),
+                                'fieldDisplay'      => array(),
+                                'fieldLabel'        => array(),
+                                'readOnly'          => array(),
+                                'btnVars'           => array(),
+                                'ajaxAlert'         => array(),
+                                'ajaxMessage'       => array(),
+                                'ajaxJavascript'    => array(),
+                                'buttonDisplay'     => array(),
+                                'buttonDisplayVert' => array(),
+                                'calendarReload'    => false,
+                                'quickSearchRes'    => false,
+                                'displayMsg'        => false,
+                                'displayMsgTxt'     => '',
+                                'dyn_search'        => array(),
+                                'empty_filter'      => '',
+                                'event_field'       => '',
+                                'fieldsWithErrors'  => array(),
+                               );
+   var $NM_ajax_force_values = false;
+   var $Nav_permite_ava     = true;
+   var $Nav_permite_ret     = true;
+   var $Apl_com_erro        = false;
+   var $app_is_initializing = false;
+   var $Ini;
+   var $Erro;
+   var $Db;
+   var $si_id;
+   var $si_empresa;
+   var $si_secuecial;
+   var $si_fecha;
+   var $si_contrato;
+   var $si_contrato_1;
+   var $si_tipo_inspeccion;
+   var $si_tipo_inspeccion_1;
+   var $si_comentario;
+   var $si_usuario_registra;
+   var $si_usuario_inspecciona;
+   var $si_usuario_inspecciona_1;
+   var $si_fecha_inspeccion;
+   var $si_observacion;
+   var $si_estado;
+   var $si_motivo_anulacion;
+   var $propietario;
+   var $contrato;
+   var $direccion;
+   var $nm_data;
+   var $nmgp_opcao;
+   var $nmgp_opc_ant;
+   var $sc_evento;
+   var $sc_insert_on;
+   var $nmgp_clone;
+   var $nmgp_return_img = array();
+   var $nmgp_dados_form = array();
+   var $nmgp_dados_select = array();
+   var $nm_location;
+   var $nm_flag_iframe;
+   var $nm_flag_saida_novo;
+   var $nmgp_botoes = array();
+   var $nmgp_url_saida;
+   var $nmgp_form_show;
+   var $nmgp_form_empty;
+   var $nmgp_cmp_readonly = array();
+   var $nmgp_cmp_hidden   = array();
+   var $Field_no_validate  = array();
+   var $form_paginacao = 'parcial';
+   var $lig_edit_lookup      = false;
+   var $lig_edit_lookup_call = false;
+   var $lig_edit_lookup_cb   = '';
+   var $lig_edit_lookup_row  = '';
+   var $is_calendar_app = false;
+   var $Embutida_call  = false;
+   var $Embutida_ronly = false;
+   var $Embutida_proc  = false;
+   var $Embutida_form  = false;
+   var $Grid_editavel  = false;
+   var $url_webhelp = '';
+   var $nm_todas_criticas;
+   var $Campos_Mens_erro;
+   var $nm_new_label = array();
+   var $record_insert_ok = false;
+   var $record_delete_ok = false;
+//
+//----- 
+   function ini_controle()
+   {
+        global $nm_url_saida, $teste_validade, $script_case_init, 
+               $glo_senha_protect, $nm_apl_dependente, $nm_form_submit, $sc_check_excl, $nm_opc_form_php, $nm_call_php, $nm_opc_lookup;
+
+
+      if ($this->NM_ajax_flag)
+      {
+          if (isset($this->NM_ajax_info['param']['contrato']))
+          {
+              $this->contrato = $this->NM_ajax_info['param']['contrato'];
+          }
+          if (isset($this->NM_ajax_info['param']['csrf_token']))
+          {
+              $this->csrf_token = $this->NM_ajax_info['param']['csrf_token'];
+          }
+          if (isset($this->NM_ajax_info['param']['direccion']))
+          {
+              $this->direccion = $this->NM_ajax_info['param']['direccion'];
+          }
+          if (isset($this->NM_ajax_info['param']['nm_form_submit']))
+          {
+              $this->nm_form_submit = $this->NM_ajax_info['param']['nm_form_submit'];
+          }
+          if (isset($this->NM_ajax_info['param']['nmgp_ancora']))
+          {
+              $this->nmgp_ancora = $this->NM_ajax_info['param']['nmgp_ancora'];
+          }
+          if (isset($this->NM_ajax_info['param']['nmgp_arg_dyn_search']))
+          {
+              $this->nmgp_arg_dyn_search = $this->NM_ajax_info['param']['nmgp_arg_dyn_search'];
+          }
+          if (isset($this->NM_ajax_info['param']['nmgp_num_form']))
+          {
+              $this->nmgp_num_form = $this->NM_ajax_info['param']['nmgp_num_form'];
+          }
+          if (isset($this->NM_ajax_info['param']['nmgp_opcao']))
+          {
+              $this->nmgp_opcao = $this->NM_ajax_info['param']['nmgp_opcao'];
+          }
+          if (isset($this->NM_ajax_info['param']['nmgp_ordem']))
+          {
+              $this->nmgp_ordem = $this->NM_ajax_info['param']['nmgp_ordem'];
+          }
+          if (isset($this->NM_ajax_info['param']['nmgp_parms']))
+          {
+              $this->nmgp_parms = $this->NM_ajax_info['param']['nmgp_parms'];
+          }
+          if (isset($this->NM_ajax_info['param']['nmgp_url_saida']))
+          {
+              $this->nmgp_url_saida = $this->NM_ajax_info['param']['nmgp_url_saida'];
+          }
+          if (isset($this->NM_ajax_info['param']['propietario']))
+          {
+              $this->propietario = $this->NM_ajax_info['param']['propietario'];
+          }
+          if (isset($this->NM_ajax_info['param']['script_case_init']))
+          {
+              $this->script_case_init = $this->NM_ajax_info['param']['script_case_init'];
+          }
+          if (isset($this->NM_ajax_info['param']['si_comentario']))
+          {
+              $this->si_comentario = $this->NM_ajax_info['param']['si_comentario'];
+          }
+          if (isset($this->NM_ajax_info['param']['si_contrato']))
+          {
+              $this->si_contrato = $this->NM_ajax_info['param']['si_contrato'];
+          }
+          if (isset($this->NM_ajax_info['param']['si_empresa']))
+          {
+              $this->si_empresa = $this->NM_ajax_info['param']['si_empresa'];
+          }
+          if (isset($this->NM_ajax_info['param']['si_estado']))
+          {
+              $this->si_estado = $this->NM_ajax_info['param']['si_estado'];
+          }
+          if (isset($this->NM_ajax_info['param']['si_fecha']))
+          {
+              $this->si_fecha = $this->NM_ajax_info['param']['si_fecha'];
+          }
+          if (isset($this->NM_ajax_info['param']['si_fecha_inspeccion']))
+          {
+              $this->si_fecha_inspeccion = $this->NM_ajax_info['param']['si_fecha_inspeccion'];
+          }
+          if (isset($this->NM_ajax_info['param']['si_id']))
+          {
+              $this->si_id = $this->NM_ajax_info['param']['si_id'];
+          }
+          if (isset($this->NM_ajax_info['param']['si_motivo_anulacion']))
+          {
+              $this->si_motivo_anulacion = $this->NM_ajax_info['param']['si_motivo_anulacion'];
+          }
+          if (isset($this->NM_ajax_info['param']['si_observacion']))
+          {
+              $this->si_observacion = $this->NM_ajax_info['param']['si_observacion'];
+          }
+          if (isset($this->NM_ajax_info['param']['si_secuecial']))
+          {
+              $this->si_secuecial = $this->NM_ajax_info['param']['si_secuecial'];
+          }
+          if (isset($this->NM_ajax_info['param']['si_tipo_inspeccion']))
+          {
+              $this->si_tipo_inspeccion = $this->NM_ajax_info['param']['si_tipo_inspeccion'];
+          }
+          if (isset($this->NM_ajax_info['param']['si_usuario_inspecciona']))
+          {
+              $this->si_usuario_inspecciona = $this->NM_ajax_info['param']['si_usuario_inspecciona'];
+          }
+          if (isset($this->nmgp_refresh_fields))
+          {
+              $this->nmgp_refresh_fields = explode('_#fld#_', $this->nmgp_refresh_fields);
+              $this->nmgp_opcao          = 'recarga';
+          }
+          if (!isset($this->nmgp_refresh_row))
+          {
+              $this->nmgp_refresh_row = '';
+          }
+      }
+
+      $this->scSajaxReservedWords = array('rs', 'rst', 'rsrnd', 'rsargs');
+      $this->sc_conv_var = array();
+      if (!empty($_FILES))
+      {
+          foreach ($_FILES as $nmgp_campo => $nmgp_valores)
+          {
+               if (!in_array(strtolower($nmgp_campo), $this->scSajaxReservedWords)) {
+                   if (isset($this->sc_conv_var[$nmgp_campo]))
+                   {
+                       $nmgp_campo = $this->sc_conv_var[$nmgp_campo];
+                   }
+                   elseif (isset($this->sc_conv_var[strtolower($nmgp_campo)]))
+                   {
+                       $nmgp_campo = $this->sc_conv_var[strtolower($nmgp_campo)];
+                   }
+               }
+               $tmp_scfile_name     = $nmgp_campo . "_scfile_name";
+               $tmp_scfile_type     = $nmgp_campo . "_scfile_type";
+               $this->$nmgp_campo = is_array($nmgp_valores['tmp_name']) ? $nmgp_valores['tmp_name'][0] : $nmgp_valores['tmp_name'];
+               $this->$tmp_scfile_type   = is_array($nmgp_valores['type'])     ? $nmgp_valores['type'][0]     : $nmgp_valores['type'];
+               $this->$tmp_scfile_name   = is_array($nmgp_valores['name'])     ? $nmgp_valores['name'][0]     : $nmgp_valores['name'];
+          }
+      }
+      $Sc_lig_md5 = false;
+      if (!empty($_POST))
+      {
+          foreach ($_POST as $nmgp_var => $nmgp_val)
+          {
+               if (substr($nmgp_var, 0, 11) == "SC_glo_par_")
+               {
+                   $nmgp_var = substr($nmgp_var, 11);
+                   $nmgp_val = $_SESSION[$nmgp_val];
+               }
+              if ($nmgp_var == "nmgp_parms" && substr($nmgp_val, 0, 8) == "@SC_par@")
+              {
+                  $SC_Ind_Val = explode("@SC_par@", $nmgp_val);
+                  if (count($SC_Ind_Val) == 4 && isset($_SESSION['sc_session'][$SC_Ind_Val[1]][$SC_Ind_Val[2]]['Lig_Md5'][$SC_Ind_Val[3]]))
+                  {
+                      $nmgp_val = $_SESSION['sc_session'][$SC_Ind_Val[1]][$SC_Ind_Val[2]]['Lig_Md5'][$SC_Ind_Val[3]];
+                      $Sc_lig_md5 = true;
+                  }
+                  else
+                  {
+                      $_SESSION['sc_session']['SC_parm_violation'] = true;
+                  }
+              }
+               if (!in_array(strtolower($nmgp_var), $this->scSajaxReservedWords)) {
+                   if (isset($this->sc_conv_var[$nmgp_var]))
+                   {
+                       $nmgp_var = $this->sc_conv_var[$nmgp_var];
+                   }
+                   elseif (isset($this->sc_conv_var[strtolower($nmgp_var)]))
+                   {
+                       $nmgp_var = $this->sc_conv_var[strtolower($nmgp_var)];
+                   }
+               }
+               $nmgp_val = NM_decode_input($nmgp_val);
+               $this->$nmgp_var = $nmgp_val;
+          }
+      }
+      if (!empty($_GET))
+      {
+          foreach ($_GET as $nmgp_var => $nmgp_val)
+          {
+               if (substr($nmgp_var, 0, 11) == "SC_glo_par_")
+               {
+                   $nmgp_var = substr($nmgp_var, 11);
+                   $nmgp_val = $_SESSION[$nmgp_val];
+               }
+              if ($nmgp_var == "nmgp_parms" && substr($nmgp_val, 0, 8) == "@SC_par@")
+              {
+                  $SC_Ind_Val = explode("@SC_par@", $nmgp_val);
+                  if (count($SC_Ind_Val) == 4 && isset($_SESSION['sc_session'][$SC_Ind_Val[1]][$SC_Ind_Val[2]]['Lig_Md5'][$SC_Ind_Val[3]]))
+                  {
+                      $nmgp_val = $_SESSION['sc_session'][$SC_Ind_Val[1]][$SC_Ind_Val[2]]['Lig_Md5'][$SC_Ind_Val[3]];
+                      $Sc_lig_md5 = true;
+                  }
+                  else
+                  {
+                       $_SESSION['sc_session']['SC_parm_violation'] = true;
+                  }
+              }
+               if (!in_array(strtolower($nmgp_var), $this->scSajaxReservedWords)) {
+                   if (isset($this->sc_conv_var[$nmgp_var]))
+                   {
+                       $nmgp_var = $this->sc_conv_var[$nmgp_var];
+                   }
+                   elseif (isset($this->sc_conv_var[strtolower($nmgp_var)]))
+                   {
+                       $nmgp_var = $this->sc_conv_var[strtolower($nmgp_var)];
+                   }
+               }
+               $nmgp_val = NM_decode_input($nmgp_val);
+               $this->$nmgp_var = $nmgp_val;
+          }
+      }
+      if (isset($SC_lig_apl_orig) && !$Sc_lig_md5 && (!isset($nmgp_parms) || ($nmgp_parms != "SC_null" && substr($nmgp_parms, 0, 8) != "OrScLink")))
+      {
+          $_SESSION['sc_session']['SC_parm_violation'] = true;
+      }
+      if (isset($nmgp_parms) && $nmgp_parms == "SC_null")
+      {
+          $nmgp_parms = "";
+      }
+      if (isset($this->Igtech_RucEmpresa) && isset($this->NM_contr_var_session) && $this->NM_contr_var_session == "Yes") 
+      {
+          $_SESSION['Igtech_RucEmpresa'] = $this->Igtech_RucEmpresa;
+      }
+      if (isset($this->Igtech_SesionLogin) && isset($this->NM_contr_var_session) && $this->NM_contr_var_session == "Yes") 
+      {
+          $_SESSION['Igtech_SesionLogin'] = $this->Igtech_SesionLogin;
+      }
+      if (isset($_POST["Igtech_RucEmpresa"]) && isset($this->Igtech_RucEmpresa)) 
+      {
+          $_SESSION['Igtech_RucEmpresa'] = $this->Igtech_RucEmpresa;
+      }
+      if (!isset($_POST["Igtech_RucEmpresa"]) && isset($_POST["igtech_rucempresa"])) 
+      {
+          $_SESSION['Igtech_RucEmpresa'] = $_POST["igtech_rucempresa"];
+      }
+      if (isset($_POST["Igtech_SesionLogin"]) && isset($this->Igtech_SesionLogin)) 
+      {
+          $_SESSION['Igtech_SesionLogin'] = $this->Igtech_SesionLogin;
+      }
+      if (!isset($_POST["Igtech_SesionLogin"]) && isset($_POST["igtech_sesionlogin"])) 
+      {
+          $_SESSION['Igtech_SesionLogin'] = $_POST["igtech_sesionlogin"];
+      }
+      if (isset($_GET["Igtech_RucEmpresa"]) && isset($this->Igtech_RucEmpresa)) 
+      {
+          $_SESSION['Igtech_RucEmpresa'] = $this->Igtech_RucEmpresa;
+      }
+      if (!isset($_GET["Igtech_RucEmpresa"]) && isset($_GET["igtech_rucempresa"])) 
+      {
+          $_SESSION['Igtech_RucEmpresa'] = $_GET["igtech_rucempresa"];
+      }
+      if (isset($_GET["Igtech_SesionLogin"]) && isset($this->Igtech_SesionLogin)) 
+      {
+          $_SESSION['Igtech_SesionLogin'] = $this->Igtech_SesionLogin;
+      }
+      if (!isset($_GET["Igtech_SesionLogin"]) && isset($_GET["igtech_sesionlogin"])) 
+      {
+          $_SESSION['Igtech_SesionLogin'] = $_GET["igtech_sesionlogin"];
+      }
+      if (isset($this->nmgp_opcao) && $this->nmgp_opcao == "reload_novo") {
+          $_POST['nmgp_opcao'] = "novo";
+          $this->nmgp_opcao    = "novo";
+          $_SESSION['sc_session'][$script_case_init]['form_jap_solicitud_inspeccion']['opcao']   = "novo";
+          $_SESSION['sc_session'][$script_case_init]['form_jap_solicitud_inspeccion']['opc_ant'] = "inicio";
+      }
+      if (isset($_SESSION['sc_session'][$script_case_init]['form_jap_solicitud_inspeccion']['embutida_parms']))
+      { 
+          $this->nmgp_parms = $_SESSION['sc_session'][$script_case_init]['form_jap_solicitud_inspeccion']['embutida_parms'];
+          unset($_SESSION['sc_session'][$script_case_init]['form_jap_solicitud_inspeccion']['embutida_parms']);
+      } 
+      if (isset($this->nmgp_parms) && !empty($this->nmgp_parms)) 
+      { 
+          if (isset($_SESSION['nm_aba_bg_color'])) 
+          { 
+              unset($_SESSION['nm_aba_bg_color']);
+          }   
+          $nmgp_parms = str_replace("@aspass@", "'", $this->nmgp_parms);
+          $nmgp_parms = str_replace("*scout", "?@?", $nmgp_parms);
+          $nmgp_parms = str_replace("*scin", "?#?", $nmgp_parms);
+          $todox = str_replace("?#?@?@?", "?#?@ ?@?", $nmgp_parms);
+          $todo  = explode("?@?", $todox);
+          $ix = 0;
+          while (!empty($todo[$ix]))
+          {
+             $cadapar = explode("?#?", $todo[$ix]);
+             if (1 < sizeof($cadapar))
+             {
+                if (substr($cadapar[0], 0, 11) == "SC_glo_par_")
+                {
+                    $cadapar[0] = substr($cadapar[0], 11);
+                    $cadapar[1] = $_SESSION[$cadapar[1]];
+                }
+                 if (isset($this->sc_conv_var[$cadapar[0]]))
+                 {
+                     $cadapar[0] = $this->sc_conv_var[$cadapar[0]];
+                 }
+                 elseif (isset($this->sc_conv_var[strtolower($cadapar[0])]))
+                 {
+                     $cadapar[0] = $this->sc_conv_var[strtolower($cadapar[0])];
+                 }
+                 nm_limpa_str_form_jap_solicitud_inspeccion($cadapar[1]);
+                 if ($cadapar[1] == "@ ") {$cadapar[1] = trim($cadapar[1]); }
+                 $Tmp_par = $cadapar[0];
+                 $this->$Tmp_par = $cadapar[1];
+             }
+             $ix++;
+          }
+          if (!isset($this->Igtech_RucEmpresa) && isset($this->igtech_rucempresa)) 
+          {
+              $this->Igtech_RucEmpresa = $this->igtech_rucempresa;
+          }
+          if (isset($this->Igtech_RucEmpresa)) 
+          {
+              $_SESSION['Igtech_RucEmpresa'] = $this->Igtech_RucEmpresa;
+          }
+          if (!isset($this->Igtech_SesionLogin) && isset($this->igtech_sesionlogin)) 
+          {
+              $this->Igtech_SesionLogin = $this->igtech_sesionlogin;
+          }
+          if (isset($this->Igtech_SesionLogin)) 
+          {
+              $_SESSION['Igtech_SesionLogin'] = $this->Igtech_SesionLogin;
+          }
+          if (isset($this->NM_where_filter_form))
+          {
+              $_SESSION['sc_session'][$script_case_init]['form_jap_solicitud_inspeccion']['where_filter_form'] = $this->NM_where_filter_form;
+              unset($_SESSION['sc_session'][$script_case_init]['form_jap_solicitud_inspeccion']['total']);
+          }
+          if (isset($this->sc_redir_atualiz))
+          {
+              $_SESSION['sc_session'][$script_case_init]['form_jap_solicitud_inspeccion']['sc_redir_atualiz'] = $this->sc_redir_atualiz;
+          }
+          if (isset($this->sc_redir_insert))
+          {
+              $_SESSION['sc_session'][$script_case_init]['form_jap_solicitud_inspeccion']['sc_redir_insert'] = $this->sc_redir_insert;
+          }
+          if (!isset($this->Igtech_RucEmpresa) && isset($this->igtech_rucempresa)) 
+          {
+              $this->Igtech_RucEmpresa = $this->igtech_rucempresa;
+          }
+          if (isset($this->Igtech_RucEmpresa)) 
+          {
+              $_SESSION['Igtech_RucEmpresa'] = $this->Igtech_RucEmpresa;
+          }
+          if (!isset($this->Igtech_SesionLogin) && isset($this->igtech_sesionlogin)) 
+          {
+              $this->Igtech_SesionLogin = $this->igtech_sesionlogin;
+          }
+          if (isset($this->Igtech_SesionLogin)) 
+          {
+              $_SESSION['Igtech_SesionLogin'] = $this->Igtech_SesionLogin;
+          }
+      } 
+      elseif (isset($script_case_init) && !empty($script_case_init) && isset($_SESSION['sc_session'][$script_case_init]['form_jap_solicitud_inspeccion']['parms']))
+      {
+          if ((!isset($this->nmgp_opcao) || ($this->nmgp_opcao != "incluir" && $this->nmgp_opcao != "alterar" && $this->nmgp_opcao != "excluir" && $this->nmgp_opcao != "novo" && $this->nmgp_opcao != "recarga" && $this->nmgp_opcao != "muda_form")) && (!isset($this->NM_ajax_opcao) || $this->NM_ajax_opcao == ""))
+          {
+              $todox = str_replace("?#?@?@?", "?#?@ ?@?", $_SESSION['sc_session'][$script_case_init]['form_jap_solicitud_inspeccion']['parms']);
+              $todo  = explode("?@?", $todox);
+              $ix = 0;
+              while (!empty($todo[$ix]))
+              {
+                 $cadapar = explode("?#?", $todo[$ix]);
+                 if (substr($cadapar[0], 0, 11) == "SC_glo_par_")
+                 {
+                     $cadapar[0] = substr($cadapar[0], 11);
+                     $cadapar[1] = $_SESSION[$cadapar[1]];
+                 }
+                 if ($cadapar[1] == "@ ") {$cadapar[1] = trim($cadapar[1]); }
+                 $Tmp_par = $cadapar[0];
+                 $this->$Tmp_par = $cadapar[1];
+                 $ix++;
+              }
+          }
+      } 
+
+      if (isset($this->nm_run_menu) && $this->nm_run_menu == 1)
+      { 
+          $_SESSION['sc_session'][$script_case_init]['form_jap_solicitud_inspeccion']['nm_run_menu'] = 1;
+      } 
+      if (!$this->NM_ajax_flag && 'autocomp_' == substr($this->NM_ajax_opcao, 0, 9))
+      {
+          $this->NM_ajax_flag = true;
+      }
+
+      $dir_raiz          = strrpos($_SERVER['PHP_SELF'],"/") ;  
+      $dir_raiz          = substr($_SERVER['PHP_SELF'], 0, $dir_raiz + 1) ;  
+      if (isset($this->nm_evt_ret_edit) && '' != $this->nm_evt_ret_edit)
+      {
+          $_SESSION['sc_session'][$script_case_init]['form_jap_solicitud_inspeccion']['lig_edit_lookup']     = true;
+          $_SESSION['sc_session'][$script_case_init]['form_jap_solicitud_inspeccion']['lig_edit_lookup_cb']  = $this->nm_evt_ret_edit;
+          $_SESSION['sc_session'][$script_case_init]['form_jap_solicitud_inspeccion']['lig_edit_lookup_row'] = isset($this->nm_evt_ret_row) ? $this->nm_evt_ret_row : '';
+      }
+      if (isset($_SESSION['sc_session'][$script_case_init]['form_jap_solicitud_inspeccion']['lig_edit_lookup']) && $_SESSION['sc_session'][$script_case_init]['form_jap_solicitud_inspeccion']['lig_edit_lookup'])
+      {
+          $this->lig_edit_lookup     = true;
+          $this->lig_edit_lookup_cb  = $_SESSION['sc_session'][$script_case_init]['form_jap_solicitud_inspeccion']['lig_edit_lookup_cb'];
+          $this->lig_edit_lookup_row = $_SESSION['sc_session'][$script_case_init]['form_jap_solicitud_inspeccion']['lig_edit_lookup_row'];
+      }
+      if (!$this->Ini)
+      { 
+          $this->Ini = new form_jap_solicitud_inspeccion_ini(); 
+          $this->Ini->init();
+          $this->nm_data = new nm_data("es");
+          $this->app_is_initializing = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['initialize'];
+      } 
+      else 
+      { 
+         $this->nm_data = new nm_data("es");
+      } 
+      $_SESSION['sc_session'][$script_case_init]['form_jap_solicitud_inspeccion']['upload_field_info'] = array();
+
+      unset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['masterValue']);
+      $this->Change_Menu = false;
+      $run_iframe = (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['run_iframe']) && ($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['run_iframe'] == "F" || $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['run_iframe'] == "R")) ? true : false;
+      if (!$run_iframe && isset($_SESSION['scriptcase']['menu_atual']) && !$_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_call'] && (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['sc_outra_jan']) || !$_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['sc_outra_jan']))
+      {
+          $this->sc_init_menu = "x";
+          if (isset($_SESSION['scriptcase'][$_SESSION['scriptcase']['menu_atual']]['sc_init']['form_jap_solicitud_inspeccion']))
+          {
+              $this->sc_init_menu = $_SESSION['scriptcase'][$_SESSION['scriptcase']['menu_atual']]['sc_init']['form_jap_solicitud_inspeccion'];
+          }
+          elseif (isset($_SESSION['scriptcase']['menu_apls'][$_SESSION['scriptcase']['menu_atual']]))
+          {
+              foreach ($_SESSION['scriptcase']['menu_apls'][$_SESSION['scriptcase']['menu_atual']] as $init => $resto)
+              {
+                  if ($this->Ini->sc_page == $init)
+                  {
+                      $this->sc_init_menu = $init;
+                      break;
+                  }
+              }
+          }
+          if ($this->Ini->sc_page == $this->sc_init_menu && !isset($_SESSION['scriptcase']['menu_apls'][$_SESSION['scriptcase']['menu_atual']][$this->sc_init_menu]['form_jap_solicitud_inspeccion']))
+          {
+               $_SESSION['scriptcase']['menu_apls'][$_SESSION['scriptcase']['menu_atual']][$this->sc_init_menu]['form_jap_solicitud_inspeccion']['link'] = $this->Ini->sc_protocolo . $this->Ini->server . $this->Ini->path_link . "" . SC_dir_app_name('form_jap_solicitud_inspeccion') . "/";
+               $_SESSION['scriptcase']['menu_apls'][$_SESSION['scriptcase']['menu_atual']][$this->sc_init_menu]['form_jap_solicitud_inspeccion']['label'] = "" . $this->Ini->Nm_lang['lang_solicitud_inspeccion'] . "";
+               $this->Change_Menu = true;
+          }
+          elseif ($this->Ini->sc_page == $this->sc_init_menu)
+          {
+              $achou = false;
+              foreach ($_SESSION['scriptcase']['menu_apls'][$_SESSION['scriptcase']['menu_atual']][$this->sc_init_menu] as $apl => $parms)
+              {
+                  if ($apl == "form_jap_solicitud_inspeccion")
+                  {
+                      $achou = true;
+                  }
+                  elseif ($achou)
+                  {
+                      unset($_SESSION['scriptcase']['menu_apls'][$_SESSION['scriptcase']['menu_atual']][$this->sc_init_menu][$apl]);
+                      $this->Change_Menu = true;
+                  }
+              }
+          }
+      }
+      if (!function_exists("nmButtonOutput"))
+      {
+          include_once($this->Ini->path_lib_php . "nm_gp_config_btn.php");
+      }
+      include("../_lib/css/" . $this->Ini->str_schema_all . "_form.php");
+      $this->Ini->Str_btn_form    = trim($str_button);
+      include($this->Ini->path_btn . $this->Ini->Str_btn_form . '/' . $this->Ini->Str_btn_form . $_SESSION['scriptcase']['reg_conf']['css_dir'] . '.php');
+      $_SESSION['scriptcase']['css_form_help'] = '../_lib/css/' . $this->Ini->str_schema_all . "_form.css";
+      $_SESSION['scriptcase']['css_form_help_dir'] = '../_lib/css/' . $this->Ini->str_schema_all . "_form" . $_SESSION['scriptcase']['reg_conf']['css_dir'] . ".css";
+      $this->Db = $this->Ini->Db; 
+      $this->nm_new_label['si_id'] = '' . $this->Ini->Nm_lang['lang_id'] . '';
+      $this->nm_new_label['si_empresa'] = '' . $this->Ini->Nm_lang['lang_empresa'] . '';
+      $this->nm_new_label['si_secuecial'] = '' . $this->Ini->Nm_lang['lang_secuencial'] . '';
+      $this->nm_new_label['si_fecha'] = '' . $this->Ini->Nm_lang['lang_fecha'] . '';
+      $this->nm_new_label['si_contrato'] = '' . $this->Ini->Nm_lang['lang_contrato'] . '';
+      $this->nm_new_label['si_tipo_inspeccion'] = '' . $this->Ini->Nm_lang['lang_tipo_inspeccion'] . '';
+      $this->nm_new_label['si_comentario'] = '' . $this->Ini->Nm_lang['lang_comentario'] . '';
+      $this->nm_new_label['si_usuario_inspecciona'] = '' . $this->Ini->Nm_lang['lang_username'] . '';
+      $this->nm_new_label['si_fecha_inspeccion'] = '' . $this->Ini->Nm_lang['lang_fecha_inspeccion'] . '';
+      $this->nm_new_label['si_observacion'] = '' . $this->Ini->Nm_lang['lang_observacion'] . '';
+      $this->nm_new_label['si_estado'] = '' . $this->Ini->Nm_lang['lang_estado'] . '';
+      $this->nm_new_label['si_motivo_anulacion'] = '' . $this->Ini->Nm_lang['lang_motivo_rechazo'] . '';
+      $this->nm_new_label['propietario'] = '' . $this->Ini->Nm_lang['lang_propietario'] . '';
+      $this->nm_new_label['contrato'] = '' . $this->Ini->Nm_lang['lang_numero_contrato'] . '';
+      $this->nm_new_label['direccion'] = '' . $this->Ini->Nm_lang['lang_direccion'] . '';
+
+      $this->Ini->str_google_fonts = isset($str_google_fonts)?$str_google_fonts:'';
+      $this->Ini->Img_sep_form    = "/" . trim($str_toolbar_separator);
+      $this->Ini->Color_bg_ajax   = !isset($str_ajax_bg)         || "" == trim($str_ajax_bg)         ? "#000" : $str_ajax_bg;
+      $this->Ini->Border_c_ajax   = !isset($str_ajax_border_c)   || "" == trim($str_ajax_border_c)   ? ""     : $str_ajax_border_c;
+      $this->Ini->Border_s_ajax   = !isset($str_ajax_border_s)   || "" == trim($str_ajax_border_s)   ? ""     : $str_ajax_border_s;
+      $this->Ini->Border_w_ajax   = !isset($str_ajax_border_w)   || "" == trim($str_ajax_border_w)   ? ""     : $str_ajax_border_w;
+      $this->Ini->Block_img_exp   = !isset($str_block_exp)       || "" == trim($str_block_exp)       ? ""     : $str_block_exp;
+      $this->Ini->Block_img_col   = !isset($str_block_col)       || "" == trim($str_block_col)       ? ""     : $str_block_col;
+      $this->Ini->Msg_ico_title   = !isset($str_msg_ico_title)   || "" == trim($str_msg_ico_title)   ? ""     : $str_msg_ico_title;
+      $this->Ini->Msg_ico_body    = !isset($str_msg_ico_body)    || "" == trim($str_msg_ico_body)    ? ""     : $str_msg_ico_body;
+      $this->Ini->Err_ico_title   = !isset($str_err_ico_title)   || "" == trim($str_err_ico_title)   ? ""     : $str_err_ico_title;
+      $this->Ini->Err_ico_body    = !isset($str_err_ico_body)    || "" == trim($str_err_ico_body)    ? ""     : $str_err_ico_body;
+      $this->Ini->Cal_ico_back    = !isset($str_cal_ico_back)    || "" == trim($str_cal_ico_back)    ? ""     : $str_cal_ico_back;
+      $this->Ini->Cal_ico_for     = !isset($str_cal_ico_for)     || "" == trim($str_cal_ico_for)     ? ""     : $str_cal_ico_for;
+      $this->Ini->Cal_ico_close   = !isset($str_cal_ico_close)   || "" == trim($str_cal_ico_close)   ? ""     : $str_cal_ico_close;
+      $this->Ini->Tab_space       = !isset($str_tab_space)       || "" == trim($str_tab_space)       ? ""     : $str_tab_space;
+      $this->Ini->Bubble_tail     = !isset($str_bubble_tail)     || "" == trim($str_bubble_tail)     ? ""     : $str_bubble_tail;
+      $this->Ini->Label_sort_pos  = !isset($str_label_sort_pos)  || "" == trim($str_label_sort_pos)  ? ""     : $str_label_sort_pos;
+      $this->Ini->Label_sort      = !isset($str_label_sort)      || "" == trim($str_label_sort)      ? ""     : $str_label_sort;
+      $this->Ini->Label_sort_asc  = !isset($str_label_sort_asc)  || "" == trim($str_label_sort_asc)  ? ""     : $str_label_sort_asc;
+      $this->Ini->Label_sort_desc = !isset($str_label_sort_desc) || "" == trim($str_label_sort_desc) ? ""     : $str_label_sort_desc;
+      $this->Ini->Img_status_ok       = !isset($str_img_status_ok)  || "" == trim($str_img_status_ok)   ? ""     : $str_img_status_ok;
+      $this->Ini->Img_status_err      = !isset($str_img_status_err) || "" == trim($str_img_status_err)  ? ""     : $str_img_status_err;
+      $this->Ini->Css_status          = "scFormInputError";
+      $this->Ini->Css_status_pwd_box  = "scFormInputErrorPwdBox";
+      $this->Ini->Css_status_pwd_text = "scFormInputErrorPwdText";
+      $this->Ini->Error_icon_span      = !isset($str_error_icon_span)  || "" == trim($str_error_icon_span)  ? false  : "message" == $str_error_icon_span;
+      $this->Ini->Img_qs_search        = !isset($img_qs_search)        || "" == trim($img_qs_search)        ? "scriptcase__NM__qs_lupa.png"  : $img_qs_search;
+      $this->Ini->Img_qs_clean         = !isset($img_qs_clean)         || "" == trim($img_qs_clean)         ? "scriptcase__NM__qs_close.png" : $img_qs_clean;
+      $this->Ini->Str_qs_image_padding = !isset($str_qs_image_padding) || "" == trim($str_qs_image_padding) ? "0"                            : $str_qs_image_padding;
+      $this->Ini->App_div_tree_img_col = trim($app_div_str_tree_col);
+      $this->Ini->App_div_tree_img_exp = trim($app_div_str_tree_exp);
+      $this->Ini->form_table_width     = isset($str_form_table_width) && '' != trim($str_form_table_width) ? $str_form_table_width : '';
+
+        $this->classes_100perc_fields['table'] = '';
+        $this->classes_100perc_fields['input'] = '';
+        $this->classes_100perc_fields['span_input'] = '';
+        $this->classes_100perc_fields['span_select'] = '';
+        $this->classes_100perc_fields['style_category'] = '';
+        $this->classes_100perc_fields['keep_field_size'] = true;
+        if ($this->use_100perc_fields) {
+            $this->classes_100perc_fields['table'] = ' sc-ui-100perc-table';
+            $this->classes_100perc_fields['input'] = ' sc-ui-100perc-input';
+            $this->classes_100perc_fields['span_input'] = ' sc-ui-100perc-span-input';
+            $this->classes_100perc_fields['span_select'] = ' sc-ui-100perc-span-select';
+            $this->classes_100perc_fields['style_category'] = ' style="width: 100%"';
+            $this->classes_100perc_fields['keep_field_size'] = false;
+        }
+
+
+      $this->arr_buttons['enviar_inspeccion']['hint']             = "";
+      $this->arr_buttons['enviar_inspeccion']['type']             = "button";
+      $this->arr_buttons['enviar_inspeccion']['value']            = "" . $this->Ini->Nm_lang['lang_escalar_inspeccion'] . "";
+      $this->arr_buttons['enviar_inspeccion']['display']          = "text_fontawesomeicon";
+      $this->arr_buttons['enviar_inspeccion']['display_position'] = "text_right";
+      $this->arr_buttons['enviar_inspeccion']['style']            = "default";
+      $this->arr_buttons['enviar_inspeccion']['image']            = "";
+      $this->arr_buttons['enviar_inspeccion']['has_fa']            = "true";
+      $this->arr_buttons['enviar_inspeccion']['fontawesomeicon']            = "fas fa-arrow-alt-circle-right";
+
+      $this->arr_buttons['imprimir']['hint']             = "";
+      $this->arr_buttons['imprimir']['type']             = "button";
+      $this->arr_buttons['imprimir']['value']            = "" . $this->Ini->Nm_lang['lang_imprimir'] . "";
+      $this->arr_buttons['imprimir']['display']          = "text_fontawesomeicon";
+      $this->arr_buttons['imprimir']['display_position'] = "text_right";
+      $this->arr_buttons['imprimir']['style']            = "default";
+      $this->arr_buttons['imprimir']['image']            = "";
+      $this->arr_buttons['imprimir']['has_fa']            = "true";
+      $this->arr_buttons['imprimir']['fontawesomeicon']            = "fas fa-print";
+
+      $this->arr_buttons['anular']['hint']             = "";
+      $this->arr_buttons['anular']['type']             = "button";
+      $this->arr_buttons['anular']['value']            = "" . $this->Ini->Nm_lang['lang_rechazar_solicitud'] . "";
+      $this->arr_buttons['anular']['display']          = "text_fontawesomeicon";
+      $this->arr_buttons['anular']['display_position'] = "text_right";
+      $this->arr_buttons['anular']['style']            = "cancel";
+      $this->arr_buttons['anular']['image']            = "";
+      $this->arr_buttons['anular']['has_fa']            = "true";
+      $this->arr_buttons['anular']['fontawesomeicon']            = "far fa-trash-alt";
+
+      $this->arr_buttons['finalizar']['hint']             = "";
+      $this->arr_buttons['finalizar']['type']             = "button";
+      $this->arr_buttons['finalizar']['value']            = "" . $this->Ini->Nm_lang['lang_finalizar'] . "";
+      $this->arr_buttons['finalizar']['display']          = "text_fontawesomeicon";
+      $this->arr_buttons['finalizar']['display_position'] = "text_right";
+      $this->arr_buttons['finalizar']['style']            = "default";
+      $this->arr_buttons['finalizar']['image']            = "";
+      $this->arr_buttons['finalizar']['has_fa']            = "true";
+      $this->arr_buttons['finalizar']['fontawesomeicon']            = "far fa-bookmark";
+
+
+      $_SESSION['scriptcase']['error_icon']['form_jap_solicitud_inspeccion']  = "<img src=\"" . $this->Ini->path_icones . "/scriptcase__NM__icnMensagemAlerta.png\" style=\"border-width: 0px\" align=\"top\">&nbsp;";
+      $_SESSION['scriptcase']['error_close']['form_jap_solicitud_inspeccion'] = "<td>" . nmButtonOutput($this->arr_buttons, "berrm_clse", "document.getElementById('id_error_display_fixed').style.display = 'none'; document.getElementById('id_error_message_fixed').innerHTML = ''; return false", "document.getElementById('id_error_display_fixed').style.display = 'none'; document.getElementById('id_error_message_fixed').innerHTML = ''; return false", "", "", "", "", "", "", "", $this->Ini->path_botoes, "", "", "", "", "") . "</td>";
+
+      $this->Embutida_proc = isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_proc']) ? $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_proc'] : $this->Embutida_proc;
+      $this->Embutida_form = isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_form']) ? $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_form'] : $this->Embutida_form;
+      $this->Embutida_call = isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_call']) ? $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_call'] : $this->Embutida_call;
+
+      $this->form_3versions_single = false;
+
+       $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['table_refresh'] = false;
+
+      if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_grid_edit']) && '' != $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_grid_edit'])
+      {
+          $this->Grid_editavel = ('on' == $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_grid_edit']) ? true : false;
+      }
+      if (isset($this->Grid_editavel) && $this->Grid_editavel)
+      {
+          $this->Embutida_form  = true;
+          $this->Embutida_ronly = true;
+      }
+      $this->Embutida_multi = false;
+      if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_multi']) && $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_multi'])
+      {
+          $this->Grid_editavel  = false;
+          $this->Embutida_form  = false;
+          $this->Embutida_ronly = false;
+          $this->Embutida_multi = true;
+      }
+      if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_tp_pag']) && '' != $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_tp_pag'])
+      {
+          $this->form_paginacao = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_tp_pag'];
+      }
+
+      if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_form']) || '' == $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_form'])
+      {
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_form'] = $this->Embutida_form;
+      }
+      if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_grid_edit']) || '' == $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_grid_edit'])
+      {
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_grid_edit'] = $this->Grid_editavel ? 'on' : 'off';
+      }
+      if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_grid_edit']) || '' == $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_grid_edit'])
+      {
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_grid_edit'] = $this->Embutida_call;
+      }
+
+      $this->Ini->cor_grid_par = $this->Ini->cor_grid_impar;
+      $this->nm_location = $this->Ini->sc_protocolo . $this->Ini->server . $dir_raiz; 
+      $this->nmgp_url_saida  = $nm_url_saida;
+      $this->nmgp_form_show  = "on";
+      $this->nmgp_form_empty = false;
+      $this->Ini->sc_Include($this->Ini->path_lib_php . "/nm_valida.php", "C", "NM_Valida") ; 
+      $teste_validade = new NM_Valida ;
+
+      $this->loadFieldConfig();
+
+      if ($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['first_time'])
+      {
+          unset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['insert']);
+          unset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['new']);
+          unset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['update']);
+          unset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['delete']);
+          unset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['first']);
+          unset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['back']);
+          unset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['forward']);
+          unset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['last']);
+          unset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['qsearch']);
+          unset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['dynsearch']);
+          unset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['summary']);
+          unset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['navpage']);
+          unset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['goto']);
+      }
+      $this->NM_cancel_return_new = (isset($this->NM_cancel_return_new) && $this->NM_cancel_return_new == 1) ? "1" : "";
+      $this->NM_cancel_insert_new = ((isset($this->NM_cancel_insert_new) && $this->NM_cancel_insert_new == 1) || $this->NM_cancel_return_new == 1) ? "document.F5.action='" . $nm_url_saida . "';" : "";
+      if (isset($this->NM_btn_insert) && '' != $this->NM_btn_insert && (!isset($_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['insert']) || '' == $_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['insert']))
+      {
+          if ('N' == $this->NM_btn_insert)
+          {
+              $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['insert'] = 'off';
+          }
+          else
+          {
+              $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['insert'] = 'on';
+          }
+      }
+      if (isset($this->NM_btn_new) && 'N' == $this->NM_btn_new)
+      {
+          $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['new'] = 'off';
+      }
+      if (isset($this->NM_btn_update) && '' != $this->NM_btn_update && (!isset($_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['update']) || '' == $_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['update']))
+      {
+          if ('N' == $this->NM_btn_update)
+          {
+              $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['update'] = 'off';
+          }
+          else
+          {
+              $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['update'] = 'on';
+          }
+      }
+      if (isset($this->NM_btn_delete) && '' != $this->NM_btn_delete && (!isset($_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['delete']) || '' == $_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['delete']))
+      {
+          if ('N' == $this->NM_btn_delete)
+          {
+              $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['delete'] = 'off';
+          }
+          else
+          {
+              $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['delete'] = 'on';
+          }
+      }
+      if (isset($this->NM_btn_navega) && '' != $this->NM_btn_navega)
+      {
+          if ('N' == $this->NM_btn_navega)
+          {
+              $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['first']     = 'off';
+              $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['back']      = 'off';
+              $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['forward']   = 'off';
+              $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['last']      = 'off';
+              $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['qsearch']   = 'off';
+              $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['dynsearch'] = 'off';
+              $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['summary']   = 'off';
+              $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['navpage']   = 'off';
+              $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['goto']      = 'off';
+              $this->Nav_permite_ava = false;
+              $this->Nav_permite_ret = false;
+          }
+          else
+          {
+              $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['first']     = 'on';
+              $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['back']      = 'on';
+              $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['forward']   = 'on';
+              $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['last']      = 'on';
+              $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['qsearch']   = 'on';
+              $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['dynsearch'] = 'on';
+              $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['summary']   = 'on';
+              $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['navpage']   = 'on';
+              $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['goto']      = 'on';
+          }
+      }
+
+      $this->nmgp_botoes['cancel'] = "on";
+      $this->nmgp_botoes['exit'] = "on";
+      $this->nmgp_botoes['new'] = "on";
+      $this->nmgp_botoes['insert'] = "on";
+      $this->nmgp_botoes['copy'] = "off";
+      $this->nmgp_botoes['update'] = "on";
+      $this->nmgp_botoes['delete'] = "off";
+      $this->nmgp_botoes['first'] = "on";
+      $this->nmgp_botoes['back'] = "on";
+      $this->nmgp_botoes['forward'] = "on";
+      $this->nmgp_botoes['last'] = "on";
+      $this->nmgp_botoes['summary'] = "on";
+      $this->nmgp_botoes['navpage'] = "on";
+      $this->nmgp_botoes['goto'] = "on";
+      $this->nmgp_botoes['qtline'] = "off";
+      $this->nmgp_botoes['reload'] = "off";
+      $this->nmgp_botoes['enviar_inspeccion'] = "on";
+      $this->nmgp_botoes['imprimir'] = "on";
+      $this->nmgp_botoes['anular'] = "on";
+      $this->nmgp_botoes['finalizar'] = "on";
+      if (isset($this->NM_btn_cancel) && 'N' == $this->NM_btn_cancel)
+      {
+          $this->nmgp_botoes['cancel'] = "off";
+      }
+      $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['where_orig'] = "";
+      if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['where_pesq']))
+      {
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['where_pesq'] = "";
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['where_pesq_filtro'] = "";
+      }
+      $this->sc_where_orig   = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['where_orig'];
+      $this->sc_where_atual  = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['where_pesq'];
+      $this->sc_where_filtro = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['where_pesq_filtro'];
+      if ($this->NM_ajax_flag && 'event_' == substr($this->NM_ajax_opcao, 0, 6)) {
+          $this->nmgp_botoes = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['buttonStatus'];
+      }
+      if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['iframe_filtro']) && $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['iframe_filtro'] == "S")
+      {
+          $this->nmgp_botoes['exit'] = "off";
+      }
+      if (isset($_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['btn_display']) && !empty($_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['btn_display']))
+      {
+          foreach ($_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['btn_display'] as $NM_cada_btn => $NM_cada_opc)
+          {
+              $this->nmgp_botoes[$NM_cada_btn] = $NM_cada_opc;
+          }
+      }
+
+      if (isset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['insert']) && $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['insert'] != '')
+      {
+          $this->nmgp_botoes['new']    = $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['insert'];
+          $this->nmgp_botoes['insert'] = $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['insert'];
+      }
+      if (isset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['new']) && $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['new'] != '')
+      {
+          $this->nmgp_botoes['new']    = $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['new'];
+      }
+      if (isset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['update']) && $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['update'] != '')
+      {
+          $this->nmgp_botoes['update'] = $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['update'];
+      }
+      if (isset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['delete']) && $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['delete'] != '')
+      {
+          $this->nmgp_botoes['delete'] = $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['delete'];
+      }
+      if (isset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['first']) && $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['first'] != '')
+      {
+          $this->nmgp_botoes['first'] = $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['first'];
+      }
+      if (isset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['back']) && $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['back'] != '')
+      {
+          $this->nmgp_botoes['back'] = $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['back'];
+      }
+      if (isset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['forward']) && $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['forward'] != '')
+      {
+          $this->nmgp_botoes['forward'] = $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['forward'];
+      }
+      if (isset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['last']) && $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['last'] != '')
+      {
+          $this->nmgp_botoes['last'] = $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['last'];
+      }
+      if (isset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['qsearch']) && $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['qsearch'] != '')
+      {
+          $this->nmgp_botoes['qsearch'] = $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['qsearch'];
+      }
+      if (isset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['dynsearch']) && $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['dynsearch'] != '')
+      {
+          $this->nmgp_botoes['dynsearch'] = $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['dynsearch'];
+      }
+      if (isset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['summary']) && $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['summary'] != '')
+      {
+          $this->nmgp_botoes['summary'] = $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['summary'];
+      }
+      if (isset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['navpage']) && $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['navpage'] != '')
+      {
+          $this->nmgp_botoes['navpage'] = $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['navpage'];
+      }
+      if (isset($_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['goto']) && $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['goto'] != '')
+      {
+          $this->nmgp_botoes['goto'] = $_SESSION['scriptcase']['sc_apl_conf_lig']['form_jap_solicitud_inspeccion']['goto'];
+      }
+
+      if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_form_insert']) && $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_form_insert'] != '')
+      {
+          $this->nmgp_botoes['new']    = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_form_insert'];
+          $this->nmgp_botoes['insert'] = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_form_insert'];
+      }
+      if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_form_update']) && $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_form_update'] != '')
+      {
+          $this->nmgp_botoes['update'] = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_form_update'];
+      }
+      if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_form_delete']) && $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_form_delete'] != '')
+      {
+          $this->nmgp_botoes['delete'] = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_form_delete'];
+      }
+      if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_form_btn_nav']) && $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_form_btn_nav'] != '')
+      {
+          $this->nmgp_botoes['first']   = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_form_btn_nav'];
+          $this->nmgp_botoes['back']    = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_form_btn_nav'];
+          $this->nmgp_botoes['forward'] = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_form_btn_nav'];
+          $this->nmgp_botoes['last']    = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_form_btn_nav'];
+      }
+
+      if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dashboard_info']['under_dashboard']) && $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dashboard_info']['under_dashboard'] && !$_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dashboard_info']['maximized']) {
+          $tmpDashboardApp = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dashboard_info']['dashboard_app'];
+          if (isset($_SESSION['scriptcase']['dashboard_toolbar'][$tmpDashboardApp]['form_jap_solicitud_inspeccion'])) {
+              $tmpDashboardButtons = $_SESSION['scriptcase']['dashboard_toolbar'][$tmpDashboardApp]['form_jap_solicitud_inspeccion'];
+
+              $this->nmgp_botoes['update']     = $tmpDashboardButtons['form_update']    ? 'on' : 'off';
+              $this->nmgp_botoes['new']        = $tmpDashboardButtons['form_insert']    ? 'on' : 'off';
+              $this->nmgp_botoes['insert']     = $tmpDashboardButtons['form_insert']    ? 'on' : 'off';
+              $this->nmgp_botoes['delete']     = $tmpDashboardButtons['form_delete']    ? 'on' : 'off';
+              $this->nmgp_botoes['copy']       = $tmpDashboardButtons['form_copy']      ? 'on' : 'off';
+              $this->nmgp_botoes['first']      = $tmpDashboardButtons['form_navigate']  ? 'on' : 'off';
+              $this->nmgp_botoes['back']       = $tmpDashboardButtons['form_navigate']  ? 'on' : 'off';
+              $this->nmgp_botoes['last']       = $tmpDashboardButtons['form_navigate']  ? 'on' : 'off';
+              $this->nmgp_botoes['forward']    = $tmpDashboardButtons['form_navigate']  ? 'on' : 'off';
+              $this->nmgp_botoes['navpage']    = $tmpDashboardButtons['form_navpage']   ? 'on' : 'off';
+              $this->nmgp_botoes['goto']       = $tmpDashboardButtons['form_goto']      ? 'on' : 'off';
+              $this->nmgp_botoes['qtline']     = $tmpDashboardButtons['form_lineqty']   ? 'on' : 'off';
+              $this->nmgp_botoes['summary']    = $tmpDashboardButtons['form_summary']   ? 'on' : 'off';
+              $this->nmgp_botoes['qsearch']    = $tmpDashboardButtons['form_qsearch']   ? 'on' : 'off';
+              $this->nmgp_botoes['dynsearch']  = $tmpDashboardButtons['form_dynsearch'] ? 'on' : 'off';
+              $this->nmgp_botoes['reload']     = $tmpDashboardButtons['form_reload']    ? 'on' : 'off';
+          }
+      }
+
+      if (isset($_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['insert']) && $_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['insert'] != '')
+      {
+          $this->nmgp_botoes['new']    = $_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['insert'];
+          $this->nmgp_botoes['insert'] = $_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['insert'];
+      }
+      if (isset($_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['update']) && $_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['update'] != '')
+      {
+          $this->nmgp_botoes['update'] = $_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['update'];
+      }
+      if (isset($_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['delete']) && $_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['delete'] != '')
+      {
+          $this->nmgp_botoes['delete'] = $_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['delete'];
+      }
+
+      if (isset($_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['field_display']) && !empty($_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['field_display']))
+      {
+          foreach ($_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['field_display'] as $NM_cada_field => $NM_cada_opc)
+          {
+              $this->nmgp_cmp_hidden[$NM_cada_field] = $NM_cada_opc;
+              $this->NM_ajax_info['fieldDisplay'][$NM_cada_field] = $NM_cada_opc;
+          }
+      }
+      if (isset($_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['field_readonly']) && !empty($_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['field_readonly']))
+      {
+          foreach ($_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['field_readonly'] as $NM_cada_field => $NM_cada_opc)
+          {
+              $this->nmgp_cmp_readonly[$NM_cada_field] = "on";
+              $this->NM_ajax_info['readOnly'][$NM_cada_field] = $NM_cada_opc;
+          }
+      }
+      if (isset($_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['exit']) && $_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['exit'] != '')
+      {
+          $_SESSION['scriptcase']['sc_url_saida'][$this->Ini->sc_page]       = $_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['exit'];
+          $_SESSION['scriptcase']['sc_force_url_saida'][$this->Ini->sc_page] = true;
+      }
+      if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dados_form']))
+      {
+          $this->nmgp_dados_form = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dados_form'];
+          if (!isset($this->si_usuario_registra)){$this->si_usuario_registra = $this->nmgp_dados_form['si_usuario_registra'];} 
+          if ($this->nmgp_opcao == "incluir" && $this->nmgp_dados_form['propietario'] != "null"){$this->propietario = $this->nmgp_dados_form['propietario'];} 
+          if ($this->nmgp_opcao == "incluir" && $this->nmgp_dados_form['contrato'] != "null"){$this->contrato = $this->nmgp_dados_form['contrato'];} 
+          if ($this->nmgp_opcao == "incluir" && $this->nmgp_dados_form['direccion'] != "null"){$this->direccion = $this->nmgp_dados_form['direccion'];} 
+      }
+      $glo_senha_protect = (isset($_SESSION['scriptcase']['glo_senha_protect'])) ? $_SESSION['scriptcase']['glo_senha_protect'] : "S";
+      $this->aba_iframe = false;
+      if (isset($_SESSION['scriptcase']['sc_aba_iframe']))
+      {
+          foreach ($_SESSION['scriptcase']['sc_aba_iframe'] as $aba => $apls_aba)
+          {
+              if (in_array("form_jap_solicitud_inspeccion", $apls_aba))
+              {
+                  $this->aba_iframe = true;
+                  break;
+              }
+          }
+      }
+      if ($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['iframe_menu'] && (!isset($_SESSION['scriptcase']['menu_mobile']) || empty($_SESSION['scriptcase']['menu_mobile'])))
+      {
+          $this->aba_iframe = true;
+      }
+      $this->Ini->sc_Include($this->Ini->path_lib_php . "/nm_gp_limpa.php", "F", "nm_limpa_valor") ; 
+      $this->Ini->sc_Include($this->Ini->path_libs . "/nm_gc.php", "F", "nm_gc") ; 
+      $_SESSION['scriptcase']['sc_tab_meses']['int'] = array(
+                                      $this->Ini->Nm_lang['lang_mnth_janu'],
+                                      $this->Ini->Nm_lang['lang_mnth_febr'],
+                                      $this->Ini->Nm_lang['lang_mnth_marc'],
+                                      $this->Ini->Nm_lang['lang_mnth_apri'],
+                                      $this->Ini->Nm_lang['lang_mnth_mayy'],
+                                      $this->Ini->Nm_lang['lang_mnth_june'],
+                                      $this->Ini->Nm_lang['lang_mnth_july'],
+                                      $this->Ini->Nm_lang['lang_mnth_augu'],
+                                      $this->Ini->Nm_lang['lang_mnth_sept'],
+                                      $this->Ini->Nm_lang['lang_mnth_octo'],
+                                      $this->Ini->Nm_lang['lang_mnth_nove'],
+                                      $this->Ini->Nm_lang['lang_mnth_dece']);
+      $_SESSION['scriptcase']['sc_tab_meses']['abr'] = array(
+                                      $this->Ini->Nm_lang['lang_shrt_mnth_janu'],
+                                      $this->Ini->Nm_lang['lang_shrt_mnth_febr'],
+                                      $this->Ini->Nm_lang['lang_shrt_mnth_marc'],
+                                      $this->Ini->Nm_lang['lang_shrt_mnth_apri'],
+                                      $this->Ini->Nm_lang['lang_shrt_mnth_mayy'],
+                                      $this->Ini->Nm_lang['lang_shrt_mnth_june'],
+                                      $this->Ini->Nm_lang['lang_shrt_mnth_july'],
+                                      $this->Ini->Nm_lang['lang_shrt_mnth_augu'],
+                                      $this->Ini->Nm_lang['lang_shrt_mnth_sept'],
+                                      $this->Ini->Nm_lang['lang_shrt_mnth_octo'],
+                                      $this->Ini->Nm_lang['lang_shrt_mnth_nove'],
+                                      $this->Ini->Nm_lang['lang_shrt_mnth_dece']);
+      $_SESSION['scriptcase']['sc_tab_dias']['int'] = array(
+                                      $this->Ini->Nm_lang['lang_days_sund'],
+                                      $this->Ini->Nm_lang['lang_days_mond'],
+                                      $this->Ini->Nm_lang['lang_days_tued'],
+                                      $this->Ini->Nm_lang['lang_days_wend'],
+                                      $this->Ini->Nm_lang['lang_days_thud'],
+                                      $this->Ini->Nm_lang['lang_days_frid'],
+                                      $this->Ini->Nm_lang['lang_days_satd']);
+      $_SESSION['scriptcase']['sc_tab_dias']['abr'] = array(
+                                      $this->Ini->Nm_lang['lang_shrt_days_sund'],
+                                      $this->Ini->Nm_lang['lang_shrt_days_mond'],
+                                      $this->Ini->Nm_lang['lang_shrt_days_tued'],
+                                      $this->Ini->Nm_lang['lang_shrt_days_wend'],
+                                      $this->Ini->Nm_lang['lang_shrt_days_thud'],
+                                      $this->Ini->Nm_lang['lang_shrt_days_frid'],
+                                      $this->Ini->Nm_lang['lang_shrt_days_satd']);
+      nm_gc($this->Ini->path_libs);
+      $this->Ini->Gd_missing  = true;
+      if(function_exists("getProdVersion"))
+      {
+         $_SESSION['scriptcase']['sc_prod_Version'] = str_replace(".", "", getProdVersion($this->Ini->path_libs));
+         if(function_exists("gd_info"))
+         {
+            $this->Ini->Gd_missing = false;
+         }
+      }
+      $this->Ini->sc_Include($this->Ini->path_lib_php . "/nm_trata_img.php", "C", "nm_trata_img") ; 
+      if (isset($_GET['nm_cal_display']))
+      {
+          if ($this->Embutida_proc)
+          { 
+              include_once($this->Ini->path_embutida . 'form_jap_solicitud_inspeccion/form_jap_solicitud_inspeccion_calendar.php');
+          }
+          else
+          { 
+              include_once($this->Ini->path_aplicacao . 'form_jap_solicitud_inspeccion_calendar.php');
+          }
+          exit;
+      }
+
+      if (is_file($this->Ini->path_aplicacao . 'form_jap_solicitud_inspeccion_help.txt'))
+      {
+          $arr_link_webhelp = file($this->Ini->path_aplicacao . 'form_jap_solicitud_inspeccion_help.txt');
+          if ($arr_link_webhelp)
+          {
+              foreach ($arr_link_webhelp as $str_link_webhelp)
+              {
+                  $str_link_webhelp = trim($str_link_webhelp);
+                  if ('form:' == substr($str_link_webhelp, 0, 5))
+                  {
+                      $arr_link_parts = explode(':', $str_link_webhelp);
+                      if ('' != $arr_link_parts[1] && is_file($this->Ini->root . $this->Ini->path_help . $arr_link_parts[1]))
+                      {
+                          $this->url_webhelp = $this->Ini->path_help . $arr_link_parts[1];
+                      }
+                  }
+              }
+          }
+      }
+
+      if (is_dir($this->Ini->path_aplicacao . 'img'))
+      {
+          $Res_dir_img = @opendir($this->Ini->path_aplicacao . 'img');
+          if ($Res_dir_img)
+          {
+              while (FALSE !== ($Str_arquivo = @readdir($Res_dir_img))) 
+              {
+                 if (@is_file($this->Ini->path_aplicacao . 'img/' . $Str_arquivo) && '.' != $Str_arquivo && '..' != $this->Ini->path_aplicacao . 'img/' . $Str_arquivo)
+                 {
+                     @unlink($this->Ini->path_aplicacao . 'img/' . $Str_arquivo);
+                 }
+              }
+          }
+          @closedir($Res_dir_img);
+          rmdir($this->Ini->path_aplicacao . 'img');
+      }
+
+      if ($this->Embutida_proc)
+      { 
+          require_once($this->Ini->path_embutida . 'form_jap_solicitud_inspeccion/form_jap_solicitud_inspeccion_erro.class.php');
+      }
+      else
+      { 
+          require_once($this->Ini->path_aplicacao . "form_jap_solicitud_inspeccion_erro.class.php"); 
+      }
+      $this->Erro      = new form_jap_solicitud_inspeccion_erro();
+      $this->Erro->Ini = $this->Ini;
+      $this->proc_fast_search = false;
+      if ((!isset($nm_opc_lookup) || $nm_opc_lookup != "lookup") && (!isset($nm_opc_php) || $nm_opc_php != "formphp"))
+      { 
+         if (empty($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['opcao']))
+         { 
+             if ($this->si_id != "")   
+             { 
+                 $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['opcao'] = "igual" ;  
+             }   
+         }   
+      } 
+      if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['opcao']) && !empty($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['opcao']) && empty($this->nmgp_refresh_fields))
+      {
+          $this->nmgp_opcao = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['opcao'];  
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['opcao'] = "" ;  
+          if ($this->nmgp_opcao == "edit_novo")  
+          {
+             $this->nmgp_opcao = "novo";
+             $this->nm_flag_saida_novo = "S";
+          }
+      } 
+      $this->nm_Start_new = false;
+      if (isset($_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['start']) && $_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['start'] == 'new')
+      {
+          $this->nmgp_opcao = "novo";
+          $this->nm_Start_new = true;
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['opcao'] = "novo";
+          unset($_SESSION['scriptcase']['sc_apl_conf']['form_jap_solicitud_inspeccion']['start']);
+      }
+      if ($this->nmgp_opcao == "igual")  
+      {
+          $this->nmgp_opc_ant = $this->nmgp_opcao;
+      } 
+      else
+      {
+          $this->nmgp_opc_ant = (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['opc_ant'])) ? $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['opc_ant'] : "";
+      } 
+      if ($this->nmgp_opcao == "novo")  
+      {
+          $this->nmgp_botoes['enviar_inspeccion'] = "off";
+          $this->nmgp_botoes['imprimir'] = "off";
+          $this->nmgp_botoes['anular'] = "off";
+          $this->nmgp_botoes['finalizar'] = "off";
+      }
+      elseif ($this->nmgp_opcao == "incluir")  
+      {
+          $this->nmgp_botoes['enviar_inspeccion'] = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['botoes']['enviar_inspeccion'];
+          $this->nmgp_botoes['imprimir'] = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['botoes']['imprimir'];
+          $this->nmgp_botoes['anular'] = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['botoes']['anular'];
+          $this->nmgp_botoes['finalizar'] = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['botoes']['finalizar'];
+      }
+      if ($this->nmgp_opcao == "recarga" || $this->nmgp_opcao == "muda_form")  
+      {
+          $this->nmgp_botoes = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['botoes'];
+          $this->Nav_permite_ret = 0 != $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['inicio'];
+          $this->Nav_permite_ava = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['total'] != $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['final'];
+      }
+      else
+      {
+      }
+      $this->nm_flag_iframe = false;
+      if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dados_form'])) 
+      {
+         $this->nmgp_dados_form = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dados_form'];
+      }
+      if ($this->nmgp_opcao == "edit_novo")  
+      {
+          $this->nmgp_opcao = "novo";
+          $this->nm_flag_saida_novo = "S";
+      }
+//
+      $this->NM_case_insensitive = false;
+      $this->sc_evento = $this->nmgp_opcao;
+      $this->sc_insert_on = false;
+            if ('ajax_check_file' == $this->nmgp_opcao ){
+                 ob_start(); 
+                 include_once("../_lib/lib/php/nm_api.php"); 
+            switch( $_POST['rsargs'] ){
+               default:
+                   echo 0;exit;
+               break;
+               }
+
+            $out1_img_cache = $_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['glo_nm_path_imag_temp'] . $file_name;
+            $orig_img = $_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['glo_nm_path_imag_temp']. '/sc_'.md5(date('YmdHis').basename($_POST['AjaxCheckImg'])).'.gif';
+            copy($__file_download, $_SERVER['DOCUMENT_ROOT'].$orig_img);
+            echo $orig_img . '_@@NM@@_';            copy($__file_download, $_SERVER['DOCUMENT_ROOT'].$out1_img_cache);
+            $sc_obj_img = new nm_trata_img($_SERVER['DOCUMENT_ROOT'].$out1_img_cache, true);
+
+            if(!empty($img_width) && !empty($img_height)){
+                $sc_obj_img->setWidth($img_width);
+                $sc_obj_img->setHeight($img_height);
+            }
+                $sc_obj_img->setManterAspecto(true);
+            $sc_obj_img->createImg($_SERVER['DOCUMENT_ROOT'].$out1_img_cache);
+            echo $out1_img_cache;
+               exit;
+            }
+      if (isset($this->si_id)) { $this->nm_limpa_alfa($this->si_id); }
+      if (isset($this->si_empresa)) { $this->nm_limpa_alfa($this->si_empresa); }
+      if (isset($this->si_secuecial)) { $this->nm_limpa_alfa($this->si_secuecial); }
+      if (isset($this->si_contrato)) { $this->nm_limpa_alfa($this->si_contrato); }
+      if (isset($this->si_tipo_inspeccion)) { $this->nm_limpa_alfa($this->si_tipo_inspeccion); }
+      if (isset($this->si_comentario)) { $this->nm_limpa_alfa($this->si_comentario); }
+      if (isset($this->si_usuario_inspecciona)) { $this->nm_limpa_alfa($this->si_usuario_inspecciona); }
+      if (isset($this->si_observacion)) { $this->nm_limpa_alfa($this->si_observacion); }
+      if (isset($this->si_estado)) { $this->nm_limpa_alfa($this->si_estado); }
+      if (isset($this->si_motivo_anulacion)) { $this->nm_limpa_alfa($this->si_motivo_anulacion); }
+      if ($nm_opc_form_php == "formphp")
+      { 
+          if ($nm_call_php == "enviar_inspeccion")
+          { 
+              $this->sc_btn_enviar_inspeccion();
+          } 
+          if ($nm_call_php == "anular")
+          { 
+              $this->sc_btn_anular();
+          } 
+          if ($nm_call_php == "finalizar")
+          { 
+              $this->sc_btn_finalizar();
+          } 
+          $this->NM_close_db(); 
+          exit;
+      } 
+      $Campos_Crit       = "";
+      $Campos_erro       = "";
+      $Campos_Falta      = array();
+      $Campos_Erros      = array();
+      $dir_raiz          = strrpos($_SERVER['PHP_SELF'],"/") ;  
+      $dir_raiz          =  substr($_SERVER['PHP_SELF'], 0, $dir_raiz + 1) ;  
+      $this->Field_no_validate = (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Field_no_validate'])) ? $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Field_no_validate'] : array();
+      $this->nm_location = $this->Ini->sc_protocolo . $this->Ini->server . $dir_raiz; 
+      $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['opc_edit'] = true;  
+     if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dados_select'])) 
+     {
+        $this->nmgp_dados_select = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dados_select'];
+     }
+   }
+
+   function loadFieldConfig()
+   {
+      $this->field_config = array();
+      //-- si_id
+      $this->field_config['si_id']               = array();
+      $this->field_config['si_id']['symbol_grp'] = $_SESSION['scriptcase']['reg_conf']['grup_num'];
+      $this->field_config['si_id']['symbol_fmt'] = $_SESSION['scriptcase']['reg_conf']['num_group_digit'];
+      $this->field_config['si_id']['symbol_dec'] = '';
+      $this->field_config['si_id']['symbol_neg'] = $_SESSION['scriptcase']['reg_conf']['simb_neg'];
+      $this->field_config['si_id']['format_neg'] = $_SESSION['scriptcase']['reg_conf']['neg_num'];
+      //-- si_fecha
+      $this->field_config['si_fecha']                 = array();
+      $this->field_config['si_fecha']['date_format']  = $_SESSION['scriptcase']['reg_conf']['date_format'];
+      $this->field_config['si_fecha']['date_sep']     = $_SESSION['scriptcase']['reg_conf']['date_sep'];
+      $this->field_config['si_fecha']['date_display'] = "ddmmaaaa";
+      $this->new_date_format('DT', 'si_fecha');
+      //-- si_secuecial
+      $this->field_config['si_secuecial']               = array();
+      $this->field_config['si_secuecial']['symbol_grp'] = $_SESSION['scriptcase']['reg_conf']['grup_num'];
+      $this->field_config['si_secuecial']['symbol_fmt'] = $_SESSION['scriptcase']['reg_conf']['num_group_digit'];
+      $this->field_config['si_secuecial']['symbol_dec'] = '';
+      $this->field_config['si_secuecial']['symbol_neg'] = $_SESSION['scriptcase']['reg_conf']['simb_neg'];
+      $this->field_config['si_secuecial']['format_neg'] = $_SESSION['scriptcase']['reg_conf']['neg_num'];
+      //-- si_fecha_inspeccion
+      $this->field_config['si_fecha_inspeccion']                 = array();
+      $this->field_config['si_fecha_inspeccion']['date_format']  = $_SESSION['scriptcase']['reg_conf']['date_format'];
+      $this->field_config['si_fecha_inspeccion']['date_sep']     = $_SESSION['scriptcase']['reg_conf']['date_sep'];
+      $this->field_config['si_fecha_inspeccion']['date_display'] = "ddmmaaaa";
+      $this->new_date_format('DT', 'si_fecha_inspeccion');
+   }
+
+   function controle()
+   {
+        global $nm_url_saida, $teste_validade, 
+               $glo_senha_protect, $nm_apl_dependente, $nm_form_submit, $sc_check_excl, $nm_opc_form_php, $nm_call_php, $nm_opc_lookup;
+
+
+      $this->ini_controle();
+      if ($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Gera_log_access'])
+      {
+          $this->NM_gera_log_insert("Scriptcase", "access");
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Gera_log_access'] = false;
+      }
+
+      if ('' != $_SESSION['scriptcase']['change_regional_old'])
+      {
+          $_SESSION['scriptcase']['str_conf_reg'] = $_SESSION['scriptcase']['change_regional_old'];
+          $this->Ini->regionalDefault($_SESSION['scriptcase']['str_conf_reg']);
+          $this->loadFieldConfig();
+          $this->nm_tira_formatacao();
+
+          $_SESSION['scriptcase']['str_conf_reg'] = $_SESSION['scriptcase']['change_regional_new'];
+          $this->Ini->regionalDefault($_SESSION['scriptcase']['str_conf_reg']);
+          $this->loadFieldConfig();
+          $guarda_formatado = $this->formatado;
+          $this->nm_formatar_campos();
+          $this->formatado = $guarda_formatado;
+
+          $_SESSION['scriptcase']['change_regional_old'] = '';
+          $_SESSION['scriptcase']['change_regional_new'] = '';
+      }
+
+      if ($nm_form_submit == 1 && ($this->nmgp_opcao == 'inicio' || $this->nmgp_opcao == 'igual'))
+      {
+          $this->nm_tira_formatacao();
+      }
+      if (!$this->NM_ajax_flag || 'alterar' != $this->nmgp_opcao || 'submit_form' != $this->NM_ajax_opcao)
+      {
+      }
+//
+//-----> 
+//
+      if ($this->NM_ajax_flag && 'validate_' == substr($this->NM_ajax_opcao, 0, 9))
+      {
+          if ('validate_si_motivo_anulacion' == $this->NM_ajax_opcao)
+          {
+              $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros, 'si_motivo_anulacion');
+          }
+          if ('validate_si_id' == $this->NM_ajax_opcao)
+          {
+              $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros, 'si_id');
+          }
+          if ('validate_si_empresa' == $this->NM_ajax_opcao)
+          {
+              $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros, 'si_empresa');
+          }
+          if ('validate_si_fecha' == $this->NM_ajax_opcao)
+          {
+              $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros, 'si_fecha');
+          }
+          if ('validate_si_secuecial' == $this->NM_ajax_opcao)
+          {
+              $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros, 'si_secuecial');
+          }
+          if ('validate_si_contrato' == $this->NM_ajax_opcao)
+          {
+              $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros, 'si_contrato');
+          }
+          if ('validate_si_estado' == $this->NM_ajax_opcao)
+          {
+              $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros, 'si_estado');
+          }
+          if ('validate_si_tipo_inspeccion' == $this->NM_ajax_opcao)
+          {
+              $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros, 'si_tipo_inspeccion');
+          }
+          if ('validate_si_comentario' == $this->NM_ajax_opcao)
+          {
+              $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros, 'si_comentario');
+          }
+          if ('validate_propietario' == $this->NM_ajax_opcao)
+          {
+              $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros, 'propietario');
+          }
+          if ('validate_contrato' == $this->NM_ajax_opcao)
+          {
+              $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros, 'contrato');
+          }
+          if ('validate_direccion' == $this->NM_ajax_opcao)
+          {
+              $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros, 'direccion');
+          }
+          if ('validate_si_fecha_inspeccion' == $this->NM_ajax_opcao)
+          {
+              $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros, 'si_fecha_inspeccion');
+          }
+          if ('validate_si_observacion' == $this->NM_ajax_opcao)
+          {
+              $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros, 'si_observacion');
+          }
+          if ('validate_si_usuario_inspecciona' == $this->NM_ajax_opcao)
+          {
+              $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros, 'si_usuario_inspecciona');
+          }
+          form_jap_solicitud_inspeccion_pack_ajax_response();
+          exit;
+      }
+      if ($this->NM_ajax_flag && 'event_' == substr($this->NM_ajax_opcao, 0, 6))
+      {
+          $this->nm_tira_formatacao();
+          $this->nm_converte_datas();
+          if ('event_si_contrato_onblur' == $this->NM_ajax_opcao)
+          {
+              $this->si_contrato_onBlur();
+          }
+          if ('event_si_contrato_onchange' == $this->NM_ajax_opcao)
+          {
+              $this->si_contrato_onChange();
+          }
+          if ('event_scajaxbutton_anular_onclick' == $this->NM_ajax_opcao)
+          {
+              $this->scajaxbutton_anular_onClick();
+          }
+          if ('event_scajaxbutton_finalizar_onclick' == $this->NM_ajax_opcao)
+          {
+              $this->scajaxbutton_finalizar_onClick();
+          }
+          form_jap_solicitud_inspeccion_pack_ajax_response();
+          exit;
+      }
+      if (isset($this->sc_inline_call) && 'Y' == $this->sc_inline_call)
+      {
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['inline_form_seq'] = $this->sc_seq_row;
+          $this->nm_tira_formatacao();
+          $this->nm_converte_datas();
+      }
+      if ($this->nmgp_opcao == "recarga" || $this->nmgp_opcao == "recarga_mobile" || $this->nmgp_opcao == "muda_form") 
+      {
+          $this->nm_tira_formatacao();
+          $this->nm_converte_datas();
+          if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dados_select']['propietario']) && !isset($this->nmgp_refresh_fields))
+          { 
+              $this->propietario = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dados_select']['propietario'];
+          } 
+          if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dados_select']['contrato']) && !isset($this->nmgp_refresh_fields))
+          { 
+              $this->contrato = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dados_select']['contrato'];
+          } 
+          if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dados_select']['direccion']) && !isset($this->nmgp_refresh_fields))
+          { 
+              $this->direccion = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dados_select']['direccion'];
+          } 
+          $nm_sc_sv_opcao = $this->nmgp_opcao; 
+          $this->nmgp_opcao = "nada"; 
+          $this->nm_acessa_banco();
+          if ($this->NM_ajax_flag)
+          {
+              $this->ajax_return_values();
+              form_jap_solicitud_inspeccion_pack_ajax_response();
+              exit;
+          }
+          $this->nm_formatar_campos();
+          $this->nmgp_opcao = $nm_sc_sv_opcao; 
+          $this->nm_gera_html();
+          $this->NM_close_db(); 
+          $this->nmgp_opcao = ""; 
+          exit; 
+      }
+      if ($this->nmgp_opcao == "incluir" || $this->nmgp_opcao == "alterar" || $this->nmgp_opcao == "excluir") 
+      {
+          $this->Valida_campos($Campos_Crit, $Campos_Falta, $Campos_Erros) ; 
+          $_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+          if ($Campos_Crit != "") 
+          {
+              $Campos_Crit = $this->Ini->Nm_lang['lang_errm_flds'] . ' ' . $Campos_Crit ; 
+          }
+          if ($Campos_Crit != "" || !empty($Campos_Falta) || $this->Campos_Mens_erro != "")
+          {
+              if ($this->NM_ajax_flag)
+              {
+                  form_jap_solicitud_inspeccion_pack_ajax_response();
+                  exit;
+              }
+              $campos_erro = $this->Formata_Erros($Campos_Crit, $Campos_Falta, $Campos_Erros, 4);
+              $this->Campos_Mens_erro = ""; 
+              $this->Erro->mensagem(__FILE__, __LINE__, "critica", $campos_erro, '', true, true); 
+              $this->nmgp_opc_ant = $this->nmgp_opcao ; 
+              if ($this->nmgp_opcao == "incluir" && $nm_apl_dependente == 1) 
+              { 
+                  $this->nm_flag_saida_novo = "S";; 
+              }
+              if ($this->nmgp_opcao == "incluir") 
+              { 
+                  $GLOBALS["erro_incl"] = 1; 
+              }
+              $this->nmgp_opcao = "nada" ; 
+          }
+      }
+      elseif (isset($nm_form_submit) && 1 == $nm_form_submit && $this->nmgp_opcao != "menu_link" && $this->nmgp_opcao != "recarga_mobile")
+      {
+      }
+//
+      if ($this->nmgp_opcao != "nada")
+      {
+          $this->nm_acessa_banco();
+      }
+      else
+      {
+           if ($this->nmgp_opc_ant == "incluir") 
+           { 
+               $this->nm_proc_onload(false);
+           }
+           else
+           { 
+              $this->nm_guardar_campos();
+           }
+      }
+      if ($this->nmgp_opcao != "recarga" && $this->nmgp_opcao != "muda_form" && !$this->Apl_com_erro)
+      {
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['recarga'] = $this->nmgp_opcao;
+          if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['sc_redir_insert']) && $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['sc_redir_insert'] == "ok")
+          {
+              if ($this->sc_evento == "insert" || ($this->nmgp_opc_ant == "novo" && $this->nmgp_opcao == "novo" && $this->sc_evento == "novo"))
+              {
+                  $this->NM_close_db(); 
+                  $this->nmgp_redireciona(2); 
+              }
+          }
+          if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['sc_redir_atualiz']) && $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['sc_redir_atualiz'] == "ok")
+          {
+              if ($this->sc_evento == "update")
+              {
+                  $this->NM_close_db(); 
+                  $this->nmgp_redireciona(2); 
+              }
+              if ($this->sc_evento == "delete")
+              {
+                  $this->NM_close_db(); 
+                  $this->nmgp_redireciona(2); 
+              }
+          }
+      }
+      if ($this->NM_ajax_flag && 'navigate_form' == $this->NM_ajax_opcao)
+      {
+          $this->ajax_return_values();
+          $this->ajax_add_parameters();
+          form_jap_solicitud_inspeccion_pack_ajax_response();
+          exit;
+      }
+      $this->nm_formatar_campos();
+      if ($this->NM_ajax_flag)
+      {
+          $this->NM_ajax_info['result'] = 'OK';
+          if ('alterar' == $this->NM_ajax_info['param']['nmgp_opcao'])
+          {
+              $this->NM_ajax_info['msgDisplay'] = NM_charset_to_utf8($this->Ini->Nm_lang['lang_othr_ajax_frmu']);
+          }
+          form_jap_solicitud_inspeccion_pack_ajax_response();
+          exit;
+      }
+      $this->nm_gera_html();
+      $this->NM_close_db(); 
+      $this->nmgp_opcao = ""; 
+      if ($this->Change_Menu)
+      {
+          $apl_menu  = $_SESSION['scriptcase']['menu_atual'];
+          $Arr_rastro = array();
+          if (isset($_SESSION['scriptcase']['menu_apls'][$apl_menu][$this->sc_init_menu]) && count($_SESSION['scriptcase']['menu_apls'][$apl_menu][$this->sc_init_menu]) > 1)
+          {
+              foreach ($_SESSION['scriptcase']['menu_apls'][$apl_menu][$this->sc_init_menu] as $menu => $apls)
+              {
+                 $Arr_rastro[] = "'<a href=\"" . $apls['link'] . "?script_case_init=" . $this->sc_init_menu . "\" target=\"#NMIframe#\">" . $apls['label'] . "</a>'";
+              }
+              $ult_apl = count($Arr_rastro) - 1;
+              unset($Arr_rastro[$ult_apl]);
+              $rastro = implode(",", $Arr_rastro);
+?>
+  <script type="text/javascript">
+     link_atual = new Array (<?php echo $rastro ?>);
+     parent.writeFastMenu(link_atual);
+  </script>
+<?php
+          }
+          else
+          {
+?>
+  <script type="text/javascript">
+     parent.clearFastMenu();
+  </script>
+<?php
+          }
+      }
+   }
+  function html_export_print($nm_arquivo_html, $nmgp_password)
+  {
+      $Html_password = "";
+          $Arq_base  = $this->Ini->root . $this->Ini->path_imag_temp . $nm_arquivo_html;
+          $Parm_pass = ($Html_password != "") ? " -p" : "";
+          $Zip_name = "sc_prt_" . date("YmdHis") . "_" . rand(0, 1000) . "form_jap_solicitud_inspeccion.zip";
+          $Arq_htm = $this->Ini->path_imag_temp . "/" . $Zip_name;
+          $Arq_zip = $this->Ini->root . $Arq_htm;
+          $Zip_f     = (FALSE !== strpos($Arq_zip, ' ')) ? " \"" . $Arq_zip . "\"" :  $Arq_zip;
+          $Arq_input = (FALSE !== strpos($Arq_base, ' ')) ? " \"" . $Arq_base . "\"" :  $Arq_base;
+           if (is_file($Arq_zip)) {
+               unlink($Arq_zip);
+           }
+           $str_zip = "";
+           if (FALSE !== strpos(strtolower(php_uname()), 'windows')) 
+           {
+               chdir($this->Ini->path_third . "/zip/windows");
+               $str_zip = "zip.exe " . strtoupper($Parm_pass) . " -j " . $Html_password . " " . $Zip_f . " " . $Arq_input;
+           }
+           elseif (FALSE !== strpos(strtolower(php_uname()), 'linux')) 
+           {
+                if (FALSE !== strpos(strtolower(php_uname()), 'i686')) 
+                {
+                    chdir($this->Ini->path_third . "/zip/linux-i386/bin");
+                }
+                else
+                {
+                    chdir($this->Ini->path_third . "/zip/linux-amd64/bin");
+                }
+               $str_zip = "./7za " . $Parm_pass . $Html_password . " a " . $Zip_f . " " . $Arq_input;
+           }
+           elseif (FALSE !== strpos(strtolower(php_uname()), 'darwin'))
+           {
+               chdir($this->Ini->path_third . "/zip/mac/bin");
+               $str_zip = "./7za " . $Parm_pass . $Html_password . " a " . $Zip_f . " " . $Arq_input;
+           }
+           if (!empty($str_zip)) {
+               exec($str_zip);
+           }
+           // ----- ZIP log
+           $fp = @fopen(trim(str_replace(array(".zip",'"'), array(".log",""), $Zip_f)), 'w');
+           if ($fp)
+           {
+               @fwrite($fp, $str_zip . "\r\n\r\n");
+               @fclose($fp);
+           }
+           foreach ($this->Ini->Img_export_zip as $cada_img_zip)
+           {
+               $str_zip      = "";
+              $cada_img_zip = '"' . $cada_img_zip . '"';
+               if (FALSE !== strpos(strtolower(php_uname()), 'windows')) 
+               {
+                   $str_zip = "zip.exe " . strtoupper($Parm_pass) . " -j -u " . $Html_password . " " . $Zip_f . " " . $cada_img_zip;
+               }
+               elseif (FALSE !== strpos(strtolower(php_uname()), 'linux')) 
+               {
+                   $str_zip = "./7za " . $Parm_pass . $Html_password . " a " . $Zip_f . " " . $cada_img_zip;
+               }
+               elseif (FALSE !== strpos(strtolower(php_uname()), 'darwin'))
+               {
+                   $str_zip = "./7za " . $Parm_pass . $Html_password . " a " . $Zip_f . " " . $cada_img_zip;
+               }
+               if (!empty($str_zip)) {
+                   exec($str_zip);
+               }
+               // ----- ZIP log
+               $fp = @fopen(trim(str_replace(array(".zip",'"'), array(".log",""), $Zip_f)), 'a');
+               if ($fp)
+               {
+                   @fwrite($fp, $str_zip . "\r\n\r\n");
+                   @fclose($fp);
+               }
+           }
+           if (is_file($Arq_zip)) {
+               unlink($Arq_base);
+           } 
+          $path_doc_md5 = md5($Arq_htm);
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion'][$path_doc_md5][0] = $Arq_htm;
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion'][$path_doc_md5][1] = $Zip_name;
+?>
+<HTML<?php echo $_SESSION['scriptcase']['reg_conf']['html_dir'] ?>>
+<HEAD>
+ <TITLE><?php echo strip_tags("" . $this->Ini->Nm_lang['lang_solicitud_inspeccion'] . "") ?></TITLE>
+ <META http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['scriptcase']['charset_html'] ?>" />
+<?php
+
+if (isset($_SESSION['scriptcase']['device_mobile']) && $_SESSION['scriptcase']['device_mobile'] && $_SESSION['scriptcase']['display_mobile'])
+{
+?>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<?php
+}
+
+?>
+ <META http-equiv="Expires" content="Fri, Jan 01 1900 00:00:00 GMT"/>
+ <META http-equiv="Last-Modified" content="<?php echo gmdate("D, d M Y H:i:s"); ?> GMT"/>
+ <META http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate"/>
+ <META http-equiv="Cache-Control" content="post-check=0, pre-check=0"/>
+ <META http-equiv="Pragma" content="no-cache"/>
+  <link rel="stylesheet" type="text/css" href="../_lib/css/<?php echo $this->Ini->str_schema_all ?>_export.css" /> 
+  <link rel="stylesheet" type="text/css" href="../_lib/css/<?php echo $this->Ini->str_schema_all ?>_export<?php echo $_SESSION['scriptcase']['reg_conf']['css_dir'] ?>.css" /> 
+  <link rel="stylesheet" type="text/css" href="../_lib/buttons/<?php echo $this->Ini->Str_btn_form . '/' . $this->Ini->Str_btn_form ?>.css" /> 
+  <link rel="stylesheet" type="text/css" href="<?php echo $this->Ini->path_prod; ?>/third/font-awesome/css/all.min.css" /> 
+  <link rel="shortcut icon" href="../_lib/img/usr__NM__img__NM__favicon.png">
+</HEAD>
+<BODY class="scExportPage">
+<table style="border-collapse: collapse; border-width: 0; height: 100%; width: 100%"><tr><td style="padding: 0; text-align: center; vertical-align: top">
+ <table class="scExportTable" align="center">
+  <tr>
+   <td class="scExportTitle" style="height: 25px">PRINT</td>
+  </tr>
+  <tr>
+   <td class="scExportLine" style="width: 100%">
+    <table style="border-collapse: collapse; border-width: 0; width: 100%"><tr><td class="scExportLineFont" style="padding: 3px 0 0 0" id="idMessage">
+    <?php echo $this->Ini->Nm_lang['lang_othr_file_msge'] ?>
+    </td><td class="scExportLineFont" style="text-align:right; padding: 3px 0 0 0">
+   <?php echo nmButtonOutput($this->arr_buttons, "bexportview", "document.Fview.submit()", "document.Fview.submit()", "idBtnView", "", "", "", "absmiddle", "", "0", $this->Ini->path_botoes, "", "", "", "", "");?>
+
+   <?php echo nmButtonOutput($this->arr_buttons, "bdownload", "document.Fdown.submit()", "document.Fdown.submit()", "idBtnDown", "", "", "", "absmiddle", "", "0", $this->Ini->path_botoes, "", "", "", "", "");?>
+
+   <?php echo nmButtonOutput($this->arr_buttons, "bvoltar", "document.F0.submit()", "document.F0.submit()", "idBtnBack", "", "", "", "absmiddle", "", "0", $this->Ini->path_botoes, "", "", "", "", "");?>
+
+    </td></tr></table>
+   </td>
+  </tr>
+ </table>
+</td></tr></table>
+<form name="Fview" method="get" action="<?php echo  $this->form_encode_input($Arq_htm) ?>" target="_self" style="display: none"> 
+</form>
+<form name="Fdown" method="get" action="form_jap_solicitud_inspeccion_download.php" target="_self" style="display: none"> 
+<input type="hidden" name="script_case_init" value="<?php echo $this->form_encode_input($this->Ini->sc_page); ?>"> 
+<input type="hidden" name="nm_tit_doc" value="form_jap_solicitud_inspeccion"> 
+<input type="hidden" name="nm_name_doc" value="<?php echo $path_doc_md5 ?>"> 
+</form>
+<form name="F0" method=post action="./" target="_self" style="display: none"> 
+<input type="hidden" name="script_case_init" value="<?php echo $this->form_encode_input($this->Ini->sc_page); ?>"> 
+<input type="hidden" name="nmgp_opcao" value="<?php echo $this->nmgp_opcao ?>"> 
+</form> 
+         </BODY>
+         </HTML>
+<?php
+          exit;
+  }
+//
+//--------------------------------------------------------------------------------------
+   function NM_has_trans()
+   {
+       return !in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access);
+   }
+//
+//--------------------------------------------------------------------------------------
+   function NM_commit_db()
+   {
+       if ($this->Ini->sc_tem_trans_banco && !$this->Embutida_proc)
+       { 
+           $this->Db->CommitTrans(); 
+           $this->Ini->sc_tem_trans_banco = false;
+       } 
+       if ($this->SC_log_atv)
+       {
+           $this->NM_gera_log_output();
+       }
+   }
+//
+//--------------------------------------------------------------------------------------
+   function NM_rollback_db()
+   {
+       if ($this->Ini->sc_tem_trans_banco && !$this->Embutida_proc)
+       { 
+           $this->Db->RollbackTrans(); 
+           $this->Ini->sc_tem_trans_banco = false;
+       } 
+   }
+//
+//--------------------------------------------------------------------------------------
+   function NM_gera_log_insert($orig="Scriptcase", $evento="", $texto="")
+   {
+       $delim  = "'";
+       $delim1 = "'";
+       if (in_array(strtolower($_SESSION['scriptcase']['glo_tpbanco']), $this->Ini->nm_bases_access))
+       { 
+           $delim  = "#";
+           $delim1 = "#";
+       } 
+       if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['SC_sep_date']) && !empty($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['SC_sep_date']))
+       {
+           $delim  = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['SC_sep_date'];
+           $delim1 = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['SC_sep_date1'];
+       }
+       $dt  = $delim . date('Y-m-d H:i:s') . $delim1;
+       $usr = isset($_SESSION['Igtech_SesionLogin']) ? $_SESSION['Igtech_SesionLogin'] : "";
+       if (strtolower($_SESSION['scriptcase']['glo_tpbanco']) == 'pdo_sqlsrv' || strtolower($_SESSION['scriptcase']['glo_tpbanco']) == 'pdo_dblib')
+       { 
+           $dt  = $delim . date('Ymd H:i:s') . $delim1;
+       } 
+       if (in_array(strtolower($_SESSION['scriptcase']['glo_tpbanco']), $this->Ini->nm_bases_access))
+       { 
+           $dt  = $delim . date('Y-m-d H:i:s') . $delim1;
+       } 
+       if (in_array(strtolower($_SESSION['scriptcase']['glo_tpbanco']), $this->Ini->nm_bases_informix))
+       { 
+           $dt  = "EXTEND(" . $dt . ", YEAR TO FRACTION)";
+       } 
+       if (in_array(strtolower($_SESSION['scriptcase']['glo_tpbanco']), $this->Ini->nm_bases_access))
+       { 
+           $comando = "INSERT INTO sis_log (inserted_date, username, application, creator, ip_user, `action`, description) VALUES ($dt, " . $this->Db->qstr($usr) . ", 'form_jap_solicitud_inspeccion', '$orig', '" . $_SERVER['REMOTE_ADDR'] . "', '$evento', " . $this->Db->qstr($texto) . ")"; 
+       } 
+       elseif (in_array(strtolower($_SESSION['scriptcase']['glo_tpbanco']), $this->Ini->nm_bases_sqlite))
+       { 
+           $comando = "INSERT INTO sis_log (id, inserted_date, username, application, creator, ip_user, action, description) VALUES (NULL, $dt, " . $this->Db->qstr($usr) . ", 'form_jap_solicitud_inspeccion', '$orig', '" . $_SERVER['REMOTE_ADDR'] . "', '$evento', " . $this->Db->qstr($texto) . ")"; 
+       } 
+       else
+       { 
+           $comando = "INSERT INTO sis_log (inserted_date, username, application, creator, ip_user, action, description) VALUES ($dt, " . $this->Db->qstr($usr) . ", 'form_jap_solicitud_inspeccion', '$orig', '" . $_SERVER['REMOTE_ADDR'] . "', '$evento', " . $this->Db->qstr($texto) . ")"; 
+       } 
+       $_SESSION['scriptcase']['sc_sql_ult_comando'] = $comando; 
+       $rlog = $this->Db->Execute($comando); 
+       if ($rlog === false)  
+       { 
+           $this->Erro->mensagem (__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_inst'], $this->Db->ErrorMsg()); 
+           if ($this->NM_ajax_flag)
+           {
+               form_jap_solicitud_inspeccion_pack_ajax_response();
+               exit; 
+           }
+       }
+   }
+//
+//--------------------------------------------------------------------------------------
+   function NM_close_db()
+   {
+       if ($this->Db && !$this->Embutida_proc)
+       { 
+           $this->Db->Close(); 
+       } 
+   }
+   function sc_btn_enviar_inspeccion() 
+   {
+        global $nm_url_saida, $teste_validade, 
+               $glo_senha_protect, $nm_apl_dependente, $nm_form_submit, $sc_check_excl, $nm_opc_form_php, $nm_call_php, $nm_opc_lookup;
+ 
+     ob_start();
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<html<?php echo $_SESSION['scriptcase']['reg_conf']['html_dir'] ?>>
+ <head>
+    <META http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['scriptcase']['charset_html'] ?>" />
+<?php
+
+      if (isset($_SESSION['scriptcase']['device_mobile']) && $_SESSION['scriptcase']['device_mobile'] && $_SESSION['scriptcase']['display_mobile'])
+      {
+?>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<?php
+      }
+
+?>
+        <link rel="shortcut icon" href="../_lib/img/usr__NM__img__NM__favicon.png">
+    <SCRIPT type="text/javascript">
+      var sc_pathToTB = '<?php echo $this->Ini->path_prod ?>/third/jquery_plugin/thickbox/';
+      var sc_tbLangClose = "<?php echo html_entity_decode($this->Ini->Nm_lang["lang_tb_close"], ENT_COMPAT, $_SESSION["scriptcase"]["charset"]) ?>";
+      var sc_tbLangEsc = "<?php echo html_entity_decode($this->Ini->Nm_lang["lang_tb_esc"], ENT_COMPAT, $_SESSION["scriptcase"]["charset"]) ?>";
+      var sc_userSweetAlertDisplayed = false;
+    </SCRIPT>
+    <SCRIPT type="text/javascript" src="<?php echo $this->Ini->url_third; ?>jquery/js/jquery.js"></SCRIPT>
+    <SCRIPT type="text/javascript" src="<?php echo $this->Ini->path_prod; ?>/third/jquery_plugin/malsup-blockui/jquery.blockUI.js"></SCRIPT>
+    <SCRIPT type="text/javascript" src="<?php echo $this->Ini->path_prod; ?>/third/jquery_plugin/thickbox/thickbox-compressed.js"></SCRIPT>
+<?php
+include_once("form_jap_solicitud_inspeccion_sajax_js.php");
+?>
+ <link rel="stylesheet" type="text/css" href="<?php echo $this->Ini->path_link ?>_lib/css/<?php echo $this->Ini->str_schema_all ?>_sweetalert.css" />
+ <SCRIPT type="text/javascript" src="<?php echo $this->Ini->path_prod; ?>/third/sweetalert/sweetalert2.all.min.js"></SCRIPT>
+ <SCRIPT type="text/javascript" src="<?php echo $this->Ini->path_prod; ?>/third/sweetalert/polyfill.min.js"></SCRIPT>
+ <script type="text/javascript" src="../_lib/lib/js/frameControl.js"></script>
+    <link rel="stylesheet" href="<?php echo $this->Ini->path_prod ?>/third/jquery_plugin/thickbox/thickbox.css" type="text/css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../_lib/css/<?php echo $this->Ini->str_schema_all ?>_form.css" />
+    <link rel="stylesheet" type="text/css" href="../_lib/css/<?php echo $this->Ini->str_schema_all ?>_form<?php echo $_SESSION['scriptcase']['reg_conf']['css_dir'] ?>.css" />
+  <?php 
+  if(isset($this->Ini->str_google_fonts) && !empty($this->Ini->str_google_fonts)) 
+  { 
+  ?> 
+  <link href="<?php echo $this->Ini->str_google_fonts ?>" rel="stylesheet" /> 
+  <?php 
+  } 
+  ?> 
+ </head>
+  <body class="scFormPage">
+      <table class="scFormTabela" align="center"><tr><td>
+<?php
+      $varloc_btn_php = array();
+      $nmgp_opcao_saida_php = "igual";
+      $nmgp_opc_ant_saida_php = "";
+      if ($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['opc_ant'] == "novo" || $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['opc_ant'] == "incluir")
+      {
+          $nmgp_opc_ant_saida_php = "novo";
+          $nmgp_opcao_saida_php   = "recarga";
+      }
+      else
+      {
+          if (!isset($this->si_tipo_inspeccion) && isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dados_form']['si_tipo_inspeccion']))
+          {
+              $varloc_btn_php['si_tipo_inspeccion'] = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dados_form']['si_tipo_inspeccion'];
+          }
+          if (!isset($this->si_id) && isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dados_form']['si_id']))
+          {
+              $varloc_btn_php['si_id'] = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dados_form']['si_id'];
+          }
+          if (!isset($this->rs) && isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dados_form']['rs']))
+          {
+              $varloc_btn_php['rs'] = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dados_form']['rs'];
+          }
+      }
+      $nm_f_saida = "./";
+      nm_limpa_numero($this->si_id, $this->field_config['si_id']['symbol_grp']) ; 
+      nm_limpa_data($this->si_fecha, $this->field_config['si_fecha']['date_sep']) ; 
+      nm_limpa_numero($this->si_secuecial, $this->field_config['si_secuecial']['symbol_grp']) ; 
+      nm_limpa_data($this->si_fecha_inspeccion, $this->field_config['si_fecha_inspeccion']['date_sep']) ; 
+      $this->nm_converte_datas();
+      foreach ($varloc_btn_php as $cmp => $val_cmp)
+      {
+          $this->$cmp = $val_cmp;
+      }
+      $_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+if (!isset($this->sc_temp_Igtech_RucEmpresa)) {$this->sc_temp_Igtech_RucEmpresa = (isset($_SESSION['Igtech_RucEmpresa'])) ? $_SESSION['Igtech_RucEmpresa'] : "";}
+  $select_sql="SELECT ti_descripcion FROM jap_tipo_inspeccion WHERE ti_id=".$this->si_tipo_inspeccion ;
+ 
+      $nm_select = $select_sql; 
+      $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nm_select; 
+      $_SESSION['scriptcase']['sc_sql_ult_conexao'] = ''; 
+      $this->rs = array();
+      if ($SCrx = $this->Db->Execute($nm_select)) 
+      { 
+          $SCy = 0; 
+          $nm_count = $SCrx->FieldCount();
+          while (!$SCrx->EOF)
+          { 
+                 for ($SCx = 0; $SCx < $nm_count; $SCx++)
+                 { 
+                      $this->rs[$SCy] [$SCx] = $SCrx->fields[$SCx];
+                 }
+                 $SCy++; 
+                 $SCrx->MoveNext();
+          } 
+          $SCrx->Close();
+      } 
+      elseif (isset($GLOBALS["NM_ERRO_IBASE"]) && $GLOBALS["NM_ERRO_IBASE"] != 1)  
+      { 
+          $this->rs = false;
+          $this->rs_erro = $this->Db->ErrorMsg();
+      } 
+
+if(isset($this->rs[0][0])){
+	$w_tipo_inspeccion=$this->rs[0][0];
+}else{
+	$w_tipo_inspeccion='';
+}
+
+$update_sql = "UPDATE jap_solicitud_inspeccion 
+				set si_estado='X'
+				WHERE si_id=".$this->si_id ;
+
+     $nm_select = $update_sql; 
+         $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nm_select;
+      $_SESSION['scriptcase']['sc_sql_ult_conexao'] = ''; 
+         $rf = $this->Db->Execute($nm_select);
+         if ($rf === false)
+         {
+             $this->Erro->mensagem (__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_dber'], $this->Db->ErrorMsg());
+             $this->NM_rollback_db(); 
+             if ($this->NM_ajax_flag)
+             {
+                form_jap_solicitud_inspeccion_pack_ajax_response();
+             }
+             exit;
+         }
+         $rf->Close();
+      
+$check_sql = 	"SELECT ins_usuario,usu_email 
+				FROM jap_inspectores
+				INNER JOIN del_usuario ON ins_usuario=usu_usuario
+				WHERE ins_estado='V' 
+				AND usu_estado='V'
+				AND usu_empresa='".$this->sc_temp_Igtech_RucEmpresa."'";
+ 
+      $nm_select = $check_sql; 
+      $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nm_select; 
+      $_SESSION['scriptcase']['sc_sql_ult_conexao'] = ''; 
+      if ($this->rs = $this->Db->Execute($nm_select)) 
+      { }
+      elseif (isset($GLOBALS["NM_ERRO_IBASE"]) && $GLOBALS["NM_ERRO_IBASE"] != 1)  
+      { 
+          $this->rs = false;
+          $this->rs_erro = $this->Db->ErrorMsg();
+      } 
+
+if (false == $this->rs) {
+    
+ if (!isset($this->Campos_Mens_erro)){$this->Campos_Mens_erro = "";}
+ if (!empty($this->Campos_Mens_erro)){$this->Campos_Mens_erro .= "<br>";}$this->Campos_Mens_erro .= 'Error al acceder a la base de datos';
+ if ('submit_form' == $this->NM_ajax_opcao || 'event_' == substr($this->NM_ajax_opcao, 0, 6) || (isset($this->wizard_action) && 'change_step' == $this->wizard_action))
+ {
+  if (isset($this->wizard_action) && 'change_step' == $this->wizard_action) {
+   $sErrorIndex = 'geral_form_jap_solicitud_inspeccion';
+  } elseif ('submit_form' == $this->NM_ajax_opcao) {
+   $sErrorIndex = 'geral_form_jap_solicitud_inspeccion';
+  } else {
+   $sErrorIndex = substr(substr($this->NM_ajax_opcao, 0, strrpos($this->NM_ajax_opcao, '_')), 6);
+  }
+  $this->NM_ajax_info['errList'][$sErrorIndex][] = 'Error al acceder a la base de datos';
+ }
+;
+}else{
+   while(!$this->rs->EOF) {
+		$mail_smtp_server    = $_SESSION['Igtech_SMTP'];       
+		$mail_smtp_user      = $_SESSION['Igtech_UsuarioSMTP'];
+		$mail_smtp_pass      = $_SESSION['Igtech_ClaveSMTP'];
+		$mail_from           = $_SESSION['Igtech_Email_seguridad'];
+		$mail_to             = $this->rs->fields[1];
+		$mail_subject        = 'Solicitud de Inspección';
+		$mail_message        = $this->formulario_solicitud_inspeccion_otros($this->Hoy(),$w_tipo_inspeccion); 
+		$mail_format         = 'H';
+		$mail_copies		 = '';	
+		$mail_tp_copies		 = '';
+		$mail_port           = $_SESSION['Igtech_PuertoSMTP'];
+		$mail_tp_connection  = $_SESSION['Igtech_TipoConexionSMTP'];
+
+		    include_once($this->Ini->path_third . "/swift/swift_required.php");
+    $sc_mail_port     = "$mail_port";
+    $sc_mail_tp_port  = "$mail_tp_connection";
+    $sc_mail_tp_mens  = "$mail_format";
+    $sc_mail_tp_copy  = "$mail_tp_copies";
+    $this->sc_mail_count = 0;
+    $this->sc_mail_erro  = "";
+    $this->sc_mail_ok    = true;
+    if ($sc_mail_tp_port == "S" || $sc_mail_tp_port == "Y")
+    {
+        $sc_mail_port = (!empty($sc_mail_port)) ? $sc_mail_port : 465;
+        $Con_Mail = Swift_SmtpTransport::newInstance($mail_smtp_server, $sc_mail_port, 'ssl');
+    }
+    elseif ($sc_mail_tp_port == "T")
+    {
+        $sc_mail_port = !empty($sc_mail_port) ? $sc_mail_port : 587;
+        $Con_Mail = Swift_SmtpTransport::newInstance($mail_smtp_server, $sc_mail_port, 'tls');
+    }
+    else
+    {
+        $sc_mail_port = (!empty($sc_mail_port)) ? $sc_mail_port : 25;
+        $Con_Mail = Swift_SmtpTransport::newInstance($mail_smtp_server, $sc_mail_port);
+    }
+    $Con_Mail->setUsername($mail_smtp_user);
+    $Con_Mail->setpassword($mail_smtp_pass);
+    $Send_Mail = Swift_Mailer::newInstance($Con_Mail);
+    if ($sc_mail_tp_mens == "H")
+    {
+        $Mens_Mail = Swift_Message::newInstance($mail_subject);
+        $Mens_Mail->setBody(SC_Mail_Image($mail_message, $Mens_Mail))->setContentType("text/html");
+    }
+    else
+    {
+        $Mens_Mail = Swift_Message::newInstance($mail_subject)->setBody($mail_message);
+    }
+    if (!empty($_SESSION['scriptcase']['charset']))
+    {
+        $Mens_Mail->setCharset($_SESSION['scriptcase']['charset']);
+    }
+    $Temp_mail = $mail_to;
+    if (!is_array($Temp_mail))
+    {
+        $Temp_mail = explode(";", $mail_to);
+    }
+    foreach ($Temp_mail as $NM_dest)
+    {
+        if (!empty($NM_dest))
+        {
+            $Arr_addr = SC_Mail_Address($NM_dest);
+            $Mens_Mail->addTo($Arr_addr[0], $Arr_addr[1]);
+        }
+    }
+    $Temp_mail = $mail_copies;
+    if (!is_array($Temp_mail))
+    {
+        $Temp_mail = explode(";", $mail_copies);
+    }
+    foreach ($Temp_mail as $NM_dest)
+    {
+        if (!empty($NM_dest))
+        {
+            $Arr_addr = SC_Mail_Address($NM_dest);
+            if (strtoupper(substr($sc_mail_tp_copy, 0, 2)) == "CC")
+            {
+                $Mens_Mail->addCc($Arr_addr[0], $Arr_addr[1]);
+            }
+            else
+            {
+                $Mens_Mail->addBcc($Arr_addr[0], $Arr_addr[1]);
+            }
+        }
+    }
+    $Arr_addr = SC_Mail_Address($mail_from);
+    $Err_mail = array();
+    $this->sc_mail_count = $Send_Mail->send($Mens_Mail->setFrom($Arr_addr[0], $Arr_addr[1]), $Err_mail);
+    if (!empty($Err_mail))
+    {
+        $this->sc_mail_erro = $Err_mail;
+        $this->sc_mail_ok   = false;
+    }
+;
+	   $this->rs->MoveNext();
+    }
+    $this->rs->Close();
+}
+
+ if (isset($this->sc_temp_Igtech_RucEmpresa)) { $_SESSION['Igtech_RucEmpresa'] = $this->sc_temp_Igtech_RucEmpresa;}
+ if (!isset($this->Campos_Mens_erro) || empty($this->Campos_Mens_erro))
+ {
+$this->nmgp_redireciona_form($this->Ini->path_link . "" . SC_dir_app_name('grid_jap_solicitud_inspeccion') . "/", $this->nm_location, "_self?#?" . NM_encode_input("") . "?@?","_self", '', 440, 630);
+ };
+if (isset($this->sc_temp_Igtech_RucEmpresa)) { $_SESSION['Igtech_RucEmpresa'] = $this->sc_temp_Igtech_RucEmpresa;}
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off'; 
+    echo ob_get_clean();
+?>
+      </td></tr><tr><td align="center">
+      <form name="FPHP" method="post" 
+                        action="<?php echo $nm_f_saida ?>" 
+                        target="_self">
+      <input type=hidden name="nmgp_opcao" value=""/>
+      <input type=hidden name="script_case_init" value="<?php  echo $this->form_encode_input($this->Ini->sc_page); ?>"/>
+      <input type=hidden name="si_id" value="<?php echo $this->form_encode_input($this->si_id) ?>"/>
+      <input type=hidden name="nmgp_opcao" value="<?php echo $this->form_encode_input($nmgp_opcao_saida_php); ?>"/>
+      <input type=hidden name="nmgp_opc_ant" value="<?php echo $this->form_encode_input($nmgp_opc_ant_saida_php); ?>"/>
+      <input type=submit name="nmgp_bok" value="<?php echo $this->Ini->Nm_lang['lang_btns_cfrm'] ?>"/>
+      </form>
+      </td></tr></table>
+      </body>
+      </html>
+<?php
+       if (isset($this->redir_modal) && !empty($this->redir_modal))
+       {
+           echo "<script type=\"text/javascript\">" . $this->redir_modal . "</script>";
+           $this->redir_modal = "";
+       }
+   }
+//
+//--------------------------------------------------------------------------------------
+   function Formata_Erros($Campos_Crit, $Campos_Falta, $Campos_Erros, $mode = 3) 
+   {
+       switch ($mode)
+       {
+           case 1:
+               $campos_erro = array();
+               if (!empty($Campos_Crit))
+               {
+                   $campos_erro[] = $Campos_Crit;
+               }
+               if (!empty($Campos_Falta))
+               {
+                   $campos_erro[] = $this->Formata_Campos_Falta($Campos_Falta);
+               }
+               if (!empty($this->Campos_Mens_erro))
+               {
+                   $campos_erro[] = $this->Campos_Mens_erro;
+               }
+               return implode('<br />', $campos_erro);
+               break;
+
+           case 2:
+               $campos_erro = array();
+               if (!empty($Campos_Crit))
+               {
+                   $campos_erro[] = $Campos_Crit;
+               }
+               if (!empty($Campos_Falta))
+               {
+                   $campos_erro[] = $this->Formata_Campos_Falta($Campos_Falta, true);
+               }
+               if (!empty($this->Campos_Mens_erro))
+               {
+                   $campos_erro[] = $this->Campos_Mens_erro;
+               }
+               return implode('<br />', $campos_erro);
+               break;
+
+           case 3:
+               $campos_erro = array();
+               if (!empty($Campos_Erros))
+               {
+                   $campos_erro[] = $this->Formata_Campos_Erros($Campos_Erros);
+               }
+               if (!empty($this->Campos_Mens_erro))
+               {
+                   $campos_mens_erro = str_replace(array('<br />', '<br>', '<BR />'), array('<BR>', '<BR>', '<BR>'), $this->Campos_Mens_erro);
+                   $campos_mens_erro = explode('<BR>', $campos_mens_erro);
+                   foreach ($campos_mens_erro as $msg_erro)
+                   {
+                       if ('' != $msg_erro && !in_array($msg_erro, $campos_erro))
+                       {
+                           $campos_erro[] = $msg_erro;
+                       }
+                   }
+               }
+               return implode('<br />', $campos_erro);
+               break;
+
+           case 4:
+               $campos_erro = array();
+               if (!empty($Campos_Erros))
+               {
+                   $campos_erro[] = $this->Formata_Campos_Erros_SweetAlert($Campos_Erros);
+               }
+               if (!empty($this->Campos_Mens_erro))
+               {
+                   $campos_mens_erro = str_replace(array('<br />', '<br>', '<BR />'), array('<BR>', '<BR>', '<BR>'), $this->Campos_Mens_erro);
+                   $campos_mens_erro = explode('<BR>', $campos_mens_erro);
+                   foreach ($campos_mens_erro as $msg_erro)
+                   {
+                       if ('' != $msg_erro && !in_array($msg_erro, $campos_erro))
+                       {
+                           $campos_erro[] = $msg_erro;
+                       }
+                   }
+               }
+               return implode('<br />', $campos_erro);
+               break;
+       }
+   }
+
+   function Formata_Campos_Falta($Campos_Falta, $table = false) 
+   {
+       $Campos_Falta = array_unique($Campos_Falta);
+
+       if (!$table)
+       {
+           return $this->Ini->Nm_lang['lang_errm_reqd'] . ' ' . implode('; ', $Campos_Falta);
+       }
+
+       $aCols  = array();
+       $iTotal = sizeof($Campos_Falta);
+       $iCols  = 6 > $iTotal ? 1 : (11 > $iTotal ? 2 : (16 > $iTotal ? 3 : 4));
+       $iItems = ceil($iTotal / $iCols);
+       $iNowC  = 0;
+       $iNowI  = 0;
+
+       foreach ($Campos_Falta as $campo)
+       {
+           $aCols[$iNowC][] = $campo;
+           if ($iItems == ++$iNowI)
+           {
+               $iNowC++;
+               $iNowI = 0;
+           }
+       }
+
+       $sError  = '<table style="border-collapse: collapse; border-width: 0px">';
+       $sError .= '<tr>';
+       $sError .= '<td class="scFormErrorMessageFont" style="padding: 0; vertical-align: top; white-space: nowrap">' . $this->Ini->Nm_lang['lang_errm_reqd'] . '</td>';
+       foreach ($aCols as $aCol)
+       {
+           $sError .= '<td class="scFormErrorMessageFont" style="padding: 0 6px; vertical-align: top; white-space: nowrap">' . implode('<br />', $aCol) . '</td>';
+       }
+       $sError .= '</tr>';
+       $sError .= '</table>';
+
+       return $sError;
+   }
+
+   function Formata_Campos_Crit($Campos_Crit, $table = false) 
+   {
+       $Campos_Crit = array_unique($Campos_Crit);
+
+       if (!$table)
+       {
+           return $this->Ini->Nm_lang['lang_errm_flds'] . ' ' . implode('; ', $Campos_Crit);
+       }
+
+       $aCols  = array();
+       $iTotal = sizeof($Campos_Crit);
+       $iCols  = 6 > $iTotal ? 1 : (11 > $iTotal ? 2 : (16 > $iTotal ? 3 : 4));
+       $iItems = ceil($iTotal / $iCols);
+       $iNowC  = 0;
+       $iNowI  = 0;
+
+       foreach ($Campos_Crit as $campo)
+       {
+           $aCols[$iNowC][] = $campo;
+           if ($iItems == ++$iNowI)
+           {
+               $iNowC++;
+               $iNowI = 0;
+           }
+       }
+
+       $sError  = '<table style="border-collapse: collapse; border-width: 0px">';
+       $sError .= '<tr>';
+       $sError .= '<td class="scFormErrorMessageFont" style="padding: 0; vertical-align: top; white-space: nowrap">' . $this->Ini->Nm_lang['lang_errm_flds'] . '</td>';
+       foreach ($aCols as $aCol)
+       {
+           $sError .= '<td class="scFormErrorMessageFont" style="padding: 0 6px; vertical-align: top; white-space: nowrap">' . implode('<br />', $aCol) . '</td>';
+       }
+       $sError .= '</tr>';
+       $sError .= '</table>';
+
+       return $sError;
+   }
+
+   function Formata_Campos_Erros($Campos_Erros) 
+   {
+       $sError  = '<table style="border-collapse: collapse; border-width: 0px">';
+
+       foreach ($Campos_Erros as $campo => $erros)
+       {
+           $sError .= '<tr>';
+           $sError .= '<td class="scFormErrorMessageFont" style="padding: 0; vertical-align: top; white-space: nowrap">' . $this->Recupera_Nome_Campo($campo) . ':</td>';
+           $sError .= '<td class="scFormErrorMessageFont" style="padding: 0 6px; vertical-align: top; white-space: nowrap">' . implode('<br />', array_unique($erros)) . '</td>';
+           $sError .= '</tr>';
+       }
+
+       $sError .= '</table>';
+
+       return $sError;
+   }
+
+   function Formata_Campos_Erros_SweetAlert($Campos_Erros) 
+   {
+       $sError  = '';
+
+       foreach ($Campos_Erros as $campo => $erros)
+       {
+           $sError .= $this->Recupera_Nome_Campo($campo) . ': ' . implode('<br />', array_unique($erros)) . '<br />';
+       }
+
+       return $sError;
+   }
+
+   function Recupera_Nome_Campo($campo) 
+   {
+       switch($campo)
+       {
+           case 'si_motivo_anulacion':
+               return "" . $this->Ini->Nm_lang['lang_motivo_rechazo'] . "";
+               break;
+           case 'si_id':
+               return "" . $this->Ini->Nm_lang['lang_id'] . "";
+               break;
+           case 'si_empresa':
+               return "" . $this->Ini->Nm_lang['lang_empresa'] . "";
+               break;
+           case 'si_fecha':
+               return "" . $this->Ini->Nm_lang['lang_fecha'] . "";
+               break;
+           case 'si_secuecial':
+               return "" . $this->Ini->Nm_lang['lang_secuencial'] . "";
+               break;
+           case 'si_contrato':
+               return "" . $this->Ini->Nm_lang['lang_contrato'] . "";
+               break;
+           case 'si_estado':
+               return "" . $this->Ini->Nm_lang['lang_estado'] . "";
+               break;
+           case 'si_tipo_inspeccion':
+               return "" . $this->Ini->Nm_lang['lang_tipo_inspeccion'] . "";
+               break;
+           case 'si_comentario':
+               return "" . $this->Ini->Nm_lang['lang_comentario'] . "";
+               break;
+           case 'propietario':
+               return "" . $this->Ini->Nm_lang['lang_propietario'] . "";
+               break;
+           case 'contrato':
+               return "" . $this->Ini->Nm_lang['lang_numero_contrato'] . "";
+               break;
+           case 'direccion':
+               return "" . $this->Ini->Nm_lang['lang_direccion'] . "";
+               break;
+           case 'si_fecha_inspeccion':
+               return "" . $this->Ini->Nm_lang['lang_fecha_inspeccion'] . "";
+               break;
+           case 'si_observacion':
+               return "" . $this->Ini->Nm_lang['lang_observacion'] . "";
+               break;
+           case 'si_usuario_inspecciona':
+               return "" . $this->Ini->Nm_lang['lang_username'] . "";
+               break;
+           case 'si_usuario_registra':
+               return "" . $this->Ini->Nm_lang['lang_usuario_crea'] . "";
+               break;
+       }
+
+       return $campo;
+   }
+
+   function dateDefaultFormat()
+   {
+       if (isset($this->Ini->Nm_conf_reg[$this->Ini->str_conf_reg]['data_format']))
+       {
+           $sDate = str_replace('yyyy', 'Y', $this->Ini->Nm_conf_reg[$this->Ini->str_conf_reg]['data_format']);
+           $sDate = str_replace('mm',   'm', $sDate);
+           $sDate = str_replace('dd',   'd', $sDate);
+           return substr(chunk_split($sDate, 1, $this->Ini->Nm_conf_reg[$this->Ini->str_conf_reg]['data_sep']), 0, -1);
+       }
+       elseif ('en_us' == $this->Ini->str_lang)
+       {
+           return 'm/d/Y';
+       }
+       else
+       {
+           return 'd/m/Y';
+       }
+   } // dateDefaultFormat
+
+//
+//--------------------------------------------------------------------------------------
+   function Valida_campos(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros, $filtro = '') 
+   {
+     global $nm_browser, $teste_validade;
+     if (is_array($filtro) && empty($filtro)) {
+         $filtro = '';
+     }
+//---------------------------------------------------------
+     $this->sc_force_zero = array();
+
+     if (!is_array($filtro) && '' == $filtro && isset($this->nm_form_submit) && '1' == $this->nm_form_submit && $this->scCsrfGetToken() != $this->csrf_token)
+     {
+          $this->Campos_Mens_erro .= (empty($this->Campos_Mens_erro)) ? "" : "<br />";
+          $this->Campos_Mens_erro .= "CSRF: " . $this->Ini->Nm_lang['lang_errm_ajax_csrf'];
+          if ($this->NM_ajax_flag)
+          {
+              if (!isset($this->NM_ajax_info['errList']['geral_form_jap_solicitud_inspeccion']) || !is_array($this->NM_ajax_info['errList']['geral_form_jap_solicitud_inspeccion']))
+              {
+                  $this->NM_ajax_info['errList']['geral_form_jap_solicitud_inspeccion'] = array();
+              }
+              $this->NM_ajax_info['errList']['geral_form_jap_solicitud_inspeccion'][] = "CSRF: " . $this->Ini->Nm_lang['lang_errm_ajax_csrf'];
+          }
+     }
+      if ((!is_array($filtro) && ('' == $filtro || 'si_motivo_anulacion' == $filtro)) || (is_array($filtro) && in_array('si_motivo_anulacion', $filtro)))
+        $this->ValidateField_si_motivo_anulacion($Campos_Crit, $Campos_Falta, $Campos_Erros);
+      if ((!is_array($filtro) && ('' == $filtro || 'si_id' == $filtro)) || (is_array($filtro) && in_array('si_id', $filtro)))
+        $this->ValidateField_si_id($Campos_Crit, $Campos_Falta, $Campos_Erros);
+      if ((!is_array($filtro) && ('' == $filtro || 'si_empresa' == $filtro)) || (is_array($filtro) && in_array('si_empresa', $filtro)))
+        $this->ValidateField_si_empresa($Campos_Crit, $Campos_Falta, $Campos_Erros);
+      if ((!is_array($filtro) && ('' == $filtro || 'si_fecha' == $filtro)) || (is_array($filtro) && in_array('si_fecha', $filtro)))
+        $this->ValidateField_si_fecha($Campos_Crit, $Campos_Falta, $Campos_Erros);
+      if ((!is_array($filtro) && ('' == $filtro || 'si_secuecial' == $filtro)) || (is_array($filtro) && in_array('si_secuecial', $filtro)))
+        $this->ValidateField_si_secuecial($Campos_Crit, $Campos_Falta, $Campos_Erros);
+      if ((!is_array($filtro) && ('' == $filtro || 'si_contrato' == $filtro)) || (is_array($filtro) && in_array('si_contrato', $filtro)))
+        $this->ValidateField_si_contrato($Campos_Crit, $Campos_Falta, $Campos_Erros);
+      if ((!is_array($filtro) && ('' == $filtro || 'si_estado' == $filtro)) || (is_array($filtro) && in_array('si_estado', $filtro)))
+        $this->ValidateField_si_estado($Campos_Crit, $Campos_Falta, $Campos_Erros);
+      if ((!is_array($filtro) && ('' == $filtro || 'si_tipo_inspeccion' == $filtro)) || (is_array($filtro) && in_array('si_tipo_inspeccion', $filtro)))
+        $this->ValidateField_si_tipo_inspeccion($Campos_Crit, $Campos_Falta, $Campos_Erros);
+      if ((!is_array($filtro) && ('' == $filtro || 'si_comentario' == $filtro)) || (is_array($filtro) && in_array('si_comentario', $filtro)))
+        $this->ValidateField_si_comentario($Campos_Crit, $Campos_Falta, $Campos_Erros);
+      if ((!is_array($filtro) && ('' == $filtro || 'propietario' == $filtro)) || (is_array($filtro) && in_array('propietario', $filtro)))
+        $this->ValidateField_propietario($Campos_Crit, $Campos_Falta, $Campos_Erros);
+      if ((!is_array($filtro) && ('' == $filtro || 'contrato' == $filtro)) || (is_array($filtro) && in_array('contrato', $filtro)))
+        $this->ValidateField_contrato($Campos_Crit, $Campos_Falta, $Campos_Erros);
+      if ((!is_array($filtro) && ('' == $filtro || 'direccion' == $filtro)) || (is_array($filtro) && in_array('direccion', $filtro)))
+        $this->ValidateField_direccion($Campos_Crit, $Campos_Falta, $Campos_Erros);
+      if ((!is_array($filtro) && ('' == $filtro || 'si_fecha_inspeccion' == $filtro)) || (is_array($filtro) && in_array('si_fecha_inspeccion', $filtro)))
+        $this->ValidateField_si_fecha_inspeccion($Campos_Crit, $Campos_Falta, $Campos_Erros);
+      if ((!is_array($filtro) && ('' == $filtro || 'si_observacion' == $filtro)) || (is_array($filtro) && in_array('si_observacion', $filtro)))
+        $this->ValidateField_si_observacion($Campos_Crit, $Campos_Falta, $Campos_Erros);
+      if ((!is_array($filtro) && ('' == $filtro || 'si_usuario_inspecciona' == $filtro)) || (is_array($filtro) && in_array('si_usuario_inspecciona', $filtro)))
+        $this->ValidateField_si_usuario_inspecciona($Campos_Crit, $Campos_Falta, $Campos_Erros);
+//-- converter datas   
+          $this->nm_converte_datas();
+//---
+      if (!empty($Campos_Crit) || !empty($Campos_Falta) || !empty($this->Campos_Mens_erro))
+      {
+          if (!empty($this->sc_force_zero))
+          {
+              foreach ($this->sc_force_zero as $i_force_zero => $sc_force_zero_field)
+              {
+                  eval('$this->' . $sc_force_zero_field . ' = "";');
+                  unset($this->sc_force_zero[$i_force_zero]);
+              }
+          }
+      }
+   }
+
+    function ValidateField_si_motivo_anulacion(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros)
+    {
+        global $teste_validade;
+        $hasError = false;
+      if (isset($this->Field_no_validate['si_motivo_anulacion'])) {
+          return;
+      }
+      if ($this->nmgp_opcao != "excluir") 
+      { 
+          if (NM_utf8_strlen($this->si_motivo_anulacion) > 32767) 
+          { 
+              $hasError = true;
+              $Campos_Crit .= "" . $this->Ini->Nm_lang['lang_motivo_rechazo'] . " " . $this->Ini->Nm_lang['lang_errm_mxch'] . " 32767 " . $this->Ini->Nm_lang['lang_errm_nchr']; 
+              if (!isset($Campos_Erros['si_motivo_anulacion']))
+              {
+                  $Campos_Erros['si_motivo_anulacion'] = array();
+              }
+              $Campos_Erros['si_motivo_anulacion'][] = $this->Ini->Nm_lang['lang_errm_mxch'] . " 32767 " . $this->Ini->Nm_lang['lang_errm_nchr'];
+              if (!isset($this->NM_ajax_info['errList']['si_motivo_anulacion']) || !is_array($this->NM_ajax_info['errList']['si_motivo_anulacion']))
+              {
+                  $this->NM_ajax_info['errList']['si_motivo_anulacion'] = array();
+              }
+              $this->NM_ajax_info['errList']['si_motivo_anulacion'][] = $this->Ini->Nm_lang['lang_errm_mxch'] . " 32767 " . $this->Ini->Nm_lang['lang_errm_nchr'];
+          } 
+      } 
+        if ($hasError) {
+            global $sc_seq_vert;
+            $fieldName = 'si_motivo_anulacion';
+            if (isset($sc_seq_vert) && '' != $sc_seq_vert) {
+                $fieldName .= $sc_seq_vert;
+            }
+            $this->NM_ajax_info['fieldsWithErrors'][] = $fieldName;
+        }
+    } // ValidateField_si_motivo_anulacion
+
+    function ValidateField_si_id(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros)
+    {
+        global $teste_validade;
+        $hasError = false;
+      if (isset($this->Field_no_validate['si_id'])) {
+          nm_limpa_numero($this->si_id, $this->field_config['si_id']['symbol_grp']) ; 
+          return;
+      }
+      if ($this->si_id === "" || is_null($this->si_id))  
+      { 
+          $this->si_id = 0;
+      } 
+      nm_limpa_numero($this->si_id, $this->field_config['si_id']['symbol_grp']) ; 
+      if ($this->nmgp_opcao == "incluir")
+      { 
+          if ($this->si_id != '')  
+          { 
+              $iTestSize = 9;
+              if (strlen($this->si_id) > $iTestSize)  
+              { 
+                  $hasError = true;
+                  $Campos_Crit .= "" . $this->Ini->Nm_lang['lang_id'] . ": " . $this->Ini->Nm_lang['lang_errm_size']; 
+                  if (!isset($Campos_Erros['si_id']))
+                  {
+                      $Campos_Erros['si_id'] = array();
+                  }
+                  $Campos_Erros['si_id'][] = $this->Ini->Nm_lang['lang_errm_size'];
+                  if (!isset($this->NM_ajax_info['errList']['si_id']) || !is_array($this->NM_ajax_info['errList']['si_id']))
+                  {
+                      $this->NM_ajax_info['errList']['si_id'] = array();
+                  }
+                  $this->NM_ajax_info['errList']['si_id'][] = $this->Ini->Nm_lang['lang_errm_size'];
+              } 
+              if ($teste_validade->Valor($this->si_id, 9, 0, 0, 0, "N") == false)  
+              { 
+                  $hasError = true;
+                  $Campos_Crit .= "" . $this->Ini->Nm_lang['lang_id'] . "; " ; 
+                  if (!isset($Campos_Erros['si_id']))
+                  {
+                      $Campos_Erros['si_id'] = array();
+                  }
+                  $Campos_Erros['si_id'][] = "" . $this->Ini->Nm_lang['lang_errm_ajax_data'] . "";
+                  if (!isset($this->NM_ajax_info['errList']['si_id']) || !is_array($this->NM_ajax_info['errList']['si_id']))
+                  {
+                      $this->NM_ajax_info['errList']['si_id'] = array();
+                  }
+                  $this->NM_ajax_info['errList']['si_id'][] = "" . $this->Ini->Nm_lang['lang_errm_ajax_data'] . "";
+              } 
+          } 
+      } 
+        if ($hasError) {
+            global $sc_seq_vert;
+            $fieldName = 'si_id';
+            if (isset($sc_seq_vert) && '' != $sc_seq_vert) {
+                $fieldName .= $sc_seq_vert;
+            }
+            $this->NM_ajax_info['fieldsWithErrors'][] = $fieldName;
+        }
+    } // ValidateField_si_id
+
+    function ValidateField_si_empresa(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros)
+    {
+        global $teste_validade;
+        $hasError = false;
+      if (isset($this->Field_no_validate['si_empresa'])) {
+          return;
+      }
+      if ($this->nmgp_opcao != "excluir" && (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['php_cmp_required']['si_empresa']) || $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['php_cmp_required']['si_empresa'] == "on")) 
+      { 
+          if ($this->si_empresa == "")  
+          { 
+              $hasError = true;
+              $Campos_Falta[] =  "" . $this->Ini->Nm_lang['lang_empresa'] . "" ; 
+              if (!isset($Campos_Erros['si_empresa']))
+              {
+                  $Campos_Erros['si_empresa'] = array();
+              }
+              $Campos_Erros['si_empresa'][] = $this->Ini->Nm_lang['lang_errm_ajax_rqrd'];
+                  if (!isset($this->NM_ajax_info['errList']['si_empresa']) || !is_array($this->NM_ajax_info['errList']['si_empresa']))
+                  {
+                      $this->NM_ajax_info['errList']['si_empresa'] = array();
+                  }
+                  $this->NM_ajax_info['errList']['si_empresa'][] = $this->Ini->Nm_lang['lang_errm_ajax_rqrd'];
+          } 
+      } 
+      if ($this->nmgp_opcao != "excluir") 
+      { 
+          if (NM_utf8_strlen($this->si_empresa) > 13) 
+          { 
+              $hasError = true;
+              $Campos_Crit .= "" . $this->Ini->Nm_lang['lang_empresa'] . " " . $this->Ini->Nm_lang['lang_errm_mxch'] . " 13 " . $this->Ini->Nm_lang['lang_errm_nchr']; 
+              if (!isset($Campos_Erros['si_empresa']))
+              {
+                  $Campos_Erros['si_empresa'] = array();
+              }
+              $Campos_Erros['si_empresa'][] = $this->Ini->Nm_lang['lang_errm_mxch'] . " 13 " . $this->Ini->Nm_lang['lang_errm_nchr'];
+              if (!isset($this->NM_ajax_info['errList']['si_empresa']) || !is_array($this->NM_ajax_info['errList']['si_empresa']))
+              {
+                  $this->NM_ajax_info['errList']['si_empresa'] = array();
+              }
+              $this->NM_ajax_info['errList']['si_empresa'][] = $this->Ini->Nm_lang['lang_errm_mxch'] . " 13 " . $this->Ini->Nm_lang['lang_errm_nchr'];
+          } 
+      } 
+        if ($hasError) {
+            global $sc_seq_vert;
+            $fieldName = 'si_empresa';
+            if (isset($sc_seq_vert) && '' != $sc_seq_vert) {
+                $fieldName .= $sc_seq_vert;
+            }
+            $this->NM_ajax_info['fieldsWithErrors'][] = $fieldName;
+        }
+    } // ValidateField_si_empresa
+
+    function ValidateField_si_fecha(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros)
+    {
+        global $teste_validade;
+        $hasError = false;
+      nm_limpa_data($this->si_fecha, $this->field_config['si_fecha']['date_sep']) ; 
+      if (isset($this->Field_no_validate['si_fecha'])) {
+          return;
+      }
+      $trab_dt_min = ""; 
+      $trab_dt_max = ""; 
+      if ($this->nmgp_opcao != "excluir") 
+      { 
+          $guarda_datahora = $this->field_config['si_fecha']['date_format']; 
+          if (false !== strpos($guarda_datahora, ';')) $this->field_config['si_fecha']['date_format'] = substr($guarda_datahora, 0, strpos($guarda_datahora, ';'));
+          $Format_Data = $this->field_config['si_fecha']['date_format']; 
+          nm_limpa_data($Format_Data, $this->field_config['si_fecha']['date_sep']) ; 
+          if (trim($this->si_fecha) != "")  
+          { 
+              if ($teste_validade->Data($this->si_fecha, $Format_Data, $trab_dt_min, $trab_dt_max) == false)  
+              { 
+                  $hasError = true;
+                  $Campos_Crit .= "" . $this->Ini->Nm_lang['lang_fecha'] . "; " ; 
+                  if (!isset($Campos_Erros['si_fecha']))
+                  {
+                      $Campos_Erros['si_fecha'] = array();
+                  }
+                  $Campos_Erros['si_fecha'][] = "" . $this->Ini->Nm_lang['lang_errm_ajax_data'] . "";
+                  if (!isset($this->NM_ajax_info['errList']['si_fecha']) || !is_array($this->NM_ajax_info['errList']['si_fecha']))
+                  {
+                      $this->NM_ajax_info['errList']['si_fecha'] = array();
+                  }
+                  $this->NM_ajax_info['errList']['si_fecha'][] = "" . $this->Ini->Nm_lang['lang_errm_ajax_data'] . "";
+              } 
+          } 
+           elseif (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['php_cmp_required']['si_fecha']) || $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['php_cmp_required']['si_fecha'] == "on") 
+           { 
+              $hasError = true;
+              $Campos_Falta[] = "" . $this->Ini->Nm_lang['lang_fecha'] . "" ; 
+              if (!isset($Campos_Erros['si_fecha']))
+              {
+                  $Campos_Erros['si_fecha'] = array();
+              }
+              $Campos_Erros['si_fecha'][] = $this->Ini->Nm_lang['lang_errm_ajax_rqrd'];
+                  if (!isset($this->NM_ajax_info['errList']['si_fecha']) || !is_array($this->NM_ajax_info['errList']['si_fecha']))
+                  {
+                      $this->NM_ajax_info['errList']['si_fecha'] = array();
+                  }
+                  $this->NM_ajax_info['errList']['si_fecha'][] = $this->Ini->Nm_lang['lang_errm_ajax_rqrd'];
+           } 
+          $this->field_config['si_fecha']['date_format'] = $guarda_datahora; 
+       } 
+        if ($hasError) {
+            global $sc_seq_vert;
+            $fieldName = 'si_fecha';
+            if (isset($sc_seq_vert) && '' != $sc_seq_vert) {
+                $fieldName .= $sc_seq_vert;
+            }
+            $this->NM_ajax_info['fieldsWithErrors'][] = $fieldName;
+        }
+    } // ValidateField_si_fecha
+
+    function ValidateField_si_secuecial(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros)
+    {
+        global $teste_validade;
+        $hasError = false;
+      if (isset($this->Field_no_validate['si_secuecial'])) {
+          nm_limpa_numero($this->si_secuecial, $this->field_config['si_secuecial']['symbol_grp']) ; 
+          return;
+      }
+      if ($this->si_secuecial === "" || is_null($this->si_secuecial))  
+      { 
+          $this->si_secuecial = 0;
+          $this->sc_force_zero[] = 'si_secuecial';
+      } 
+      nm_limpa_numero($this->si_secuecial, $this->field_config['si_secuecial']['symbol_grp']) ; 
+      if ($this->nmgp_opcao != "excluir") 
+      { 
+          if ($this->si_secuecial != '')  
+          { 
+              $iTestSize = 9;
+              if (strlen($this->si_secuecial) > $iTestSize)  
+              { 
+                  $hasError = true;
+                  $Campos_Crit .= "" . $this->Ini->Nm_lang['lang_secuencial'] . ": " . $this->Ini->Nm_lang['lang_errm_size']; 
+                  if (!isset($Campos_Erros['si_secuecial']))
+                  {
+                      $Campos_Erros['si_secuecial'] = array();
+                  }
+                  $Campos_Erros['si_secuecial'][] = $this->Ini->Nm_lang['lang_errm_size'];
+                  if (!isset($this->NM_ajax_info['errList']['si_secuecial']) || !is_array($this->NM_ajax_info['errList']['si_secuecial']))
+                  {
+                      $this->NM_ajax_info['errList']['si_secuecial'] = array();
+                  }
+                  $this->NM_ajax_info['errList']['si_secuecial'][] = $this->Ini->Nm_lang['lang_errm_size'];
+              } 
+              if ($teste_validade->Valor($this->si_secuecial, 9, 0, 0, 0, "N") == false)  
+              { 
+                  $hasError = true;
+                  $Campos_Crit .= "" . $this->Ini->Nm_lang['lang_secuencial'] . "; " ; 
+                  if (!isset($Campos_Erros['si_secuecial']))
+                  {
+                      $Campos_Erros['si_secuecial'] = array();
+                  }
+                  $Campos_Erros['si_secuecial'][] = "" . $this->Ini->Nm_lang['lang_errm_ajax_data'] . "";
+                  if (!isset($this->NM_ajax_info['errList']['si_secuecial']) || !is_array($this->NM_ajax_info['errList']['si_secuecial']))
+                  {
+                      $this->NM_ajax_info['errList']['si_secuecial'] = array();
+                  }
+                  $this->NM_ajax_info['errList']['si_secuecial'][] = "" . $this->Ini->Nm_lang['lang_errm_ajax_data'] . "";
+              } 
+          } 
+      } 
+        if ($hasError) {
+            global $sc_seq_vert;
+            $fieldName = 'si_secuecial';
+            if (isset($sc_seq_vert) && '' != $sc_seq_vert) {
+                $fieldName .= $sc_seq_vert;
+            }
+            $this->NM_ajax_info['fieldsWithErrors'][] = $fieldName;
+        }
+    } // ValidateField_si_secuecial
+
+    function ValidateField_si_contrato(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros)
+    {
+        global $teste_validade;
+        $hasError = false;
+   if (isset($this->Field_no_validate['si_contrato'])) {
+       return;
+   }
+      if ($this->si_contrato == "" && $this->nmgp_opcao != "excluir" && (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['php_cmp_required']['si_contrato']) || $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['php_cmp_required']['si_contrato'] == "on"))
+      {
+          $hasError = true;
+          $Campos_Falta[] = "" . $this->Ini->Nm_lang['lang_contrato'] . "" ; 
+          if (!isset($Campos_Erros['si_contrato']))
+          {
+              $Campos_Erros['si_contrato'] = array();
+          }
+          $Campos_Erros['si_contrato'][] = $this->Ini->Nm_lang['lang_errm_ajax_rqrd'];
+          if (!isset($this->NM_ajax_info['errList']['si_contrato']) || !is_array($this->NM_ajax_info['errList']['si_contrato']))
+          {
+              $this->NM_ajax_info['errList']['si_contrato'] = array();
+          }
+          $this->NM_ajax_info['errList']['si_contrato'][] = $this->Ini->Nm_lang['lang_errm_ajax_rqrd'];
+      }
+          if (!empty($this->si_contrato) && isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_contrato']) && !in_array($this->si_contrato, $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_contrato']))
+          {
+              $hasError = true;
+              $Campos_Crit .= $this->Ini->Nm_lang['lang_errm_ajax_data'];
+              if (!isset($Campos_Erros['si_contrato']))
+              {
+                  $Campos_Erros['si_contrato'] = array();
+              }
+              $Campos_Erros['si_contrato'][] = $this->Ini->Nm_lang['lang_errm_ajax_data'];
+              if (!isset($this->NM_ajax_info['errList']['si_contrato']) || !is_array($this->NM_ajax_info['errList']['si_contrato']))
+              {
+                  $this->NM_ajax_info['errList']['si_contrato'] = array();
+              }
+              $this->NM_ajax_info['errList']['si_contrato'][] = $this->Ini->Nm_lang['lang_errm_ajax_data'];
+          }
+        if ($hasError) {
+            global $sc_seq_vert;
+            $fieldName = 'si_contrato';
+            if (isset($sc_seq_vert) && '' != $sc_seq_vert) {
+                $fieldName .= $sc_seq_vert;
+            }
+            $this->NM_ajax_info['fieldsWithErrors'][] = $fieldName;
+        }
+    } // ValidateField_si_contrato
+
+    function ValidateField_si_estado(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros)
+    {
+        global $teste_validade;
+        $hasError = false;
+      if (isset($this->Field_no_validate['si_estado'])) {
+          return;
+      }
+      if ($this->nmgp_opcao != "excluir") 
+      { 
+          if (NM_utf8_strlen($this->si_estado) > 2) 
+          { 
+              $hasError = true;
+              $Campos_Crit .= "" . $this->Ini->Nm_lang['lang_estado'] . " " . $this->Ini->Nm_lang['lang_errm_mxch'] . " 2 " . $this->Ini->Nm_lang['lang_errm_nchr']; 
+              if (!isset($Campos_Erros['si_estado']))
+              {
+                  $Campos_Erros['si_estado'] = array();
+              }
+              $Campos_Erros['si_estado'][] = $this->Ini->Nm_lang['lang_errm_mxch'] . " 2 " . $this->Ini->Nm_lang['lang_errm_nchr'];
+              if (!isset($this->NM_ajax_info['errList']['si_estado']) || !is_array($this->NM_ajax_info['errList']['si_estado']))
+              {
+                  $this->NM_ajax_info['errList']['si_estado'] = array();
+              }
+              $this->NM_ajax_info['errList']['si_estado'][] = $this->Ini->Nm_lang['lang_errm_mxch'] . " 2 " . $this->Ini->Nm_lang['lang_errm_nchr'];
+          } 
+      } 
+        if ($hasError) {
+            global $sc_seq_vert;
+            $fieldName = 'si_estado';
+            if (isset($sc_seq_vert) && '' != $sc_seq_vert) {
+                $fieldName .= $sc_seq_vert;
+            }
+            $this->NM_ajax_info['fieldsWithErrors'][] = $fieldName;
+        }
+    } // ValidateField_si_estado
+
+    function ValidateField_si_tipo_inspeccion(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros)
+    {
+        global $teste_validade;
+        $hasError = false;
+   if (isset($this->Field_no_validate['si_tipo_inspeccion'])) {
+       return;
+   }
+      if ($this->si_tipo_inspeccion == "" && $this->nmgp_opcao != "excluir" && (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['php_cmp_required']['si_tipo_inspeccion']) || $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['php_cmp_required']['si_tipo_inspeccion'] == "on"))
+      {
+          $hasError = true;
+          $Campos_Falta[] = "" . $this->Ini->Nm_lang['lang_tipo_inspeccion'] . "" ; 
+          if (!isset($Campos_Erros['si_tipo_inspeccion']))
+          {
+              $Campos_Erros['si_tipo_inspeccion'] = array();
+          }
+          $Campos_Erros['si_tipo_inspeccion'][] = $this->Ini->Nm_lang['lang_errm_ajax_rqrd'];
+          if (!isset($this->NM_ajax_info['errList']['si_tipo_inspeccion']) || !is_array($this->NM_ajax_info['errList']['si_tipo_inspeccion']))
+          {
+              $this->NM_ajax_info['errList']['si_tipo_inspeccion'] = array();
+          }
+          $this->NM_ajax_info['errList']['si_tipo_inspeccion'][] = $this->Ini->Nm_lang['lang_errm_ajax_rqrd'];
+      }
+          if (!empty($this->si_tipo_inspeccion) && isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_tipo_inspeccion']) && !in_array($this->si_tipo_inspeccion, $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_tipo_inspeccion']))
+          {
+              $hasError = true;
+              $Campos_Crit .= $this->Ini->Nm_lang['lang_errm_ajax_data'];
+              if (!isset($Campos_Erros['si_tipo_inspeccion']))
+              {
+                  $Campos_Erros['si_tipo_inspeccion'] = array();
+              }
+              $Campos_Erros['si_tipo_inspeccion'][] = $this->Ini->Nm_lang['lang_errm_ajax_data'];
+              if (!isset($this->NM_ajax_info['errList']['si_tipo_inspeccion']) || !is_array($this->NM_ajax_info['errList']['si_tipo_inspeccion']))
+              {
+                  $this->NM_ajax_info['errList']['si_tipo_inspeccion'] = array();
+              }
+              $this->NM_ajax_info['errList']['si_tipo_inspeccion'][] = $this->Ini->Nm_lang['lang_errm_ajax_data'];
+          }
+        if ($hasError) {
+            global $sc_seq_vert;
+            $fieldName = 'si_tipo_inspeccion';
+            if (isset($sc_seq_vert) && '' != $sc_seq_vert) {
+                $fieldName .= $sc_seq_vert;
+            }
+            $this->NM_ajax_info['fieldsWithErrors'][] = $fieldName;
+        }
+    } // ValidateField_si_tipo_inspeccion
+
+    function ValidateField_si_comentario(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros)
+    {
+        global $teste_validade;
+        $hasError = false;
+      if (isset($this->Field_no_validate['si_comentario'])) {
+          return;
+      }
+      if ($this->nmgp_opcao != "excluir") 
+      { 
+          if (NM_utf8_strlen($this->si_comentario) > 32767) 
+          { 
+              $hasError = true;
+              $Campos_Crit .= "" . $this->Ini->Nm_lang['lang_comentario'] . " " . $this->Ini->Nm_lang['lang_errm_mxch'] . " 32767 " . $this->Ini->Nm_lang['lang_errm_nchr']; 
+              if (!isset($Campos_Erros['si_comentario']))
+              {
+                  $Campos_Erros['si_comentario'] = array();
+              }
+              $Campos_Erros['si_comentario'][] = $this->Ini->Nm_lang['lang_errm_mxch'] . " 32767 " . $this->Ini->Nm_lang['lang_errm_nchr'];
+              if (!isset($this->NM_ajax_info['errList']['si_comentario']) || !is_array($this->NM_ajax_info['errList']['si_comentario']))
+              {
+                  $this->NM_ajax_info['errList']['si_comentario'] = array();
+              }
+              $this->NM_ajax_info['errList']['si_comentario'][] = $this->Ini->Nm_lang['lang_errm_mxch'] . " 32767 " . $this->Ini->Nm_lang['lang_errm_nchr'];
+          } 
+      } 
+        if ($hasError) {
+            global $sc_seq_vert;
+            $fieldName = 'si_comentario';
+            if (isset($sc_seq_vert) && '' != $sc_seq_vert) {
+                $fieldName .= $sc_seq_vert;
+            }
+            $this->NM_ajax_info['fieldsWithErrors'][] = $fieldName;
+        }
+    } // ValidateField_si_comentario
+
+    function ValidateField_propietario(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros)
+    {
+        global $teste_validade;
+        $hasError = false;
+      if (isset($this->Field_no_validate['propietario'])) {
+          return;
+      }
+      if ($this->nmgp_opcao != "excluir") 
+      { 
+          if (NM_utf8_strlen($this->propietario) > 200) 
+          { 
+              $hasError = true;
+              $Campos_Crit .= "" . $this->Ini->Nm_lang['lang_propietario'] . " " . $this->Ini->Nm_lang['lang_errm_mxch'] . " 200 " . $this->Ini->Nm_lang['lang_errm_nchr']; 
+              if (!isset($Campos_Erros['propietario']))
+              {
+                  $Campos_Erros['propietario'] = array();
+              }
+              $Campos_Erros['propietario'][] = $this->Ini->Nm_lang['lang_errm_mxch'] . " 200 " . $this->Ini->Nm_lang['lang_errm_nchr'];
+              if (!isset($this->NM_ajax_info['errList']['propietario']) || !is_array($this->NM_ajax_info['errList']['propietario']))
+              {
+                  $this->NM_ajax_info['errList']['propietario'] = array();
+              }
+              $this->NM_ajax_info['errList']['propietario'][] = $this->Ini->Nm_lang['lang_errm_mxch'] . " 200 " . $this->Ini->Nm_lang['lang_errm_nchr'];
+          } 
+      } 
+        if ($hasError) {
+            global $sc_seq_vert;
+            $fieldName = 'propietario';
+            if (isset($sc_seq_vert) && '' != $sc_seq_vert) {
+                $fieldName .= $sc_seq_vert;
+            }
+            $this->NM_ajax_info['fieldsWithErrors'][] = $fieldName;
+        }
+    } // ValidateField_propietario
+
+    function ValidateField_contrato(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros)
+    {
+        global $teste_validade;
+        $hasError = false;
+      if (isset($this->Field_no_validate['contrato'])) {
+          return;
+      }
+      if ($this->nmgp_opcao != "excluir") 
+      { 
+          if (NM_utf8_strlen($this->contrato) > 200) 
+          { 
+              $hasError = true;
+              $Campos_Crit .= "" . $this->Ini->Nm_lang['lang_numero_contrato'] . " " . $this->Ini->Nm_lang['lang_errm_mxch'] . " 200 " . $this->Ini->Nm_lang['lang_errm_nchr']; 
+              if (!isset($Campos_Erros['contrato']))
+              {
+                  $Campos_Erros['contrato'] = array();
+              }
+              $Campos_Erros['contrato'][] = $this->Ini->Nm_lang['lang_errm_mxch'] . " 200 " . $this->Ini->Nm_lang['lang_errm_nchr'];
+              if (!isset($this->NM_ajax_info['errList']['contrato']) || !is_array($this->NM_ajax_info['errList']['contrato']))
+              {
+                  $this->NM_ajax_info['errList']['contrato'] = array();
+              }
+              $this->NM_ajax_info['errList']['contrato'][] = $this->Ini->Nm_lang['lang_errm_mxch'] . " 200 " . $this->Ini->Nm_lang['lang_errm_nchr'];
+          } 
+      } 
+        if ($hasError) {
+            global $sc_seq_vert;
+            $fieldName = 'contrato';
+            if (isset($sc_seq_vert) && '' != $sc_seq_vert) {
+                $fieldName .= $sc_seq_vert;
+            }
+            $this->NM_ajax_info['fieldsWithErrors'][] = $fieldName;
+        }
+    } // ValidateField_contrato
+
+    function ValidateField_direccion(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros)
+    {
+        global $teste_validade;
+        $hasError = false;
+      if (isset($this->Field_no_validate['direccion'])) {
+          return;
+      }
+      if ($this->nmgp_opcao != "excluir") 
+      { 
+          if (NM_utf8_strlen($this->direccion) > 400) 
+          { 
+              $hasError = true;
+              $Campos_Crit .= "" . $this->Ini->Nm_lang['lang_direccion'] . " " . $this->Ini->Nm_lang['lang_errm_mxch'] . " 400 " . $this->Ini->Nm_lang['lang_errm_nchr']; 
+              if (!isset($Campos_Erros['direccion']))
+              {
+                  $Campos_Erros['direccion'] = array();
+              }
+              $Campos_Erros['direccion'][] = $this->Ini->Nm_lang['lang_errm_mxch'] . " 400 " . $this->Ini->Nm_lang['lang_errm_nchr'];
+              if (!isset($this->NM_ajax_info['errList']['direccion']) || !is_array($this->NM_ajax_info['errList']['direccion']))
+              {
+                  $this->NM_ajax_info['errList']['direccion'] = array();
+              }
+              $this->NM_ajax_info['errList']['direccion'][] = $this->Ini->Nm_lang['lang_errm_mxch'] . " 400 " . $this->Ini->Nm_lang['lang_errm_nchr'];
+          } 
+      } 
+        if ($hasError) {
+            global $sc_seq_vert;
+            $fieldName = 'direccion';
+            if (isset($sc_seq_vert) && '' != $sc_seq_vert) {
+                $fieldName .= $sc_seq_vert;
+            }
+            $this->NM_ajax_info['fieldsWithErrors'][] = $fieldName;
+        }
+    } // ValidateField_direccion
+
+    function ValidateField_si_fecha_inspeccion(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros)
+    {
+        global $teste_validade;
+        $hasError = false;
+      nm_limpa_data($this->si_fecha_inspeccion, $this->field_config['si_fecha_inspeccion']['date_sep']) ; 
+      if (isset($this->Field_no_validate['si_fecha_inspeccion'])) {
+          return;
+      }
+      $trab_dt_min = ""; 
+      $trab_dt_max = ""; 
+      if ($this->nmgp_opcao != "excluir") 
+      { 
+          $guarda_datahora = $this->field_config['si_fecha_inspeccion']['date_format']; 
+          if (false !== strpos($guarda_datahora, ';')) $this->field_config['si_fecha_inspeccion']['date_format'] = substr($guarda_datahora, 0, strpos($guarda_datahora, ';'));
+          $Format_Data = $this->field_config['si_fecha_inspeccion']['date_format']; 
+          nm_limpa_data($Format_Data, $this->field_config['si_fecha_inspeccion']['date_sep']) ; 
+          if (trim($this->si_fecha_inspeccion) != "")  
+          { 
+              if ($teste_validade->Data($this->si_fecha_inspeccion, $Format_Data, $trab_dt_min, $trab_dt_max) == false)  
+              { 
+                  $hasError = true;
+                  $Campos_Crit .= "" . $this->Ini->Nm_lang['lang_fecha_inspeccion'] . "; " ; 
+                  if (!isset($Campos_Erros['si_fecha_inspeccion']))
+                  {
+                      $Campos_Erros['si_fecha_inspeccion'] = array();
+                  }
+                  $Campos_Erros['si_fecha_inspeccion'][] = "" . $this->Ini->Nm_lang['lang_errm_ajax_data'] . "";
+                  if (!isset($this->NM_ajax_info['errList']['si_fecha_inspeccion']) || !is_array($this->NM_ajax_info['errList']['si_fecha_inspeccion']))
+                  {
+                      $this->NM_ajax_info['errList']['si_fecha_inspeccion'] = array();
+                  }
+                  $this->NM_ajax_info['errList']['si_fecha_inspeccion'][] = "" . $this->Ini->Nm_lang['lang_errm_ajax_data'] . "";
+              } 
+          } 
+          $this->field_config['si_fecha_inspeccion']['date_format'] = $guarda_datahora; 
+       } 
+        if ($hasError) {
+            global $sc_seq_vert;
+            $fieldName = 'si_fecha_inspeccion';
+            if (isset($sc_seq_vert) && '' != $sc_seq_vert) {
+                $fieldName .= $sc_seq_vert;
+            }
+            $this->NM_ajax_info['fieldsWithErrors'][] = $fieldName;
+        }
+    } // ValidateField_si_fecha_inspeccion
+
+    function ValidateField_si_observacion(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros)
+    {
+        global $teste_validade;
+        $hasError = false;
+      if (isset($this->Field_no_validate['si_observacion'])) {
+          return;
+      }
+      if ($this->nmgp_opcao != "excluir") 
+      { 
+          if (NM_utf8_strlen($this->si_observacion) > 32767) 
+          { 
+              $hasError = true;
+              $Campos_Crit .= "" . $this->Ini->Nm_lang['lang_observacion'] . " " . $this->Ini->Nm_lang['lang_errm_mxch'] . " 32767 " . $this->Ini->Nm_lang['lang_errm_nchr']; 
+              if (!isset($Campos_Erros['si_observacion']))
+              {
+                  $Campos_Erros['si_observacion'] = array();
+              }
+              $Campos_Erros['si_observacion'][] = $this->Ini->Nm_lang['lang_errm_mxch'] . " 32767 " . $this->Ini->Nm_lang['lang_errm_nchr'];
+              if (!isset($this->NM_ajax_info['errList']['si_observacion']) || !is_array($this->NM_ajax_info['errList']['si_observacion']))
+              {
+                  $this->NM_ajax_info['errList']['si_observacion'] = array();
+              }
+              $this->NM_ajax_info['errList']['si_observacion'][] = $this->Ini->Nm_lang['lang_errm_mxch'] . " 32767 " . $this->Ini->Nm_lang['lang_errm_nchr'];
+          } 
+      } 
+        if ($hasError) {
+            global $sc_seq_vert;
+            $fieldName = 'si_observacion';
+            if (isset($sc_seq_vert) && '' != $sc_seq_vert) {
+                $fieldName .= $sc_seq_vert;
+            }
+            $this->NM_ajax_info['fieldsWithErrors'][] = $fieldName;
+        }
+    } // ValidateField_si_observacion
+
+    function ValidateField_si_usuario_inspecciona(&$Campos_Crit, &$Campos_Falta, &$Campos_Erros)
+    {
+        global $teste_validade;
+        $hasError = false;
+   if (isset($this->Field_no_validate['si_usuario_inspecciona'])) {
+       return;
+   }
+               if (!empty($this->si_usuario_inspecciona) && isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_usuario_inspecciona']) && !in_array($this->si_usuario_inspecciona, $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_usuario_inspecciona']))
+               {
+                   $hasError = true;
+                   $Campos_Crit .= $this->Ini->Nm_lang['lang_errm_ajax_data'];
+                   if (!isset($Campos_Erros['si_usuario_inspecciona']))
+                   {
+                       $Campos_Erros['si_usuario_inspecciona'] = array();
+                   }
+                   $Campos_Erros['si_usuario_inspecciona'][] = $this->Ini->Nm_lang['lang_errm_ajax_data'];
+                   if (!isset($this->NM_ajax_info['errList']['si_usuario_inspecciona']) || !is_array($this->NM_ajax_info['errList']['si_usuario_inspecciona']))
+                   {
+                       $this->NM_ajax_info['errList']['si_usuario_inspecciona'] = array();
+                   }
+                   $this->NM_ajax_info['errList']['si_usuario_inspecciona'][] = $this->Ini->Nm_lang['lang_errm_ajax_data'];
+               }
+        if ($hasError) {
+            global $sc_seq_vert;
+            $fieldName = 'si_usuario_inspecciona';
+            if (isset($sc_seq_vert) && '' != $sc_seq_vert) {
+                $fieldName .= $sc_seq_vert;
+            }
+            $this->NM_ajax_info['fieldsWithErrors'][] = $fieldName;
+        }
+    } // ValidateField_si_usuario_inspecciona
+
+    function removeDuplicateDttmError($aErrDate, &$aErrTime)
+    {
+        if (empty($aErrDate) || empty($aErrTime))
+        {
+            return;
+        }
+
+        foreach ($aErrDate as $sErrDate)
+        {
+            foreach ($aErrTime as $iErrTime => $sErrTime)
+            {
+                if ($sErrDate == $sErrTime)
+                {
+                    unset($aErrTime[$iErrTime]);
+                }
+            }
+        }
+    } // removeDuplicateDttmError
+
+   function nm_guardar_campos()
+   {
+    global
+           $sc_seq_vert;
+    $this->nmgp_dados_form['si_motivo_anulacion'] = $this->si_motivo_anulacion;
+    $this->nmgp_dados_form['si_id'] = $this->si_id;
+    $this->nmgp_dados_form['si_empresa'] = $this->si_empresa;
+    $this->nmgp_dados_form['si_fecha'] = (strlen(trim($this->si_fecha)) > 19) ? str_replace(".", ":", $this->si_fecha) : trim($this->si_fecha);
+    $this->nmgp_dados_form['si_secuecial'] = $this->si_secuecial;
+    $this->nmgp_dados_form['si_contrato'] = $this->si_contrato;
+    $this->nmgp_dados_form['si_estado'] = $this->si_estado;
+    $this->nmgp_dados_form['si_tipo_inspeccion'] = $this->si_tipo_inspeccion;
+    $this->nmgp_dados_form['si_comentario'] = $this->si_comentario;
+    $this->nmgp_dados_form['propietario'] = $this->propietario;
+    $this->nmgp_dados_form['contrato'] = $this->contrato;
+    $this->nmgp_dados_form['direccion'] = $this->direccion;
+    $this->nmgp_dados_form['si_fecha_inspeccion'] = (strlen(trim($this->si_fecha_inspeccion)) > 19) ? str_replace(".", ":", $this->si_fecha_inspeccion) : trim($this->si_fecha_inspeccion);
+    $this->nmgp_dados_form['si_observacion'] = $this->si_observacion;
+    $this->nmgp_dados_form['si_usuario_inspecciona'] = $this->si_usuario_inspecciona;
+    $this->nmgp_dados_form['si_usuario_registra'] = $this->si_usuario_registra;
+    $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dados_form'] = $this->nmgp_dados_form;
+   }
+   function nm_tira_formatacao()
+   {
+      global $nm_form_submit;
+         $this->Before_unformat = array();
+         $this->formatado = false;
+      $this->Before_unformat['si_id'] = $this->si_id;
+      nm_limpa_numero($this->si_id, $this->field_config['si_id']['symbol_grp']) ; 
+      $this->Before_unformat['si_fecha'] = $this->si_fecha;
+      nm_limpa_data($this->si_fecha, $this->field_config['si_fecha']['date_sep']) ; 
+      $this->Before_unformat['si_secuecial'] = $this->si_secuecial;
+      nm_limpa_numero($this->si_secuecial, $this->field_config['si_secuecial']['symbol_grp']) ; 
+      $this->Before_unformat['si_fecha_inspeccion'] = $this->si_fecha_inspeccion;
+      nm_limpa_data($this->si_fecha_inspeccion, $this->field_config['si_fecha_inspeccion']['date_sep']) ; 
+   }
+   function sc_add_currency(&$value, $symbol, $pos)
+   {
+       if ('' == $value)
+       {
+           return;
+       }
+       $value = (1 == $pos || 3 == $pos) ? $symbol . ' ' . $value : $value . ' ' . $symbol;
+   }
+   function sc_remove_currency(&$value, $symbol_dec, $symbol_tho, $symbol_mon)
+   {
+       $value = preg_replace('~&#x0*([0-9a-f]+);~i', '', $value);
+       $sNew  = str_replace($symbol_mon, '', $value);
+       if ($sNew != $value)
+       {
+           $value = str_replace(' ', '', $sNew);
+           return;
+       }
+       $aTest = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', $symbol_dec, $symbol_tho);
+       $sNew  = '';
+       for ($i = 0; $i < strlen($value); $i++)
+       {
+           if ($this->sc_test_currency_char($value[$i], $aTest))
+           {
+               $sNew .= $value[$i];
+           }
+       }
+       $value = $sNew;
+   }
+   function sc_test_currency_char($char, $test)
+   {
+       $found = false;
+       foreach ($test as $test_char)
+       {
+           if ($char === $test_char)
+           {
+               $found = true;
+           }
+       }
+       return $found;
+   }
+   function nm_clear_val($Nome_Campo)
+   {
+      if ($Nome_Campo == "si_id")
+      {
+          nm_limpa_numero($this->si_id, $this->field_config['si_id']['symbol_grp']) ; 
+      }
+      if ($Nome_Campo == "si_secuecial")
+      {
+          nm_limpa_numero($this->si_secuecial, $this->field_config['si_secuecial']['symbol_grp']) ; 
+      }
+   }
+   function nm_formatar_campos($format_fields = array())
+   {
+      global $nm_form_submit;
+     if (isset($this->formatado) && $this->formatado)
+     {
+         return;
+     }
+     $this->formatado = true;
+      if ('' !== $this->si_id || (!empty($format_fields) && isset($format_fields['si_id'])))
+      {
+          nmgp_Form_Num_Val($this->si_id, $this->field_config['si_id']['symbol_grp'], $this->field_config['si_id']['symbol_dec'], "0", "S", $this->field_config['si_id']['format_neg'], "", "", "-", $this->field_config['si_id']['symbol_fmt']) ; 
+      }
+      if ((!empty($this->si_fecha) && 'null' != $this->si_fecha) || (!empty($format_fields) && isset($format_fields['si_fecha'])))
+      {
+          nm_volta_data($this->si_fecha, $this->field_config['si_fecha']['date_format']) ; 
+          nmgp_Form_Datas($this->si_fecha, $this->field_config['si_fecha']['date_format'], $this->field_config['si_fecha']['date_sep']) ;  
+      }
+      elseif ('null' == $this->si_fecha || '' == $this->si_fecha)
+      {
+          $this->si_fecha = '';
+      }
+      if ('' !== $this->si_secuecial || (!empty($format_fields) && isset($format_fields['si_secuecial'])))
+      {
+          nmgp_Form_Num_Val($this->si_secuecial, $this->field_config['si_secuecial']['symbol_grp'], $this->field_config['si_secuecial']['symbol_dec'], "0", "S", $this->field_config['si_secuecial']['format_neg'], "", "", "-", $this->field_config['si_secuecial']['symbol_fmt']) ; 
+      }
+      if ((!empty($this->si_fecha_inspeccion) && 'null' != $this->si_fecha_inspeccion) || (!empty($format_fields) && isset($format_fields['si_fecha_inspeccion'])))
+      {
+          nm_volta_data($this->si_fecha_inspeccion, $this->field_config['si_fecha_inspeccion']['date_format']) ; 
+          nmgp_Form_Datas($this->si_fecha_inspeccion, $this->field_config['si_fecha_inspeccion']['date_format'], $this->field_config['si_fecha_inspeccion']['date_sep']) ;  
+      }
+      elseif ('null' == $this->si_fecha_inspeccion || '' == $this->si_fecha_inspeccion)
+      {
+          $this->si_fecha_inspeccion = '';
+      }
+   }
+   function nm_gera_mask(&$nm_campo, $nm_mask)
+   { 
+      $trab_campo = $nm_campo;
+      $trab_mask  = $nm_mask;
+      $tam_campo  = strlen($nm_campo);
+      $trab_saida = "";
+
+      if (false !== strpos($nm_mask, '9') || false !== strpos($nm_mask, 'a') || false !== strpos($nm_mask, '*'))
+      {
+          $new_campo = '';
+          $a_mask_ord  = array();
+          $i_mask_size = -1;
+
+          foreach (explode(';', $nm_mask) as $str_mask)
+          {
+              $a_mask_ord[ $this->nm_conta_mask_chars($str_mask) ] = $str_mask;
+          }
+          ksort($a_mask_ord);
+
+          foreach ($a_mask_ord as $i_size => $s_mask)
+          {
+              if (-1 == $i_mask_size)
+              {
+                  $i_mask_size = $i_size;
+              }
+              elseif (strlen($nm_campo) >= $i_size && strlen($nm_campo) > $i_mask_size)
+              {
+                  $i_mask_size = $i_size;
+              }
+          }
+          $nm_mask = $a_mask_ord[$i_mask_size];
+
+          for ($i = 0; $i < strlen($nm_mask); $i++)
+          {
+              $test_mask = substr($nm_mask, $i, 1);
+              
+              if ('9' == $test_mask || 'a' == $test_mask || '*' == $test_mask)
+              {
+                  $new_campo .= substr($nm_campo, 0, 1);
+                  $nm_campo   = substr($nm_campo, 1);
+              }
+              else
+              {
+                  $new_campo .= $test_mask;
+              }
+          }
+
+                  $nm_campo = $new_campo;
+
+          return;
+      }
+
+      $mask_num = false;
+      for ($x=0; $x < strlen($trab_mask); $x++)
+      {
+          if (substr($trab_mask, $x, 1) == "#")
+          {
+              $mask_num = true;
+              break;
+          }
+      }
+      if ($mask_num )
+      {
+          $ver_duas = explode(";", $trab_mask);
+          if (isset($ver_duas[1]) && !empty($ver_duas[1]))
+          {
+              $cont1 = count(explode("#", $ver_duas[0])) - 1;
+              $cont2 = count(explode("#", $ver_duas[1])) - 1;
+              if ($cont1 < $cont2 && $tam_campo <= $cont2 && $tam_campo > $cont1)
+              {
+                  $trab_mask = $ver_duas[1];
+              }
+              elseif ($cont1 > $cont2 && $tam_campo <= $cont2)
+              {
+                  $trab_mask = $ver_duas[1];
+              }
+              else
+              {
+                  $trab_mask = $ver_duas[0];
+              }
+          }
+          $tam_mask = strlen($trab_mask);
+          $xdados = 0;
+          for ($x=0; $x < $tam_mask; $x++)
+          {
+              if (substr($trab_mask, $x, 1) == "#" && $xdados < $tam_campo)
+              {
+                  $trab_saida .= substr($trab_campo, $xdados, 1);
+                  $xdados++;
+              }
+              elseif ($xdados < $tam_campo)
+              {
+                  $trab_saida .= substr($trab_mask, $x, 1);
+              }
+          }
+          if ($xdados < $tam_campo)
+          {
+              $trab_saida .= substr($trab_campo, $xdados);
+          }
+          $nm_campo = $trab_saida;
+          return;
+      }
+      for ($ix = strlen($trab_mask); $ix > 0; $ix--)
+      {
+           $char_mask = substr($trab_mask, $ix - 1, 1);
+           if ($char_mask != "x" && $char_mask != "z")
+           {
+               $trab_saida = $char_mask . $trab_saida;
+           }
+           else
+           {
+               if ($tam_campo != 0)
+               {
+                   $trab_saida = substr($trab_campo, $tam_campo - 1, 1) . $trab_saida;
+                   $tam_campo--;
+               }
+               else
+               {
+                   $trab_saida = "0" . $trab_saida;
+               }
+           }
+      }
+      if ($tam_campo != 0)
+      {
+          $trab_saida = substr($trab_campo, 0, $tam_campo) . $trab_saida;
+          $trab_mask  = str_repeat("z", $tam_campo) . $trab_mask;
+      }
+   
+      $iz = 0; 
+      for ($ix = 0; $ix < strlen($trab_mask); $ix++)
+      {
+           $char_mask = substr($trab_mask, $ix, 1);
+           if ($char_mask != "x" && $char_mask != "z")
+           {
+               if ($char_mask == "." || $char_mask == ",")
+               {
+                   $trab_saida = substr($trab_saida, 0, $iz) . substr($trab_saida, $iz + 1);
+               }
+               else
+               {
+                   $iz++;
+               }
+           }
+           elseif ($char_mask == "x" || substr($trab_saida, $iz, 1) != "0")
+           {
+               $ix = strlen($trab_mask) + 1;
+           }
+           else
+           {
+               $trab_saida = substr($trab_saida, 0, $iz) . substr($trab_saida, $iz + 1);
+           }
+      }
+      $nm_campo = $trab_saida;
+   } 
+   function nm_conta_mask_chars($sMask)
+   {
+       $iLength = 0;
+
+       for ($i = 0; $i < strlen($sMask); $i++)
+       {
+           if (in_array($sMask[$i], array('9', 'a', '*')))
+           {
+               $iLength++;
+           }
+       }
+
+       return $iLength;
+   }
+   function nm_tira_mask(&$nm_campo, $nm_mask, $nm_chars = '')
+   { 
+      $mask_dados = $nm_campo;
+      $trab_mask  = $nm_mask;
+      $tam_campo  = strlen($nm_campo);
+      $tam_mask   = strlen($nm_mask);
+      $trab_saida = "";
+
+      if (false !== strpos($nm_mask, '9') || false !== strpos($nm_mask, 'a') || false !== strpos($nm_mask, '*'))
+      {
+          $raw_campo = $this->sc_clear_mask($nm_campo, $nm_chars);
+          $raw_mask  = $this->sc_clear_mask($nm_mask, $nm_chars);
+          $new_campo = '';
+
+          $test_mask = substr($raw_mask, 0, 1);
+          $raw_mask  = substr($raw_mask, 1);
+
+          while ('' != $raw_campo)
+          {
+              $test_val  = substr($raw_campo, 0, 1);
+              $raw_campo = substr($raw_campo, 1);
+              $ord       = ord($test_val);
+              $found     = false;
+
+              switch ($test_mask)
+              {
+                  case '9':
+                      if (48 <= $ord && 57 >= $ord)
+                      {
+                          $new_campo .= $test_val;
+                          $found      = true;
+                      }
+                      break;
+
+                  case 'a':
+                      if ((65 <= $ord && 90 >= $ord) || (97 <= $ord && 122 >= $ord))
+                      {
+                          $new_campo .= $test_val;
+                          $found      = true;
+                      }
+                      break;
+
+                  case '*':
+                      if ((48 <= $ord && 57 >= $ord) || (65 <= $ord && 90 >= $ord) || (97 <= $ord && 122 >= $ord))
+                      {
+                          $new_campo .= $test_val;
+                          $found      = true;
+                      }
+                      break;
+              }
+
+              if ($found)
+              {
+                  $test_mask = substr($raw_mask, 0, 1);
+                  $raw_mask  = substr($raw_mask, 1);
+              }
+          }
+
+          $nm_campo = $new_campo;
+
+          return;
+      }
+
+      $mask_num = false;
+      for ($x=0; $x < strlen($trab_mask); $x++)
+      {
+          if (substr($trab_mask, $x, 1) == "#")
+          {
+              $mask_num = true;
+              break;
+          }
+      }
+      if ($mask_num )
+      {
+          for ($x=0; $x < strlen($mask_dados); $x++)
+          {
+              if (is_numeric(substr($mask_dados, $x, 1)))
+              {
+                  $trab_saida .= substr($mask_dados, $x, 1);
+              }
+          }
+          $nm_campo = $trab_saida;
+          return;
+      }
+      if ($tam_mask > $tam_campo)
+      {
+         $mask_desfaz = "";
+         for ($mask_ind = 0; $tam_mask > $tam_campo; $mask_ind++)
+         {
+              $mask_char = substr($trab_mask, $mask_ind, 1);
+              if ($mask_char == "z")
+              {
+                  $tam_mask--;
+              }
+              else
+              {
+                  $mask_desfaz .= $mask_char;
+              }
+              if ($mask_ind == $tam_campo)
+              {
+                  $tam_mask = $tam_campo;
+              }
+         }
+         $trab_mask = $mask_desfaz . substr($trab_mask, $mask_ind);
+      }
+      $mask_saida = "";
+      for ($mask_ind = strlen($trab_mask); $mask_ind > 0; $mask_ind--)
+      {
+          $mask_char = substr($trab_mask, $mask_ind - 1, 1);
+          if ($mask_char == "x" || $mask_char == "z")
+          {
+              if ($tam_campo > 0)
+              {
+                  $mask_saida = substr($mask_dados, $tam_campo - 1, 1) . $mask_saida;
+              }
+          }
+          else
+          {
+              if ($mask_char != substr($mask_dados, $tam_campo - 1, 1) && $tam_campo > 0)
+              {
+                  $mask_saida = substr($mask_dados, $tam_campo - 1, 1) . $mask_saida;
+                  $mask_ind--;
+              }
+          }
+          $tam_campo--;
+      }
+      if ($tam_campo > 0)
+      {
+         $mask_saida = substr($mask_dados, 0, $tam_campo) . $mask_saida;
+      }
+      $nm_campo = $mask_saida;
+   }
+
+   function sc_clear_mask($value, $chars)
+   {
+       $new = '';
+
+       for ($i = 0; $i < strlen($value); $i++)
+       {
+           if (false === strpos($chars, $value[$i]))
+           {
+               $new .= $value[$i];
+           }
+       }
+
+       return $new;
+   }
+//
+   function nm_limpa_alfa(&$str)
+   {
+   }
+//
+//-- 
+   function nm_converte_datas($use_null = true, $bForce = false)
+   {
+      $guarda_format_hora = $this->field_config['si_fecha']['date_format'];
+      if ($this->si_fecha != "")  
+      { 
+          nm_conv_data($this->si_fecha, $this->field_config['si_fecha']['date_format']) ; 
+          $this->si_fecha_hora = "00:00:00:000" ; 
+          if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_postgres))
+          {
+              $this->si_fecha_hora = substr($this->si_fecha_hora, 0, -4);
+          }
+          elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mysql))
+          {
+              $this->si_fecha_hora = substr($this->si_fecha_hora, 0, -4);
+          }
+          elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))
+          {
+              $this->si_fecha_hora = substr($this->si_fecha_hora, 0, -4);
+          }
+          elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_oracle))
+          {
+              $this->si_fecha_hora = substr($this->si_fecha_hora, 0, -4);
+          }
+          elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_db2))
+          {
+              $this->si_fecha_hora = substr($this->si_fecha_hora, 0, -4);
+          }
+      } 
+      if ($this->si_fecha == "" && $use_null)  
+      { 
+          $this->si_fecha = "null" ; 
+      } 
+      $this->field_config['si_fecha']['date_format'] = $guarda_format_hora;
+      $guarda_format_hora = $this->field_config['si_fecha_inspeccion']['date_format'];
+      if ($this->si_fecha_inspeccion != "")  
+      { 
+          nm_conv_data($this->si_fecha_inspeccion, $this->field_config['si_fecha_inspeccion']['date_format']) ; 
+          $this->si_fecha_inspeccion_hora = "00:00:00:000" ; 
+          if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_postgres))
+          {
+              $this->si_fecha_inspeccion_hora = substr($this->si_fecha_inspeccion_hora, 0, -4);
+          }
+          elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mysql))
+          {
+              $this->si_fecha_inspeccion_hora = substr($this->si_fecha_inspeccion_hora, 0, -4);
+          }
+          elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))
+          {
+              $this->si_fecha_inspeccion_hora = substr($this->si_fecha_inspeccion_hora, 0, -4);
+          }
+          elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_oracle))
+          {
+              $this->si_fecha_inspeccion_hora = substr($this->si_fecha_inspeccion_hora, 0, -4);
+          }
+          elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_db2))
+          {
+              $this->si_fecha_inspeccion_hora = substr($this->si_fecha_inspeccion_hora, 0, -4);
+          }
+      } 
+      if ($this->si_fecha_inspeccion == "" && $use_null)  
+      { 
+          $this->si_fecha_inspeccion = "null" ; 
+      } 
+      $this->field_config['si_fecha_inspeccion']['date_format'] = $guarda_format_hora;
+   }
+//
+   function nm_prep_date_change($cmp_date, $format_dt)
+   {
+       $vl_return  = "";
+       if ($cmp_date != 'null') {
+           $vl_return .= (strpos($format_dt, "yy") !== false) ? substr($cmp_date,  0, 4) : "";
+           $vl_return .= (strpos($format_dt, "mm") !== false) ? substr($cmp_date,  5, 2) : "";
+           $vl_return .= (strpos($format_dt, "dd") !== false) ? substr($cmp_date,  8, 2) : "";
+           $vl_return .= (strpos($format_dt, "hh") !== false) ? substr($cmp_date, 11, 2) : "";
+           $vl_return .= (strpos($format_dt, "ii") !== false) ? substr($cmp_date, 14, 2) : "";
+           $vl_return .= (strpos($format_dt, "ss") !== false) ? substr($cmp_date, 17, 2) : "";
+       }
+       return $vl_return;
+   }
+   function nm_conv_data_db($dt_in, $form_in, $form_out, $replaces = array())
+   {
+       $dt_out = $dt_in;
+       if (strtoupper($form_in) == "DB_FORMAT") {
+           if ($dt_out == "null" || $dt_out == "")
+           {
+               $dt_out = "";
+               return $dt_out;
+           }
+           $form_in = "AAAA-MM-DD";
+       }
+       if (strtoupper($form_out) == "DB_FORMAT") {
+           if (empty($dt_out))
+           {
+               $dt_out = "null";
+               return $dt_out;
+           }
+           $form_out = "AAAA-MM-DD";
+       }
+       if (strtoupper($form_out) == "SC_FORMAT_REGION") {
+           $this->nm_data->SetaData($dt_in, strtoupper($form_in));
+           $prep_out  = (strpos(strtolower($form_in), "dd") !== false) ? "dd" : "";
+           $prep_out .= (strpos(strtolower($form_in), "mm") !== false) ? "mm" : "";
+           $prep_out .= (strpos(strtolower($form_in), "aa") !== false) ? "aaaa" : "";
+           $prep_out .= (strpos(strtolower($form_in), "yy") !== false) ? "aaaa" : "";
+           return $this->nm_data->FormataSaida($this->nm_data->FormatRegion("DT", $prep_out));
+       }
+       else {
+           nm_conv_form_data($dt_out, $form_in, $form_out, $replaces);
+           return $dt_out;
+       }
+   }
+
+   function returnWhere($aCond, $sOp = 'AND')
+   {
+       $aWhere = array();
+       foreach ($aCond as $sCond)
+       {
+           $this->handleWhereCond($sCond);
+           if ('' != $sCond)
+           {
+               $aWhere[] = $sCond;
+           }
+       }
+       if (empty($aWhere))
+       {
+           return '';
+       }
+       else
+       {
+           return ' WHERE (' . implode(') ' . $sOp . ' (', $aWhere) . ')';
+       }
+   } // returnWhere
+
+   function handleWhereCond(&$sCond)
+   {
+       $sCond = trim($sCond);
+       if ('where' == strtolower(substr($sCond, 0, 5)))
+       {
+           $sCond = trim(substr($sCond, 5));
+       }
+   } // handleWhereCond
+
+   function ajax_return_values()
+   {
+          $this->ajax_return_values_si_motivo_anulacion();
+          $this->ajax_return_values_si_id();
+          $this->ajax_return_values_si_empresa();
+          $this->ajax_return_values_si_fecha();
+          $this->ajax_return_values_si_secuecial();
+          $this->ajax_return_values_si_contrato();
+          $this->ajax_return_values_si_estado();
+          $this->ajax_return_values_si_tipo_inspeccion();
+          $this->ajax_return_values_si_comentario();
+          $this->ajax_return_values_propietario();
+          $this->ajax_return_values_contrato();
+          $this->ajax_return_values_direccion();
+          $this->ajax_return_values_si_fecha_inspeccion();
+          $this->ajax_return_values_si_observacion();
+          $this->ajax_return_values_si_usuario_inspecciona();
+          if ('navigate_form' == $this->NM_ajax_opcao)
+          {
+              $this->NM_ajax_info['clearUpload']      = 'S';
+              $this->NM_ajax_info['navStatus']['ret'] = $this->Nav_permite_ret ? 'S' : 'N';
+              $this->NM_ajax_info['navStatus']['ava'] = $this->Nav_permite_ava ? 'S' : 'N';
+              $this->NM_ajax_info['fldList']['si_id']['keyVal'] = form_jap_solicitud_inspeccion_pack_protect_string($this->nmgp_dados_form['si_id']);
+          }
+   } // ajax_return_values
+
+          //----- si_motivo_anulacion
+   function ajax_return_values_si_motivo_anulacion($bForce = false)
+   {
+          if ('navigate_form' == $this->NM_ajax_opcao || 'backup_line' == $this->NM_ajax_opcao || (isset($this->nmgp_refresh_fields) && in_array("si_motivo_anulacion", $this->nmgp_refresh_fields)) || $bForce)
+          {
+              $sTmpValue = NM_charset_to_utf8($this->si_motivo_anulacion);
+              $aLookup = array();
+          $aLookupOrig = $aLookup;
+          $this->NM_ajax_info['fldList']['si_motivo_anulacion'] = array(
+                       'row'    => '',
+               'type'    => 'text',
+               'valList' => array($this->form_encode_input($sTmpValue)),
+              );
+          }
+   }
+
+          //----- si_id
+   function ajax_return_values_si_id($bForce = false)
+   {
+          if ('navigate_form' == $this->NM_ajax_opcao || 'backup_line' == $this->NM_ajax_opcao || (isset($this->nmgp_refresh_fields) && in_array("si_id", $this->nmgp_refresh_fields)) || $bForce)
+          {
+              $sTmpValue = NM_charset_to_utf8($this->si_id);
+              $aLookup = array();
+          $aLookupOrig = $aLookup;
+          $this->NM_ajax_info['fldList']['si_id'] = array(
+                       'row'    => '',
+               'type'    => 'label',
+               'valList' => array($sTmpValue),
+               'labList' => array($this->form_format_readonly("si_id", $this->form_encode_input($sTmpValue))),
+              );
+          }
+   }
+
+          //----- si_empresa
+   function ajax_return_values_si_empresa($bForce = false)
+   {
+          if ('navigate_form' == $this->NM_ajax_opcao || 'backup_line' == $this->NM_ajax_opcao || (isset($this->nmgp_refresh_fields) && in_array("si_empresa", $this->nmgp_refresh_fields)) || $bForce)
+          {
+              $sTmpValue = NM_charset_to_utf8($this->si_empresa);
+              $aLookup = array();
+          $aLookupOrig = $aLookup;
+          $this->NM_ajax_info['fldList']['si_empresa'] = array(
+                       'row'    => '',
+               'type'    => 'text',
+               'valList' => array($this->form_encode_input($sTmpValue)),
+              );
+          }
+   }
+
+          //----- si_fecha
+   function ajax_return_values_si_fecha($bForce = false)
+   {
+          if ('navigate_form' == $this->NM_ajax_opcao || 'backup_line' == $this->NM_ajax_opcao || (isset($this->nmgp_refresh_fields) && in_array("si_fecha", $this->nmgp_refresh_fields)) || $bForce)
+          {
+              $sTmpValue = NM_charset_to_utf8($this->si_fecha);
+              $aLookup = array();
+          $aLookupOrig = $aLookup;
+          $this->NM_ajax_info['fldList']['si_fecha'] = array(
+                       'row'    => '',
+               'type'    => 'text',
+               'valList' => array($sTmpValue),
+              );
+          }
+   }
+
+          //----- si_secuecial
+   function ajax_return_values_si_secuecial($bForce = false)
+   {
+          if ('navigate_form' == $this->NM_ajax_opcao || 'backup_line' == $this->NM_ajax_opcao || (isset($this->nmgp_refresh_fields) && in_array("si_secuecial", $this->nmgp_refresh_fields)) || $bForce)
+          {
+              $sTmpValue = NM_charset_to_utf8($this->si_secuecial);
+              $aLookup = array();
+          $aLookupOrig = $aLookup;
+          $this->NM_ajax_info['fldList']['si_secuecial'] = array(
+                       'row'    => '',
+               'type'    => 'label',
+               'valList' => array($sTmpValue),
+              );
+          }
+   }
+
+          //----- si_contrato
+   function ajax_return_values_si_contrato($bForce = false)
+   {
+          if ('navigate_form' == $this->NM_ajax_opcao || 'backup_line' == $this->NM_ajax_opcao || (isset($this->nmgp_refresh_fields) && in_array("si_contrato", $this->nmgp_refresh_fields)) || $bForce)
+          {
+              $sTmpValue = NM_charset_to_utf8($this->si_contrato);
+              $aLookup = array();
+              $this->_tmp_lookup_si_contrato = $this->si_contrato;
+
+ 
+$nmgp_def_dados = "" ; 
+if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_contrato']))
+{
+    $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_contrato'] = array_unique($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_contrato']); 
+}
+else
+{
+    $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_contrato'] = array(); 
+}
+$aLookup[] = array(form_jap_solicitud_inspeccion_pack_protect_string('') => str_replace('<', '&lt;',form_jap_solicitud_inspeccion_pack_protect_string('' . $this->Ini->Nm_lang['lang_seleccione'] . '')));
+$_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_contrato'][] = '';
+   if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_ibase))
+   { 
+       $GLOBALS["NM_ERRO_IBASE"] = 1;  
+   } 
+   $nm_nao_carga = false;
+   $nmgp_def_dados = "" ; 
+
+   $old_value_si_id = $this->si_id;
+   $old_value_si_fecha = $this->si_fecha;
+   $old_value_si_secuecial = $this->si_secuecial;
+   $old_value_si_fecha_inspeccion = $this->si_fecha_inspeccion;
+   $this->nm_tira_formatacao();
+   if ($this->nmgp_opcao != "nada") {
+       $this->nm_converte_datas(false);
+   }
+
+
+   $unformatted_value_si_id = $this->si_id;
+   $unformatted_value_si_fecha = $this->si_fecha;
+   $unformatted_value_si_secuecial = $this->si_secuecial;
+   $unformatted_value_si_fecha_inspeccion = $this->si_fecha_inspeccion;
+
+   $nm_comando = "SELECT con_id, con_nombre || ' - Contrato Nro.' || con_numero_contrato || coalesce(' - Nro. Censo:'||con_numero_censo,'') FROM v_jap_contrato  WHERE con_empresa='" . $_SESSION['Igtech_RucEmpresa'] . "' ORDER BY con_propietario, con_numero_contrato";
+
+   $this->si_id = $old_value_si_id;
+   $this->si_fecha = $old_value_si_fecha;
+   $this->si_secuecial = $old_value_si_secuecial;
+   $this->si_fecha_inspeccion = $old_value_si_fecha_inspeccion;
+
+   $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nm_comando;
+   $_SESSION['scriptcase']['sc_sql_ult_conexao'] = '';
+   if ($nm_comando != "" && $rs = $this->Db->Execute($nm_comando))
+   {
+       while (!$rs->EOF) 
+       { 
+              $rs->fields[0] = str_replace(',', '.', $rs->fields[0]);
+              $rs->fields[0] = (strpos(strtolower($rs->fields[0]), "e")) ? (float)$rs->fields[0] : $rs->fields[0];
+              $rs->fields[0] = (string)$rs->fields[0];
+              $aLookup[] = array(form_jap_solicitud_inspeccion_pack_protect_string(NM_charset_to_utf8($rs->fields[0])) => str_replace('<', '&lt;', form_jap_solicitud_inspeccion_pack_protect_string(NM_charset_to_utf8($rs->fields[1]))));
+              $nmgp_def_dados .= $rs->fields[1] . "?#?" ; 
+              $nmgp_def_dados .= $rs->fields[0] . "?#?N?@?" ; 
+              $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_contrato'][] = $rs->fields[0];
+              $rs->MoveNext() ; 
+       } 
+       $rs->Close() ; 
+   } 
+   elseif ($GLOBALS["NM_ERRO_IBASE"] != 1 && $nm_comando != "")  
+   {  
+       $this->Erro->mensagem(__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_dber'], $this->Db->ErrorMsg()); 
+       exit; 
+   } 
+   $GLOBALS["NM_ERRO_IBASE"] = 0; 
+          $aLookupOrig = $aLookup;
+          $sSelComp = "name=\"si_contrato\"";
+          if (isset($this->NM_ajax_info['select_html']['si_contrato']) && !empty($this->NM_ajax_info['select_html']['si_contrato']))
+          {
+              $sSelComp = str_replace('{SC_100PERC_CLASS_INPUT}', $this->classes_100perc_fields['input'], $this->NM_ajax_info['select_html']['si_contrato']);
+          }
+          $sLookup = '';
+          if (empty($aLookup))
+          {
+              $aLookup[] = array('' => '');
+          }
+          foreach ($aLookup as $aOption)
+          {
+              foreach ($aOption as $sValue => $sLabel)
+              {
+
+                  if ($this->si_contrato == $sValue)
+                  {
+                      $this->_tmp_lookup_si_contrato = $sLabel;
+                  }
+
+                  $sOpt     = ($sValue !== $sLabel) ? $sValue : $sLabel;
+                  $sLookup .= "<option value=\"" . $sOpt . "\">" . $sLabel . "</option>";
+              }
+          }
+          $aLookup  = $sLookup;
+          $this->NM_ajax_info['fldList']['si_contrato'] = array(
+                       'row'    => '',
+               'type'    => 'select',
+               'valList' => array($sTmpValue),
+               'optList' => $aLookup,
+              );
+          $aLabel     = array();
+          $aLabelTemp = array();
+          foreach ($this->NM_ajax_info['fldList']['si_contrato']['valList'] as $i => $v)
+          {
+              $this->NM_ajax_info['fldList']['si_contrato']['valList'][$i] = form_jap_solicitud_inspeccion_pack_protect_string($v);
+          }
+          foreach ($aLookupOrig as $aValData)
+          {
+              if (in_array(key($aValData), $this->NM_ajax_info['fldList']['si_contrato']['valList']))
+              {
+                  $aLabelTemp[key($aValData)] = current($aValData);
+              }
+          }
+          foreach ($this->NM_ajax_info['fldList']['si_contrato']['valList'] as $iIndex => $sValue)
+          {
+              $aLabel[$iIndex] = (isset($aLabelTemp[$sValue])) ? $aLabelTemp[$sValue] : $sValue;
+          }
+          $this->NM_ajax_info['fldList']['si_contrato']['labList'] = $aLabel;
+          }
+   }
+
+          //----- si_estado
+   function ajax_return_values_si_estado($bForce = false)
+   {
+          if ('navigate_form' == $this->NM_ajax_opcao || 'backup_line' == $this->NM_ajax_opcao || (isset($this->nmgp_refresh_fields) && in_array("si_estado", $this->nmgp_refresh_fields)) || $bForce)
+          {
+              $sTmpValue = NM_charset_to_utf8($this->si_estado);
+              $aLookup = array();
+          $aLookupOrig = $aLookup;
+          $this->NM_ajax_info['fldList']['si_estado'] = array(
+                       'row'    => '',
+               'type'    => 'text',
+               'valList' => array($this->form_encode_input($sTmpValue)),
+              );
+          }
+   }
+
+          //----- si_tipo_inspeccion
+   function ajax_return_values_si_tipo_inspeccion($bForce = false)
+   {
+          if ('navigate_form' == $this->NM_ajax_opcao || 'backup_line' == $this->NM_ajax_opcao || (isset($this->nmgp_refresh_fields) && in_array("si_tipo_inspeccion", $this->nmgp_refresh_fields)) || $bForce)
+          {
+              $sTmpValue = NM_charset_to_utf8($this->si_tipo_inspeccion);
+              $aLookup = array();
+              $this->_tmp_lookup_si_tipo_inspeccion = $this->si_tipo_inspeccion;
+
+ 
+$nmgp_def_dados = "" ; 
+if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_tipo_inspeccion']))
+{
+    $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_tipo_inspeccion'] = array_unique($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_tipo_inspeccion']); 
+}
+else
+{
+    $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_tipo_inspeccion'] = array(); 
+}
+$aLookup[] = array(form_jap_solicitud_inspeccion_pack_protect_string('') => str_replace('<', '&lt;',form_jap_solicitud_inspeccion_pack_protect_string('' . $this->Ini->Nm_lang['lang_seleccione'] . '')));
+$_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_tipo_inspeccion'][] = '';
+   if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_ibase))
+   { 
+       $GLOBALS["NM_ERRO_IBASE"] = 1;  
+   } 
+   $nm_nao_carga = false;
+   $nmgp_def_dados = "" ; 
+
+   $old_value_si_id = $this->si_id;
+   $old_value_si_fecha = $this->si_fecha;
+   $old_value_si_secuecial = $this->si_secuecial;
+   $old_value_si_fecha_inspeccion = $this->si_fecha_inspeccion;
+   $this->nm_tira_formatacao();
+   if ($this->nmgp_opcao != "nada") {
+       $this->nm_converte_datas(false);
+   }
+
+
+   $unformatted_value_si_id = $this->si_id;
+   $unformatted_value_si_fecha = $this->si_fecha;
+   $unformatted_value_si_secuecial = $this->si_secuecial;
+   $unformatted_value_si_fecha_inspeccion = $this->si_fecha_inspeccion;
+
+   $nm_comando = "SELECT ti_id, ti_descripcion  FROM jap_tipo_inspeccion  WHERE ti_empresa='" . $_SESSION['Igtech_RucEmpresa'] . "' ORDER BY ti_descripcion";
+
+   $this->si_id = $old_value_si_id;
+   $this->si_fecha = $old_value_si_fecha;
+   $this->si_secuecial = $old_value_si_secuecial;
+   $this->si_fecha_inspeccion = $old_value_si_fecha_inspeccion;
+
+   $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nm_comando;
+   $_SESSION['scriptcase']['sc_sql_ult_conexao'] = '';
+   if ($nm_comando != "" && $rs = $this->Db->Execute($nm_comando))
+   {
+       while (!$rs->EOF) 
+       { 
+              $rs->fields[0] = str_replace(',', '.', $rs->fields[0]);
+              $rs->fields[0] = (strpos(strtolower($rs->fields[0]), "e")) ? (float)$rs->fields[0] : $rs->fields[0];
+              $rs->fields[0] = (string)$rs->fields[0];
+              $aLookup[] = array(form_jap_solicitud_inspeccion_pack_protect_string(NM_charset_to_utf8($rs->fields[0])) => str_replace('<', '&lt;', form_jap_solicitud_inspeccion_pack_protect_string(NM_charset_to_utf8($rs->fields[1]))));
+              $nmgp_def_dados .= $rs->fields[1] . "?#?" ; 
+              $nmgp_def_dados .= $rs->fields[0] . "?#?N?@?" ; 
+              $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_tipo_inspeccion'][] = $rs->fields[0];
+              $rs->MoveNext() ; 
+       } 
+       $rs->Close() ; 
+   } 
+   elseif ($GLOBALS["NM_ERRO_IBASE"] != 1 && $nm_comando != "")  
+   {  
+       $this->Erro->mensagem(__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_dber'], $this->Db->ErrorMsg()); 
+       exit; 
+   } 
+   $GLOBALS["NM_ERRO_IBASE"] = 0; 
+          $aLookupOrig = $aLookup;
+          $sSelComp = "name=\"si_tipo_inspeccion\"";
+          if (isset($this->NM_ajax_info['select_html']['si_tipo_inspeccion']) && !empty($this->NM_ajax_info['select_html']['si_tipo_inspeccion']))
+          {
+              $sSelComp = str_replace('{SC_100PERC_CLASS_INPUT}', $this->classes_100perc_fields['input'], $this->NM_ajax_info['select_html']['si_tipo_inspeccion']);
+          }
+          $sLookup = '';
+          if (empty($aLookup))
+          {
+              $aLookup[] = array('' => '');
+          }
+          foreach ($aLookup as $aOption)
+          {
+              foreach ($aOption as $sValue => $sLabel)
+              {
+
+                  if ($this->si_tipo_inspeccion == $sValue)
+                  {
+                      $this->_tmp_lookup_si_tipo_inspeccion = $sLabel;
+                  }
+
+                  $sOpt     = ($sValue !== $sLabel) ? $sValue : $sLabel;
+                  $sLookup .= "<option value=\"" . $sOpt . "\">" . $sLabel . "</option>";
+              }
+          }
+          $aLookup  = $sLookup;
+          $this->NM_ajax_info['fldList']['si_tipo_inspeccion'] = array(
+                       'row'    => '',
+               'type'    => 'select',
+               'valList' => array($sTmpValue),
+               'optList' => $aLookup,
+              );
+          $aLabel     = array();
+          $aLabelTemp = array();
+          foreach ($this->NM_ajax_info['fldList']['si_tipo_inspeccion']['valList'] as $i => $v)
+          {
+              $this->NM_ajax_info['fldList']['si_tipo_inspeccion']['valList'][$i] = form_jap_solicitud_inspeccion_pack_protect_string($v);
+          }
+          foreach ($aLookupOrig as $aValData)
+          {
+              if (in_array(key($aValData), $this->NM_ajax_info['fldList']['si_tipo_inspeccion']['valList']))
+              {
+                  $aLabelTemp[key($aValData)] = current($aValData);
+              }
+          }
+          foreach ($this->NM_ajax_info['fldList']['si_tipo_inspeccion']['valList'] as $iIndex => $sValue)
+          {
+              $aLabel[$iIndex] = (isset($aLabelTemp[$sValue])) ? $aLabelTemp[$sValue] : $sValue;
+          }
+          $this->NM_ajax_info['fldList']['si_tipo_inspeccion']['labList'] = $aLabel;
+          }
+   }
+
+          //----- si_comentario
+   function ajax_return_values_si_comentario($bForce = false)
+   {
+          if ('navigate_form' == $this->NM_ajax_opcao || 'backup_line' == $this->NM_ajax_opcao || (isset($this->nmgp_refresh_fields) && in_array("si_comentario", $this->nmgp_refresh_fields)) || $bForce)
+          {
+              $sTmpValue = NM_charset_to_utf8($this->si_comentario);
+              $aLookup = array();
+          $aLookupOrig = $aLookup;
+          $this->NM_ajax_info['fldList']['si_comentario'] = array(
+                       'row'    => '',
+               'type'    => 'text',
+               'valList' => array($this->form_encode_input($sTmpValue)),
+              );
+          }
+   }
+
+          //----- propietario
+   function ajax_return_values_propietario($bForce = false)
+   {
+          if ('navigate_form' == $this->NM_ajax_opcao || 'backup_line' == $this->NM_ajax_opcao || (isset($this->nmgp_refresh_fields) && in_array("propietario", $this->nmgp_refresh_fields)) || $bForce)
+          {
+              $sTmpValue = NM_charset_to_utf8($this->propietario);
+              $aLookup = array();
+          $aLookupOrig = $aLookup;
+          $this->NM_ajax_info['fldList']['propietario'] = array(
+                       'row'    => '',
+               'type'    => 'text',
+               'valList' => array($this->form_encode_input($sTmpValue)),
+              );
+          }
+   }
+
+          //----- contrato
+   function ajax_return_values_contrato($bForce = false)
+   {
+          if ('navigate_form' == $this->NM_ajax_opcao || 'backup_line' == $this->NM_ajax_opcao || (isset($this->nmgp_refresh_fields) && in_array("contrato", $this->nmgp_refresh_fields)) || $bForce)
+          {
+              $sTmpValue = NM_charset_to_utf8($this->contrato);
+              $aLookup = array();
+          $aLookupOrig = $aLookup;
+          $this->NM_ajax_info['fldList']['contrato'] = array(
+                       'row'    => '',
+               'type'    => 'text',
+               'valList' => array($this->form_encode_input($sTmpValue)),
+              );
+          }
+   }
+
+          //----- direccion
+   function ajax_return_values_direccion($bForce = false)
+   {
+          if ('navigate_form' == $this->NM_ajax_opcao || 'backup_line' == $this->NM_ajax_opcao || (isset($this->nmgp_refresh_fields) && in_array("direccion", $this->nmgp_refresh_fields)) || $bForce)
+          {
+              $sTmpValue = NM_charset_to_utf8($this->direccion);
+              $aLookup = array();
+          $aLookupOrig = $aLookup;
+          $this->NM_ajax_info['fldList']['direccion'] = array(
+                       'row'    => '',
+               'type'    => 'text',
+               'valList' => array($this->form_encode_input($sTmpValue)),
+              );
+          }
+   }
+
+          //----- si_fecha_inspeccion
+   function ajax_return_values_si_fecha_inspeccion($bForce = false)
+   {
+          if ('navigate_form' == $this->NM_ajax_opcao || 'backup_line' == $this->NM_ajax_opcao || (isset($this->nmgp_refresh_fields) && in_array("si_fecha_inspeccion", $this->nmgp_refresh_fields)) || $bForce)
+          {
+              $sTmpValue = NM_charset_to_utf8($this->si_fecha_inspeccion);
+              $aLookup = array();
+          $aLookupOrig = $aLookup;
+          $this->NM_ajax_info['fldList']['si_fecha_inspeccion'] = array(
+                       'row'    => '',
+               'type'    => 'text',
+               'valList' => array($sTmpValue),
+              );
+          }
+   }
+
+          //----- si_observacion
+   function ajax_return_values_si_observacion($bForce = false)
+   {
+          if ('navigate_form' == $this->NM_ajax_opcao || 'backup_line' == $this->NM_ajax_opcao || (isset($this->nmgp_refresh_fields) && in_array("si_observacion", $this->nmgp_refresh_fields)) || $bForce)
+          {
+              $sTmpValue = NM_charset_to_utf8($this->si_observacion);
+              $aLookup = array();
+          $aLookupOrig = $aLookup;
+          $this->NM_ajax_info['fldList']['si_observacion'] = array(
+                       'row'    => '',
+               'type'    => 'text',
+               'valList' => array($this->form_encode_input($sTmpValue)),
+              );
+          }
+   }
+
+          //----- si_usuario_inspecciona
+   function ajax_return_values_si_usuario_inspecciona($bForce = false)
+   {
+          if ('navigate_form' == $this->NM_ajax_opcao || 'backup_line' == $this->NM_ajax_opcao || (isset($this->nmgp_refresh_fields) && in_array("si_usuario_inspecciona", $this->nmgp_refresh_fields)) || $bForce)
+          {
+              $sTmpValue = NM_charset_to_utf8($this->si_usuario_inspecciona);
+              $aLookup = array();
+              $this->_tmp_lookup_si_usuario_inspecciona = $this->si_usuario_inspecciona;
+
+ 
+$nmgp_def_dados = "" ; 
+if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_usuario_inspecciona']))
+{
+    $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_usuario_inspecciona'] = array_unique($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_usuario_inspecciona']); 
+}
+else
+{
+    $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_usuario_inspecciona'] = array(); 
+}
+   if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_ibase))
+   { 
+       $GLOBALS["NM_ERRO_IBASE"] = 1;  
+   } 
+   $nm_nao_carga = false;
+   $nmgp_def_dados = "" ; 
+
+   $old_value_si_id = $this->si_id;
+   $old_value_si_fecha = $this->si_fecha;
+   $old_value_si_secuecial = $this->si_secuecial;
+   $old_value_si_fecha_inspeccion = $this->si_fecha_inspeccion;
+   $this->nm_tira_formatacao();
+   if ($this->nmgp_opcao != "nada") {
+       $this->nm_converte_datas(false);
+   }
+
+
+   $unformatted_value_si_id = $this->si_id;
+   $unformatted_value_si_fecha = $this->si_fecha;
+   $unformatted_value_si_secuecial = $this->si_secuecial;
+   $unformatted_value_si_fecha_inspeccion = $this->si_fecha_inspeccion;
+
+   $nm_comando = "SELECT usu_usuario, usu_nombre  FROM del_usuario  ORDER BY usu_nombre";
+
+   $this->si_id = $old_value_si_id;
+   $this->si_fecha = $old_value_si_fecha;
+   $this->si_secuecial = $old_value_si_secuecial;
+   $this->si_fecha_inspeccion = $old_value_si_fecha_inspeccion;
+
+   $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nm_comando;
+   $_SESSION['scriptcase']['sc_sql_ult_conexao'] = '';
+   if ($nm_comando != "" && $rs = $this->Db->Execute($nm_comando))
+   {
+       while (!$rs->EOF) 
+       { 
+              $aLookup[] = array(form_jap_solicitud_inspeccion_pack_protect_string(NM_charset_to_utf8($rs->fields[0])) => str_replace('<', '&lt;', form_jap_solicitud_inspeccion_pack_protect_string(NM_charset_to_utf8($rs->fields[1]))));
+              $nmgp_def_dados .= $rs->fields[1] . "?#?" ; 
+              $nmgp_def_dados .= $rs->fields[0] . "?#?N?@?" ; 
+              $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_usuario_inspecciona'][] = $rs->fields[0];
+              $rs->MoveNext() ; 
+       } 
+       $rs->Close() ; 
+   } 
+   elseif ($GLOBALS["NM_ERRO_IBASE"] != 1 && $nm_comando != "")  
+   {  
+       $this->Erro->mensagem(__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_dber'], $this->Db->ErrorMsg()); 
+       exit; 
+   } 
+   $GLOBALS["NM_ERRO_IBASE"] = 0; 
+          $aLookupOrig = $aLookup;
+          $sSelComp = "name=\"si_usuario_inspecciona\"";
+          if (isset($this->NM_ajax_info['select_html']['si_usuario_inspecciona']) && !empty($this->NM_ajax_info['select_html']['si_usuario_inspecciona']))
+          {
+              $sSelComp = str_replace('{SC_100PERC_CLASS_INPUT}', $this->classes_100perc_fields['input'], $this->NM_ajax_info['select_html']['si_usuario_inspecciona']);
+          }
+          $sLookup = '';
+          if (empty($aLookup))
+          {
+              $aLookup[] = array('' => '');
+          }
+          foreach ($aLookup as $aOption)
+          {
+              foreach ($aOption as $sValue => $sLabel)
+              {
+
+                  if ($this->si_usuario_inspecciona == $sValue)
+                  {
+                      $this->_tmp_lookup_si_usuario_inspecciona = $sLabel;
+                  }
+
+                  $sOpt     = ($sValue !== $sLabel) ? $sValue : $sLabel;
+                  $sLookup .= "<option value=\"" . $sOpt . "\">" . $sLabel . "</option>";
+              }
+          }
+          $aLookup  = $sLookup;
+          $this->NM_ajax_info['fldList']['si_usuario_inspecciona'] = array(
+                       'row'    => '',
+               'type'    => 'select',
+               'valList' => array($sTmpValue),
+               'optList' => $aLookup,
+              );
+          $aLabel     = array();
+          $aLabelTemp = array();
+          foreach ($this->NM_ajax_info['fldList']['si_usuario_inspecciona']['valList'] as $i => $v)
+          {
+              $this->NM_ajax_info['fldList']['si_usuario_inspecciona']['valList'][$i] = form_jap_solicitud_inspeccion_pack_protect_string($v);
+          }
+          foreach ($aLookupOrig as $aValData)
+          {
+              if (in_array(key($aValData), $this->NM_ajax_info['fldList']['si_usuario_inspecciona']['valList']))
+              {
+                  $aLabelTemp[key($aValData)] = current($aValData);
+              }
+          }
+          foreach ($this->NM_ajax_info['fldList']['si_usuario_inspecciona']['valList'] as $iIndex => $sValue)
+          {
+              $aLabel[$iIndex] = (isset($aLabelTemp[$sValue])) ? $aLabelTemp[$sValue] : $sValue;
+          }
+          $this->NM_ajax_info['fldList']['si_usuario_inspecciona']['labList'] = $aLabel;
+          }
+   }
+
+    function fetchUniqueUploadName($originalName, $uploadDir, $fieldName)
+    {
+        $originalName = trim($originalName);
+        if ('' == $originalName)
+        {
+            return $originalName;
+        }
+        if (!@is_dir($uploadDir))
+        {
+            return $originalName;
+        }
+        if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['upload_dir'][$fieldName]))
+        {
+            $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['upload_dir'][$fieldName] = array();
+            $resDir = @opendir($uploadDir);
+            if (!$resDir)
+            {
+                return $originalName;
+            }
+            while (false !== ($fileName = @readdir($resDir)))
+            {
+                if (@is_file($uploadDir . $fileName))
+                {
+                    $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['upload_dir'][$fieldName][] = $fileName;
+                }
+            }
+            @closedir($resDir);
+        }
+        if (!in_array($originalName, $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['upload_dir'][$fieldName]))
+        {
+            $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['upload_dir'][$fieldName][] = $originalName;
+            return $originalName;
+        }
+        else
+        {
+            $newName = $this->fetchFileNextName($originalName, $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['upload_dir'][$fieldName]);
+            $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['upload_dir'][$fieldName][] = $newName;
+            return $newName;
+        }
+    } // fetchUniqueUploadName
+
+    function fetchFileNextName($uniqueName, $uniqueList)
+    {
+        $aPathinfo     = pathinfo($uniqueName);
+        $fileExtension = $aPathinfo['extension'];
+        $fileName      = $aPathinfo['filename'];
+        $foundName     = false;
+        $nameIt        = 1;
+        if ('' != $fileExtension)
+        {
+            $fileExtension = '.' . $fileExtension;
+        }
+        while (!$foundName)
+        {
+            $testName = $fileName . '(' . $nameIt . ')' . $fileExtension;
+            if (in_array($testName, $uniqueList))
+            {
+                $nameIt++;
+            }
+            else
+            {
+                $foundName = true;
+                return $testName;
+            }
+        }
+    } // fetchFileNextName
+
+   function ajax_add_parameters()
+   {
+       $this->NM_ajax_info['btnVars']['var_btn_imprimir_var_solicitud'] = $this->form_encode_input($this->nmgp_dados_form['si_id']);
+   } // ajax_add_parameters
+  function nm_proc_onload($bFormat = true)
+  {
+      $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Field_no_validate'] = array();
+      if (!$this->NM_ajax_flag || !isset($this->nmgp_refresh_fields)) {
+      $_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+if (isset($this->NM_ajax_flag) && $this->NM_ajax_flag)
+{
+    $original_contrato = $this->contrato;
+    $original_direccion = $this->direccion;
+    $original_propietario = $this->propietario;
+    $original_si_comentario = $this->si_comentario;
+    $original_si_contrato = $this->si_contrato;
+    $original_si_estado = $this->si_estado;
+    $original_si_fecha = $this->si_fecha;
+    $original_si_fecha_inspeccion = $this->si_fecha_inspeccion;
+    $original_si_motivo_anulacion = $this->si_motivo_anulacion;
+    $original_si_observacion = $this->si_observacion;
+    $original_si_tipo_inspeccion = $this->si_tipo_inspeccion;
+    $original_si_usuario_inspecciona = $this->si_usuario_inspecciona;
+}
+if (!isset($this->sc_temp_Igtech_SesionLogin)) {$this->sc_temp_Igtech_SesionLogin = (isset($_SESSION['Igtech_SesionLogin'])) ? $_SESSION['Igtech_SesionLogin'] : "";}
+  $this->Ini->nm_hidden_blocos[0] = 'off'; $this->NM_ajax_info['blockDisplay']['0'] = 'off';
+$this->Ini->nm_hidden_blocos[3] = 'off'; $this->NM_ajax_info['blockDisplay']['3'] = 'off';
+$this->NM_ajax_info['buttonDisplay']['new'] = $this->nmgp_botoes["new"] = 'off';;
+
+
+if($this->si_contrato <>''){
+	$select_sql="SELECT 
+	con_nombre,
+	con_numero_contrato,
+	con_direccion_predio 
+	FROM v_jap_contrato 
+	WHERE con_id=".$this->si_contrato ;
+
+	 
+      $nm_select = $select_sql; 
+      $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nm_select; 
+      $_SESSION['scriptcase']['sc_sql_ult_conexao'] = ''; 
+      $this->rs = array();
+      if ($SCrx = $this->Db->Execute($nm_select)) 
+      { 
+          $SCy = 0; 
+          $nm_count = $SCrx->FieldCount();
+          while (!$SCrx->EOF)
+          { 
+                 for ($SCx = 0; $SCx < $nm_count; $SCx++)
+                 { 
+                      $this->rs[$SCy] [$SCx] = $SCrx->fields[$SCx];
+                 }
+                 $SCy++; 
+                 $SCrx->MoveNext();
+          } 
+          $SCrx->Close();
+      } 
+      elseif (isset($GLOBALS["NM_ERRO_IBASE"]) && $GLOBALS["NM_ERRO_IBASE"] != 1)  
+      { 
+          $this->rs = false;
+          $this->rs_erro = $this->Db->ErrorMsg();
+      } 
+
+	if(isset($this->rs[0][0])){
+		$this->propietario =$this->rs[0][0];
+		$this->contrato =$this->rs[0][1];
+		$this->direccion =$this->rs[0][2];
+	}
+	
+}
+
+if ($this->si_estado =='R' ){
+	$this->NM_ajax_info['buttonDisplay']['update'] = $this->nmgp_botoes["update"] = 'on';;
+	$this->NM_ajax_info['buttonDisplay']['enviar_inspeccion'] = $this->nmgp_botoes["enviar_inspeccion"] = 'on';;
+	$this->NM_ajax_info['buttonDisplay']['anular'] = $this->nmgp_botoes["anular"] = 'off';;
+	$this->NM_ajax_info['buttonDisplay']['imprimir'] = $this->nmgp_botoes["imprimir"] = 'on';;
+	$this->NM_ajax_info['buttonDisplay']['finalizar'] = $this->nmgp_botoes["finalizar"] = 'off';;
+}
+if($this->si_estado =='X' ){
+	$this->NM_ajax_info['buttonDisplay']['update'] = $this->nmgp_botoes["update"] = 'off';;
+	$this->NM_ajax_info['buttonDisplay']['enviar_inspeccion'] = $this->nmgp_botoes["enviar_inspeccion"] = 'off';;
+	$this->NM_ajax_info['buttonDisplay']['anular'] = $this->nmgp_botoes["anular"] = 'on';;
+	$this->NM_ajax_info['buttonDisplay']['imprimir'] = $this->nmgp_botoes["imprimir"] = 'off';;
+	$this->NM_ajax_info['buttonDisplay']['finalizar'] = $this->nmgp_botoes["finalizar"] = 'on';;
+	$this->Ini->nm_hidden_blocos[3] = 'on'; $this->NM_ajax_info['blockDisplay']['3'] = 'on';
+	$this->Ini->nm_hidden_blocos[0] = 'on'; $this->NM_ajax_info['blockDisplay']['0'] = 'on';
+	$this->sc_field_readonly("si_fecha", 'on');
+	$this->sc_field_readonly("si_contrato", 'on');
+	$this->sc_field_readonly("si_tipo_inspeccion", 'on');
+	$this->sc_field_readonly("si_comentario", 'on');
+	$this->si_usuario_inspecciona =$this->sc_temp_Igtech_SesionLogin;
+	$this->sc_field_readonly("si_usuario_inspecciona", 'on');
+}
+if($this->si_estado =='N' ){
+	$this->NM_ajax_info['buttonDisplay']['update'] = $this->nmgp_botoes["update"] = 'off';;
+	$this->NM_ajax_info['buttonDisplay']['enviar_inspeccion'] = $this->nmgp_botoes["enviar_inspeccion"] = 'off';;
+	$this->NM_ajax_info['buttonDisplay']['anular'] = $this->nmgp_botoes["anular"] = 'off';;
+	$this->NM_ajax_info['buttonDisplay']['imprimir'] = $this->nmgp_botoes["imprimir"] = 'off';;
+	$this->NM_ajax_info['buttonDisplay']['finalizar'] = $this->nmgp_botoes["finalizar"] = 'off';;
+	$this->Ini->nm_hidden_blocos[3] = 'off'; $this->NM_ajax_info['blockDisplay']['3'] = 'off';
+	$this->Ini->nm_hidden_blocos[0] = 'on'; $this->NM_ajax_info['blockDisplay']['0'] = 'on';
+	$this->sc_field_readonly("si_motivo_anulacion", 'on');
+	$this->sc_field_readonly("si_fecha", 'on');
+	$this->sc_field_readonly("si_contrato", 'on');
+	$this->sc_field_readonly("si_tipo_inspeccion", 'on');
+	$this->sc_field_readonly("si_comentario", 'on');
+	$this->sc_field_readonly("si_fecha_inspeccion", 'on');
+	$this->sc_field_readonly("si_observacion", 'on');
+	$this->sc_field_readonly("si_usuario_inspecciona", 'on');
+}
+if($this->si_estado =='P' ){
+	$this->NM_ajax_info['buttonDisplay']['update'] = $this->nmgp_botoes["update"] = 'off';;
+	$this->NM_ajax_info['buttonDisplay']['enviar_inspeccion'] = $this->nmgp_botoes["enviar_inspeccion"] = 'off';;
+	$this->NM_ajax_info['buttonDisplay']['anular'] = $this->nmgp_botoes["anular"] = 'off';;
+	$this->NM_ajax_info['buttonDisplay']['imprimir'] = $this->nmgp_botoes["imprimir"] = 'off';;
+	$this->NM_ajax_info['buttonDisplay']['finalizar'] = $this->nmgp_botoes["finalizar"] = 'off';;
+	$this->Ini->nm_hidden_blocos[3] = 'on'; $this->NM_ajax_info['blockDisplay']['3'] = 'on';
+	$this->sc_field_readonly("si_fecha", 'on');
+	$this->sc_field_readonly("si_contrato", 'on');
+	$this->sc_field_readonly("si_tipo_inspeccion", 'on');
+	$this->sc_field_readonly("si_comentario", 'on');
+	$this->sc_field_readonly("si_fecha_inspeccion", 'on');
+	$this->sc_field_readonly("si_observacion", 'on');
+	$this->sc_field_readonly("si_usuario_inspecciona", 'on');
+}
+if (isset($this->sc_temp_Igtech_SesionLogin)) { $_SESSION['Igtech_SesionLogin'] = $this->sc_temp_Igtech_SesionLogin;}
+if (isset($this->NM_ajax_flag) && $this->NM_ajax_flag)
+{
+    if (($original_contrato != $this->contrato || (isset($bFlagRead_contrato) && $bFlagRead_contrato)))
+    {
+        $this->ajax_return_values_contrato(true);
+    }
+    if (($original_direccion != $this->direccion || (isset($bFlagRead_direccion) && $bFlagRead_direccion)))
+    {
+        $this->ajax_return_values_direccion(true);
+    }
+    if (($original_propietario != $this->propietario || (isset($bFlagRead_propietario) && $bFlagRead_propietario)))
+    {
+        $this->ajax_return_values_propietario(true);
+    }
+    if (($original_si_comentario != $this->si_comentario || (isset($bFlagRead_si_comentario) && $bFlagRead_si_comentario)))
+    {
+        $this->ajax_return_values_si_comentario(true);
+    }
+    if (($original_si_contrato != $this->si_contrato || (isset($bFlagRead_si_contrato) && $bFlagRead_si_contrato)))
+    {
+        $this->ajax_return_values_si_contrato(true);
+    }
+    if (($original_si_estado != $this->si_estado || (isset($bFlagRead_si_estado) && $bFlagRead_si_estado)))
+    {
+        $this->ajax_return_values_si_estado(true);
+    }
+    if (($original_si_fecha != $this->si_fecha || (isset($bFlagRead_si_fecha) && $bFlagRead_si_fecha)))
+    {
+        $this->ajax_return_values_si_fecha(true);
+    }
+    if (($original_si_fecha_inspeccion != $this->si_fecha_inspeccion || (isset($bFlagRead_si_fecha_inspeccion) && $bFlagRead_si_fecha_inspeccion)))
+    {
+        $this->ajax_return_values_si_fecha_inspeccion(true);
+    }
+    if (($original_si_motivo_anulacion != $this->si_motivo_anulacion || (isset($bFlagRead_si_motivo_anulacion) && $bFlagRead_si_motivo_anulacion)))
+    {
+        $this->ajax_return_values_si_motivo_anulacion(true);
+    }
+    if (($original_si_observacion != $this->si_observacion || (isset($bFlagRead_si_observacion) && $bFlagRead_si_observacion)))
+    {
+        $this->ajax_return_values_si_observacion(true);
+    }
+    if (($original_si_tipo_inspeccion != $this->si_tipo_inspeccion || (isset($bFlagRead_si_tipo_inspeccion) && $bFlagRead_si_tipo_inspeccion)))
+    {
+        $this->ajax_return_values_si_tipo_inspeccion(true);
+    }
+    if (($original_si_usuario_inspecciona != $this->si_usuario_inspecciona || (isset($bFlagRead_si_usuario_inspecciona) && $bFlagRead_si_usuario_inspecciona)))
+    {
+        $this->ajax_return_values_si_usuario_inspecciona(true);
+    }
+}
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off'; 
+      }
+      $this->nm_guardar_campos();
+      if ($bFormat) $this->nm_formatar_campos();
+  }
+//
+//----------------------------------------------------
+//-----> 
+//----------------------------------------------------
+//----------- 
+
+   function return_after_insert()
+   {
+      global $sc_where;
+      $sc_where_pos = " WHERE ((si_id < $this->si_id))";
+      if ('' != $sc_where)
+      {
+          if ('where ' == strtolower(substr(trim($sc_where), 0, 6)))
+          {
+              $sc_where = substr(trim($sc_where), 6);
+          }
+          if ('and ' == strtolower(substr(trim($sc_where), 0, 4)))
+          {
+              $sc_where = substr(trim($sc_where), 4);
+          }
+          $sc_where_pos .= ' AND (' . $sc_where . ')';
+          $sc_where = ' WHERE ' . $sc_where;
+      }
+      if ('' != $this->si_id)
+      {
+          $nmgp_sel_count = 'SELECT COUNT(*) AS countTest FROM ' . $this->Ini->nm_tabela . $sc_where_pos;
+          $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nmgp_sel_count;
+          $rsc = $this->Db->Execute($nmgp_sel_count);
+          if ($rsc === false && !$rsc->EOF)
+          {
+              $this->Erro->mensagem (__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_dbas'], $this->Db->ErrorMsg());
+              exit;
+          }
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start'] = $rsc->fields[0];
+          $rsc->Close();
+      }
+   }
+
+   function temRegistros($sWhere)
+   {
+       if ('' == $sWhere)
+       {
+           return false;
+       }
+       $nmgp_sel_count = 'SELECT COUNT(*) AS countTest FROM ' . $this->Ini->nm_tabela . ' WHERE ' . $sWhere;
+       $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nmgp_sel_count; 
+       $rsc = $this->Db->Execute($nmgp_sel_count); 
+       if ($rsc === false && !$rsc->EOF)
+       {
+           $this->Erro->mensagem(__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_dbas'], $this->Db->ErrorMsg());
+           exit; 
+       }
+       $iTotal = $rsc->fields[0];
+       $rsc->Close();
+       return 0 < $iTotal;
+   } // temRegistros
+
+   function deletaRegistros($sWhere)
+   {
+       if ('' == $sWhere)
+       {
+           return false;
+       }
+       $nmgp_sel_count = 'DELETE FROM ' . $this->Ini->nm_tabela . ' WHERE ' . $sWhere;
+       $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nmgp_sel_count; 
+       $rsc = $this->Db->Execute($nmgp_sel_count); 
+       $bResult = $rsc;
+       $rsc->Close();
+       return $bResult == true;
+   } // deletaRegistros
+    function handleDbErrorMessage(&$dbErrorMessage, $dbErrorCode)
+    {
+        if (1267 == $dbErrorCode) {
+            $dbErrorMessage = $this->Ini->Nm_lang['lang_errm_db_invalid_collation'];
+        }
+    }
+
+
+   function nm_acessa_banco() 
+   { 
+      global  $nm_form_submit, $teste_validade, $sc_where;
+ 
+      $NM_val_null = array();
+      $NM_val_form = array();
+      $this->sc_erro_insert = "";
+      $this->sc_erro_update = "";
+      $this->sc_erro_delete = "";
+      $this->SC_log_atv = false;
+      if ("alterar" == $this->nmgp_opcao || "excluir" == $this->nmgp_opcao)
+      {
+          $this->NM_gera_log_key($this->nmgp_opcao);
+      }
+      if ("alterar" == $this->nmgp_opcao || "excluir" == $this->nmgp_opcao)
+      {
+          $this->NM_gera_log_old();
+      }
+      if (!empty($this->sc_force_zero))
+      {
+          foreach ($this->sc_force_zero as $i_force_zero => $sc_force_zero_field)
+          {
+              eval('if ($this->' . $sc_force_zero_field . ' == 0) {$this->' . $sc_force_zero_field . ' = "";}');
+          }
+      }
+      $this->sc_force_zero = array();
+    if ("incluir" == $this->nmgp_opcao) {
+      $this->sc_evento = $this->nmgp_opcao;
+      $_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+if (isset($this->NM_ajax_flag) && $this->NM_ajax_flag)
+{
+    $original_si_secuecial = $this->si_secuecial;
+}
+if (!isset($this->sc_temp_Igtech_RucEmpresa)) {$this->sc_temp_Igtech_RucEmpresa = (isset($_SESSION['Igtech_RucEmpresa'])) ? $_SESSION['Igtech_RucEmpresa'] : "";}
+  $check_sql = "select sp_jap_secuencial ('".$this->sc_temp_Igtech_RucEmpresa."','SECSOLINS');" ;
+ 
+      $nm_select = $check_sql; 
+      $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nm_select; 
+      $_SESSION['scriptcase']['sc_sql_ult_conexao'] = ''; 
+      $this->rs = array();
+      if ($SCrx = $this->Db->Execute($nm_select)) 
+      { 
+          $SCy = 0; 
+          $nm_count = $SCrx->FieldCount();
+          while (!$SCrx->EOF)
+          { 
+                 for ($SCx = 0; $SCx < $nm_count; $SCx++)
+                 { 
+                      $this->rs[$SCy] [$SCx] = $SCrx->fields[$SCx];
+                 }
+                 $SCy++; 
+                 $SCrx->MoveNext();
+          } 
+          $SCrx->Close();
+      } 
+      elseif (isset($GLOBALS["NM_ERRO_IBASE"]) && $GLOBALS["NM_ERRO_IBASE"] != 1)  
+      { 
+          $this->rs = false;
+          $this->rs_erro = $this->Db->ErrorMsg();
+      } 
+
+
+if(isset($this->rs[0][0])){
+	$this->si_secuecial =$this->rs[0][0];
+}
+if (isset($this->sc_temp_Igtech_RucEmpresa)) { $_SESSION['Igtech_RucEmpresa'] = $this->sc_temp_Igtech_RucEmpresa;}
+if (isset($this->NM_ajax_flag) && $this->NM_ajax_flag)
+{
+    if (($original_si_secuecial != $this->si_secuecial || (isset($bFlagRead_si_secuecial) && $bFlagRead_si_secuecial)))
+    {
+        $this->ajax_return_values_si_secuecial(true);
+    }
+}
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off'; 
+    }
+      if (!empty($this->Campos_Mens_erro)) 
+      {
+          $this->Erro->mensagem(__FILE__, __LINE__, "critica", $this->Campos_Mens_erro); 
+          $this->Campos_Mens_erro = ""; 
+          $this->nmgp_opc_ant = $this->nmgp_opcao ; 
+          if ($this->nmgp_opcao == "incluir") 
+          { 
+              $GLOBALS["erro_incl"] = 1; 
+          }
+          else
+          { 
+              $this->sc_evento = ""; 
+          }
+          if ($this->nmgp_opcao == "alterar" || $this->nmgp_opcao == "incluir" || $this->nmgp_opcao == "excluir") 
+          {
+              $this->nmgp_opcao = "nada"; 
+          } 
+          $this->NM_rollback_db(); 
+          $this->Campos_Mens_erro = ""; 
+      }
+      $_SESSION['scriptcase']['sc_sql_ult_conexao'] = ''; 
+      $salva_opcao = $this->nmgp_opcao; 
+      if ($this->sc_evento != "novo" && $this->sc_evento != "incluir") 
+      { 
+          $this->sc_evento = ""; 
+      } 
+      if ((!isset($this->Ini->nm_bases_access) || !in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access)) && !$this->Ini->sc_tem_trans_banco && in_array($this->nmgp_opcao, array('excluir', 'incluir', 'alterar')))
+      { 
+          $this->Ini->sc_tem_trans_banco = $this->Db->BeginTrans(); 
+      } 
+      if (!isset($this->si_usuario_inspecciona)){$this->si_usuario_inspecciona =  $_SESSION['Igtech_SesionLogin'];}  
+      if ('incluir' == $this->nmgp_opcao && empty($this->si_empresa)) {$this->si_empresa = "" . $_SESSION['Igtech_RucEmpresa'] . ""; $NM_val_null[] = "si_empresa";}  
+      if ('incluir' == $this->nmgp_opcao && empty($this->si_usuario_registra)) {$this->si_usuario_registra = "" . $_SESSION['Igtech_SesionLogin'] . ""; $NM_val_null[] = "si_usuario_registra";}  
+      if (('alterar' == $this->nmgp_opcao || 'igual' == $this->nmgp_opcao) && empty($this->si_usuario_inspecciona)){$this->si_usuario_inspecciona = "" . $_SESSION['Igtech_SesionLogin'] . ""; $NM_val_null[] = "si_usuario_inspecciona";}  
+      if ('incluir' == $this->nmgp_opcao && empty($this->si_estado)) {$this->si_estado = "R"; $NM_val_null[] = "si_estado";}  
+      $NM_val_form['si_motivo_anulacion'] = $this->si_motivo_anulacion;
+      $NM_val_form['si_id'] = $this->si_id;
+      $NM_val_form['si_empresa'] = $this->si_empresa;
+      $NM_val_form['si_fecha'] = $this->si_fecha;
+      $NM_val_form['si_secuecial'] = $this->si_secuecial;
+      $NM_val_form['si_contrato'] = $this->si_contrato;
+      $NM_val_form['si_estado'] = $this->si_estado;
+      $NM_val_form['si_tipo_inspeccion'] = $this->si_tipo_inspeccion;
+      $NM_val_form['si_comentario'] = $this->si_comentario;
+      $NM_val_form['propietario'] = $this->propietario;
+      $NM_val_form['contrato'] = $this->contrato;
+      $NM_val_form['direccion'] = $this->direccion;
+      $NM_val_form['si_fecha_inspeccion'] = $this->si_fecha_inspeccion;
+      $NM_val_form['si_observacion'] = $this->si_observacion;
+      $NM_val_form['si_usuario_inspecciona'] = $this->si_usuario_inspecciona;
+      $NM_val_form['si_usuario_registra'] = $this->si_usuario_registra;
+      if ($this->si_id === "" || is_null($this->si_id))  
+      { 
+          $this->si_id = 0;
+      } 
+      if ($this->si_secuecial === "" || is_null($this->si_secuecial))  
+      { 
+          $this->si_secuecial = 0;
+          $this->sc_force_zero[] = 'si_secuecial';
+      } 
+      if ($this->si_contrato === "" || is_null($this->si_contrato))  
+      { 
+          $this->si_contrato = 0;
+          $this->sc_force_zero[] = 'si_contrato';
+      } 
+      if ($this->si_tipo_inspeccion === "" || is_null($this->si_tipo_inspeccion))  
+      { 
+          $this->si_tipo_inspeccion = 0;
+          $this->sc_force_zero[] = 'si_tipo_inspeccion';
+      } 
+      $nm_bases_lob_geral = array_merge($this->Ini->nm_bases_oracle, $this->Ini->nm_bases_ibase, $this->Ini->nm_bases_informix, $this->Ini->nm_bases_mysql, $this->Ini->nm_bases_access, $this->Ini->nm_bases_sqlite, array('pdo_ibm'), array('pdo_sqlsrv'));
+      if ($this->nmgp_opcao == "alterar" || $this->nmgp_opcao == "incluir") 
+      {
+          $this->si_empresa_before_qstr = $this->si_empresa;
+          $this->si_empresa = substr($this->Db->qstr($this->si_empresa), 1, -1); 
+          if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mysql))
+          {
+              $this->si_empresa = str_replace(array("\\r\\n", "\\n", "\r\n"), array("\r\n", "\n", "\n"), $this->si_empresa);
+          }
+          if ($this->si_empresa == "" && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))  
+          { 
+              $this->si_empresa = "null"; 
+              $NM_val_null[] = "si_empresa";
+          } 
+          if ($this->si_fecha == "")  
+          { 
+              $this->si_fecha = "null"; 
+              $NM_val_null[] = "si_fecha";
+          } 
+          $this->si_comentario_before_qstr = $this->si_comentario;
+          $this->si_comentario = substr($this->Db->qstr($this->si_comentario), 1, -1); 
+          if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mysql))
+          {
+              $this->si_comentario = str_replace(array("\\r\\n", "\\n", "\r\n"), array("\r\n", "\n", "\n"), $this->si_comentario);
+          }
+          if ($this->si_comentario == "" && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))  
+          { 
+              $this->si_comentario = "null"; 
+              $NM_val_null[] = "si_comentario";
+          } 
+          $this->si_usuario_registra_before_qstr = $this->si_usuario_registra;
+          $this->si_usuario_registra = substr($this->Db->qstr($this->si_usuario_registra), 1, -1); 
+          if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mysql))
+          {
+              $this->si_usuario_registra = str_replace(array("\\r\\n", "\\n", "\r\n"), array("\r\n", "\n", "\n"), $this->si_usuario_registra);
+          }
+          if ($this->si_usuario_registra == "" && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))  
+          { 
+              $this->si_usuario_registra = "null"; 
+              $NM_val_null[] = "si_usuario_registra";
+          } 
+          $this->si_usuario_inspecciona_before_qstr = $this->si_usuario_inspecciona;
+          $this->si_usuario_inspecciona = substr($this->Db->qstr($this->si_usuario_inspecciona), 1, -1); 
+          if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mysql))
+          {
+              $this->si_usuario_inspecciona = str_replace(array("\\r\\n", "\\n", "\r\n"), array("\r\n", "\n", "\n"), $this->si_usuario_inspecciona);
+          }
+          if ($this->si_usuario_inspecciona == "" && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))  
+          { 
+              $this->si_usuario_inspecciona = "null"; 
+              $NM_val_null[] = "si_usuario_inspecciona";
+          } 
+          if ($this->si_fecha_inspeccion == "")  
+          { 
+              $this->si_fecha_inspeccion = "null"; 
+              $NM_val_null[] = "si_fecha_inspeccion";
+          } 
+          $this->si_observacion_before_qstr = $this->si_observacion;
+          $this->si_observacion = substr($this->Db->qstr($this->si_observacion), 1, -1); 
+          if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mysql))
+          {
+              $this->si_observacion = str_replace(array("\\r\\n", "\\n", "\r\n"), array("\r\n", "\n", "\n"), $this->si_observacion);
+          }
+          if ($this->si_observacion == "" && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))  
+          { 
+              $this->si_observacion = "null"; 
+              $NM_val_null[] = "si_observacion";
+          } 
+          $this->si_estado_before_qstr = $this->si_estado;
+          $this->si_estado = substr($this->Db->qstr($this->si_estado), 1, -1); 
+          if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mysql))
+          {
+              $this->si_estado = str_replace(array("\\r\\n", "\\n", "\r\n"), array("\r\n", "\n", "\n"), $this->si_estado);
+          }
+          if ($this->si_estado == "" && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))  
+          { 
+              $this->si_estado = "null"; 
+              $NM_val_null[] = "si_estado";
+          } 
+          $this->si_motivo_anulacion_before_qstr = $this->si_motivo_anulacion;
+          $this->si_motivo_anulacion = substr($this->Db->qstr($this->si_motivo_anulacion), 1, -1); 
+          if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mysql))
+          {
+              $this->si_motivo_anulacion = str_replace(array("\\r\\n", "\\n", "\r\n"), array("\r\n", "\n", "\n"), $this->si_motivo_anulacion);
+          }
+          if ($this->si_motivo_anulacion == "" && in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))  
+          { 
+              $this->si_motivo_anulacion = "null"; 
+              $NM_val_null[] = "si_motivo_anulacion";
+          } 
+      }
+      if ($this->nmgp_opcao == "alterar") 
+      {
+          $SC_fields_update = array(); 
+          if (($this->Embutida_form || $this->Embutida_multi) && isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['foreign_key']) && !empty($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['foreign_key']))
+          {
+              foreach ($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['foreign_key'] as $sFKName => $sFKValue)
+              {
+                   if (isset($this->sc_conv_var[$sFKName]))
+                   {
+                       $sFKName = $this->sc_conv_var[$sFKName];
+                   }
+                  eval("\$this->" . $sFKName . " = \"" . $sFKValue . "\";");
+              }
+          }
+          if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))
+          {
+              $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id ";
+              $rs1 = $this->Db->Execute("select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id "); 
+          }  
+          elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mssql))
+          {
+              $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id ";
+              $rs1 = $this->Db->Execute("select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id "); 
+          }  
+          elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_oracle))
+          {
+              $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id ";
+              $rs1 = $this->Db->Execute("select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id "); 
+          }  
+          elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_informix))
+          {
+              $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id ";
+              $rs1 = $this->Db->Execute("select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id "); 
+          }  
+          else  
+          {
+              $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id ";
+              $rs1 = $this->Db->Execute("select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id "); 
+          }  
+          if ($rs1 === false)  
+          { 
+              $this->Erro->mensagem (__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_dbas'], $this->Db->ErrorMsg()); 
+              if ($this->NM_ajax_flag)
+              {
+                 form_jap_solicitud_inspeccion_pack_ajax_response();
+              }
+              exit; 
+          }  
+          $bUpdateOk = true;
+          $tmp_result = (int) $rs1->fields[0]; 
+          if ($tmp_result != 1) 
+          { 
+              $this->Erro->mensagem (__FILE__, __LINE__, "critica", $this->Ini->Nm_lang['lang_errm_nfnd']); 
+              $this->nmgp_opcao = "nada"; 
+              $bUpdateOk = false;
+              $this->sc_evento = 'update';
+          } 
+          $aUpdateOk = array();
+          $bUpdateOk = $bUpdateOk && empty($aUpdateOk);
+          if ($bUpdateOk)
+          { 
+              $rs1->Close(); 
+              $aDoNotUpdate = array();
+              if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))
+              { 
+                  $comando = "UPDATE " . $this->Ini->nm_tabela . " SET ";  
+                  $SC_fields_update[] = "si_empresa = '$this->si_empresa', si_secuecial = $this->si_secuecial, si_fecha = #$this->si_fecha#, si_contrato = $this->si_contrato, si_tipo_inspeccion = $this->si_tipo_inspeccion, si_comentario = '$this->si_comentario', si_usuario_inspecciona = '$this->si_usuario_inspecciona', si_fecha_inspeccion = #$this->si_fecha_inspeccion#, si_observacion = '$this->si_observacion', si_estado = '$this->si_estado', si_motivo_anulacion = '$this->si_motivo_anulacion'"; 
+              } 
+              elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mssql))
+              { 
+                  $comando = "UPDATE " . $this->Ini->nm_tabela . " SET ";  
+                  $SC_fields_update[] = "si_empresa = '$this->si_empresa', si_secuecial = $this->si_secuecial, si_fecha = " . $this->Ini->date_delim . $this->si_fecha . $this->Ini->date_delim1 . ", si_contrato = $this->si_contrato, si_tipo_inspeccion = $this->si_tipo_inspeccion, si_comentario = '$this->si_comentario', si_usuario_inspecciona = '$this->si_usuario_inspecciona', si_fecha_inspeccion = " . $this->Ini->date_delim . $this->si_fecha_inspeccion . $this->Ini->date_delim1 . ", si_observacion = '$this->si_observacion', si_estado = '$this->si_estado', si_motivo_anulacion = '$this->si_motivo_anulacion'"; 
+              } 
+              elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_oracle))
+              { 
+                  $comando = "UPDATE " . $this->Ini->nm_tabela . " SET ";  
+                  $SC_fields_update[] = "si_empresa = '$this->si_empresa', si_secuecial = $this->si_secuecial, si_fecha = " . $this->Ini->date_delim . $this->si_fecha . $this->Ini->date_delim1 . ", si_contrato = $this->si_contrato, si_tipo_inspeccion = $this->si_tipo_inspeccion, si_comentario = '$this->si_comentario', si_usuario_inspecciona = '$this->si_usuario_inspecciona', si_fecha_inspeccion = " . $this->Ini->date_delim . $this->si_fecha_inspeccion . $this->Ini->date_delim1 . ", si_observacion = '$this->si_observacion', si_estado = '$this->si_estado', si_motivo_anulacion = '$this->si_motivo_anulacion'"; 
+              } 
+              elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_informix))
+              { 
+                  $comando = "UPDATE " . $this->Ini->nm_tabela . " SET ";  
+                  $SC_fields_update[] = "si_empresa = '$this->si_empresa', si_secuecial = $this->si_secuecial, si_fecha = EXTEND('$this->si_fecha', YEAR TO DAY), si_contrato = $this->si_contrato, si_tipo_inspeccion = $this->si_tipo_inspeccion, si_comentario = '$this->si_comentario', si_usuario_inspecciona = '$this->si_usuario_inspecciona', si_fecha_inspeccion = EXTEND('$this->si_fecha_inspeccion', YEAR TO DAY), si_observacion = '$this->si_observacion', si_estado = '$this->si_estado', si_motivo_anulacion = '$this->si_motivo_anulacion'"; 
+              } 
+              elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mysql))
+              { 
+                  $comando = "UPDATE " . $this->Ini->nm_tabela . " SET ";  
+                  $SC_fields_update[] = "si_empresa = '$this->si_empresa', si_secuecial = $this->si_secuecial, si_fecha = " . $this->Ini->date_delim . $this->si_fecha . $this->Ini->date_delim1 . ", si_contrato = $this->si_contrato, si_tipo_inspeccion = $this->si_tipo_inspeccion, si_comentario = '$this->si_comentario', si_usuario_inspecciona = '$this->si_usuario_inspecciona', si_fecha_inspeccion = " . $this->Ini->date_delim . $this->si_fecha_inspeccion . $this->Ini->date_delim1 . ", si_observacion = '$this->si_observacion', si_estado = '$this->si_estado', si_motivo_anulacion = '$this->si_motivo_anulacion'"; 
+              } 
+              elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_ibase))
+              { 
+                  $comando = "UPDATE " . $this->Ini->nm_tabela . " SET ";  
+                  $SC_fields_update[] = "si_empresa = '$this->si_empresa', si_secuecial = $this->si_secuecial, si_fecha = " . $this->Ini->date_delim . $this->si_fecha . $this->Ini->date_delim1 . ", si_contrato = $this->si_contrato, si_tipo_inspeccion = $this->si_tipo_inspeccion, si_comentario = '$this->si_comentario', si_usuario_inspecciona = '$this->si_usuario_inspecciona', si_fecha_inspeccion = " . $this->Ini->date_delim . $this->si_fecha_inspeccion . $this->Ini->date_delim1 . ", si_observacion = '$this->si_observacion', si_estado = '$this->si_estado', si_motivo_anulacion = '$this->si_motivo_anulacion'"; 
+              } 
+              else 
+              { 
+                  $comando = "UPDATE " . $this->Ini->nm_tabela . " SET ";  
+                  $SC_fields_update[] = "si_empresa = '$this->si_empresa', si_secuecial = $this->si_secuecial, si_fecha = " . $this->Ini->date_delim . $this->si_fecha . $this->Ini->date_delim1 . ", si_contrato = $this->si_contrato, si_tipo_inspeccion = $this->si_tipo_inspeccion, si_comentario = '$this->si_comentario', si_usuario_inspecciona = '$this->si_usuario_inspecciona', si_fecha_inspeccion = " . $this->Ini->date_delim . $this->si_fecha_inspeccion . $this->Ini->date_delim1 . ", si_observacion = '$this->si_observacion', si_estado = '$this->si_estado', si_motivo_anulacion = '$this->si_motivo_anulacion'"; 
+              } 
+              if (isset($NM_val_form['si_usuario_registra']) && $NM_val_form['si_usuario_registra'] != $this->nmgp_dados_select['si_usuario_registra']) 
+              { 
+                  $SC_fields_update[] = "si_usuario_registra = '$this->si_usuario_registra'"; 
+              } 
+              $comando .= implode(",", $SC_fields_update);  
+              if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))
+              {
+                  $comando .= " WHERE si_id = $this->si_id ";  
+              }  
+              elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mssql))
+              {
+                  $comando .= " WHERE si_id = $this->si_id ";  
+              }  
+              elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_oracle))
+              {
+                  $comando .= " WHERE si_id = $this->si_id ";  
+              }  
+              elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_informix))
+              {
+                  $comando .= " WHERE si_id = $this->si_id ";  
+              }  
+              else  
+              {
+                  $comando .= " WHERE si_id = $this->si_id ";  
+              }  
+              $comando = str_replace("N'null'", "null", $comando) ; 
+              $comando = str_replace("'null'", "null", $comando) ; 
+              $comando = str_replace("#null#", "null", $comando) ; 
+              $comando = str_replace($this->Ini->date_delim . "null" . $this->Ini->date_delim1, "null", $comando) ; 
+              if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_informix))
+              {
+                $comando = str_replace("EXTEND('', YEAR TO FRACTION)", "null", $comando) ; 
+                $comando = str_replace("EXTEND(null, YEAR TO FRACTION)", "null", $comando) ; 
+                $comando = str_replace("EXTEND('', YEAR TO DAY)", "null", $comando) ; 
+                $comando = str_replace("EXTEND(null, YEAR TO DAY)", "null", $comando) ; 
+              }  
+              $useUpdateProcedure = false;
+              if (!empty($SC_fields_update) || $useUpdateProcedure)
+              { 
+                  $_SESSION['scriptcase']['sc_sql_ult_comando'] = $comando; 
+                  $rs = $this->Db->Execute($comando);  
+                  if ($rs === false) 
+                  { 
+                      if (FALSE === strpos(strtoupper($this->Db->ErrorMsg()), "MAIL SENT") && FALSE === strpos(strtoupper($this->Db->ErrorMsg()), "WARNING"))
+                      {
+                          $dbErrorMessage = $this->Db->ErrorMsg();
+                          $dbErrorCode = $this->Db->ErrorNo();
+                          $this->handleDbErrorMessage($dbErrorMessage, $dbErrorCode);
+                          $this->Erro->mensagem (__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_updt'], $dbErrorMessage, true);
+                          if (isset($_SESSION['scriptcase']['erro_handler']) && $_SESSION['scriptcase']['erro_handler']) 
+                          { 
+                              $this->sc_erro_update = $dbErrorMessage;
+                              $this->NM_rollback_db(); 
+                              if ($this->NM_ajax_flag)
+                              {
+                                  form_jap_solicitud_inspeccion_pack_ajax_response();
+                              }
+                              exit;  
+                          }   
+                      }   
+                  }   
+              }   
+              $this->si_empresa = $this->si_empresa_before_qstr;
+              $this->si_comentario = $this->si_comentario_before_qstr;
+              $this->si_usuario_registra = $this->si_usuario_registra_before_qstr;
+              $this->si_usuario_inspecciona = $this->si_usuario_inspecciona_before_qstr;
+              $this->si_observacion = $this->si_observacion_before_qstr;
+              $this->si_estado = $this->si_estado_before_qstr;
+              $this->si_motivo_anulacion = $this->si_motivo_anulacion_before_qstr;
+              if (in_array(strtolower($this->Ini->nm_tpbanco), $nm_bases_lob_geral))
+              { 
+              }   
+              $this->sc_evento = "update"; 
+              $this->nmgp_opcao = "igual"; 
+              $this->nm_flag_iframe = true;
+              if ($this->lig_edit_lookup)
+              {
+                  $this->lig_edit_lookup_call = true;
+              }
+              $this->NM_gera_log_new();
+              $this->NM_gera_log_compress();
+
+              $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['db_changed'] = true;
+              if ($this->NM_ajax_flag) {
+                  $this->NM_ajax_info['clearUpload'] = 'S';
+              }
+
+
+              if     (isset($NM_val_form) && isset($NM_val_form['si_id'])) { $this->si_id = $NM_val_form['si_id']; }
+              elseif (isset($this->si_id)) { $this->nm_limpa_alfa($this->si_id); }
+              if     (isset($NM_val_form) && isset($NM_val_form['si_empresa'])) { $this->si_empresa = $NM_val_form['si_empresa']; }
+              elseif (isset($this->si_empresa)) { $this->nm_limpa_alfa($this->si_empresa); }
+              if     (isset($NM_val_form) && isset($NM_val_form['si_secuecial'])) { $this->si_secuecial = $NM_val_form['si_secuecial']; }
+              elseif (isset($this->si_secuecial)) { $this->nm_limpa_alfa($this->si_secuecial); }
+              if     (isset($NM_val_form) && isset($NM_val_form['si_contrato'])) { $this->si_contrato = $NM_val_form['si_contrato']; }
+              elseif (isset($this->si_contrato)) { $this->nm_limpa_alfa($this->si_contrato); }
+              if     (isset($NM_val_form) && isset($NM_val_form['si_tipo_inspeccion'])) { $this->si_tipo_inspeccion = $NM_val_form['si_tipo_inspeccion']; }
+              elseif (isset($this->si_tipo_inspeccion)) { $this->nm_limpa_alfa($this->si_tipo_inspeccion); }
+              if     (isset($NM_val_form) && isset($NM_val_form['si_comentario'])) { $this->si_comentario = $NM_val_form['si_comentario']; }
+              elseif (isset($this->si_comentario)) { $this->nm_limpa_alfa($this->si_comentario); }
+              if     (isset($NM_val_form) && isset($NM_val_form['si_usuario_inspecciona'])) { $this->si_usuario_inspecciona = $NM_val_form['si_usuario_inspecciona']; }
+              elseif (isset($this->si_usuario_inspecciona)) { $this->nm_limpa_alfa($this->si_usuario_inspecciona); }
+              if     (isset($NM_val_form) && isset($NM_val_form['si_observacion'])) { $this->si_observacion = $NM_val_form['si_observacion']; }
+              elseif (isset($this->si_observacion)) { $this->nm_limpa_alfa($this->si_observacion); }
+              if     (isset($NM_val_form) && isset($NM_val_form['si_estado'])) { $this->si_estado = $NM_val_form['si_estado']; }
+              elseif (isset($this->si_estado)) { $this->nm_limpa_alfa($this->si_estado); }
+              if     (isset($NM_val_form) && isset($NM_val_form['si_motivo_anulacion'])) { $this->si_motivo_anulacion = $NM_val_form['si_motivo_anulacion']; }
+              elseif (isset($this->si_motivo_anulacion)) { $this->nm_limpa_alfa($this->si_motivo_anulacion); }
+
+              $this->nm_formatar_campos();
+              if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mssql))
+              {
+              }
+
+              $aOldRefresh               = $this->nmgp_refresh_fields;
+              $this->nmgp_refresh_fields = array_diff(array('si_motivo_anulacion', 'si_id', 'si_empresa', 'si_fecha', 'si_secuecial', 'si_contrato', 'si_estado', 'si_tipo_inspeccion', 'si_comentario', 'propietario', 'contrato', 'direccion', 'si_fecha_inspeccion', 'si_observacion', 'si_usuario_inspecciona'), $aDoNotUpdate);
+              $this->ajax_return_values();
+              $this->nmgp_refresh_fields = $aOldRefresh;
+
+              $this->nm_tira_formatacao();
+              $this->nm_converte_datas();
+          }  
+      }  
+      if ($this->nmgp_opcao == "incluir") 
+      { 
+          $NM_cmp_auto = "";
+          $NM_seq_auto = "";
+          if (($this->Embutida_form || $this->Embutida_multi) && isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['foreign_key']) && !empty($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['foreign_key']))
+          {
+              foreach ($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['foreign_key'] as $sFKName => $sFKValue)
+              {
+                   if (isset($this->sc_conv_var[$sFKName]))
+                   {
+                       $sFKName = $this->sc_conv_var[$sFKName];
+                   }
+                  eval("\$this->" . $sFKName . " = \"" . $sFKValue . "\";");
+              }
+          }
+          $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select max(si_id) from " . $this->Ini->nm_tabela; 
+          $comando = "select max(si_id) from " . $this->Ini->nm_tabela; 
+          $rs = $this->Db->Execute($comando); 
+          if ($rs === false && !$rs->EOF)  
+          { 
+              $this->Erro->mensagem (__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_inst'], $this->Db->ErrorMsg()); 
+              $this->NM_rollback_db(); 
+              if ($this->NM_ajax_flag)
+              {
+                  form_jap_solicitud_inspeccion_pack_ajax_response();
+              }
+              exit; 
+          }  
+          $this->si_id_before_qstr = $this->si_id = $rs->fields[0] + 1;
+          $rs->Close(); 
+          $bInsertOk = true;
+          if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))
+          {
+              $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id "; 
+              $rs1 = $this->Db->Execute("select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id "); 
+          }  
+          elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mssql))
+          {
+              $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id "; 
+              $rs1 = $this->Db->Execute("select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id "); 
+          }  
+          elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_oracle))
+          {
+              $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id "; 
+              $rs1 = $this->Db->Execute("select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id "); 
+          }  
+          elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_informix))
+          {
+              $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id "; 
+              $rs1 = $this->Db->Execute("select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id "); 
+          }  
+          else  
+          {
+              $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id "; 
+              $rs1 = $this->Db->Execute("select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id "); 
+          }  
+          if ($rs1 === false)  
+          { 
+              $this->Erro->mensagem (__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_dbas'], $this->Db->ErrorMsg()); 
+              exit; 
+          }  
+          $tmp_result = (int) $rs1->fields[0]; 
+          if ($tmp_result != 0) 
+          { 
+              $this->Erro->mensagem (__FILE__, __LINE__, "critica", $this->Ini->Nm_lang['lang_errm_pkey']); 
+              $this->nmgp_opcao = "nada"; 
+              $GLOBALS["erro_incl"] = 1; 
+              $bInsertOk = false;
+              $this->sc_evento = 'insert';
+          } 
+          $rs1->Close(); 
+          $aInsertOk = array(); 
+          $bInsertOk = $bInsertOk && empty($aInsertOk);
+          if (!isset($_POST['nmgp_ins_valid']) || $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['insert_validation'] != $_POST['nmgp_ins_valid'])
+          {
+              $bInsertOk = false;
+              $this->Erro->mensagem(__FILE__, __LINE__, 'security', $this->Ini->Nm_lang['lang_errm_inst_vald']);
+              if (isset($_SESSION['scriptcase']['erro_handler']) && $_SESSION['scriptcase']['erro_handler'])
+              {
+                  $this->nmgp_opcao = 'refresh_insert';
+                  if ($this->NM_ajax_flag)
+                  {
+                      form_jap_solicitud_inspeccion_pack_ajax_response();
+                      exit;
+                  }
+              }
+          }
+          if ($bInsertOk)
+          { 
+              if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))
+              { 
+                  $comando = "INSERT INTO " . $this->Ini->nm_tabela . " (si_id, si_empresa, si_secuecial, si_fecha, si_contrato, si_tipo_inspeccion, si_comentario, si_usuario_registra, si_usuario_inspecciona, si_fecha_inspeccion, si_observacion, si_estado, si_motivo_anulacion) VALUES ($this->si_id, '$this->si_empresa', $this->si_secuecial, #$this->si_fecha#, $this->si_contrato, $this->si_tipo_inspeccion, '$this->si_comentario', '$this->si_usuario_registra', '$this->si_usuario_inspecciona', #$this->si_fecha_inspeccion#, '$this->si_observacion', '$this->si_estado', '$this->si_motivo_anulacion')"; 
+              }
+              elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mssql))
+              { 
+                  $comando = "INSERT INTO " . $this->Ini->nm_tabela . " (" . $NM_cmp_auto . "si_id, si_empresa, si_secuecial, si_fecha, si_contrato, si_tipo_inspeccion, si_comentario, si_usuario_registra, si_usuario_inspecciona, si_fecha_inspeccion, si_observacion, si_estado, si_motivo_anulacion) VALUES (" . $NM_seq_auto . "$this->si_id, '$this->si_empresa', $this->si_secuecial, " . $this->Ini->date_delim . $this->si_fecha . $this->Ini->date_delim1 . ", $this->si_contrato, $this->si_tipo_inspeccion, '$this->si_comentario', '$this->si_usuario_registra', '$this->si_usuario_inspecciona', " . $this->Ini->date_delim . $this->si_fecha_inspeccion . $this->Ini->date_delim1 . ", '$this->si_observacion', '$this->si_estado', '$this->si_motivo_anulacion')"; 
+              }
+              elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_sybase))
+              { 
+                  $comando = "INSERT INTO " . $this->Ini->nm_tabela . " (" . $NM_cmp_auto . "si_id, si_empresa, si_secuecial, si_fecha, si_contrato, si_tipo_inspeccion, si_comentario, si_usuario_registra, si_usuario_inspecciona, si_fecha_inspeccion, si_observacion, si_estado, si_motivo_anulacion) VALUES (" . $NM_seq_auto . "$this->si_id, '$this->si_empresa', $this->si_secuecial, " . $this->Ini->date_delim . $this->si_fecha . $this->Ini->date_delim1 . ", $this->si_contrato, $this->si_tipo_inspeccion, '$this->si_comentario', '$this->si_usuario_registra', '$this->si_usuario_inspecciona', " . $this->Ini->date_delim . $this->si_fecha_inspeccion . $this->Ini->date_delim1 . ", '$this->si_observacion', '$this->si_estado', '$this->si_motivo_anulacion')"; 
+              }
+              elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_oracle))
+              {
+                  $comando = "INSERT INTO " . $this->Ini->nm_tabela . " (" . $NM_cmp_auto . "si_id, si_empresa, si_secuecial, si_fecha, si_contrato, si_tipo_inspeccion, si_comentario, si_usuario_registra, si_usuario_inspecciona, si_fecha_inspeccion, si_observacion, si_estado, si_motivo_anulacion) VALUES (" . $NM_seq_auto . "$this->si_id, '$this->si_empresa', $this->si_secuecial, " . $this->Ini->date_delim . $this->si_fecha . $this->Ini->date_delim1 . ", $this->si_contrato, $this->si_tipo_inspeccion, '$this->si_comentario', '$this->si_usuario_registra', '$this->si_usuario_inspecciona', " . $this->Ini->date_delim . $this->si_fecha_inspeccion . $this->Ini->date_delim1 . ", '$this->si_observacion', '$this->si_estado', '$this->si_motivo_anulacion')"; 
+              }
+              elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_informix))
+              {
+                  $comando = "INSERT INTO " . $this->Ini->nm_tabela . " (" . $NM_cmp_auto . "si_id, si_empresa, si_secuecial, si_fecha, si_contrato, si_tipo_inspeccion, si_comentario, si_usuario_registra, si_usuario_inspecciona, si_fecha_inspeccion, si_observacion, si_estado, si_motivo_anulacion) VALUES (" . $NM_seq_auto . "$this->si_id, '$this->si_empresa', $this->si_secuecial, EXTEND('$this->si_fecha', YEAR TO DAY), $this->si_contrato, $this->si_tipo_inspeccion, '$this->si_comentario', '$this->si_usuario_registra', '$this->si_usuario_inspecciona', EXTEND('$this->si_fecha_inspeccion', YEAR TO DAY), '$this->si_observacion', '$this->si_estado', '$this->si_motivo_anulacion')"; 
+              }
+              elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mysql))
+              {
+                  $comando = "INSERT INTO " . $this->Ini->nm_tabela . " (" . $NM_cmp_auto . "si_id, si_empresa, si_secuecial, si_fecha, si_contrato, si_tipo_inspeccion, si_comentario, si_usuario_registra, si_usuario_inspecciona, si_fecha_inspeccion, si_observacion, si_estado, si_motivo_anulacion) VALUES (" . $NM_seq_auto . "$this->si_id, '$this->si_empresa', $this->si_secuecial, " . $this->Ini->date_delim . $this->si_fecha . $this->Ini->date_delim1 . ", $this->si_contrato, $this->si_tipo_inspeccion, '$this->si_comentario', '$this->si_usuario_registra', '$this->si_usuario_inspecciona', " . $this->Ini->date_delim . $this->si_fecha_inspeccion . $this->Ini->date_delim1 . ", '$this->si_observacion', '$this->si_estado', '$this->si_motivo_anulacion')"; 
+              }
+              elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_sqlite))
+              {
+                  $comando = "INSERT INTO " . $this->Ini->nm_tabela . " (" . $NM_cmp_auto . "si_id, si_empresa, si_secuecial, si_fecha, si_contrato, si_tipo_inspeccion, si_comentario, si_usuario_registra, si_usuario_inspecciona, si_fecha_inspeccion, si_observacion, si_estado, si_motivo_anulacion) VALUES (" . $NM_seq_auto . "$this->si_id, '$this->si_empresa', $this->si_secuecial, " . $this->Ini->date_delim . $this->si_fecha . $this->Ini->date_delim1 . ", $this->si_contrato, $this->si_tipo_inspeccion, '$this->si_comentario', '$this->si_usuario_registra', '$this->si_usuario_inspecciona', " . $this->Ini->date_delim . $this->si_fecha_inspeccion . $this->Ini->date_delim1 . ", '$this->si_observacion', '$this->si_estado', '$this->si_motivo_anulacion')"; 
+              }
+              elseif ($this->Ini->nm_tpbanco == 'pdo_ibm')
+              {
+                  $comando = "INSERT INTO " . $this->Ini->nm_tabela . " (" . $NM_cmp_auto . "si_id, si_empresa, si_secuecial, si_fecha, si_contrato, si_tipo_inspeccion, si_comentario, si_usuario_registra, si_usuario_inspecciona, si_fecha_inspeccion, si_observacion, si_estado, si_motivo_anulacion) VALUES (" . $NM_seq_auto . "$this->si_id, '$this->si_empresa', $this->si_secuecial, " . $this->Ini->date_delim . $this->si_fecha . $this->Ini->date_delim1 . ", $this->si_contrato, $this->si_tipo_inspeccion, '$this->si_comentario', '$this->si_usuario_registra', '$this->si_usuario_inspecciona', " . $this->Ini->date_delim . $this->si_fecha_inspeccion . $this->Ini->date_delim1 . ", '$this->si_observacion', '$this->si_estado', '$this->si_motivo_anulacion')"; 
+              }
+              else
+              {
+                  $comando = "INSERT INTO " . $this->Ini->nm_tabela . " (" . $NM_cmp_auto . "si_id, si_empresa, si_secuecial, si_fecha, si_contrato, si_tipo_inspeccion, si_comentario, si_usuario_registra, si_usuario_inspecciona, si_fecha_inspeccion, si_observacion, si_estado, si_motivo_anulacion) VALUES (" . $NM_seq_auto . "$this->si_id, '$this->si_empresa', $this->si_secuecial, " . $this->Ini->date_delim . $this->si_fecha . $this->Ini->date_delim1 . ", $this->si_contrato, $this->si_tipo_inspeccion, '$this->si_comentario', '$this->si_usuario_registra', '$this->si_usuario_inspecciona', " . $this->Ini->date_delim . $this->si_fecha_inspeccion . $this->Ini->date_delim1 . ", '$this->si_observacion', '$this->si_estado', '$this->si_motivo_anulacion')"; 
+              }
+              $comando = str_replace("N'null'", "null", $comando) ; 
+              $comando = str_replace("'null'", "null", $comando) ; 
+              $comando = str_replace("#null#", "null", $comando) ; 
+              $comando = str_replace($this->Ini->date_delim . "null" . $this->Ini->date_delim1, "null", $comando) ; 
+              if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_informix))
+              {
+                $comando = str_replace("EXTEND('', YEAR TO FRACTION)", "null", $comando) ; 
+                $comando = str_replace("EXTEND(null, YEAR TO FRACTION)", "null", $comando) ; 
+                $comando = str_replace("EXTEND('', YEAR TO DAY)", "null", $comando) ; 
+                $comando = str_replace("EXTEND(null, YEAR TO DAY)", "null", $comando) ; 
+              }  
+              $_SESSION['scriptcase']['sc_sql_ult_comando'] = $comando; 
+              $rs = $this->Db->Execute($comando); 
+              if ($rs === false)  
+              { 
+                  if (FALSE === strpos(strtoupper($this->Db->ErrorMsg()), "MAIL SENT") && FALSE === strpos(strtoupper($this->Db->ErrorMsg()), "WARNING"))
+                  {
+                      $dbErrorMessage = $this->Db->ErrorMsg();
+                      $dbErrorCode = $this->Db->ErrorNo();
+                      $this->handleDbErrorMessage($dbErrorMessage, $dbErrorCode);
+                      $this->Erro->mensagem (__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_inst'], $dbErrorMessage, true);
+                      if (isset($_SESSION['scriptcase']['erro_handler']) && $_SESSION['scriptcase']['erro_handler'])
+                      { 
+                          $this->sc_erro_insert = $dbErrorMessage;
+                          $this->nmgp_opcao     = 'refresh_insert';
+                          $this->NM_rollback_db(); 
+                          if ($this->NM_ajax_flag)
+                          {
+                              form_jap_solicitud_inspeccion_pack_ajax_response();
+                              exit; 
+                          }
+                      }  
+                  }  
+              }  
+              if ('refresh_insert' != $this->nmgp_opcao)
+              {
+              $this->si_empresa = $this->si_empresa_before_qstr;
+              $this->si_comentario = $this->si_comentario_before_qstr;
+              $this->si_usuario_registra = $this->si_usuario_registra_before_qstr;
+              $this->si_usuario_inspecciona = $this->si_usuario_inspecciona_before_qstr;
+              $this->si_observacion = $this->si_observacion_before_qstr;
+              $this->si_estado = $this->si_estado_before_qstr;
+              $this->si_motivo_anulacion = $this->si_motivo_anulacion_before_qstr;
+              }
+
+              $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['db_changed'] = true;
+
+              if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['total']))
+              {
+                  unset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['total']);
+              }
+
+              $this->sc_evento = "insert"; 
+              $this->si_empresa = $this->si_empresa_before_qstr;
+              $this->si_comentario = $this->si_comentario_before_qstr;
+              $this->si_usuario_registra = $this->si_usuario_registra_before_qstr;
+              $this->si_usuario_inspecciona = $this->si_usuario_inspecciona_before_qstr;
+              $this->si_observacion = $this->si_observacion_before_qstr;
+              $this->si_estado = $this->si_estado_before_qstr;
+              $this->si_motivo_anulacion = $this->si_motivo_anulacion_before_qstr;
+              $this->sc_insert_on = true; 
+              if (empty($this->sc_erro_insert)) {
+                  $this->record_insert_ok = true;
+              } 
+              $this->NM_gera_log_key("incluir");
+              $this->NM_gera_log_new();
+              if ('refresh_insert' != $this->nmgp_opcao && (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['sc_redir_insert']) || $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['sc_redir_insert'] != "S"))
+              {
+              $this->nmgp_opcao   = "igual"; 
+              $this->nmgp_opc_ant = "igual"; 
+              $this->nmgp_botoes['enviar_inspeccion'] = "on";
+              $this->nmgp_botoes['imprimir'] = "on";
+              $this->nmgp_botoes['anular'] = "on";
+              $this->nmgp_botoes['finalizar'] = "on";
+              $this->return_after_insert();
+              }
+              $this->nm_flag_iframe = true;
+          } 
+          if ($this->lig_edit_lookup)
+          {
+              $this->lig_edit_lookup_call = true;
+          }
+      } 
+      if ($this->nmgp_opcao == "excluir") 
+      { 
+          $this->si_id = substr($this->Db->qstr($this->si_id), 1, -1); 
+
+          $bDelecaoOk = true;
+          $sMsgErro   = '';
+
+          if ($bDelecaoOk)
+          {
+
+          if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))
+          {
+              $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id"; 
+              $rs1 = $this->Db->Execute("select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id "); 
+          }  
+          elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mssql))
+          {
+              $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id"; 
+              $rs1 = $this->Db->Execute("select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id "); 
+          }  
+          elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_oracle))
+          {
+              $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id"; 
+              $rs1 = $this->Db->Execute("select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id "); 
+          }  
+          elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_informix))
+          {
+              $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id"; 
+              $rs1 = $this->Db->Execute("select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id "); 
+          }  
+          else  
+          {
+              $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id"; 
+              $rs1 = $this->Db->Execute("select count(*) AS countTest from " . $this->Ini->nm_tabela . " where si_id = $this->si_id "); 
+          }  
+          if ($rs1 === false)  
+          { 
+              $this->Erro->mensagem (__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_dbas'], $this->Db->ErrorMsg()); 
+              exit; 
+          }  
+          if ($rs1 === false)  
+          { 
+              $this->Erro->mensagem (__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_dbas'], $this->Db->ErrorMsg()); 
+              exit; 
+          }  
+          $tmp_result = (int) $rs1->fields[0]; 
+          if ($tmp_result != 1) 
+          { 
+              $this->Erro->mensagem (__FILE__, __LINE__, "critica", $this->Ini->Nm_lang['lang_errm_dele_nfnd']); 
+              $this->nmgp_opcao = "nada"; 
+              $this->sc_evento = 'delete';
+          } 
+          else 
+          { 
+              $rs1->Close(); 
+              if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))
+              {
+                  $_SESSION['scriptcase']['sc_sql_ult_comando'] = "DELETE FROM " . $this->Ini->nm_tabela . " where si_id = $this->si_id "; 
+                  $rs = $this->Db->Execute("DELETE FROM " . $this->Ini->nm_tabela . " where si_id = $this->si_id "); 
+              }  
+              elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mssql))
+              {
+                  $_SESSION['scriptcase']['sc_sql_ult_comando'] = "DELETE FROM " . $this->Ini->nm_tabela . " where si_id = $this->si_id "; 
+                  $rs = $this->Db->Execute("DELETE FROM " . $this->Ini->nm_tabela . " where si_id = $this->si_id "); 
+              }  
+              elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_oracle))
+              {
+                  $_SESSION['scriptcase']['sc_sql_ult_comando'] = "DELETE FROM " . $this->Ini->nm_tabela . " where si_id = $this->si_id "; 
+                  $rs = $this->Db->Execute("DELETE FROM " . $this->Ini->nm_tabela . " where si_id = $this->si_id "); 
+              }  
+              elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_informix))
+              {
+                  $_SESSION['scriptcase']['sc_sql_ult_comando'] = "DELETE FROM " . $this->Ini->nm_tabela . " where si_id = $this->si_id "; 
+                  $rs = $this->Db->Execute("DELETE FROM " . $this->Ini->nm_tabela . " where si_id = $this->si_id "); 
+              }  
+              else  
+              {
+                  $_SESSION['scriptcase']['sc_sql_ult_comando'] = "DELETE FROM " . $this->Ini->nm_tabela . " where si_id = $this->si_id "; 
+                  $rs = $this->Db->Execute("DELETE FROM " . $this->Ini->nm_tabela . " where si_id = $this->si_id "); 
+              }  
+              if ($rs === false) 
+              { 
+                  $this->Erro->mensagem (__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_dele'], $this->Db->ErrorMsg(), true); 
+                  if (isset($_SESSION['scriptcase']['erro_handler']) && $_SESSION['scriptcase']['erro_handler']) 
+                  { 
+                      $this->sc_erro_delete = $this->Db->ErrorMsg();  
+                      $this->NM_rollback_db(); 
+                      if ($this->NM_ajax_flag)
+                      {
+                          form_jap_solicitud_inspeccion_pack_ajax_response();
+                          exit; 
+                      }
+                  } 
+              } 
+              $this->sc_evento = "delete"; 
+              if (empty($this->sc_erro_delete)) {
+                  $this->record_delete_ok = true;
+              }
+              $this->nmgp_opcao = "avanca"; 
+              $this->nm_flag_iframe = true;
+              $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start']--; 
+              if ($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start'] < 0)
+              {
+                  $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start'] = 0; 
+              }
+
+              $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['db_changed'] = true;
+
+              if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['total']))
+              {
+                  unset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['total']);
+              }
+
+              if ($this->lig_edit_lookup)
+              {
+                  $this->lig_edit_lookup_call = true;
+              }
+          }
+
+          }
+          else
+          {
+              $this->sc_evento = "delete"; 
+              $this->nmgp_opcao = "igual"; 
+              $this->Erro->mensagem(__FILE__, __LINE__, "critica", $sMsgErro); 
+          }
+
+      }  
+      if (!empty($this->sc_force_zero))
+      {
+          foreach ($this->sc_force_zero as $i_force_zero => $sc_force_zero_field)
+          {
+              eval('if ($this->' . $sc_force_zero_field . ' == 0) {$this->' . $sc_force_zero_field . ' = "";}');
+          }
+      }
+      $this->sc_force_zero = array();
+      if (!empty($NM_val_null))
+      {
+          foreach ($NM_val_null as $i_val_null => $sc_val_null_field)
+          {
+              eval('$this->' . $sc_val_null_field . ' = "";');
+          }
+      }
+      if ($salva_opcao == "incluir" && $GLOBALS["erro_incl"] != 1) 
+      { 
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['parms'] = "si_id?#?$this->si_id?@?"; 
+      }
+      $this->NM_commit_db(); 
+      if ($this->sc_evento != "insert" && $this->sc_evento != "update" && $this->sc_evento != "delete")
+      { 
+          $this->si_id = null === $this->si_id ? null : substr($this->Db->qstr($this->si_id), 1, -1); 
+      } 
+      if (isset($this->NM_where_filter))
+      {
+          $this->NM_where_filter = str_replace("@percent@", "%", $this->NM_where_filter);
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['where_filter'] = trim($this->NM_where_filter);
+          if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['total']))
+          {
+              unset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['total']);
+          }
+      }
+      $sc_where_filter = '';
+      if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['where_filter_form']) && '' != $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['where_filter_form'])
+      {
+          $sc_where_filter = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['where_filter_form'];
+      }
+      if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['where_filter']) && '' != $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['where_filter'] && $sc_where_filter != $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['where_filter'])
+      {
+          if (empty($sc_where_filter))
+          {
+              $sc_where_filter = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['where_filter'];
+          }
+          else
+          {
+              $sc_where_filter .= " and (" . $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['where_filter'] . ")";
+          }
+      }
+//------------ 
+      if ($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['run_iframe'] == "F" || $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['run_iframe'] == "R")
+      {
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['iframe_evento'] = $this->sc_evento; 
+      } 
+      if (!isset($this->nmgp_opcao) || empty($this->nmgp_opcao)) 
+      { 
+          if (empty($this->si_id)) 
+          { 
+              $this->nmgp_opcao = "inicio"; 
+          } 
+          else 
+          { 
+              $this->nmgp_opcao = "igual"; 
+          } 
+      } 
+      if (isset($_POST['master_nav']) && 'on' == $_POST['master_nav']) 
+      { 
+          $this->nmgp_opcao = "inicio";
+      } 
+      if ($this->nmgp_opcao != "nada" && (trim($this->si_id) == "")) 
+      { 
+          if ($this->nmgp_opcao == "avanca")  
+          { 
+              $this->nmgp_opcao = "final"; 
+          } 
+          elseif ($this->nmgp_opcao != "novo")
+          { 
+              $this->nmgp_opcao = "inicio"; 
+          } 
+      } 
+      if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_ibase))
+      { 
+          $GLOBALS["NM_ERRO_IBASE"] = 1;  
+      } 
+      if ($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['run_iframe'] == "F" && $this->sc_evento == "insert")
+      {
+          $this->nmgp_opcao = "final";
+      }
+      $sc_where = trim("");
+      if (substr(strtolower($sc_where), 0, 5) == "where")
+      {
+          $sc_where  = substr($sc_where , 5);
+      }
+      if (!empty($sc_where))
+      {
+          $sc_where = " where " . $sc_where . " ";
+      }
+      if ('' != $sc_where_filter)
+      {
+          $sc_where = ('' != $sc_where) ? $sc_where . ' and (' . $sc_where_filter . ')' : ' where ' . $sc_where_filter;
+      }
+      if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['total']))
+      { 
+          $nmgp_select = "SELECT count(*) AS countTest from " . $this->Ini->nm_tabela . $sc_where; 
+          $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nmgp_select; 
+          $rt = $this->Db->Execute($nmgp_select) ; 
+          if ($rt === false && !$rt->EOF && $GLOBALS["NM_ERRO_IBASE"] != 1) 
+          { 
+              $this->Erro->mensagem (__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_dber'], $this->Db->ErrorMsg()); 
+              exit ; 
+          }  
+          $qt_geral_reg_form_jap_solicitud_inspeccion = isset($rt->fields[0]) ? $rt->fields[0] - 1 : 0; 
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['total'] = $qt_geral_reg_form_jap_solicitud_inspeccion;
+          $rt->Close(); 
+          if ($this->nmgp_opcao == "igual" && isset($this->NM_btn_navega) && 'S' == $this->NM_btn_navega && !empty($this->si_id))
+          {
+              if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))
+              {
+                  $Key_Where = "si_id < $this->si_id "; 
+              }  
+              elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mssql))
+              {
+                  $Key_Where = "si_id < $this->si_id "; 
+              }
+              elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_oracle))
+              {
+                  $Key_Where = "si_id < $this->si_id "; 
+              }
+              elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_informix))
+              {
+                  $Key_Where = "si_id < $this->si_id "; 
+              }
+              else  
+              {
+                  $Key_Where = "si_id < $this->si_id "; 
+              }
+              $Where_Start = (empty($sc_where)) ? " where " . $Key_Where :  $sc_where . " and (" . $Key_Where . ")";
+              $nmgp_select = "SELECT count(*) AS countTest from " . $this->Ini->nm_tabela . $Where_Start; 
+              $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nmgp_select; 
+              $rt = $this->Db->Execute($nmgp_select) ; 
+              if ($rt === false && !$rt->EOF && $GLOBALS["NM_ERRO_IBASE"] != 1) 
+              { 
+                  $this->Erro->mensagem (__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_dber'], $this->Db->ErrorMsg()); 
+                  exit ; 
+              }  
+              $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start'] = $rt->fields[0];
+              $rt->Close(); 
+          }
+      } 
+      else 
+      { 
+          $qt_geral_reg_form_jap_solicitud_inspeccion = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['total'];
+      } 
+      if ($this->nmgp_opcao == "inicio") 
+      { 
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start'] = 0; 
+      } 
+      if ($this->nmgp_opcao == "avanca")  
+      { 
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start']++; 
+          if ($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start'] > $qt_geral_reg_form_jap_solicitud_inspeccion)
+          {
+              $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start'] = $qt_geral_reg_form_jap_solicitud_inspeccion; 
+          }
+      } 
+      if ($this->nmgp_opcao == "retorna") 
+      { 
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start']--; 
+          if ($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start'] < 0)
+          {
+              $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start'] = 0; 
+          }
+      } 
+      if ($this->nmgp_opcao == "final") 
+      { 
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start'] = $qt_geral_reg_form_jap_solicitud_inspeccion; 
+      } 
+      if ($this->nmgp_opcao == "navpage" && ($this->nmgp_ordem - 1) <= $qt_geral_reg_form_jap_solicitud_inspeccion) 
+      { 
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start'] = $this->nmgp_ordem - 1; 
+      } 
+      if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start']) || empty($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start']))
+      {
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start'] = 0;
+      }
+      $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_qtd'] = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start'] + 1;
+      $this->NM_ajax_info['navSummary']['reg_ini'] = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start'] + 1; 
+      $this->NM_ajax_info['navSummary']['reg_qtd'] = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_qtd']; 
+      $this->NM_ajax_info['navSummary']['reg_tot'] = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['total'] + 1; 
+      $this->NM_gera_nav_page(); 
+      $this->NM_ajax_info['navPage'] = $this->SC_nav_page; 
+      $GLOBALS["NM_ERRO_IBASE"] = 0;  
+//---------- 
+      if ($this->nmgp_opcao != "novo" && $this->nmgp_opcao != "nada" && $this->nmgp_opcao != "refresh_insert") 
+      { 
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['parms'] = ""; 
+          if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_ibase))
+          { 
+              $GLOBALS["NM_ERRO_IBASE"] = 1;  
+          } 
+          if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_sybase))
+          { 
+              $nmgp_select = "SELECT si_id, si_empresa, si_secuecial, str_replace (convert(char(10),si_fecha,102), '.', '-') + ' ' + convert(char(8),si_fecha,20), si_contrato, si_tipo_inspeccion, si_comentario, si_usuario_registra, si_usuario_inspecciona, str_replace (convert(char(10),si_fecha_inspeccion,102), '.', '-') + ' ' + convert(char(8),si_fecha_inspeccion,20), si_observacion, si_estado, si_motivo_anulacion from " . $this->Ini->nm_tabela ; 
+          } 
+          elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mssql))
+          { 
+              $nmgp_select = "SELECT si_id, si_empresa, si_secuecial, convert(char(23),si_fecha,121), si_contrato, si_tipo_inspeccion, si_comentario, si_usuario_registra, si_usuario_inspecciona, convert(char(23),si_fecha_inspeccion,121), si_observacion, si_estado, si_motivo_anulacion from " . $this->Ini->nm_tabela ; 
+          } 
+          elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_oracle))
+          { 
+              $nmgp_select = "SELECT si_id, si_empresa, si_secuecial, si_fecha, si_contrato, si_tipo_inspeccion, si_comentario, si_usuario_registra, si_usuario_inspecciona, si_fecha_inspeccion, si_observacion, si_estado, si_motivo_anulacion from " . $this->Ini->nm_tabela ; 
+          } 
+          elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_informix))
+          { 
+              $nmgp_select = "SELECT si_id, si_empresa, si_secuecial, EXTEND(si_fecha, YEAR TO DAY), si_contrato, si_tipo_inspeccion, si_comentario, si_usuario_registra, si_usuario_inspecciona, EXTEND(si_fecha_inspeccion, YEAR TO DAY), si_observacion, si_estado, si_motivo_anulacion from " . $this->Ini->nm_tabela ; 
+          } 
+          else 
+          { 
+              $nmgp_select = "SELECT si_id, si_empresa, si_secuecial, si_fecha, si_contrato, si_tipo_inspeccion, si_comentario, si_usuario_registra, si_usuario_inspecciona, si_fecha_inspeccion, si_observacion, si_estado, si_motivo_anulacion from " . $this->Ini->nm_tabela ; 
+          } 
+          $aWhere = array();
+          $aWhere[] = $sc_where_filter;
+          if ($this->nmgp_opcao == "igual" || (($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['run_iframe'] == "F" || $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['run_iframe'] == "R") && ($this->sc_evento == "insert" || $this->sc_evento == "update")) )
+          { 
+              if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))
+              {
+                  $aWhere[] = "si_id = $this->si_id"; 
+              }  
+              elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mssql))
+              {
+                  $aWhere[] = "si_id = $this->si_id"; 
+              }  
+              elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_oracle))
+              {
+                  $aWhere[] = "si_id = $this->si_id"; 
+              }  
+              elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_informix))
+              {
+                  $aWhere[] = "si_id = $this->si_id"; 
+              }  
+              else  
+              {
+                  $aWhere[] = "si_id = $this->si_id"; 
+              }  
+              if (!empty($sc_where_filter))  
+              {
+                  $teste_select = $nmgp_select . $this->returnWhere($aWhere);
+                  $_SESSION['scriptcase']['sc_sql_ult_comando'] = $teste_select; 
+                  $rs = $this->Db->Execute($teste_select); 
+                  if ($rs->EOF)
+                  {
+                     $aWhere = array($sc_where_filter);
+                  }  
+                  $rs->Close(); 
+              }  
+          } 
+          $nmgp_select .= $this->returnWhere($aWhere) . ' ';
+          $sc_order_by = "";
+          $sc_order_by = "si_id";
+          $sc_order_by = str_replace("order by ", "", $sc_order_by);
+          $sc_order_by = str_replace("ORDER BY ", "", trim($sc_order_by));
+          if (!empty($sc_order_by))
+          {
+              $nmgp_select .= " order by $sc_order_by "; 
+          }
+          if ($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['run_iframe'] == "F" || $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['run_iframe'] == "R")
+          {
+              if ($this->sc_evento == "insert" || $this->sc_evento == "update")
+              {
+                  $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['select'] = $nmgp_select;
+                  $this->nm_gera_html();
+              } 
+              elseif (!empty($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['select']))
+              { 
+                  $nmgp_select = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['select'];
+                  $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['select'] = ""; 
+              } 
+          } 
+          if ($this->nmgp_opcao == "igual") 
+          { 
+              $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nmgp_select; 
+              $rs = $this->Db->Execute($nmgp_select) ; 
+          } 
+          elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mysql) || in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_postgres) || in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_oracle) || in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_ibase) || in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_db2))
+          { 
+              $_SESSION['scriptcase']['sc_sql_ult_comando'] = "SelectLimit($nmgp_select, 1, " . $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start'] . ")" ; 
+              $rs = $this->Db->SelectLimit($nmgp_select, 1, $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start']) ; 
+          } 
+          elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mssql))
+          { 
+              $_SESSION['scriptcase']['sc_sql_ult_comando'] = "SelectLimit($nmgp_select, 1, " . $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start'] . ")" ; 
+              $rs = $this->Db->SelectLimit($nmgp_select, 1, $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start']) ; 
+          } 
+          elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_informix))
+          { 
+              $_SESSION['scriptcase']['sc_sql_ult_comando'] = "SelectLimit($nmgp_select, 1, " . $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start'] . ")" ; 
+              $rs = $this->Db->SelectLimit($nmgp_select, 1, $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start']) ; 
+          } 
+          else  
+          { 
+              $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nmgp_select; 
+              $rs = $this->Db->Execute($nmgp_select) ; 
+              if (!$rs === false && !$rs->EOF) 
+              { 
+                  $rs->Move($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start']) ;  
+              } 
+          } 
+          if ($rs === false && !$rs->EOF && $GLOBALS["NM_ERRO_IBASE"] != 1) 
+          { 
+              $this->Erro->mensagem (__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_dber'], $this->Db->ErrorMsg()); 
+              exit ; 
+          }  
+          if ($rs === false && $GLOBALS["NM_ERRO_IBASE"] == 1) 
+          { 
+              $GLOBALS["NM_ERRO_IBASE"] = 0; 
+              $this->Erro->mensagem (__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_nfnd_extr'], $this->Db->ErrorMsg()); 
+              exit ; 
+          }  
+          if ($rs->EOF) 
+          { 
+              if (!empty($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['where_filter']))
+              {
+                  $this->nmgp_form_empty        = true;
+                  $this->NM_ajax_info['buttonDisplay']['first']   = $this->nmgp_botoes['first']   = "off";
+                  $this->NM_ajax_info['buttonDisplay']['back']    = $this->nmgp_botoes['back']    = "off";
+                  $this->NM_ajax_info['buttonDisplay']['forward'] = $this->nmgp_botoes['forward'] = "off";
+                  $this->NM_ajax_info['buttonDisplay']['last']    = $this->nmgp_botoes['last']    = "off";
+                  $this->NM_ajax_info['buttonDisplay']['update']  = $this->nmgp_botoes['update']  = "off";
+                  $this->NM_ajax_info['buttonDisplay']['delete']  = $this->nmgp_botoes['delete']  = "off";
+                  $this->NM_ajax_info['buttonDisplay']['first']   = $this->nmgp_botoes['insert']  = "off";
+                  $this->NM_ajax_info['buttonDisplay']['enviar_inspeccion'] = $this->nmgp_botoes['enviar_inspeccion'] = "off";
+                  $this->NM_ajax_info['buttonDisplay']['imprimir'] = $this->nmgp_botoes['imprimir'] = "off";
+                  $this->NM_ajax_info['buttonDisplay']['anular'] = $this->nmgp_botoes['anular'] = "off";
+                  $this->NM_ajax_info['buttonDisplay']['finalizar'] = $this->nmgp_botoes['finalizar'] = "off";
+                  $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['empty_filter'] = true;
+                  return; 
+              }
+              if ($this->nmgp_botoes['insert'] != "on")
+              {
+                  $this->nmgp_form_empty        = true;
+                  $this->NM_ajax_info['buttonDisplay']['first']   = $this->nmgp_botoes['first']   = "off";
+                  $this->NM_ajax_info['buttonDisplay']['back']    = $this->nmgp_botoes['back']    = "off";
+                  $this->NM_ajax_info['buttonDisplay']['forward'] = $this->nmgp_botoes['forward'] = "off";
+                  $this->NM_ajax_info['buttonDisplay']['last']    = $this->nmgp_botoes['last']    = "off";
+              }
+              $this->nmgp_opcao = "novo"; 
+              $this->nm_flag_saida_novo = "S"; 
+              $rs->Close(); 
+              $this->NM_ajax_info['buttonDisplay']['enviar_inspeccion'] = $this->nmgp_botoes['enviar_inspeccion'] = "off";
+              $this->NM_ajax_info['buttonDisplay']['imprimir'] = $this->nmgp_botoes['imprimir'] = "off";
+              $this->NM_ajax_info['buttonDisplay']['anular'] = $this->nmgp_botoes['anular'] = "off";
+              $this->NM_ajax_info['buttonDisplay']['finalizar'] = $this->nmgp_botoes['finalizar'] = "off";
+              if ($this->aba_iframe)
+              {
+                  $this->NM_ajax_info['buttonDisplay']['exit'] = $this->nmgp_botoes['exit'] = 'off';
+              }
+          } 
+          if ($rs === false && $GLOBALS["NM_ERRO_IBASE"] == 1) 
+          { 
+              $GLOBALS["NM_ERRO_IBASE"] = 0; 
+              $this->Erro->mensagem (__FILE__, __LINE__, "critica", $this->Ini->Nm_lang['lang_errm_nfnd_extr']); 
+              $this->nmgp_opcao = "novo"; 
+          }  
+          if ($this->nmgp_opcao != "novo") 
+          { 
+              $this->si_id = $rs->fields[0] ; 
+              $this->nmgp_dados_select['si_id'] = $this->si_id;
+              $this->si_empresa = $rs->fields[1] ; 
+              $this->nmgp_dados_select['si_empresa'] = $this->si_empresa;
+              $this->si_secuecial = $rs->fields[2] ; 
+              $this->nmgp_dados_select['si_secuecial'] = $this->si_secuecial;
+              $this->si_fecha = $rs->fields[3] ; 
+              $this->nmgp_dados_select['si_fecha'] = $this->si_fecha;
+              $this->si_contrato = $rs->fields[4] ; 
+              $this->nmgp_dados_select['si_contrato'] = $this->si_contrato;
+              $this->si_tipo_inspeccion = $rs->fields[5] ; 
+              $this->nmgp_dados_select['si_tipo_inspeccion'] = $this->si_tipo_inspeccion;
+              $this->si_comentario = $rs->fields[6] ; 
+              $this->nmgp_dados_select['si_comentario'] = $this->si_comentario;
+              $this->si_usuario_registra = $rs->fields[7] ; 
+              $this->nmgp_dados_select['si_usuario_registra'] = $this->si_usuario_registra;
+              $this->si_usuario_inspecciona = $rs->fields[8] ; 
+              $this->nmgp_dados_select['si_usuario_inspecciona'] = $this->si_usuario_inspecciona;
+              $this->si_fecha_inspeccion = $rs->fields[9] ; 
+              $this->nmgp_dados_select['si_fecha_inspeccion'] = $this->si_fecha_inspeccion;
+              $this->si_observacion = $rs->fields[10] ; 
+              $this->nmgp_dados_select['si_observacion'] = $this->si_observacion;
+              $this->si_estado = $rs->fields[11] ; 
+              $this->nmgp_dados_select['si_estado'] = $this->si_estado;
+              $this->si_motivo_anulacion = $rs->fields[12] ; 
+              $this->nmgp_dados_select['si_motivo_anulacion'] = $this->si_motivo_anulacion;
+          $GLOBALS["NM_ERRO_IBASE"] = 0; 
+              $this->si_id = (string)$this->si_id; 
+              $this->si_secuecial = (string)$this->si_secuecial; 
+              $this->si_contrato = (string)$this->si_contrato; 
+              $this->si_tipo_inspeccion = (string)$this->si_tipo_inspeccion; 
+              $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['parms'] = "si_id?#?$this->si_id?@?";
+          } 
+          $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dados_select'] = $this->nmgp_dados_select;
+          if (!$this->NM_ajax_flag || 'backup_line' != $this->NM_ajax_opcao)
+          {
+              $this->Nav_permite_ret = 0 != $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start'];
+              $this->Nav_permite_ava = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start'] < $qt_geral_reg_form_jap_solicitud_inspeccion;
+              $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['opcao']   = '';
+          }
+      } 
+      if ($this->nmgp_opcao == "novo" || $this->nmgp_opcao == "refresh_insert") 
+      { 
+          $this->sc_evento_old = $this->sc_evento;
+          $this->sc_evento = "novo";
+          if ('refresh_insert' == $this->nmgp_opcao)
+          {
+              $this->nmgp_opcao = 'novo';
+          }
+          else
+          {
+              $this->nm_formatar_campos();
+              $this->si_id = "";  
+              $this->nmgp_dados_form["si_id"] = $this->si_id;
+              $this->si_empresa = "" . $_SESSION['Igtech_RucEmpresa'] . "";  
+              $this->nmgp_dados_form["si_empresa"] = $this->si_empresa;
+              $this->si_secuecial = "";  
+              $this->nmgp_dados_form["si_secuecial"] = $this->si_secuecial;
+              $this->si_fecha =  date('Y') . "-" . date('m')  . "-" . date('d');
+              $this->nmgp_dados_form["si_fecha"] = $this->si_fecha;
+              $this->si_contrato = "";  
+              $this->nmgp_dados_form["si_contrato"] = $this->si_contrato;
+              $this->si_tipo_inspeccion = "";  
+              $this->nmgp_dados_form["si_tipo_inspeccion"] = $this->si_tipo_inspeccion;
+              $this->si_comentario = "";  
+              $this->nmgp_dados_form["si_comentario"] = $this->si_comentario;
+              $this->si_usuario_registra = "" . $_SESSION['Igtech_SesionLogin'] . "";  
+              $this->nmgp_dados_form["si_usuario_registra"] = $this->si_usuario_registra;
+              $this->si_usuario_inspecciona = "";  
+              $this->nmgp_dados_form["si_usuario_inspecciona"] = $this->si_usuario_inspecciona;
+              $this->si_fecha_inspeccion =  date('Y') . "-" . date('m')  . "-" . date('d');
+              $this->nmgp_dados_form["si_fecha_inspeccion"] = $this->si_fecha_inspeccion;
+              $this->si_observacion = "";  
+              $this->nmgp_dados_form["si_observacion"] = $this->si_observacion;
+              $this->si_estado = "";  
+              $this->nmgp_dados_form["si_estado"] = $this->si_estado;
+              $this->si_motivo_anulacion = "";  
+              $this->nmgp_dados_form["si_motivo_anulacion"] = $this->si_motivo_anulacion;
+              $this->propietario = "";  
+              $this->nmgp_dados_form["propietario"] = $this->propietario;
+              $this->contrato = "";  
+              $this->nmgp_dados_form["contrato"] = $this->contrato;
+              $this->direccion = "";  
+              $this->nmgp_dados_form["direccion"] = $this->direccion;
+              $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dados_form'] = $this->nmgp_dados_form;
+              $this->formatado = false;
+          }
+          if (($this->Embutida_form || $this->Embutida_multi) && isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['foreign_key']) && !empty($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['foreign_key']))
+          {
+              foreach ($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['foreign_key'] as $sFKName => $sFKValue)
+              {
+                   if (isset($this->sc_conv_var[$sFKName]))
+                   {
+                       $sFKName = $this->sc_conv_var[$sFKName];
+                   }
+                  eval("\$this->" . $sFKName . " = \"" . $sFKValue . "\";");
+              }
+          }
+      }  
+//
+//
+//-- 
+      if ($this->nmgp_opcao != "novo") 
+      {
+      }
+      if (!isset($this->nmgp_refresh_fields)) 
+      { 
+          $this->nm_proc_onload();
+      }
+  }
+// 
+//-- 
+   function nm_db_retorna($str_where_param = '') 
+   {  
+     $_SESSION['scriptcase']['sc_sql_ult_conexao'] = ''; 
+     $str_where_filter = ('' != $str_where_param) ? ' and ' . $str_where_param : '';
+     if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))
+     {
+         $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select max(si_id) from " . $this->Ini->nm_tabela . " where si_id < $this->si_id" . $str_where_filter; 
+         $rs = $this->Db->Execute("select max(si_id) from " . $this->Ini->nm_tabela . " where si_id < $this->si_id" . $str_where_filter); 
+     }  
+     elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mssql))
+     {
+         $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select max(si_id) from " . $this->Ini->nm_tabela . " where si_id < $this->si_id" . $str_where_filter; 
+         $rs = $this->Db->Execute("select max(si_id) from " . $this->Ini->nm_tabela . " where si_id < $this->si_id" . $str_where_filter); 
+     }  
+     elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_oracle))
+     {
+         $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select max(si_id) from " . $this->Ini->nm_tabela . " where si_id < $this->si_id" . $str_where_filter; 
+         $rs = $this->Db->Execute("select max(si_id) from " . $this->Ini->nm_tabela . " where si_id < $this->si_id" . $str_where_filter); 
+     }  
+     elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_informix))
+     {
+         $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select max(si_id) from " . $this->Ini->nm_tabela . " where si_id < $this->si_id" . $str_where_filter; 
+         $rs = $this->Db->Execute("select max(si_id) from " . $this->Ini->nm_tabela . " where si_id < $this->si_id" . $str_where_filter); 
+     }  
+     else  
+     {
+         $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select max(si_id) from " . $this->Ini->nm_tabela . " where si_id < $this->si_id" . $str_where_filter; 
+         $rs = $this->Db->Execute("select max(si_id) from " . $this->Ini->nm_tabela . " where si_id < $this->si_id" . $str_where_filter); 
+     }  
+     if ($rs === false && !$rs->EOF && $GLOBALS["NM_ERRO_IBASE"] != 1) 
+     { 
+         $this->Erro->mensagem (__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_dber'], $this->Db->ErrorMsg()); 
+         exit ; 
+     }  
+     if (isset($rs->fields[0]) && $rs->fields[0] != "") 
+     { 
+         $this->si_id = substr($this->Db->qstr($rs->fields[0]), 1, -1); 
+         $rs->Close();  
+         $this->nmgp_opcao = "igual";  
+         return ;  
+     } 
+     else 
+     { 
+        $this->nmgp_opcao = "inicio";  
+        $rs->Close();  
+        return ; 
+     } 
+   } 
+// 
+//-- 
+   function nm_db_avanca($str_where_param = '') 
+   {  
+     $_SESSION['scriptcase']['sc_sql_ult_conexao'] = ''; 
+     $str_where_filter = ('' != $str_where_param) ? ' and ' . $str_where_param : '';
+     if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))
+     {
+         $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select min(si_id) from " . $this->Ini->nm_tabela . " where si_id > $this->si_id" . $str_where_filter; 
+         $rs = $this->Db->Execute("select min(si_id) from " . $this->Ini->nm_tabela . " where si_id > $this->si_id" . $str_where_filter); 
+     }  
+     elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mssql))
+     {
+         $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select min(si_id) from " . $this->Ini->nm_tabela . " where si_id > $this->si_id" . $str_where_filter; 
+         $rs = $this->Db->Execute("select min(si_id) from " . $this->Ini->nm_tabela . " where si_id > $this->si_id" . $str_where_filter); 
+     }  
+     elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_oracle))
+     {
+         $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select min(si_id) from " . $this->Ini->nm_tabela . " where si_id > $this->si_id" . $str_where_filter; 
+         $rs = $this->Db->Execute("select min(si_id) from " . $this->Ini->nm_tabela . " where si_id > $this->si_id" . $str_where_filter); 
+     }  
+     elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_informix))
+     {
+         $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select min(si_id) from " . $this->Ini->nm_tabela . " where si_id > $this->si_id" . $str_where_filter; 
+         $rs = $this->Db->Execute("select min(si_id) from " . $this->Ini->nm_tabela . " where si_id > $this->si_id" . $str_where_filter); 
+     }  
+     else  
+     {
+         $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select min(si_id) from " . $this->Ini->nm_tabela . " where si_id > $this->si_id" . $str_where_filter; 
+         $rs = $this->Db->Execute("select min(si_id) from " . $this->Ini->nm_tabela . " where si_id > $this->si_id" . $str_where_filter); 
+     }  
+     if ($rs === false && !$rs->EOF && $GLOBALS["NM_ERRO_IBASE"] != 1) 
+     { 
+         $this->Erro->mensagem (__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_dber'], $this->Db->ErrorMsg()); 
+         exit ; 
+     }  
+     if (isset($rs->fields[0]) && $rs->fields[0] != "") 
+     { 
+         $this->si_id = substr($this->Db->qstr($rs->fields[0]), 1, -1); 
+         $rs->Close();  
+         $this->nmgp_opcao = "igual";  
+         return ;  
+     } 
+     else 
+     { 
+        $this->nmgp_opcao = "final";  
+        $rs->Close();  
+        return ; 
+     } 
+   } 
+// 
+//-- 
+   function nm_db_inicio($str_where_param = '') 
+   {   
+     $_SESSION['scriptcase']['sc_sql_ult_conexao'] = ''; 
+     $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select count(*) AS countTest from " . $this->Ini->nm_tabela; 
+     $rs = $this->Db->Execute("select count(*) AS countTest from " . $this->Ini->nm_tabela);
+     if ($rs === false && !$rs->EOF && $GLOBALS["NM_ERRO_IBASE"] != 1) 
+     { 
+         $this->Erro->mensagem (__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_dber'], $this->Db->ErrorMsg()); 
+         exit ; 
+     }  
+     if ($rs->fields[0] == 0) 
+     { 
+         $this->nmgp_opcao = "novo"; 
+         $this->nm_flag_saida_novo = "S"; 
+         $rs->Close(); 
+         if ($this->aba_iframe)
+         {
+             $this->nmgp_botoes['exit'] = 'off';
+         }
+         return;
+     }
+     $str_where_filter = ('' != $str_where_param) ? ' where ' . $str_where_param : '';
+     if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))
+     {
+         $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select min(si_id) from " . $this->Ini->nm_tabela . " " . $str_where_filter; 
+         $rs = $this->Db->Execute("select min(si_id) from " . $this->Ini->nm_tabela . " " . $str_where_filter); 
+     }  
+     elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mssql))
+     {
+         $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select min(si_id) from " . $this->Ini->nm_tabela . " " . $str_where_filter; 
+         $rs = $this->Db->Execute("select min(si_id) from " . $this->Ini->nm_tabela . " " . $str_where_filter); 
+     }  
+     elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_oracle))
+     {
+         $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select min(si_id) from " . $this->Ini->nm_tabela . " " . $str_where_filter; 
+         $rs = $this->Db->Execute("select min(si_id) from " . $this->Ini->nm_tabela . " " . $str_where_filter); 
+     }  
+     elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_informix))
+     {
+         $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select min(si_id) from " . $this->Ini->nm_tabela . " " . $str_where_filter; 
+         $rs = $this->Db->Execute("select min(si_id) from " . $this->Ini->nm_tabela . " " . $str_where_filter); 
+     }  
+     else  
+     {
+         $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select min(si_id) from " . $this->Ini->nm_tabela . " " . $str_where_filter; 
+         $rs = $this->Db->Execute("select min(si_id) from " . $this->Ini->nm_tabela . " " . $str_where_filter); 
+     }  
+     if ($rs === false && !$rs->EOF && $GLOBALS["NM_ERRO_IBASE"] != 1) 
+     { 
+         $this->Erro->mensagem (__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_dber'], $this->Db->ErrorMsg()); 
+         exit ; 
+     }  
+     if (!isset($rs->fields[0]) || $rs->EOF) 
+     { 
+         if (!empty($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['where_filter']))
+         { 
+             $rs->Close();  
+             return ; 
+         } 
+         $this->nm_flag_saida_novo = "S"; 
+         $this->nmgp_opcao = "novo";  
+         $rs->Close();  
+         if ($this->aba_iframe)
+         {
+             $this->nmgp_botoes['exit'] = 'off';
+         }
+         return ; 
+     } 
+     $this->si_id = substr($this->Db->qstr($rs->fields[0]), 1, -1); 
+     $rs->Close();  
+     $this->nmgp_opcao = "igual";  
+     return ;  
+   } 
+// 
+//-- 
+   function nm_db_final($str_where_param = '') 
+   { 
+     $_SESSION['scriptcase']['sc_sql_ult_conexao'] = ''; 
+     $str_where_filter = ('' != $str_where_param) ? ' where ' . $str_where_param : '';
+     if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_access))
+     {
+         $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select max(si_id) from " . $this->Ini->nm_tabela . " " . $str_where_filter; 
+         $rs = $this->Db->Execute("select max(si_id) from " . $this->Ini->nm_tabela . " " . $str_where_filter); 
+     }  
+     elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_mssql))
+     {
+         $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select max(si_id) from " . $this->Ini->nm_tabela . " " . $str_where_filter; 
+         $rs = $this->Db->Execute("select max(si_id) from " . $this->Ini->nm_tabela . " " . $str_where_filter); 
+     }  
+     elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_oracle))
+     {
+         $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select max(si_id) from " . $this->Ini->nm_tabela . " " . $str_where_filter; 
+         $rs = $this->Db->Execute("select max(si_id) from " . $this->Ini->nm_tabela . " " . $str_where_filter); 
+     }  
+     elseif (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_informix))
+     {
+         $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select max(si_id) from " . $this->Ini->nm_tabela . " " . $str_where_filter; 
+         $rs = $this->Db->Execute("select max(si_id) from " . $this->Ini->nm_tabela . " " . $str_where_filter); 
+     }  
+     else  
+     {
+         $_SESSION['scriptcase']['sc_sql_ult_comando'] = "select max(si_id) from " . $this->Ini->nm_tabela . " " . $str_where_filter; 
+         $rs = $this->Db->Execute("select max(si_id) from " . $this->Ini->nm_tabela . " " . $str_where_filter); 
+     }  
+     if ($rs === false && !$rs->EOF && $GLOBALS["NM_ERRO_IBASE"] != 1) 
+     { 
+         $this->Erro->mensagem (__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_dber'], $this->Db->ErrorMsg()); 
+         exit ; 
+     }  
+     if (!isset($rs->fields[0]) || $rs->EOF) 
+     { 
+         $this->nm_flag_saida_novo = "S"; 
+         $this->nmgp_opcao = "novo";  
+         $rs->Close();  
+         if ($this->aba_iframe)
+         {
+             $this->nmgp_botoes['exit'] = 'off';
+         }
+         return ; 
+     } 
+     $this->si_id = substr($this->Db->qstr($rs->fields[0]), 1, -1); 
+     $rs->Close();  
+     $this->nmgp_opcao = "igual";  
+     return ;  
+   } 
+// 
+   function NM_gera_log_key($evt) 
+   {
+       $this->SC_log_arr = array();
+       $this->SC_log_atv = true;
+       if ($evt == "incluir")
+       {
+           $this->SC_log_evt = "insert";
+       }
+       if ($evt == "alterar")
+       {
+           $this->SC_log_evt = "update";
+       }
+       if ($evt == "excluir")
+       {
+           $this->SC_log_evt = "delete";
+       }
+       $this->SC_log_arr['keys']['si_id'] =  $this->si_id;
+   }
+// 
+   function NM_gera_log_old() 
+   {
+       if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dados_select']))
+       {
+           $nmgp_dados_select = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dados_select'];
+           $this->SC_log_arr['fields']['si_empresa']['0'] =  $nmgp_dados_select['si_empresa'];
+           $this->SC_log_arr['fields']['si_secuecial']['0'] =  $nmgp_dados_select['si_secuecial'];
+           $this->SC_log_arr['fields']['si_fecha']['0'] =  $nmgp_dados_select['si_fecha'];
+           $this->SC_log_arr['fields']['si_contrato']['0'] =  $nmgp_dados_select['si_contrato'];
+           $this->SC_log_arr['fields']['si_tipo_inspeccion']['0'] =  $nmgp_dados_select['si_tipo_inspeccion'];
+           $this->SC_log_arr['fields']['si_comentario']['0'] =  $nmgp_dados_select['si_comentario'];
+           $this->SC_log_arr['fields']['si_usuario_registra']['0'] =  $nmgp_dados_select['si_usuario_registra'];
+           $this->SC_log_arr['fields']['si_usuario_inspecciona']['0'] =  $nmgp_dados_select['si_usuario_inspecciona'];
+           $this->SC_log_arr['fields']['si_fecha_inspeccion']['0'] =  $nmgp_dados_select['si_fecha_inspeccion'];
+           $this->SC_log_arr['fields']['si_observacion']['0'] =  $nmgp_dados_select['si_observacion'];
+           $this->SC_log_arr['fields']['si_estado']['0'] =  $nmgp_dados_select['si_estado'];
+           $this->SC_log_arr['fields']['si_motivo_anulacion']['0'] =  $nmgp_dados_select['si_motivo_anulacion'];
+       }
+   }
+// 
+   function NM_gera_log_new() 
+   {
+       $this->SC_log_arr['fields']['si_empresa']['1'] =  $this->si_empresa;
+       $this->SC_log_arr['fields']['si_secuecial']['1'] =  $this->si_secuecial;
+       $this->SC_log_arr['fields']['si_fecha']['1'] =  $this->si_fecha;
+       $this->SC_log_arr['fields']['si_contrato']['1'] =  $this->si_contrato;
+       $this->SC_log_arr['fields']['si_tipo_inspeccion']['1'] =  $this->si_tipo_inspeccion;
+       $this->SC_log_arr['fields']['si_comentario']['1'] =  $this->si_comentario;
+       $this->SC_log_arr['fields']['si_usuario_registra']['1'] =  $this->si_usuario_registra;
+       $this->SC_log_arr['fields']['si_usuario_inspecciona']['1'] =  $this->si_usuario_inspecciona;
+       $this->SC_log_arr['fields']['si_fecha_inspeccion']['1'] =  $this->si_fecha_inspeccion;
+       $this->SC_log_arr['fields']['si_observacion']['1'] =  $this->si_observacion;
+       $this->SC_log_arr['fields']['si_estado']['1'] =  $this->si_estado;
+       $this->SC_log_arr['fields']['si_motivo_anulacion']['1'] =  $this->si_motivo_anulacion;
+   }
+// 
+   function NM_gera_log_compress() 
+   {
+       foreach ($this->SC_log_arr['fields'] as $fild => $data_f)
+       {
+           if ($data_f[0] == $data_f[1] || ($data_f[0] == "" && $data_f[1] == "null"))
+           {
+               unset($this->SC_log_arr['fields'][$fild]);
+           }
+       }
+   }
+// 
+   function NM_gera_log_output() 
+   {
+       $Log_output = "";
+       $prim_delim = "";
+       $Log_labels = array();
+       $Log_labels['si_empresa'] =  "{lang_empresa}";
+       $Log_labels['si_secuecial'] =  "{lang_secuencial}";
+       $Log_labels['si_fecha'] =  "{lang_fecha}";
+       $Log_labels['si_contrato'] =  "{lang_contrato}";
+       $Log_labels['si_tipo_inspeccion'] =  "{lang_tipo_inspeccion}";
+       $Log_labels['si_comentario'] =  "{lang_comentario}";
+       $Log_labels['si_usuario_registra'] =  "{lang_usuario_crea}";
+       $Log_labels['si_usuario_inspecciona'] =  "{lang_username}";
+       $Log_labels['si_fecha_inspeccion'] =  "{lang_fecha_inspeccion}";
+       $Log_labels['si_observacion'] =  "{lang_observacion}";
+       $Log_labels['si_estado'] =  "{lang_estado}";
+       $Log_labels['si_motivo_anulacion'] =  "{lang_motivo_rechazo}";
+       foreach ($this->SC_log_arr as $type => $dats)
+       {
+           if ($type == "keys")
+           {
+               $Log_output .= "--> keys <-- ";
+               foreach ($dats as $key => $data)
+               {
+                   $Log_output .=  $prim_delim . $key . " : " . $data;
+                   $prim_delim  = "||";
+               }
+           }
+           if ($type == "fields")
+           {
+               $Log_output .= $prim_delim . "--> fields <-- ";
+               $prim_delim = "";
+               if (empty($dats) && $this->SC_log_evt == "update")
+               {
+                   return;
+               }
+               foreach ($dats as $key => $data)
+               {
+                   foreach ($data as $tp => $val)
+                   {
+                      $tpok = ($tp == 0) ? " (old) " : " (new) ";
+                      $Log_output .= $prim_delim . $key . $tpok . " : " . $val;
+                      $prim_delim  = "||";
+                   }
+                   $Log_output .= $prim_delim . $key . " (label) " . " : " . $Log_labels[$key];
+               }
+           }
+       }
+       $this->NM_gera_log_insert("Scriptcase", $this->SC_log_evt, $Log_output);
+   }
+   function NM_gera_nav_page() 
+   {
+       $this->SC_nav_page = "";
+       $Arr_result        = array();
+       $Ind_result        = 0;
+       $Reg_Page   = 1;
+       $Max_link   = 5;
+       $Mid_link   = ceil($Max_link / 2);
+       $Corr_link  = (($Max_link % 2) == 0) ? 0 : 1;
+       $rec_tot    = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['total'] + 1;
+       $rec_fim    = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['reg_start'] + 1;
+       $rec_fim    = ($rec_fim > $rec_tot) ? $rec_tot : $rec_fim;
+       if ($rec_tot == 0)
+       {
+           return;
+       }
+       $Qtd_Pages  = ceil($rec_tot / $Reg_Page);
+       $Page_Atu   = ceil($rec_fim / $Reg_Page);
+       $Link_ini   = 1;
+       if ($Page_Atu > $Max_link)
+       {
+           $Link_ini = $Page_Atu - $Mid_link + $Corr_link;
+       }
+       elseif ($Page_Atu > $Mid_link)
+       {
+           $Link_ini = $Page_Atu - $Mid_link + $Corr_link;
+       }
+       if (($Qtd_Pages - $Link_ini) < $Max_link)
+       {
+           $Link_ini = ($Qtd_Pages - $Max_link) + 1;
+       }
+       if ($Link_ini < 1)
+       {
+           $Link_ini = 1;
+       }
+       for ($x = 0; $x < $Max_link && $Link_ini <= $Qtd_Pages; $x++)
+       {
+           $rec = (($Link_ini - 1) * $Reg_Page) + 1;
+           if ($Link_ini == $Page_Atu)
+           {
+               $Arr_result[$Ind_result] = '<span class="scFormToolbarNavOpen" style="vertical-align: middle;">' . $Link_ini . '</span>';
+           }
+           else
+           {
+               $Arr_result[$Ind_result] = '<a class="scFormToolbarNav" style="vertical-align: middle;" href="javascript: nm_navpage(' . $rec . ')">' . $Link_ini . '</a>';
+           }
+           $Link_ini++;
+           $Ind_result++;
+           if (!isset($this->Ini->Str_toolbarnav_separator))
+           {
+               $this->Ini->Str_toolbarnav_separator = "";
+           }
+           if (($x + 1) < $Max_link && $Link_ini <= $Qtd_Pages && '' != $this->Ini->Str_toolbarnav_separator && @is_file($this->Ini->root . $this->Ini->path_img_global . $this->Ini->Str_toolbarnav_separator))
+           {
+               $Arr_result[$Ind_result] = '<img src="' . $this->Ini->path_img_global . $this->Ini->Str_toolbarnav_separator . '" align="absmiddle" style="vertical-align: middle;">';
+               $Ind_result++;
+           }
+       }
+       if ($_SESSION['scriptcase']['reg_conf']['css_dir'] == "RTL")
+       {
+           krsort($Arr_result);
+       }
+       foreach ($Arr_result as $Ind_result => $Lin_result)
+       {
+           $this->SC_nav_page .= $Lin_result;
+       }
+   }
+        function initializeRecordState() {
+                $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['record_state'] = array();
+        }
+
+        function storeRecordState($sc_seq_vert = 0) {
+                if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['record_state'])) {
+                        $this->initializeRecordState();
+                }
+                if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['record_state'][$sc_seq_vert])) {
+                        $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['record_state'][$sc_seq_vert] = array();
+                }
+
+                $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['record_state'][$sc_seq_vert]['buttons'] = array(
+                        'delete' => $this->nmgp_botoes['delete'],
+                        'update' => $this->nmgp_botoes['update']
+                );
+        }
+
+        function loadRecordState($sc_seq_vert = 0) {
+                if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['record_state']) || !isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['record_state'][$sc_seq_vert])) {
+                        return;
+                }
+
+                if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['record_state'][$sc_seq_vert]['buttons']['delete'])) {
+                        $this->nmgp_botoes['delete'] = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['record_state'][$sc_seq_vert]['buttons']['delete'];
+                }
+                if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['record_state'][$sc_seq_vert]['buttons']['update'])) {
+                        $this->nmgp_botoes['update'] = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['record_state'][$sc_seq_vert]['buttons']['update'];
+                }
+        }
+
+//
+function si_contrato_onBlur()
+{
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+$original_si_contrato = $this->si_contrato;
+$original_propietario = $this->propietario;
+$original_contrato = $this->contrato;
+$original_direccion = $this->direccion;
+
+$select_sql="SELECT 
+con_nombre,
+con_numero_contrato,
+con_direccion_predio 
+FROM v_jap_contrato 
+WHERE con_id=".$this->si_contrato ;
+
+ 
+      $nm_select = $select_sql; 
+      $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nm_select; 
+      $_SESSION['scriptcase']['sc_sql_ult_conexao'] = ''; 
+      $this->rs = array();
+      if ($SCrx = $this->Db->Execute($nm_select)) 
+      { 
+          $SCy = 0; 
+          $nm_count = $SCrx->FieldCount();
+          while (!$SCrx->EOF)
+          { 
+                 for ($SCx = 0; $SCx < $nm_count; $SCx++)
+                 { 
+                      $this->rs[$SCy] [$SCx] = $SCrx->fields[$SCx];
+                 }
+                 $SCy++; 
+                 $SCrx->MoveNext();
+          } 
+          $SCrx->Close();
+      } 
+      elseif (isset($GLOBALS["NM_ERRO_IBASE"]) && $GLOBALS["NM_ERRO_IBASE"] != 1)  
+      { 
+          $this->rs = false;
+          $this->rs_erro = $this->Db->ErrorMsg();
+      } 
+
+if(isset($this->rs[0][0])){
+	$this->propietario =$this->rs[0][0];
+	$this->contrato =$this->rs[0][1];
+	$this->direccion =$this->rs[0][2];
+}
+
+$modificado_si_contrato = $this->si_contrato;
+$modificado_propietario = $this->propietario;
+$modificado_contrato = $this->contrato;
+$modificado_direccion = $this->direccion;
+$this->nm_formatar_campos('si_contrato', 'propietario', 'contrato', 'direccion');
+if ($original_si_contrato !== $modificado_si_contrato || isset($this->nmgp_cmp_readonly['si_contrato']) || (isset($bFlagRead_si_contrato) && $bFlagRead_si_contrato))
+{
+    $this->ajax_return_values_si_contrato(true);
+}
+if ($original_propietario !== $modificado_propietario || isset($this->nmgp_cmp_readonly['propietario']) || (isset($bFlagRead_propietario) && $bFlagRead_propietario))
+{
+    $this->ajax_return_values_propietario(true);
+}
+if ($original_contrato !== $modificado_contrato || isset($this->nmgp_cmp_readonly['contrato']) || (isset($bFlagRead_contrato) && $bFlagRead_contrato))
+{
+    $this->ajax_return_values_contrato(true);
+}
+if ($original_direccion !== $modificado_direccion || isset($this->nmgp_cmp_readonly['direccion']) || (isset($bFlagRead_direccion) && $bFlagRead_direccion))
+{
+    $this->ajax_return_values_direccion(true);
+}
+$this->NM_ajax_info['event_field'] = 'si';
+form_jap_solicitud_inspeccion_pack_ajax_response();
+exit;
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function si_contrato_onChange()
+{
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+$original_si_contrato = $this->si_contrato;
+$original_propietario = $this->propietario;
+$original_contrato = $this->contrato;
+$original_direccion = $this->direccion;
+
+$select_sql="SELECT 
+con_nombre,
+con_numero_contrato,
+con_direccion_predio 
+FROM v_jap_contrato 
+WHERE con_id=".$this->si_contrato ;
+
+ 
+      $nm_select = $select_sql; 
+      $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nm_select; 
+      $_SESSION['scriptcase']['sc_sql_ult_conexao'] = ''; 
+      $this->rs = array();
+      if ($SCrx = $this->Db->Execute($nm_select)) 
+      { 
+          $SCy = 0; 
+          $nm_count = $SCrx->FieldCount();
+          while (!$SCrx->EOF)
+          { 
+                 for ($SCx = 0; $SCx < $nm_count; $SCx++)
+                 { 
+                      $this->rs[$SCy] [$SCx] = $SCrx->fields[$SCx];
+                 }
+                 $SCy++; 
+                 $SCrx->MoveNext();
+          } 
+          $SCrx->Close();
+      } 
+      elseif (isset($GLOBALS["NM_ERRO_IBASE"]) && $GLOBALS["NM_ERRO_IBASE"] != 1)  
+      { 
+          $this->rs = false;
+          $this->rs_erro = $this->Db->ErrorMsg();
+      } 
+
+if(isset($this->rs[0][0])){
+	$this->propietario =$this->rs[0][0];
+	$this->contrato =$this->rs[0][1];
+	$this->direccion =$this->rs[0][2];
+}
+
+$modificado_si_contrato = $this->si_contrato;
+$modificado_propietario = $this->propietario;
+$modificado_contrato = $this->contrato;
+$modificado_direccion = $this->direccion;
+$this->nm_formatar_campos('si_contrato', 'propietario', 'contrato', 'direccion');
+if ($original_si_contrato !== $modificado_si_contrato || isset($this->nmgp_cmp_readonly['si_contrato']) || (isset($bFlagRead_si_contrato) && $bFlagRead_si_contrato))
+{
+    $this->ajax_return_values_si_contrato(true);
+}
+if ($original_propietario !== $modificado_propietario || isset($this->nmgp_cmp_readonly['propietario']) || (isset($bFlagRead_propietario) && $bFlagRead_propietario))
+{
+    $this->ajax_return_values_propietario(true);
+}
+if ($original_contrato !== $modificado_contrato || isset($this->nmgp_cmp_readonly['contrato']) || (isset($bFlagRead_contrato) && $bFlagRead_contrato))
+{
+    $this->ajax_return_values_contrato(true);
+}
+if ($original_direccion !== $modificado_direccion || isset($this->nmgp_cmp_readonly['direccion']) || (isset($bFlagRead_direccion) && $bFlagRead_direccion))
+{
+    $this->ajax_return_values_direccion(true);
+}
+$this->NM_ajax_info['event_field'] = 'si';
+form_jap_solicitud_inspeccion_pack_ajax_response();
+exit;
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function scajaxbutton_anular_onClick()
+{
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+$original_si_motivo_anulacion = $this->si_motivo_anulacion;
+$original_si_id = $this->si_id;
+
+if($this->si_motivo_anulacion <>''){
+	$update_sql = "UPDATE jap_solicitud_inspeccion 
+					set si_estado='N',
+					si_motivo_anulacion='".$this->si_motivo_anulacion ."'
+					WHERE si_id=".$this->si_id ;
+	
+     $nm_select = $update_sql; 
+         $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nm_select;
+      $_SESSION['scriptcase']['sc_sql_ult_conexao'] = ''; 
+         $rf = $this->Db->Execute($nm_select);
+         if ($rf === false)
+         {
+             $this->Erro->mensagem (__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_dber'], $this->Db->ErrorMsg());
+             $this->NM_rollback_db(); 
+             if ($this->NM_ajax_flag)
+             {
+                form_jap_solicitud_inspeccion_pack_ajax_response();
+             }
+             exit;
+         }
+         $rf->Close();
+      
+	 if (!isset($this->Campos_Mens_erro) || empty($this->Campos_Mens_erro))
+ {
+$this->nmgp_redireciona_form($this->Ini->path_link . "" . SC_dir_app_name('grid_jap_solicitudes_x_inspeccionar') . "/", $this->nm_location, "", "_self", "ret_self", 440, 630);
+ };
+}else{
+	$this->nm_mens_alert[] = "NO ha registrado el motivo del rechazo"; $this->nm_params_alert[] = $array; if ($this->NM_ajax_flag) { $this->sc_ajax_alert("NO ha registrado el motivo del rechazo", $array); }}
+
+
+$modificado_si_motivo_anulacion = $this->si_motivo_anulacion;
+$modificado_si_id = $this->si_id;
+$this->nm_formatar_campos('si_motivo_anulacion', 'si_id');
+if ($original_si_motivo_anulacion !== $modificado_si_motivo_anulacion || isset($this->nmgp_cmp_readonly['si_motivo_anulacion']) || (isset($bFlagRead_si_motivo_anulacion) && $bFlagRead_si_motivo_anulacion))
+{
+    $this->ajax_return_values_si_motivo_anulacion(true);
+}
+if ($original_si_id !== $modificado_si_id || isset($this->nmgp_cmp_readonly['si_id']) || (isset($bFlagRead_si_id) && $bFlagRead_si_id))
+{
+    $this->ajax_return_values_si_id(true);
+}
+$this->NM_ajax_info['event_field'] = 'scajaxbutton';
+form_jap_solicitud_inspeccion_pack_ajax_response();
+exit;
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function scajaxbutton_finalizar_onClick()
+{
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+if (!isset($this->sc_temp_Igtech_SesionLogin)) {$this->sc_temp_Igtech_SesionLogin = (isset($_SESSION['Igtech_SesionLogin'])) ? $_SESSION['Igtech_SesionLogin'] : "";}
+  
+$original_si_observacion = $this->si_observacion;
+$original_si_fecha_inspeccion = $this->si_fecha_inspeccion;
+$original_si_id = $this->si_id;
+
+if($this->si_observacion <>''){
+	$update_sql = "UPDATE jap_solicitud_inspeccion 
+					set si_estado='P',
+					si_fecha_inspeccion='".$this->si_fecha_inspeccion ."',
+					si_observacion='".$this->si_observacion ."',
+					si_usuario_inspecciona='".$this->sc_temp_Igtech_SesionLogin."'
+					WHERE si_id=".$this->si_id ;
+	
+     $nm_select = $update_sql; 
+         $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nm_select;
+      $_SESSION['scriptcase']['sc_sql_ult_conexao'] = ''; 
+         $rf = $this->Db->Execute($nm_select);
+         if ($rf === false)
+         {
+             $this->Erro->mensagem (__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_dber'], $this->Db->ErrorMsg());
+             $this->NM_rollback_db(); 
+             if ($this->NM_ajax_flag)
+             {
+                form_jap_solicitud_inspeccion_pack_ajax_response();
+             }
+             exit;
+         }
+         $rf->Close();
+      
+	 if (isset($this->sc_temp_Igtech_SesionLogin)) { $_SESSION['Igtech_SesionLogin'] = $this->sc_temp_Igtech_SesionLogin;}
+ if (!isset($this->Campos_Mens_erro) || empty($this->Campos_Mens_erro))
+ {
+$this->nmgp_redireciona_form($this->Ini->path_link . "" . SC_dir_app_name('grid_jap_solicitudes_x_inspeccionar') . "/", $this->nm_location, "", "_self", "ret_self", 440, 630);
+ };
+}else{
+	$this->nm_mens_alert[] = "No ha registrado una observación"; $this->nm_params_alert[] = $array; if ($this->NM_ajax_flag) { $this->sc_ajax_alert("No ha registrado una observación", $array); }}
+
+
+
+if (isset($this->sc_temp_Igtech_SesionLogin)) { $_SESSION['Igtech_SesionLogin'] = $this->sc_temp_Igtech_SesionLogin;}
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+$modificado_si_observacion = $this->si_observacion;
+$modificado_si_fecha_inspeccion = $this->si_fecha_inspeccion;
+$modificado_si_id = $this->si_id;
+$this->nm_formatar_campos('si_observacion', 'si_fecha_inspeccion', 'si_id');
+if ($original_si_observacion !== $modificado_si_observacion || isset($this->nmgp_cmp_readonly['si_observacion']) || (isset($bFlagRead_si_observacion) && $bFlagRead_si_observacion))
+{
+    $this->ajax_return_values_si_observacion(true);
+}
+if ($original_si_fecha_inspeccion !== $modificado_si_fecha_inspeccion || isset($this->nmgp_cmp_readonly['si_fecha_inspeccion']) || (isset($bFlagRead_si_fecha_inspeccion) && $bFlagRead_si_fecha_inspeccion))
+{
+    $this->ajax_return_values_si_fecha_inspeccion(true);
+}
+if ($original_si_id !== $modificado_si_id || isset($this->nmgp_cmp_readonly['si_id']) || (isset($bFlagRead_si_id) && $bFlagRead_si_id))
+{
+    $this->ajax_return_values_si_id(true);
+}
+$this->NM_ajax_info['event_field'] = 'scajaxbutton';
+form_jap_solicitud_inspeccion_pack_ajax_response();
+exit;
+}
+function formulario_confirma_clave($fecha,$usuario,$clave){
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+		$datos="";
+		$nombre=$_SERVER["DOCUMENT_ROOT"].$_SESSION['RUTA_SKINS']."skin_mail_confirma_contrasenia.html";
+		$ruta_imagenes=$_SESSION['RUTA_IMAGENES'];
+		if (file_exists($nombre)){ 
+			  $fp = fopen ($nombre,"r"); 
+			  $datos = fread($fp, filesize($nombre));
+			  fclose($fp);
+			  $datos=str_replace('$fecha',$fecha,$datos);
+			  $datos=str_replace('$usuario',$usuario,$datos);
+			  $datos=str_replace('$clave',$clave,$datos);
+			  $datos=str_replace('imagenes/',$ruta_imagenes,$datos);
+			  $datos=str_replace('$DOMINIO',$_SESSION['DOMINIO'],$datos);
+			  $datos=str_replace('$EMPRESA_CLIENTE',$_SESSION['EMPRESA_CLIENTE'],$datos);
+			  return $datos;
+		}else
+			return 'No se pudo cargar skin '.$nombre;
+	
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function formulario_registro_empresa($fecha,$usuario,$clave){
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+		$datos="";
+		$nombre=$_SERVER["DOCUMENT_ROOT"].$_SESSION['RUTA_SKINS']."skin_mail_registro_empresa.html";
+		$ruta_imagenes=$_SESSION['RUTA_IMAGENES'];
+		if (file_exists($nombre)) { 
+			  $fp = fopen ($nombre,"r"); 
+			  $datos = fread($fp, filesize($nombre));
+			  fclose($fp);
+			  $datos=str_replace('$fecha',$fecha,$datos);
+			  $datos=str_replace('$usuario',$usuario,$datos);
+			  $datos=str_replace('$clave',$clave,$datos);
+			  $datos=str_replace('imagenes/',$ruta_imagenes,$datos);
+			  $datos=str_replace('$DOMINIO',$_SESSION['DOMINIO'],$datos);
+			  $datos=str_replace('$EMPRESA_CLIENTE',$_SESSION['EMPRESA_CLIENTE'],$datos);
+			  return $datos;
+		}else
+			return 'No se pudo cargar skin '.$nombre;
+	
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function formulario_nueva_compra($fecha,$empresa,$ruc_Empresa,$valor,$tipo,$cuenta,$documento){
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+		$datos="";
+		$nombre=$_SERVER["DOCUMENT_ROOT"].$_SESSION['RUTA_SKINS']."skin_mail_nueva_compra.html";
+		$ruta_imagenes=$_SESSION['RUTA_IMAGENES'];
+		if (file_exists($nombre)) { 
+			  $fp = fopen ($nombre,"r"); 
+			  $datos = fread($fp, filesize($nombre));
+			  fclose($fp);
+			  $datos=str_replace('$fecha',$fecha,$datos);
+			  $datos=str_replace('$empresa',$empresa,$datos);
+			  $datos=str_replace('$ruc_Empresa',$ruc_Empresa,$datos);	
+			  $datos=str_replace('$valor',$valor,$datos);
+			  $datos=str_replace('$tipo',$tipo,$datos);	
+			  $datos=str_replace('$cuenta',$cuenta,$datos);
+			  $datos=str_replace('$documento',$documento,$datos);
+			  $datos=str_replace('imagenes/',$ruta_imagenes,$datos);
+			  $datos=str_replace('$DOMINIO',$_SESSION['DOMINIO'],$datos);
+			  $datos=str_replace('$EMPRESA_CLIENTE',$_SESSION['EMPRESA_CLIENTE'],$datos);
+			  return $datos;
+		}else
+			return 'No se pudo cargar skin '.$nombre;
+	
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function formulario_acreditacion_compra($fecha,$empresa,$ruc_Empresa,$valor,$tipo,$cuenta,$documento){
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+		$datos="";
+		$nombre=$_SERVER["DOCUMENT_ROOT"].$_SESSION['RUTA_SKINS']."skin_mail_acreditacion_libretin.html";
+		$ruta_imagenes=$_SESSION['RUTA_IMAGENES'];
+		if (file_exists($nombre)){ 
+			  $fp = fopen ($nombre,"r"); 
+			  $datos = fread($fp, filesize($nombre));
+			  fclose($fp);
+			  $datos=str_replace('$fecha',$fecha,$datos);
+			  $datos=str_replace('$empresa',$empresa,$datos);
+			  $datos=str_replace('$ruc_Empresa',$ruc_Empresa,$datos);	
+			  $datos=str_replace('$valor',$valor,$datos);
+			  $datos=str_replace('$tipo',$tipo,$datos);	
+			  $datos=str_replace('$cuenta',$cuenta,$datos);
+			  $datos=str_replace('$documento',$documento,$datos);
+			  $datos=str_replace('imagenes/',$ruta_imagenes,$datos);
+			  $datos=str_replace('$DOMINIO',$_SESSION['DOMINIO'],$datos);
+			  $datos=str_replace('$EMPRESA_CLIENTE',$_SESSION['EMPRESA_CLIENTE'],$datos);
+			  return $datos;
+		}else
+			return 'No se pudo cargar skin '.$nombre;
+	
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function formulario_solicitud_inspeccion($fecha){
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+		$datos="";
+		$nombre=$_SERVER["DOCUMENT_ROOT"].$_SESSION['RUTA_SKINS']."skin_envio_inspeccion.html";
+		$ruta_imagenes=$_SESSION['RUTA_IMAGENES'];
+		if (file_exists($nombre)){ 
+			  $fp = fopen ($nombre,"r"); 
+			  $datos = fread($fp, filesize($nombre));
+			  fclose($fp);
+			  $datos=str_replace('$fecha',$fecha,$datos);
+			  $datos=str_replace('imagenes/',$ruta_imagenes,$datos);
+			  $datos=str_replace('$DOMINIO',$_SESSION['DOMINIO'],$datos);
+			  $datos=str_replace('$EMPRESA_CLIENTE',$_SESSION['EMPRESA_CLIENTE'],$datos);
+			  return $datos;
+		}else
+			return 'No se pudo cargar skin'.$nombre;
+	
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function formulario_solicitud_inspeccion_otros($fecha,$motivo){
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+		$datos="";
+		$nombre=$_SERVER["DOCUMENT_ROOT"].$_SESSION['RUTA_SKINS']."skin_envio_solicitud_inspeccion.html";
+		$ruta_imagenes=$_SESSION['RUTA_IMAGENES'];
+		if (file_exists($nombre)){ 
+			  $fp = fopen ($nombre,"r"); 
+			  $datos = fread($fp, filesize($nombre));
+			  fclose($fp);
+			  $datos=str_replace('$fecha',$fecha,$datos);
+			  $datos=str_replace('$motivo',$motivo,$datos);	
+			  $datos=str_replace('imagenes/',$ruta_imagenes,$datos);
+			  $datos=str_replace('$DOMINIO',$_SESSION['DOMINIO'],$datos);
+			  $datos=str_replace('$EMPRESA_CLIENTE',$_SESSION['EMPRESA_CLIENTE'],$datos);
+			  return $datos;
+		}else
+			return 'No se pudo cargar skin '.$nombre;
+	
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function correo_masivo(){
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+		$datos="";
+		$nombre=$_SERVER["DOCUMENT_ROOT"].$_SESSION['RUTA_SKINS']."ofertas.html";
+		$ruta_imagenes="";
+		$ruta_imagenes=$_SESSION['RUTA_IMAGENES'];
+		if (file_exists($nombre)) { 
+			  $fp = fopen ($nombre,"r"); 
+			  $datos = fread($fp, filesize($nombre));
+			  $datos=str_replace('imagenes/',$ruta_imagenes,$datos);
+			  $datos=str_replace('images/',$ruta_imagenes,$datos);
+			  fclose($fp);
+			  return $datos;
+		}else
+			return 'No se pudo cargar skin '.$nombre;
+	
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function formulario_registro_deportista($fecha){
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+		$datos="";
+		$nombre=$_SERVER["DOCUMENT_ROOT"].$_SESSION['RUTA_SKINS']."skin_mail_registro_deportista.html";
+		$ruta_imagenes=$_SESSION['RUTA_IMAGENES'];
+		if (file_exists($nombre)) { 
+			  $fp = fopen ($nombre,"r"); 
+			  $datos = fread($fp, filesize($nombre));
+			  fclose($fp);
+			  $datos=str_replace('$fecha',$fecha,$datos);
+			  $datos=str_replace('imagenes/',$ruta_imagenes,$datos);
+			  $datos=str_replace('images/',$ruta_imagenes,$datos);
+			  $datos=str_replace('$DOMINIO',$_SESSION['DOMINIO'],$datos);
+			  $datos=str_replace('$EMPRESA_CLIENTE',$_SESSION['EMPRESA_CLIENTE'],$datos);
+			  return $datos;
+		}else
+			return 'No se pudo cargar skin '.$nombre;
+	
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function mes($numero) {
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+	switch ($numero) {
+		case 1 :
+			$month = "Enero";
+			break;
+		case 2 :
+			$month = "Febrero";
+			break;
+		case 3 :
+			$month = "Marzo";
+			break;
+		case 4 :
+			$month = "Abril";
+			break;
+		case 5 :
+			$month = "Mayo";
+			break;
+		case 6 :
+			$month = "Junio";
+			break;
+		case 7 :
+			$month = "Julio";
+			break;
+		case 8 :
+			$month = "Agosto";
+			break;
+		case 9 :
+			$month = "Septiembre";
+			break;
+		case 10 :
+			$month = "Octubre";
+			break;
+		case 11 :
+			$month = "Noviembre";
+			break;
+		case 12 :
+			$month = "Diciembre";
+			break;
+		default: 
+		  $month = "Parametro incorrecto";
+			break;
+	}
+	return $month;
+
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function FormatoFecha($fecha) {
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+	
+	list ( $month, $day, $year ) = split ( '[/.-]', $fecha );
+	return $month . '/' . $day . '/' . $year;
+
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function Hoy() {
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+	$today = getdate ();
+	$mes = sprintf ( "%02s", $today ['mon'] );
+	$dia = sprintf ( "%02s", $today ['mday'] );
+	$anio = $today ['year'];
+	return $anio . '/' . $mes . '/' . $dia;
+
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function fecha_actual() {
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+	$today = getdate ();
+	$mon = $today ['mon'];
+	$mday = $today ['mday'];
+	$hora = $today ['hours'];
+	$minutos = $today ['minutes'];
+	$segundos = $today ['seconds'];
+	$fecha_actual = $mday . " de ";
+	switch ($mon) {
+		case 1 :
+			$month = "Enero";
+			break;
+		case 2 :
+			$month = "Febrero";
+			break;
+		case 3 :
+			$month = "Marzo";
+			break;
+		case 4 :
+			$month = "Abril";
+			break;
+		case 5 :
+			$month = "Mayo";
+			break;
+		case 6 :
+			$month = "Junio";
+			break;
+		case 7 :
+			$month = "Julio";
+			break;
+		case 8 :
+			$month = "Agosto";
+			break;
+		case 9 :
+			$month = "Septiembre";
+			break;
+		case 10 :
+			$month = "Octubre";
+			break;
+		case 11 :
+			$month = "Noviembre";
+			break;
+		case 12 :
+			$month = "Diciembre";
+			break;
+	}
+	$fecha_actual .= $month . " de ";
+	$mday = $today ['mday'];
+	$year = $today ['year'];
+	$fecha_actual .= $year;
+	return $fecha_actual;
+
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function fecha_larga($dia,$mes,$anio) {
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+	switch ($mes) {
+		case 1 :
+			$month = "Enero";
+			break;
+		case 2 :
+			$month = "Febrero";
+			break;
+		case 3 :
+			$month = "Marzo";
+			break;
+		case 4 :
+			$month = "Abril";
+			break;
+		case 5 :
+			$month = "Mayo";
+			break;
+		case 6 :
+			$month = "Junio";
+			break;
+		case 7 :
+			$month = "Julio";
+			break;
+		case 8 :
+			$month = "Agosto";
+			break;
+		case 9 :
+			$month = "Septiembre";
+			break;
+		case 10 :
+			$month = "Octubre";
+			break;
+		case 11 :
+			$month = "Noviembre";
+			break;
+		case 12 :
+			$month = "Diciembre";
+			break;
+	}
+	return $dia . ' de ' . $month . ' del ' . $anio;
+
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function fecha_larga_dia($fecha) {
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+	$fechats = strtotime($fecha);
+	
+	switch (date('w', $fechats)){ 
+		case 0: $nom_dia= "Domingo"; break; 
+		case 1: $nom_dia= "Lunes"; break; 
+		case 2: $nom_dia= "Martes"; break; 
+		case 3: $nom_dia= "Miércoles"; break; 
+		case 4: $nom_dia= "Jueves"; break; 
+		case 5: $nom_dia= "Viernes"; break; 
+		case 6: $nom_dia= "Sábado"; break; 
+	}
+	
+	$day = substr ( $fecha, 8, 2 ) . " de ";
+	switch (intval ( substr ( $fecha, 5, 2 ) )) {
+		case 1 :
+			$month = "Enero";
+			break;
+		case 2 :
+			$month = "Febrero";
+			break;
+		case 3 :
+			$month = "Marzo";
+			break;
+		case 4 :
+			$month = "Abril";
+			break;
+		case 5 :
+			$month = "Mayo";
+			break;
+		case 6 :
+			$month = "Junio";
+			break;
+		case 7 :
+			$month = "Julio";
+			break;
+		case 8 :
+			$month = "Agosto";
+			break;
+		case 9 :
+			$month = "Septiembre";
+			break;
+		case 10 :
+			$month = "Octubre";
+			break;
+		case 11 :
+			$month = "Noviembre";
+			break;
+		case 12 :
+			$month = "Diciembre";
+			break;
+	}
+	return $nom_dia . ' ' .$day . ' ' . $month . ' de ' . substr ( $fecha, 0, 4 );
+
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function grado($numero) {
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+	switch ($numero) {
+		case 1 :
+			return "PRIMER";
+			break;
+		case 2 :
+			return "SEGUNDO";
+			break;
+		case 3 :
+			return "TERCER";
+			break;
+		case 4 :
+			return "CUARTO";
+			break;
+		case 5 :
+			return "QUINTO";
+			break;
+		case 6 :
+			return "SEXTO";
+			break;
+		case 7 :
+			return "SEPTIMO";
+			break;
+		case 8 :
+			return "OCTAVO";
+			break;
+		case 9 :
+			return "NOVENO";
+			break;
+		case 10 :
+			return "DECIMO";
+			break;
+	}
+
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function llenaizq($a, $Tamanio, $car) {
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+	$b = "";
+	if (strlen( $a ) < $Tamanio)
+		for($i = strlen ( $a ); $i < $Tamanio; $i ++)
+			$b = $b . $car;
+	return $b . $a;
+
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function llenader($a, $Tamanio, $car) {
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+	$b = "";
+	if (strlen ( $a ) < $Tamanio)
+		for($i = strlen ( $a ); $i < $Tamanio; $i ++)
+			$b = $b . $car;
+	return $a . $b;
+
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function cifrado($cadena) {
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+	$strcifrado = '';
+	$cadena = trim($cadena);
+	for($i = 1; $i <= strlen($cadena); $i ++) {
+		$strcifrado = $strcifrado.$this->llenaizq( strval( 1 + ord( substr($cadena, $i - 1, 1 ) ) ), 3, '0' );
+	}
+	return $strcifrado;
+
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function descifrado($cadena) {
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+	$cifrado = '';
+	for($i = 1; $i <= strlen( $cadena ); $i += 3) {
+		$cifrado = $cifrado . chr( substr( $cadena, $i - 1, 3 ) - 1 );
+	}
+	
+	return $cifrado;
+
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function IgtechEliminaInyeccion($cadena) {
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+	$cadena=str_replace("=","",$cadena);
+    $cadena=str_replace("'","",$cadena);
+	$cadena=str_replace('"',"",$cadena);
+	$cadena=str_replace('or',"",$cadena);
+	$cadena=str_replace('OR',"",$cadena);
+	return $cadena;
+	
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function diasHabiles($dia,$mes,$anio,$numDias,$fer){
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+ 
+$fechaInicial	= mktime(0,0,0,$mes ,$dia ,$anio);
+$lapso			= $numDias; 
+$diasTrans		= 0; 
+$diasHabiles	= 1;
+$feriados		= $fer;
+while($diasHabiles<=($lapso))
+{	$fecha		= $fechaInicial+($diasTrans*86400);	
+	$diaSemana	= getdate($fecha);
+	if($diaSemana["wday"]!=0 && $diaSemana["wday"]!=6)
+	{	$feriado	= $diaSemana['mday']."-".$diaSemana['mon']."-".$diaSemana['year'];
+		if(!in_array($feriado,$feriados))
+		{	$diasHabiles++;}
+	}
+	$diasTrans++;
+}
+$diasTrans=$diasTrans-1;
+$fechaFinal	= $fechaInicial+($diasTrans*86400);	
+
+return date("d-m-Y",$fechaFinal);
+
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function diaMesAnio(){
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+   
+	$fecha=date("j-n-Y");
+	$meses=array("Mes 	Nulo","Enero","Febrero","Marzo","Abril","Mayo",
+				 "Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+	$fecha_array=explode("-",$fecha);
+	$dia=$fecha_array[0];
+	$mes=$meses[$fecha_array[1]];
+	$anio=$fecha_array[2];
+	return array($dia,$mes,$anio);
+
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function separar($dato){
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+   
+     $fecha_array=explode("-",$dato);
+     return $fecha_array;
+
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function mesNum($numero) {
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+      switch ($numero) {
+          case "Enero" :
+              $month = 1;
+              break;
+          case "Febrero" :
+              $month = 2;
+              break;
+          case "Marzo" :
+              $month = 3;
+              break;
+          case "Abril" :
+              $month = 4;
+              break;
+          case "Mayo" :
+              $month = 5;
+              break;
+          case "Junio" :
+              $month = 6;
+              break;
+          case "Julio" :
+              $month = 7;
+              break;
+          case "Agosto" :
+              $month = 8;
+              break;
+          case "Septiembre" :
+              $month = 9;
+              break;
+          case "Octubre" :
+              $month = 10;
+              break;
+          case "Noviembre" :
+              $month = 11;
+              break;
+          case "Diciembre" :
+          $month = 12;
+          break;
+          default: 
+          $month = "Parametro incorrecto";
+          break;
+    }
+    return $month;
+
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function leerxml($array, $dir){
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+		$xml=simplexml_load_file($dir);
+		$contador=count($xml->detalle->campo);
+		$nro=$array;
+		$cont=0;
+		$campo;
+		for($i=0; $i<$contador;$i++){
+			$atrib=$xml->detalle->campo[$i]->attributes();
+			$valor=$atrib['numero'];
+			$contador_array=count($nro);
+			for($j=0; $j<$contador_array; $j++){
+				if($valor==$nro[$j][0]){
+					$campo[$cont][0]=$nro[$j][1];		
+					$campo[$cont][1]=$xml->detalle->campo[$i];
+					$cont=$cont+1;
+				}
+			}
+		}
+		return $campo;
+
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function getMonto($money){
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+    $cleanString = preg_replace('/([^0-9\.,])/i', '', $money);
+    $onlyNumbersString = preg_replace('/([^0-9])/i', '', $money);
+
+    $separatorsCountToBeErased = strlen($cleanString) - strlen($onlyNumbersString) - 1;
+
+    $stringWithCommaOrDot = preg_replace('/([,\.])/', '', $cleanString, $separatorsCountToBeErased);
+    $removedThousendSeparator = preg_replace('/(\.|,)(?=[0-9]{3,}$)/', '',  $stringWithCommaOrDot);
+
+    return (float) str_replace(',', '.', $removedThousendSeparator);
+
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function secuencialCartera($numero, $fecha){
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  	
+	$timestamp = strtotime($fecha); 
+    $anio_actual = date('Y', $timestamp);
+	$num = '';
+	$longitud = strlen($numero);
+	for($i=0;$i<(4-$longitud); $i++){
+		$num .='0';
+	}	
+	$num = $num.$numero.'-'.$anio_actual; 
+	return $num;	
+
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function inicialesUsuario($usuario){
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+	$array2 = explode(".", $usuario);
+	$apellido = substr($array2[0], 0, 1);
+	$nombre = substr($array2[1], 0, 1);
+	$resultado = strtolower ($nombre.$apellido);
+	return $resultado;		
+
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function obtenerArray($cadena){
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  		
+	$array = split(',' , $cadena);
+	$newarray=array_values(array_diff($array, array('')));	
+	return $newarray;	
+
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function dias_transcurridos($fecha_i,$fecha_f){
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+	$dias	= (strtotime($fecha_i)-strtotime($fecha_f))/86400;
+	$dias 	= abs($dias); 
+	$dias = floor($dias);		
+	return $dias;
+
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function trasformar_money($numero){
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+	setlocale(LC_MONETARY, 'en_US');
+	$money=money_format('%i', $numero) . "\n";			
+	return str_replace('USD', '', $money);
+
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function calculaedad($fechanacimiento){
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+  
+  list($ano,$mes,$dia) = explode("-",$fechanacimiento);
+  $ano_diferencia  = date("Y") - $ano;
+  $mes_diferencia = date("m") - $mes;
+  $dia_diferencia   = date("d") - $dia;
+  if ($mes_diferencia < 0 || ($mes_diferencia == 0 && $dia_diferencia < 0 ))
+    $ano_diferencia--;
+  return $ano_diferencia;
+
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+function num2letras($num, $moneda, $denominacion, $fem = false, $dec = true) {
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'on';
+   
+   $matuni[2]  = "dos"; 
+   $matuni[3]  = "tres"; 
+   $matuni[4]  = "cuatro"; 
+   $matuni[5]  = "cinco"; 
+   $matuni[6]  = "seis"; 
+   $matuni[7]  = "siete"; 
+   $matuni[8]  = "ocho"; 
+   $matuni[9]  = "nueve"; 
+   $matuni[10] = "diez"; 
+   $matuni[11] = "once"; 
+   $matuni[12] = "doce"; 
+   $matuni[13] = "trece"; 
+   $matuni[14] = "catorce"; 
+   $matuni[15] = "quince"; 
+   $matuni[16] = "dieciseis"; 
+   $matuni[17] = "diecisiete"; 
+   $matuni[18] = "dieciocho"; 
+   $matuni[19] = "diecinueve"; 
+   $matuni[20] = "veinte"; 
+   $matunisub[2] = "dos"; 
+   $matunisub[3] = "tres"; 
+   $matunisub[4] = "cuatro"; 
+   $matunisub[5] = "quin"; 
+   $matunisub[6] = "seis"; 
+   $matunisub[7] = "sete"; 
+   $matunisub[8] = "ocho"; 
+   $matunisub[9] = "nove"; 
+
+   $matdec[2] = "veint"; 
+   $matdec[3] = "treinta"; 
+   $matdec[4] = "cuarenta"; 
+   $matdec[5] = "cincuenta"; 
+   $matdec[6] = "sesenta"; 
+   $matdec[7] = "setenta"; 
+   $matdec[8] = "ochenta"; 
+   $matdec[9] = "noventa"; 
+   $matsub[3]  = 'mill'; 
+   $matsub[5]  = 'bill'; 
+   $matsub[7]  = 'mill'; 
+   $matsub[9]  = 'trill'; 
+   $matsub[11] = 'mill'; 
+   $matsub[13] = 'bill'; 
+   $matsub[15] = 'mill'; 
+   $matmil[4]  = 'millones'; 
+   $matmil[6]  = 'billones'; 
+   $matmil[7]  = 'de billones'; 
+   $matmil[8]  = 'millones de billones'; 
+   $matmil[10] = 'trillones'; 
+   $matmil[11] = 'de trillones'; 
+   $matmil[12] = 'millones de trillones'; 
+   $matmil[13] = 'de trillones'; 
+   $matmil[14] = 'billones de trillones'; 
+   $matmil[15] = 'de billones de trillones'; 
+   $matmil[16] = 'millones de billones de trillones'; 
+   $neg='';
+	$zeros = true;
+   $float=explode('.',$num);
+   $num=$float[0];
+	if($float[1]==''){
+	$float[1]='00';	
+	}
+
+   $num = trim((string)@$num); 
+   if ($num[0] == '-') { 
+      $neg = 'menos '; 
+      $num = substr($num, 1); 
+   }else 
+      $neg = ''; 
+   while ($num[0] == '0') $num = substr($num, 1); 
+   if ($num[0] < '1' or $num[0] > 9) $num = '0' . $num; 
+   $zeros = true; 
+   $punt = false; 
+   $ent = ''; 
+   $fra = ''; 
+   for ($c = 0; $c < strlen($num); $c++) { 
+      $n = $num[$c]; 
+      if (! (strpos(".,'''", $n) === false)) { 
+         if ($punt) break; 
+         else{ 
+            $punt = true; 
+            continue; 
+         } 
+
+      }elseif (! (strpos('0123456789', $n) === false)) { 
+         if ($punt) { 
+            if ($n != '0') $zeros = false; 
+            $fra .= $n; 
+         }else 
+
+            $ent .= $n; 
+      }else 
+
+         break; 
+
+   } 
+   $ent = '     ' . $ent; 
+   if ($dec and $fra and ! $zeros) { 
+      $fin = ' coma'; 
+      for ($n = 0; $n < strlen($fra); $n++) { 
+         if (($s = $fra[$n]) == '0') 
+            $fin .= ' cero'; 
+         elseif ($s == '1') 
+            $fin .= $fem ? ' una' : ' un'; 
+         else 
+            $fin .= ' ' . $matuni[$s]; 
+      } 
+   }else 
+      $fin = ''; 
+   if ((int)$ent === 0) return 'Cero ' . $fin; 
+   $tex = ''; 
+   $sub = 0; 
+   $mils = 0; 
+   $neutro = false; 
+   while ( ($num = substr($ent, -3)) != '   ') { 
+      $ent = substr($ent, 0, -3); 
+      if (++$sub < 3 and $fem) { 
+         $matuni[1] = 'una'; 
+         $subcent = 'as'; 
+      }else{ 
+         $matuni[1] = $neutro ? 'un' : 'uno'; 
+         $subcent = 'os'; 
+      } 
+      $t = ''; 
+      $n2 = substr($num, 1); 
+      if ($n2 == '00') { 
+      }elseif ($n2 < 21) 
+         $t = ' ' . $matuni[(int)$n2]; 
+      elseif ($n2 < 30) { 
+         $n3 = $num[2]; 
+         if ($n3 != 0) $t = 'i' . $matuni[$n3]; 
+         $n2 = $num[1]; 
+         $t = ' ' . $matdec[$n2] . $t; 
+      }else{ 
+         $n3 = $num[2]; 
+         if ($n3 != 0) $t = ' y ' . $matuni[$n3]; 
+         $n2 = $num[1]; 
+         $t = ' ' . $matdec[$n2] . $t; 
+      } 
+      $n = $num[0]; 
+      if ($n == 1) { 
+         $t = ' ciento' . $t; 
+      }elseif ($n == 5){ 
+         $t = ' ' . $matunisub[$n] . 'ient' . $subcent . $t; 
+      }elseif ($n != 0){ 
+         $t = ' ' . $matunisub[$n] . 'cient' . $subcent . $t; 
+      } 
+      if ($sub == 1) { 
+      }elseif (! isset($matsub[$sub])) { 
+         if ($num == 1) { 
+            $t = ' mil'; 
+         }elseif ($num > 1){ 
+            $t .= ' mil'; 
+         } 
+      }elseif ($num == 1) { 
+         $t .= ' ' . $matsub[$sub] . '?n'; 
+      }elseif ($num > 1){ 
+         $t .= ' ' . $matsub[$sub] . 'ones'; 
+      }   
+      if ($num == '000') $mils ++; 
+      elseif ($mils != 0) { 
+         if (isset($matmil[$sub])) $t .= ' ' . $matmil[$sub]; 
+         $mils = 0; 
+      } 
+      $neutro = true; 
+      $tex = $t . $tex; 
+   } 
+   $tex = $neg . substr($tex, 1) . $fin; 
+
+	
+   $end_num=ucfirst($tex).' '.$denominacion.' '.$float[1].'/100 '.$moneda;
+   return $end_num; 
+
+$_SESSION['scriptcase']['form_jap_solicitud_inspeccion']['contr_erro'] = 'off';
+}
+//
+ function nm_gera_html()
+ {
+    global
+           $nm_url_saida, $nmgp_url_saida, $nm_saida_global, $nm_apl_dependente, $glo_subst, $sc_check_excl, $sc_check_incl, $nmgp_num_form, $NM_run_iframe;
+     if ($this->Embutida_proc)
+     {
+         return;
+     }
+     if ($this->nmgp_form_show == 'off')
+     {
+         exit;
+     }
+      if (isset($NM_run_iframe) && $NM_run_iframe == 1)
+      {
+          $this->nmgp_botoes['exit'] = "off";
+      }
+     $HTTP_REFERER = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : ""; 
+     $_SESSION['scriptcase']['sc_sql_ult_conexao'] = ''; 
+     $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['botoes'] = $this->nmgp_botoes;
+     if ($this->nmgp_opcao != "recarga" && $this->nmgp_opcao != "muda_form")
+     {
+         $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['opc_ant'] = $this->nmgp_opcao;
+     }
+     else
+     {
+         $this->nmgp_opcao = $this->nmgp_opc_ant;
+     }
+     if (!empty($this->Campos_Mens_erro)) 
+     {
+         $this->Erro->mensagem(__FILE__, __LINE__, "critica", $this->Campos_Mens_erro); 
+         $this->Campos_Mens_erro = "";
+     }
+     if (($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['run_iframe'] == "F" || $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['run_iframe'] == "R") && $this->nm_flag_iframe && empty($this->nm_todas_criticas))
+     {
+          if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['run_iframe_ajax']))
+          {
+              $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['retorno_edit'] = array("edit", "");
+          }
+          else
+          {
+              $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['retorno_edit'] .= "&nmgp_opcao=edit";
+          }
+          if ($this->sc_evento == "insert" && $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['run_iframe'] == "F")
+          {
+              if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['run_iframe_ajax']))
+              {
+                  $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['retorno_edit'] = array("edit", "fim");
+              }
+              else
+              {
+                  $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['retorno_edit'] .= "&rec=fim";
+              }
+          }
+          $this->NM_close_db(); 
+          $sJsParent = '';
+          if ($this->NM_ajax_flag && isset($this->NM_ajax_info['param']['buffer_output']) && $this->NM_ajax_info['param']['buffer_output'])
+          {
+              if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['run_iframe_ajax']))
+              {
+                  $this->NM_ajax_info['ajaxJavascript'][] = array("parent.ajax_navigate", $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['retorno_edit']);
+              }
+              else
+              {
+                  $sJsParent .= 'parent';
+                  $this->NM_ajax_info['redir']['metodo'] = 'location';
+                  $this->NM_ajax_info['redir']['action'] = $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['retorno_edit'];
+                  $this->NM_ajax_info['redir']['target'] = $sJsParent;
+              }
+              form_jap_solicitud_inspeccion_pack_ajax_response();
+              exit;
+          }
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+         <html><body>
+         <script type="text/javascript">
+<?php
+    
+    if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['run_iframe_ajax']))
+    {
+        $opc = ($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['run_iframe'] == "F" && $this->sc_evento == "insert") ? "fim" : "";
+        echo "parent.ajax_navigate('edit', '" .$opc . "');";
+    }
+    else
+    {
+        echo $sJsParent . "parent.location = '" . $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['retorno_edit'] . "';";
+    }
+?>
+         </script>
+         </body></html>
+<?php
+         exit;
+     }
+        $this->initFormPages();
+    include_once("form_jap_solicitud_inspeccion_form0.php");
+        $this->hideFormPages();
+ }
+
+        function initFormPages() {
+        } // initFormPages
+
+        function hideFormPages() {
+        } // hideFormPages
+
+    function form_format_readonly($field, $value)
+    {
+        $result = $value;
+
+        $this->form_highlight_search($result, $field, $value);
+
+        return $result;
+    }
+
+    function form_highlight_search(&$result, $field, $value)
+    {
+        if ($this->proc_fast_search) {
+            $this->form_highlight_search_quicksearch($result, $field, $value);
+        }
+    }
+
+    function form_highlight_search_quicksearch(&$result, $field, $value)
+    {
+        $searchOk = false;
+        if ('SC_all_Cmp' == $this->nmgp_fast_search && in_array($field, array(""))) {
+            $searchOk = true;
+        }
+        elseif ($field == $this->nmgp_fast_search && in_array($field, array(""))) {
+            $searchOk = true;
+        }
+
+        if (!$searchOk || '' == $this->nmgp_arg_fast_search) {
+            return;
+        }
+
+        $htmlIni = '<div class="highlight" style="background-color: #fafaca; display: inline-block">';
+        $htmlFim = '</div>';
+
+        if ('qp' == $this->nmgp_cond_fast_search) {
+            $keywords = preg_quote($this->nmgp_arg_fast_search, '/');
+            $result = preg_replace('/'. $keywords .'/i', $htmlIni . '$0' . $htmlFim, $result);
+        } elseif ('eq' == $this->nmgp_cond_fast_search) {
+            if (strcasecmp($this->nmgp_arg_fast_search, $value) == 0) {
+                $result = $htmlIni. $result .$htmlFim;
+            }
+        }
+    }
+
+
+    function form_encode_input($string)
+    {
+        if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['table_refresh']) && $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['table_refresh'])
+        {
+            return NM_encode_input(NM_encode_input($string));
+        }
+        else
+        {
+            return NM_encode_input($string);
+        }
+    } // form_encode_input
+
+   function jqueryCalendarDtFormat($sFormat, $sSep)
+   {
+       $sFormat = chunk_split(str_replace('yyyy', 'yy', $sFormat), 2, $sSep);
+
+       if ($sSep == substr($sFormat, -1))
+       {
+           $sFormat = substr($sFormat, 0, -1);
+       }
+
+       return $sFormat;
+   } // jqueryCalendarDtFormat
+
+   function jqueryCalendarTimeStart($sFormat)
+   {
+       $aDateParts = explode(';', $sFormat);
+
+       if (2 == sizeof($aDateParts))
+       {
+           $sTime = $aDateParts[1];
+       }
+       else
+       {
+           $sTime = 'hh:mm:ss';
+       }
+
+       return str_replace(array('h', 'm', 'i', 's'), array('0', '0', '0', '0'), $sTime);
+   } // jqueryCalendarTimeStart
+
+   function jqueryCalendarWeekInit($sDay)
+   {
+       switch ($sDay) {
+           case 'MO': return 1; break;
+           case 'TU': return 2; break;
+           case 'WE': return 3; break;
+           case 'TH': return 4; break;
+           case 'FR': return 5; break;
+           case 'SA': return 6; break;
+           default  : return 7; break;
+       }
+   } // jqueryCalendarWeekInit
+
+   function jqueryIconFile($sModule)
+   {
+       $sImage = '';
+       if ('calendar' == $sModule)
+       {
+           if (isset($this->arr_buttons['bcalendario']) && isset($this->arr_buttons['bcalendario']['type']) && 'image' == $this->arr_buttons['bcalendario']['type'] && 'only_fontawesomeicon' != $this->arr_buttons['bcalendario']['display'])
+           {
+               $sImage = $this->arr_buttons['bcalendario']['image'];
+           }
+       }
+       elseif ('calculator' == $sModule)
+       {
+           if (isset($this->arr_buttons['bcalculadora']) && isset($this->arr_buttons['bcalculadora']['type']) && 'image' == $this->arr_buttons['bcalculadora']['type'] && 'only_fontawesomeicon' != $this->arr_buttons['bcalculadora']['display'])
+           {
+               $sImage = $this->arr_buttons['bcalculadora']['image'];
+           }
+       }
+
+       return '' == $sImage ? '' : $this->Ini->path_icones . '/' . $sImage;
+   } // jqueryIconFile
+
+   function jqueryFAFile($sModule)
+   {
+       $sFA = '';
+       if ('calendar' == $sModule)
+       {
+           if (isset($this->arr_buttons['bcalendario']) && isset($this->arr_buttons['bcalendario']['type']) && ('image' == $this->arr_buttons['bcalendario']['type'] || 'button' == $this->arr_buttons['bcalendario']['type']) && 'only_fontawesomeicon' == $this->arr_buttons['bcalendario']['display'])
+           {
+               $sFA = $this->arr_buttons['bcalendario']['fontawesomeicon'];
+           }
+       }
+       elseif ('calculator' == $sModule)
+       {
+           if (isset($this->arr_buttons['bcalculadora']) && isset($this->arr_buttons['bcalculadora']['type']) && ('image' == $this->arr_buttons['bcalculadora']['type'] || 'button' == $this->arr_buttons['bcalculadora']['type']) && 'only_fontawesomeicon' == $this->arr_buttons['bcalculadora']['display'])
+           {
+               $sFA = $this->arr_buttons['bcalculadora']['fontawesomeicon'];
+           }
+       }
+
+       return '' == $sFA ? '' : "<span class='scButton_fontawesome " . $sFA . "'></span>";
+   } // jqueryFAFile
+
+   function jqueryButtonText($sModule)
+   {
+       $sClass = '';
+       $sText  = '';
+       if ('calendar' == $sModule)
+       {
+           if (isset($this->arr_buttons['bcalendario']) && isset($this->arr_buttons['bcalendario']['type']) && ('image' == $this->arr_buttons['bcalendario']['type'] || 'button' == $this->arr_buttons['bcalendario']['type']))
+           {
+               if ('only_text' == $this->arr_buttons['bcalendario']['display'])
+               {
+                   $sClass = 'scButton_' . $this->arr_buttons['bcalendario']['style'];
+                   $sText  = $this->arr_buttons['bcalendario']['value'];
+               }
+               elseif ('text_fontawesomeicon' == $this->arr_buttons['bcalendario']['display'])
+               {
+                   $sClass = 'scButton_' . $this->arr_buttons['bcalendario']['style'];
+                   if ('text_right' == $this->arr_buttons['bcalendario']['display_position'])
+                   {
+                       $sText = "<i class='icon_fa " . $this->arr_buttons['bcalendario']['fontawesomeicon'] . "'></i> " . $this->arr_buttons['bcalendario']['value'];
+                   }
+                   else
+                   {
+                       $sText = $this->arr_buttons['bcalendario']['value'] . " <i class='icon_fa " . $this->arr_buttons['bcalendario']['fontawesomeicon'] . "'></i>";
+                   }
+               }
+           }
+       }
+       elseif ('calculator' == $sModule)
+       {
+           if (isset($this->arr_buttons['bcalculadora']) && isset($this->arr_buttons['bcalculadora']['type']) && ('image' == $this->arr_buttons['bcalculadora']['type'] || 'button' == $this->arr_buttons['bcalculadora']['type']))
+           {
+               if ('only_text' == $this->arr_buttons['bcalculadora']['display'])
+               {
+                   $sClass = 'scButton_' . $this->arr_buttons['bcalendario']['style'];
+                   $sText  = $this->arr_buttons['bcalculadora']['value'];
+               }
+               elseif ('text_fontawesomeicon' == $this->arr_buttons['bcalculadora']['display'])
+               {
+                   $sClass = 'scButton_' . $this->arr_buttons['bcalendario']['style'];
+                   if ('text_right' == $this->arr_buttons['bcalendario']['display_position'])
+                   {
+                       $sText = "<i class='icon_fa " . $this->arr_buttons['bcalculadora']['fontawesomeicon'] . "'></i> " . $this->arr_buttons['bcalculadora']['value'];
+                   }
+                   else
+                   {
+                       $sText = $this->arr_buttons['bcalculadora']['value'] . " <i class='icon_fa " . $this->arr_buttons['bcalculadora']['fontawesomeicon'] . "'></i> ";
+                   }
+               }
+           }
+       }
+
+       return '' == $sText ? array('', '') : array($sText, $sClass);
+   } // jqueryButtonText
+
+
+    function scCsrfGetToken()
+    {
+        if (!isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['csrf_token']))
+        {
+            $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['csrf_token'] = $this->scCsrfGenerateToken();
+        }
+
+        return $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['csrf_token'];
+    }
+
+    function scCsrfGenerateToken()
+    {
+        $aSources = array(
+            'abcdefghijklmnopqrstuvwxyz',
+            'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+            '1234567890',
+            '!@$*()-_[]{},.;:'
+        );
+
+        $sRandom = '';
+
+        $aSourcesSizes = array();
+        $iSourceSize   = sizeof($aSources) - 1;
+        for ($i = 0; $i <= $iSourceSize; $i++)
+        {
+            $aSourcesSizes[$i] = strlen($aSources[$i]) - 1;
+        }
+
+        for ($i = 0; $i < 64; $i++)
+        {
+            $iSource = $this->scCsrfRandom(0, $iSourceSize);
+            $sRandom .= substr($aSources[$iSource], $this->scCsrfRandom(0, $aSourcesSizes[$iSource]), 1);
+        }
+
+        return $sRandom;
+    }
+
+    function scCsrfRandom($iMin, $iMax)
+    {
+        return mt_rand($iMin, $iMax);
+    }
+
+        function addUrlParam($url, $param, $value) {
+                $urlParts  = explode('?', $url);
+                $urlParams = isset($urlParts[1]) ? explode('&', $urlParts[1]) : array();
+                $objParams = array();
+                foreach ($urlParams as $paramInfo) {
+                        $paramParts = explode('=', $paramInfo);
+                        $objParams[ $paramParts[0] ] = isset($paramParts[1]) ? $paramParts[1] : '';
+                }
+                $objParams[$param] = $value;
+                $urlParams = array();
+                foreach ($objParams as $paramName => $paramValue) {
+                        $urlParams[] = $paramName . '=' . $paramValue;
+                }
+                return $urlParts[0] . '?' . implode('&', $urlParams);
+        }
+ function allowedCharsCharset($charlist)
+ {
+     if ($_SESSION['scriptcase']['charset'] != 'UTF-8')
+     {
+         $charlist = NM_conv_charset($charlist, $_SESSION['scriptcase']['charset'], 'UTF-8');
+     }
+     return str_replace("'", "\'", $charlist);
+ }
+
+function sc_file_size($file, $format = false)
+{
+    if ('' == $file) {
+        return '';
+    }
+    if (!@is_file($file)) {
+        return '';
+    }
+    $fileSize = @filesize($file);
+    if ($format) {
+        $suffix = '';
+        if (1024 >= $fileSize) {
+            $fileSize /= 1024;
+            $suffix    = ' KB';
+        }
+        if (1024 >= $fileSize) {
+            $fileSize /= 1024;
+            $suffix    = ' MB';
+        }
+        if (1024 >= $fileSize) {
+            $fileSize /= 1024;
+            $suffix    = ' GB';
+        }
+        $fileSize = $fileSize . $suffix;
+    }
+    return $fileSize;
+}
+
+
+ function new_date_format($type, $field)
+ {
+     $new_date_format_out = '';
+
+     if ('DT' == $type)
+     {
+         $date_format  = $this->field_config[$field]['date_format'];
+         $date_sep     = $this->field_config[$field]['date_sep'];
+         $date_display = $this->field_config[$field]['date_display'];
+         $time_format  = '';
+         $time_sep     = '';
+         $time_display = '';
+     }
+     elseif ('DH' == $type)
+     {
+         $date_format  = false !== strpos($this->field_config[$field]['date_format'] , ';') ? substr($this->field_config[$field]['date_format'] , 0, strpos($this->field_config[$field]['date_format'] , ';')) : $this->field_config[$field]['date_format'];
+         $date_sep     = $this->field_config[$field]['date_sep'];
+         $date_display = false !== strpos($this->field_config[$field]['date_display'], ';') ? substr($this->field_config[$field]['date_display'], 0, strpos($this->field_config[$field]['date_display'], ';')) : $this->field_config[$field]['date_display'];
+         $time_format  = false !== strpos($this->field_config[$field]['date_format'] , ';') ? substr($this->field_config[$field]['date_format'] , strpos($this->field_config[$field]['date_format'] , ';') + 1) : '';
+         $time_sep     = $this->field_config[$field]['time_sep'];
+         $time_display = false !== strpos($this->field_config[$field]['date_display'], ';') ? substr($this->field_config[$field]['date_display'], strpos($this->field_config[$field]['date_display'], ';') + 1) : '';
+     }
+     elseif ('HH' == $type)
+     {
+         $date_format  = '';
+         $date_sep     = '';
+         $date_display = '';
+         $time_format  = $this->field_config[$field]['date_format'];
+         $time_sep     = $this->field_config[$field]['time_sep'];
+         $time_display = $this->field_config[$field]['date_display'];
+     }
+
+     if ('DT' == $type || 'DH' == $type)
+     {
+         $date_array = array();
+         $date_index = 0;
+         $date_ult   = '';
+         for ($i = 0; $i < strlen($date_format); $i++)
+         {
+             $char = strtolower(substr($date_format, $i, 1));
+             if (in_array($char, array('d', 'm', 'y', 'a')))
+             {
+                 if ('a' == $char)
+                 {
+                     $char = 'y';
+                 }
+                 if ($char == $date_ult)
+                 {
+                     $date_array[$date_index] .= $char;
+                 }
+                 else
+                 {
+                     if ('' != $date_ult)
+                     {
+                         $date_index++;
+                     }
+                     $date_array[$date_index] = $char;
+                 }
+             }
+             $date_ult = $char;
+         }
+
+         $disp_array = array();
+         $date_index = 0;
+         $date_ult   = '';
+         for ($i = 0; $i < strlen($date_display); $i++)
+         {
+             $char = strtolower(substr($date_display, $i, 1));
+             if (in_array($char, array('d', 'm', 'y', 'a')))
+             {
+                 if ('a' == $char)
+                 {
+                     $char = 'y';
+                 }
+                 if ($char == $date_ult)
+                 {
+                     $disp_array[$date_index] .= $char;
+                 }
+                 else
+                 {
+                     if ('' != $date_ult)
+                     {
+                         $date_index++;
+                     }
+                     $disp_array[$date_index] = $char;
+                 }
+             }
+             $date_ult = $char;
+         }
+
+         $date_final = array();
+         foreach ($date_array as $date_part)
+         {
+             if (in_array($date_part, $disp_array))
+             {
+                 $date_final[] = $date_part;
+             }
+         }
+
+         $date_format = implode($date_sep, $date_final);
+     }
+     if ('HH' == $type || 'DH' == $type)
+     {
+         $time_array = array();
+         $time_index = 0;
+         $time_ult   = '';
+         for ($i = 0; $i < strlen($time_format); $i++)
+         {
+             $char = strtolower(substr($time_format, $i, 1));
+             if (in_array($char, array('h', 'i', 's')))
+             {
+                 if ($char == $time_ult)
+                 {
+                     $time_array[$time_index] .= $char;
+                 }
+                 else
+                 {
+                     if ('' != $time_ult)
+                     {
+                         $time_index++;
+                     }
+                     $time_array[$time_index] = $char;
+                 }
+             }
+             $time_ult = $char;
+         }
+
+         $disp_array = array();
+         $time_index = 0;
+         $time_ult   = '';
+         for ($i = 0; $i < strlen($time_display); $i++)
+         {
+             $char = strtolower(substr($time_display, $i, 1));
+             if (in_array($char, array('h', 'i', 's')))
+             {
+                 if ($char == $time_ult)
+                 {
+                     $disp_array[$time_index] .= $char;
+                 }
+                 else
+                 {
+                     if ('' != $time_ult)
+                     {
+                         $time_index++;
+                     }
+                     $disp_array[$time_index] = $char;
+                 }
+             }
+             $time_ult = $char;
+         }
+
+         $time_final = array();
+         foreach ($time_array as $time_part)
+         {
+             if (in_array($time_part, $disp_array))
+             {
+                 $time_final[] = $time_part;
+             }
+         }
+
+         $time_format = implode($time_sep, $time_final);
+     }
+
+     if ('DT' == $type)
+     {
+         $old_date_format = $date_format;
+     }
+     elseif ('DH' == $type)
+     {
+         $old_date_format = $date_format . ';' . $time_format;
+     }
+     elseif ('HH' == $type)
+     {
+         $old_date_format = $time_format;
+     }
+
+     for ($i = 0; $i < strlen($old_date_format); $i++)
+     {
+         $char = substr($old_date_format, $i, 1);
+         if ('/' == $char)
+         {
+             $new_date_format_out .= $date_sep;
+         }
+         elseif (':' == $char)
+         {
+             $new_date_format_out .= $time_sep;
+         }
+         else
+         {
+             $new_date_format_out .= $char;
+         }
+     }
+
+     $this->field_config[$field]['date_format'] = $new_date_format_out;
+     if ('DH' == $type)
+     {
+         $new_date_format_out                                  = explode(';', $new_date_format_out);
+         $this->field_config[$field]['date_format_js']        = $new_date_format_out[0];
+         $this->field_config[$field . '_hora']['date_format'] = $new_date_format_out[1];
+         $this->field_config[$field . '_hora']['time_sep']    = $this->field_config[$field]['time_sep'];
+     }
+ } // new_date_format
+
+   function Form_lookup_si_contrato()
+   {
+$nmgp_def_dados = "" ; 
+if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_contrato']))
+{
+    $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_contrato'] = array_unique($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_contrato']); 
+}
+else
+{
+    $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_contrato'] = array(); 
+}
+   if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_ibase))
+   { 
+       $GLOBALS["NM_ERRO_IBASE"] = 1;  
+   } 
+   $nm_nao_carga = false;
+   $nmgp_def_dados = "" ; 
+   if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_contrato']))
+   {
+       $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_contrato'] = array_unique($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_contrato']); 
+   }
+   else
+   {
+       $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_contrato'] = array(); 
+    }
+
+   $old_value_si_id = $this->si_id;
+   $old_value_si_fecha = $this->si_fecha;
+   $old_value_si_secuecial = $this->si_secuecial;
+   $old_value_si_fecha_inspeccion = $this->si_fecha_inspeccion;
+   $this->nm_tira_formatacao();
+   if ($this->nmgp_opcao != "nada") {
+       $this->nm_converte_datas(false);
+   }
+
+
+   $unformatted_value_si_id = $this->si_id;
+   $unformatted_value_si_fecha = $this->si_fecha;
+   $unformatted_value_si_secuecial = $this->si_secuecial;
+   $unformatted_value_si_fecha_inspeccion = $this->si_fecha_inspeccion;
+
+   $nm_comando = "SELECT con_id, con_nombre || ' - Contrato Nro.' || con_numero_contrato || coalesce(' - Nro. Censo:'||con_numero_censo,'') FROM v_jap_contrato  WHERE con_empresa='" . $_SESSION['Igtech_RucEmpresa'] . "' ORDER BY con_propietario, con_numero_contrato";
+
+   $this->si_id = $old_value_si_id;
+   $this->si_fecha = $old_value_si_fecha;
+   $this->si_secuecial = $old_value_si_secuecial;
+   $this->si_fecha_inspeccion = $old_value_si_fecha_inspeccion;
+
+   $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nm_comando;
+   $_SESSION['scriptcase']['sc_sql_ult_conexao'] = '';
+   if ($nm_comando != "" && $rs = $this->Db->Execute($nm_comando))
+   {
+       while (!$rs->EOF) 
+       { 
+              $rs->fields[0] = str_replace(',', '.', $rs->fields[0]);
+              $rs->fields[0] = (strpos(strtolower($rs->fields[0]), "e")) ? (float)$rs->fields[0] : $rs->fields[0];
+              $rs->fields[0] = (string)$rs->fields[0];
+              $nmgp_def_dados .= $rs->fields[1] . "?#?" ; 
+              $nmgp_def_dados .= $rs->fields[0] . "?#?N?@?" ; 
+              $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_contrato'][] = $rs->fields[0];
+              $rs->MoveNext() ; 
+       } 
+       $rs->Close() ; 
+   } 
+   elseif ($GLOBALS["NM_ERRO_IBASE"] != 1 && $nm_comando != "")  
+   {  
+       $this->Erro->mensagem(__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_dber'], $this->Db->ErrorMsg()); 
+       exit; 
+   } 
+   $GLOBALS["NM_ERRO_IBASE"] = 0; 
+   $todox = str_replace("?#?@?#?", "?#?@ ?#?", trim($nmgp_def_dados)) ; 
+   $todo  = explode("?@?", $todox) ; 
+   return $todo;
+
+   }
+   function Form_lookup_si_tipo_inspeccion()
+   {
+$nmgp_def_dados = "" ; 
+if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_tipo_inspeccion']))
+{
+    $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_tipo_inspeccion'] = array_unique($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_tipo_inspeccion']); 
+}
+else
+{
+    $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_tipo_inspeccion'] = array(); 
+}
+   if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_ibase))
+   { 
+       $GLOBALS["NM_ERRO_IBASE"] = 1;  
+   } 
+   $nm_nao_carga = false;
+   $nmgp_def_dados = "" ; 
+   if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_tipo_inspeccion']))
+   {
+       $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_tipo_inspeccion'] = array_unique($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_tipo_inspeccion']); 
+   }
+   else
+   {
+       $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_tipo_inspeccion'] = array(); 
+    }
+
+   $old_value_si_id = $this->si_id;
+   $old_value_si_fecha = $this->si_fecha;
+   $old_value_si_secuecial = $this->si_secuecial;
+   $old_value_si_fecha_inspeccion = $this->si_fecha_inspeccion;
+   $this->nm_tira_formatacao();
+   if ($this->nmgp_opcao != "nada") {
+       $this->nm_converte_datas(false);
+   }
+
+
+   $unformatted_value_si_id = $this->si_id;
+   $unformatted_value_si_fecha = $this->si_fecha;
+   $unformatted_value_si_secuecial = $this->si_secuecial;
+   $unformatted_value_si_fecha_inspeccion = $this->si_fecha_inspeccion;
+
+   $nm_comando = "SELECT ti_id, ti_descripcion  FROM jap_tipo_inspeccion  WHERE ti_empresa='" . $_SESSION['Igtech_RucEmpresa'] . "' ORDER BY ti_descripcion";
+
+   $this->si_id = $old_value_si_id;
+   $this->si_fecha = $old_value_si_fecha;
+   $this->si_secuecial = $old_value_si_secuecial;
+   $this->si_fecha_inspeccion = $old_value_si_fecha_inspeccion;
+
+   $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nm_comando;
+   $_SESSION['scriptcase']['sc_sql_ult_conexao'] = '';
+   if ($nm_comando != "" && $rs = $this->Db->Execute($nm_comando))
+   {
+       while (!$rs->EOF) 
+       { 
+              $rs->fields[0] = str_replace(',', '.', $rs->fields[0]);
+              $rs->fields[0] = (strpos(strtolower($rs->fields[0]), "e")) ? (float)$rs->fields[0] : $rs->fields[0];
+              $rs->fields[0] = (string)$rs->fields[0];
+              $nmgp_def_dados .= $rs->fields[1] . "?#?" ; 
+              $nmgp_def_dados .= $rs->fields[0] . "?#?N?@?" ; 
+              $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_tipo_inspeccion'][] = $rs->fields[0];
+              $rs->MoveNext() ; 
+       } 
+       $rs->Close() ; 
+   } 
+   elseif ($GLOBALS["NM_ERRO_IBASE"] != 1 && $nm_comando != "")  
+   {  
+       $this->Erro->mensagem(__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_dber'], $this->Db->ErrorMsg()); 
+       exit; 
+   } 
+   $GLOBALS["NM_ERRO_IBASE"] = 0; 
+   $todox = str_replace("?#?@?#?", "?#?@ ?#?", trim($nmgp_def_dados)) ; 
+   $todo  = explode("?@?", $todox) ; 
+   return $todo;
+
+   }
+   function Form_lookup_si_usuario_inspecciona()
+   {
+$nmgp_def_dados = "" ; 
+if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_usuario_inspecciona']))
+{
+    $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_usuario_inspecciona'] = array_unique($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_usuario_inspecciona']); 
+}
+else
+{
+    $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_usuario_inspecciona'] = array(); 
+}
+   if (in_array(strtolower($this->Ini->nm_tpbanco), $this->Ini->nm_bases_ibase))
+   { 
+       $GLOBALS["NM_ERRO_IBASE"] = 1;  
+   } 
+   $nm_nao_carga = false;
+   $nmgp_def_dados = "" ; 
+   if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_usuario_inspecciona']))
+   {
+       $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_usuario_inspecciona'] = array_unique($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_usuario_inspecciona']); 
+   }
+   else
+   {
+       $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_usuario_inspecciona'] = array(); 
+    }
+
+   $old_value_si_id = $this->si_id;
+   $old_value_si_fecha = $this->si_fecha;
+   $old_value_si_secuecial = $this->si_secuecial;
+   $old_value_si_fecha_inspeccion = $this->si_fecha_inspeccion;
+   $this->nm_tira_formatacao();
+   if ($this->nmgp_opcao != "nada") {
+       $this->nm_converte_datas(false);
+   }
+
+
+   $unformatted_value_si_id = $this->si_id;
+   $unformatted_value_si_fecha = $this->si_fecha;
+   $unformatted_value_si_secuecial = $this->si_secuecial;
+   $unformatted_value_si_fecha_inspeccion = $this->si_fecha_inspeccion;
+
+   $nm_comando = "SELECT usu_usuario, usu_nombre  FROM del_usuario  ORDER BY usu_nombre";
+
+   $this->si_id = $old_value_si_id;
+   $this->si_fecha = $old_value_si_fecha;
+   $this->si_secuecial = $old_value_si_secuecial;
+   $this->si_fecha_inspeccion = $old_value_si_fecha_inspeccion;
+
+   $_SESSION['scriptcase']['sc_sql_ult_comando'] = $nm_comando;
+   $_SESSION['scriptcase']['sc_sql_ult_conexao'] = '';
+   if ($nm_comando != "" && $rs = $this->Db->Execute($nm_comando))
+   {
+       while (!$rs->EOF) 
+       { 
+              $nmgp_def_dados .= $rs->fields[1] . "?#?" ; 
+              $nmgp_def_dados .= $rs->fields[0] . "?#?N?@?" ; 
+              $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['Lookup_si_usuario_inspecciona'][] = $rs->fields[0];
+              $rs->MoveNext() ; 
+       } 
+       $rs->Close() ; 
+   } 
+   elseif ($GLOBALS["NM_ERRO_IBASE"] != 1 && $nm_comando != "")  
+   {  
+       $this->Erro->mensagem(__FILE__, __LINE__, "banco", $this->Ini->Nm_lang['lang_errm_dber'], $this->Db->ErrorMsg()); 
+       exit; 
+   } 
+   $GLOBALS["NM_ERRO_IBASE"] = 0; 
+   $todox = str_replace("?#?@?#?", "?#?@ ?#?", trim($nmgp_def_dados)) ; 
+   $todo  = explode("?@?", $todox) ; 
+   return $todo;
+
+   }
+function nmgp_redireciona($tipo=0)
+{
+   global $nm_apl_dependente;
+   if (isset($_SESSION['scriptcase']['nm_sc_retorno']) && !empty($_SESSION['scriptcase']['nm_sc_retorno']) && $_SESSION['scriptcase']['sc_tp_saida'] != "D" && $nm_apl_dependente != 1) 
+   {
+       $nmgp_saida_form = $_SESSION['scriptcase']['nm_sc_retorno'];
+   }
+   else
+   {
+       $nmgp_saida_form = $_SESSION['scriptcase']['sc_url_saida'][$this->Ini->sc_page];
+   }
+   if ($tipo == 2)
+   {
+       $nmgp_saida_form = "form_jap_solicitud_inspeccion_fim.php";
+   }
+   if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['redir']) && $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['redir'] == 'redir')
+   {
+       unset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']);
+   }
+   unset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['opc_ant']);
+   if ($tipo == 2 && isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['nm_run_menu']) && $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['nm_run_menu'] == 1)
+   {
+       $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['nm_run_menu'] = 2;
+       $nmgp_saida_form = "form_jap_solicitud_inspeccion_fim.php";
+   }
+   $diretorio = explode("/", $nmgp_saida_form);
+   $cont = count($diretorio);
+   $apl = $diretorio[$cont - 1];
+   $apl = str_replace(".php", "", $apl);
+   $pos = strpos($apl, "?");
+   if ($pos !== false)
+   {
+       $apl = substr($apl, 0, $pos);
+   }
+   if ($tipo != 1 && $tipo != 2)
+   {
+       unset($_SESSION['sc_session'][$this->Ini->sc_page][$apl]['where_orig']);
+   }
+   if ($this->NM_ajax_flag)
+   {
+       $sTarget = '_self';
+       $this->NM_ajax_info['redir']['metodo']              = 'post';
+       $this->NM_ajax_info['redir']['action']              = $nmgp_saida_form;
+       $this->NM_ajax_info['redir']['target']              = $sTarget;
+       $this->NM_ajax_info['redir']['script_case_init']    = $this->Ini->sc_page;
+       if (0 == $tipo)
+       {
+           $this->NM_ajax_info['redir']['nmgp_url_saida'] = $this->nm_location;
+       }
+       form_jap_solicitud_inspeccion_pack_ajax_response();
+       exit;
+   }
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+   <HTML>
+   <HEAD>
+    <META http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['scriptcase']['charset_html'] ?>" />
+<?php
+
+   if (isset($_SESSION['scriptcase']['device_mobile']) && $_SESSION['scriptcase']['device_mobile'] && $_SESSION['scriptcase']['display_mobile'])
+   {
+?>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<?php
+   }
+
+?>
+    <META http-equiv="Expires" content="Fri, Jan 01 1900 00:00:00 GMT"/>
+    <META http-equiv="Last-Modified" content="<?php echo gmdate("D, d M Y H:i:s"); ?> GMT"/>
+    <META http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate"/>
+    <META http-equiv="Cache-Control" content="post-check=0, pre-check=0"/>
+    <META http-equiv="Pragma" content="no-cache"/>
+    <link rel="shortcut icon" href="../_lib/img/usr__NM__img__NM__favicon.png">
+   </HEAD>
+   <BODY>
+   <FORM name="form_ok" method="POST" action="<?php echo $this->form_encode_input($nmgp_saida_form); ?>" target="_self">
+<?php
+   if ($tipo == 0)
+   {
+?>
+     <INPUT type="hidden" name="nmgp_url_saida" value="<?php echo $this->form_encode_input($this->nm_location); ?>"> 
+<?php
+   }
+?>
+     <INPUT type="hidden" name="script_case_init" value="<?php echo $this->form_encode_input($this->Ini->sc_page); ?>"> 
+   </FORM>
+   <SCRIPT type="text/javascript">
+      bLigEditLookupCall = <?php if ($this->lig_edit_lookup_call) { ?>true<?php } else { ?>false<?php } ?>;
+      function scLigEditLookupCall()
+      {
+<?php
+   if ($this->lig_edit_lookup && isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['sc_modal']) && $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['sc_modal'])
+   {
+?>
+        parent.<?php echo $this->lig_edit_lookup_cb; ?>(<?php echo $this->lig_edit_lookup_row; ?>);
+<?php
+   }
+   elseif ($this->lig_edit_lookup)
+   {
+?>
+        opener.<?php echo $this->lig_edit_lookup_cb; ?>(<?php echo $this->lig_edit_lookup_row; ?>);
+<?php
+   }
+?>
+      }
+      if (bLigEditLookupCall)
+      {
+        scLigEditLookupCall();
+      }
+<?php
+if ($tipo == 2 && isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['masterValue']))
+{
+    if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dashboard_info']['under_dashboard']) && $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dashboard_info']['under_dashboard']) {
+?>
+var dbParentFrame = $(parent.document).find("[name='<?php echo $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dashboard_info']['parent_widget']; ?>']");
+if (dbParentFrame && dbParentFrame[0] && dbParentFrame[0].contentWindow.scAjaxDetailValue)
+{
+<?php
+        foreach ($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['masterValue'] as $cmp_master => $val_master)
+        {
+?>
+    dbParentFrame[0].contentWindow.scAjaxDetailValue('<?php echo $cmp_master ?>', '<?php echo $val_master ?>');
+<?php
+        }
+        unset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['masterValue']);
+?>
+}
+<?php
+    }
+    else {
+?>
+if (parent && parent.scAjaxDetailValue)
+{
+<?php
+        foreach ($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['masterValue'] as $cmp_master => $val_master)
+        {
+?>
+    parent.scAjaxDetailValue('<?php echo $cmp_master ?>', '<?php echo $val_master ?>');
+<?php
+        }
+        unset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['masterValue']);
+?>
+}
+<?php
+    }
+}
+?>
+      document.form_ok.submit();
+   </SCRIPT>
+   </BODY>
+   </HTML>
+<?php
+  exit;
+}
+function nmgp_redireciona_form($nm_apl_dest, $nm_apl_retorno, $nm_apl_parms, $nm_target="", $opc="", $alt_modal=430, $larg_modal=630)
+{
+   if (isset($this->NM_is_redirected) && $this->NM_is_redirected)
+   {
+       return;
+   }
+   if (is_array($nm_apl_parms))
+   {
+       $tmp_parms = "";
+       foreach ($nm_apl_parms as $par => $val)
+       {
+           $par = trim($par);
+           $val = trim($val);
+           $tmp_parms .= str_replace(".", "_", $par) . "?#?";
+           if (substr($val, 0, 1) == "$")
+           {
+               $tmp_parms .= $$val;
+           }
+           elseif (substr($val, 0, 1) == "{")
+           {
+               $val        = substr($val, 1, -1);
+               $tmp_parms .= $this->$val;
+           }
+           elseif (substr($val, 0, 1) == "[")
+           {
+               $tmp_parms .= $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion'][substr($val, 1, -1)];
+           }
+           else
+           {
+               $tmp_parms .= $val;
+           }
+           $tmp_parms .= "?@?";
+       }
+       $nm_apl_parms = $tmp_parms;
+   }
+   if (empty($opc))
+   {
+       $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['opcao'] = "";
+       $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['opc_ant'] = "";
+       $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['retorno_edit'] = "";
+   }
+   $nm_target_form = (empty($nm_target)) ? "_self" : $nm_target;
+   if (strtolower(substr($nm_apl_dest, -4)) != ".php" && (strtolower(substr($nm_apl_dest, 0, 7)) == "http://" || strtolower(substr($nm_apl_dest, 0, 8)) == "https://" || strtolower(substr($nm_apl_dest, 0, 3)) == "../"))
+   {
+       if ($this->NM_ajax_flag)
+       {
+           $this->NM_ajax_info['redir']['metodo'] = 'location';
+           $this->NM_ajax_info['redir']['action'] = $nm_apl_dest;
+           $this->NM_ajax_info['redir']['target'] = $nm_target_form;
+           form_jap_solicitud_inspeccion_pack_ajax_response();
+           exit;
+       }
+       echo "<SCRIPT language=\"javascript\">";
+       if (strtolower($nm_target) == "_blank")
+       {
+           echo "window.open ('" . $nm_apl_dest . "');";
+           echo "</SCRIPT>";
+           return;
+       }
+       else
+       {
+           echo "window.location='" . $nm_apl_dest . "';";
+           echo "</SCRIPT>";
+           $this->NM_close_db();
+           exit;
+       }
+   }
+   $dir = explode("/", $nm_apl_dest);
+   if (count($dir) == 1)
+   {
+       $nm_apl_dest = str_replace(".php", "", $nm_apl_dest);
+       $nm_apl_dest = $this->Ini->path_link . SC_dir_app_name($nm_apl_dest) . "/" . $nm_apl_dest . ".php";
+   }
+   if ($this->NM_ajax_flag)
+   {
+       $nm_apl_parms = str_replace("?#?", "*scin", NM_charset_to_utf8($nm_apl_parms));
+       $nm_apl_parms = str_replace("?@?", "*scout", $nm_apl_parms);
+       $this->NM_ajax_info['redir']['metodo']     = 'post';
+       $this->NM_ajax_info['redir']['action']     = $nm_apl_dest;
+       $this->NM_ajax_info['redir']['nmgp_parms'] = $nm_apl_parms;
+       $this->NM_ajax_info['redir']['target']     = $nm_target_form;
+       $this->NM_ajax_info['redir']['h_modal']    = $alt_modal;
+       $this->NM_ajax_info['redir']['w_modal']    = $larg_modal;
+       if ($nm_target_form == "_blank")
+       {
+           $this->NM_ajax_info['redir']['nmgp_outra_jan'] = 'true';
+       }
+       else
+       {
+           $this->NM_ajax_info['redir']['nmgp_url_saida']      = $nm_apl_retorno;
+           $this->NM_ajax_info['redir']['script_case_init']    = $this->Ini->sc_page;
+       }
+       form_jap_solicitud_inspeccion_pack_ajax_response();
+       exit;
+   }
+   if ($nm_target == "modal")
+   {
+       if (!empty($nm_apl_parms))
+       {
+           $nm_apl_parms = str_replace("?#?", "*scin", $nm_apl_parms);
+           $nm_apl_parms = str_replace("?@?", "*scout", $nm_apl_parms);
+           $nm_apl_parms = "nmgp_parms=" . $nm_apl_parms . "&";
+       }
+       $par_modal = "?script_case_init=" . $this->Ini->sc_page . "&nmgp_outra_jan=true&nmgp_url_saida=modal&NMSC_modal=ok&";
+       $this->redir_modal = "$(function() { tb_show('', '" . $nm_apl_dest . $par_modal . $nm_apl_parms . "TB_iframe=true&modal=true&height=" . $alt_modal . "&width=" . $larg_modal . "', '') })";
+       $this->NM_is_redirected = true;
+       return;
+   }
+   if ($nm_target == "_blank")
+   {
+?>
+<form name="Fredir" method="post" target="_blank" action="<?php echo $nm_apl_dest; ?>">
+  <input type="hidden" name="nmgp_parms" value="<?php echo $this->form_encode_input($nm_apl_parms); ?>"/>
+</form>
+<script type="text/javascript">
+setTimeout(function() { document.Fredir.submit(); }, 250);
+</script>
+<?php
+    return;
+   }
+?>
+<?php
+   if ($nm_target_form != "_blank" && $nm_target_form != "modal")
+   {
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+   <HTML>
+   <HEAD>
+    <META http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['scriptcase']['charset_html'] ?>" />
+<?php
+
+   if (isset($_SESSION['scriptcase']['device_mobile']) && $_SESSION['scriptcase']['device_mobile'] && $_SESSION['scriptcase']['display_mobile'])
+   {
+?>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<?php
+   }
+
+?>
+    <META http-equiv="Expires" content="Fri, Jan 01 1900 00:00:00 GMT"/>
+    <META http-equiv="Last-Modified" content="<?php echo gmdate("D, d M Y H:i:s"); ?> GMT"/>
+    <META http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate"/>
+    <META http-equiv="Cache-Control" content="post-check=0, pre-check=0"/>
+    <META http-equiv="Pragma" content="no-cache"/>
+    <link rel="shortcut icon" href="../_lib/img/usr__NM__img__NM__favicon.png">
+    <SCRIPT type="text/javascript" src="<?php echo $this->Ini->url_third; ?>jquery/js/jquery.js"></SCRIPT>
+   </HEAD>
+   <BODY>
+<?php
+   }
+?>
+<form name="Fredir" method="post" 
+                  target="_self"> 
+  <input type="hidden" name="nmgp_parms" value="<?php echo $this->form_encode_input($nm_apl_parms); ?>"/>
+<?php
+   if ($nm_target_form == "_blank")
+   {
+?>
+  <input type="hidden" name="nmgp_outra_jan" value="true"/> 
+<?php
+   }
+   else
+   {
+?>
+  <input type="hidden" name="nmgp_url_saida" value="<?php echo $this->form_encode_input($nm_apl_retorno) ?>">
+  <input type="hidden" name="script_case_init" value="<?php echo $this->form_encode_input($this->Ini->sc_page); ?>"/> 
+<?php
+   }
+?>
+</form> 
+   <SCRIPT type="text/javascript">
+<?php
+   if ($nm_target_form == "modal")
+   {
+?>
+       $(document).ready(function(){
+           tb_show('', '<?php echo $nm_apl_dest ?>?script_case_init=<?php echo $this->Ini->sc_page; ?>&nmgp_url_saida=modal&nmgp_parms=<?php echo $this->form_encode_input($nm_apl_parms); ?>&nmgp_outra_jan=true&TB_iframe=true&height=<?php echo $alt_modal; ?>&width=<?php echo $larg_modal; ?>&modal=true', '');
+       });
+<?php
+   }
+   else
+   {
+?>
+    $(function() {
+       document.Fredir.target = "<?php echo $nm_target_form ?>"; 
+       document.Fredir.action = "<?php echo $nm_apl_dest ?>";
+       document.Fredir.submit();
+    });
+<?php
+   }
+?>
+   </SCRIPT>
+<?php
+   if ($nm_target_form != "_blank" && $nm_target_form != "modal")
+   {
+?>
+   </BODY>
+   </HTML>
+<?php
+   }
+?>
+<?php
+   if ($nm_target_form != "_blank" && $nm_target_form != "modal")
+   {
+       $this->NM_close_db();
+       exit;
+   }
+}
+    function sc_ajax_alert($sMessage, $params = array())
+    {
+        if ($this->NM_ajax_flag)
+        {
+            $this->NM_ajax_info['ajaxAlert']['message'] = NM_charset_to_utf8($sMessage);
+            $this->NM_ajax_info['ajaxAlert']['params']  = $this->sc_ajax_alert_params($params);
+        }
+    } // sc_ajax_alert
+
+    function sc_ajax_alert_params($params)
+    {
+        $paramList = array();
+        foreach ($params as $paramName => $paramValue)
+        {
+            if (in_array($paramName, array('title', 'timer', 'confirmButtonText', 'confirmButtonFA', 'confirmButtonFAPos', 'cancelButtonText', 'cancelButtonFA', 'cancelButtonFAPos', 'footer', 'width', 'padding', 'position')))
+            {
+                $paramList[$paramName] = NM_charset_to_utf8($paramValue);
+            }
+            elseif (in_array($paramName, array('showConfirmButton', 'showCancelButton', 'toast')) && in_array($paramValue, array(true, false)))
+            {
+                $paramList[$paramName] = NM_charset_to_utf8($paramValue);
+            }
+            elseif ('position' == $paramName && in_array($paramValue, array('top', 'top-start', 'top-end', 'center', 'center-start', 'center-end', 'bottom', 'bottom-start', 'bottom-end')))
+            {
+                $paramList[$paramName] = NM_charset_to_utf8($paramValue);
+            }
+            elseif ('type' == $paramName && in_array($paramValue, array('warning', 'error', 'success', 'info', 'question')))
+            {
+                $paramList[$paramName] = NM_charset_to_utf8($paramValue);
+            }
+            elseif ('background' == $paramName)
+            {
+                $paramList[$paramName] = $this->sc_ajax_alert_image(NM_charset_to_utf8($paramValue));
+            }
+        }
+        return $paramList;
+    } // sc_ajax_alert_params
+
+    function sc_ajax_alert_image($background)
+    {
+        $image_param = $background;
+        preg_match_all('/url\(([\s])?(["|\'])?(.*?)(["|\'])?([\s])?\)/i', $background, $matches, PREG_PATTERN_ORDER);
+        if (isset($matches[3])) {
+            foreach ($matches[3] as $match) {
+                if ('http:' != substr($match, 0, 5) && 'https:' != substr($match, 0, 6) && '/' != substr($match, 0, 1)) {
+                    $image_param = str_replace($match, "{$this->Ini->path_img_global}/{$match}", $image_param);
+                }
+            }
+        }
+        return $image_param;
+    } // sc_ajax_alert_image
+    function sc_field_readonly($sField, $sStatus, $iSeq = '')
+    {
+        if ('on' != $sStatus && 'off' != $sStatus)
+        {
+            return;
+        }
+
+        $sFieldDateTime = '';
+
+        $sFlagVar        = 'bFlagRead_' . $sField;
+        $this->$sFlagVar = 'on' == $sStatus;
+
+        $this->nmgp_cmp_readonly[$sField]                = $sStatus;
+        $this->NM_ajax_info['readOnly'][$sField . $iSeq] = $sStatus;
+        if ('' != $sFieldDateTime)
+        {
+            $this->NM_ajax_info['readOnly'][$sFieldDateTime . $iSeq] = $sStatus;
+        }
+    } // sc_field_readonly
+    function getButtonIds($buttonName) {
+        switch ($buttonName) {
+            case "help":
+                return array("sc_b_hlp_t");
+                break;
+            case "exit":
+                return array("sc_b_sai_t.sc-unique-btn-1", "sc_b_sai_t.sc-unique-btn-2", "sc_b_sai_t.sc-unique-btn-4", "sc_b_sai_t.sc-unique-btn-3", "sc_b_sai_t.sc-unique-btn-5");
+                break;
+            case "new":
+                return array("sc_b_new_t.sc-unique-btn-6");
+                break;
+            case "insert":
+                return array("sc_b_ins_t.sc-unique-btn-7");
+                break;
+            case "bcancelar":
+                return array("sc_b_sai_t.sc-unique-btn-8");
+                break;
+            case "update":
+                return array("sc_b_upd_t.sc-unique-btn-9");
+                break;
+            case "0":
+                return array("sys_separator.sc-unique-btn-10", "sys_separator.sc-unique-btn-11", "sys_separator.sc-unique-btn-16");
+                break;
+            case "imprimir":
+                return array("sc_imprimir_top.", "sc_imprimir_top.");
+                break;
+            case "enviar_inspeccion":
+                return array("sc_enviar_inspeccion_top.", "sc_enviar_inspeccion_top.");
+                break;
+            case "anular":
+                return array("sc_anular_top.", "sc_anular_top.");
+                break;
+            case "finalizar":
+                return array("sc_finalizar_top.", "sc_finalizar_top.");
+                break;
+            case "birpara":
+                return array("brec_b");
+                break;
+            case "first":
+                return array("sc_b_ini_b.sc-unique-btn-12");
+                break;
+            case "back":
+                return array("sc_b_ret_b.sc-unique-btn-13");
+                break;
+            case "forward":
+                return array("sc_b_avc_b.sc-unique-btn-14");
+                break;
+            case "last":
+                return array("sc_b_fim_b.sc-unique-btn-15");
+                break;
+        }
+
+        return array($buttonName);
+    } // getButtonIds
+
+    function displayAppHeader()
+    {
+        if ($this->Embutida_call) {
+            return;
+        }
+        if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['mostra_cab']) && $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['mostra_cab'] == "N") {
+            return;
+        }
+        if ($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dashboard_info']['under_dashboard'] && $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dashboard_info']['compact_mode'] && !$_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['dashboard_info']['maximized']) {
+            return;
+        }
+        if (isset($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['link_info']['compact_mode']) && $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['link_info']['compact_mode']) {
+            return;
+        }
+?>
+    <tr><td class="sc-app-header">
+   <TABLE width="100%" class="scFormHeader">
+    <TR align="center">
+     <TD style="padding: 0px">
+      <TABLE style="padding: 0px; border-spacing: 0px; border-width: 0px;" width="100%">
+       <TR valign="middle">
+        <TD align="left" rowspan="3" class="scFormHeaderFont">
+          
+        </TD>
+        <TD align="left" class="scFormHeaderFont">
+          <?php if ($this->nmgp_opcao == "novo") { echo "" . $this->Ini->Nm_lang['lang_solicitud_inspeccion'] . ""; } else { echo "" . $this->Ini->Nm_lang['lang_solicitud_inspeccion'] . ""; } ?>
+        </TD>
+        <TD style="font-size: 5px">
+          &nbsp; &nbsp;
+        </TD>
+        <TD align="center" class="scFormHeaderFont">
+          
+        </TD>
+        <TD style="font-size: 5px">
+          &nbsp; &nbsp;
+        </TD>
+        <TD align="right" class="scFormHeaderFont">
+          
+        </TD>
+       </TR>
+       <TR valign="middle">
+        <TD align="left" class="scFormHeaderFont">
+          
+        </TD>
+        <TD style="font-size: 5px">
+          &nbsp; &nbsp;
+        </TD>
+        <TD align="center" class="scFormHeaderFont">
+          
+        </TD>
+        <TD style="font-size: 5px">
+          &nbsp; &nbsp;
+        </TD>
+        <TD align="right" class="scFormHeaderFont">
+          
+        </TD>
+       </TR>
+       <TR valign="middle">
+        <TD align="left" class="scFormHeaderFont">
+          
+        </TD>
+        <TD style="font-size: 5px">
+          &nbsp; &nbsp;
+        </TD>
+        <TD align="center" class="scFormHeaderFont">
+          
+        </TD>
+        <TD style="font-size: 5px">
+          &nbsp; &nbsp;
+        </TD>
+        <TD align="right" class="scFormHeaderFont">
+          
+        </TD>
+       </TR>
+      </TABLE>
+     </TD>
+    </TR>
+   </TABLE>
+    </td></tr>
+<?php
+    }
+
+    function displayAppFooter()
+    {
+    }
+
+    function displayAppToolbars()
+    {
+        if (($this->Embutida_form || !$this->Embutida_call || $this->Grid_editavel || $this->Embutida_multi || ($this->Embutida_call && 'on' == $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['embutida_liga_form_btn_nav'])) && $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['run_iframe'] != "F" && $_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['run_iframe'] != "R") {
+        } else {
+            return false;
+        }
+        return true;
+    } // displayAppToolbars
+
+    function displayTopToolbar()
+    {
+        if (!$this->displayAppToolbars()) {
+            return;
+        }
+    } // displayTopToolbar
+
+    function displayBottomToolbar()
+    {
+        if (!$this->displayAppToolbars()) {
+            return;
+        }
+    } // displayBottomToolbar
+
+    function scGetColumnOrderRule($fieldName, &$orderColName, &$orderColOrient, &$orderColRule)
+    {
+        $sortRule = 'nosort';
+        if ($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['ordem_cmp'] == $fieldName) {
+            $orderColName = $fieldName;
+            if ($_SESSION['sc_session'][$this->Ini->sc_page]['form_jap_solicitud_inspeccion']['ordem_ord'] == " desc") {
+                $orderColOrient = $nome_img = $this->Ini->Label_sort_desc;
+                $orderColRule = $sortRule = 'desc';
+            } else {
+                $orderColOrient = $nome_img = $this->Ini->Label_sort_asc;
+                $orderColRule = $sortRule = 'asc';
+            }
+        }
+        return $sortRule;
+    }
+
+    function scGetColumnOrderIcon($fieldName, $sortRule)
+    {        if ('desc' == $sortRule) {
+            return "<img src=\"" . $this->Ini->path_img_global . "/" . $this->Ini->Label_sort_desc . "\" class=\"sc-ui-img-order-column\" id=\"sc-id-img-order-" . $fieldName . "\" />";
+        } elseif ('asc' == $sortRule) {
+            return "<img src=\"" . $this->Ini->path_img_global . "/" . $this->Ini->Label_sort_asc . "\" class=\"sc-ui-img-order-column\" id=\"sc-id-img-order-" . $fieldName . "\" />";
+        } elseif ('' != $this->Ini->Label_sort) {
+            return "<img src=\"" . $this->Ini->path_img_global . "/" . $this->Ini->Label_sort . "\" class=\"sc-ui-img-order-column\" id=\"sc-id-img-order-" . $fieldName . "\" />";
+        } else {
+            return '';
+        }
+    }
+
+    function scIsFieldNumeric($fieldName)
+    {
+        switch ($fieldName) {
+            case "si_id":
+                return true;
+            case "si_secuecial":
+                return true;
+            default:
+                return false;
+        }
+        return false;
+    }
+
+    function scGetDefaultFieldOrder($fieldName)
+    {
+        switch ($fieldName) {
+            case "si_id":
+                return 'desc';
+            case "si_fecha":
+                return 'desc';
+            case "si_secuecial":
+                return 'desc';
+            case "si_contrato":
+                return 'desc';
+            case "si_fecha_inspeccion":
+                return 'desc';
+            default:
+                return 'asc';
+        }
+        return 'asc';
+    }
+}
+?>

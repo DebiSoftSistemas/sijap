@@ -1,0 +1,60 @@
+.css_fac_numero_label { }
+.css_fac_numero_line {text-align:left;}
+.css_fac_numero_obj {text-align:left;}
+.css_fac_tipo_cartera_label { }
+.css_fac_tipo_cartera_line {text-align:left;}
+.css_fac_tipo_cartera_obj {text-align:left;}
+.css_fac_tipo_comprobante_label { }
+.css_fac_tipo_comprobante_line { }
+.css_fac_tipo_comprobante_obj { }
+.css_fac_fecha_label { }
+.css_fac_fecha_line { }
+.css_fac_fecha_obj { }
+.css_fac_comentario_label { }
+.css_fac_comentario_line { }
+.css_fac_comentario_obj {width:320px;}
+.css_fac_subtotal_iva_label {text-align:left;}
+.css_fac_subtotal_iva_line {text-align:left;}
+.css_fac_subtotal_iva_obj {text-align:left;width:100px;}
+.css_fac_subtotal_cero_label {text-align:left;}
+.css_fac_subtotal_cero_line {text-align:left;}
+.css_fac_subtotal_cero_obj {text-align:left;width:100px;}
+.css_fac_subtotal_no_objeto_label {text-align:left;}
+.css_fac_subtotal_no_objeto_line {text-align:left;}
+.css_fac_subtotal_no_objeto_obj {text-align:left;width:100px;}
+.css_fac_subtotal_excento_label {text-align:left;}
+.css_fac_subtotal_excento_line {text-align:left;}
+.css_fac_subtotal_excento_obj {text-align:left;width:100px;}
+.css_fac_subtotal_label {text-align:left;}
+.css_fac_subtotal_line {text-align:left;}
+.css_fac_subtotal_obj {text-align:left;width:100px;}
+.css_fac_total_descuento_label {text-align:left;}
+.css_fac_total_descuento_line {text-align:left;}
+.css_fac_total_descuento_obj {text-align:left;width:100px;}
+.css_fac_valor_ice_label {text-align:left;}
+.css_fac_valor_ice_line {text-align:left;}
+.css_fac_valor_ice_obj {text-align:left;width:100px;}
+.css_fac_valor_iva_label {text-align:left;}
+.css_fac_valor_iva_line {text-align:left;}
+.css_fac_valor_iva_obj {text-align:left;width:100px;}
+.css_fac_valor_irbpnr_label {text-align:left;}
+.css_fac_valor_irbpnr_line {text-align:left;}
+.css_fac_valor_irbpnr_obj {text-align:left;width:100px;}
+.css_fac_total_label {font-weight:bold;text-align:left;}
+.css_fac_total_line {font-weight:bold;text-align:left;}
+.css_fac_total_obj {font-weight:bold;text-align:left;width:100px;}
+.css_fac_estado_label {background-color:#99FFFF;border-width:1px;border-style:solid;}
+.css_fac_estado_line { }
+.css_fac_estado_obj { }
+.css_fac_dias_vigencia_label { }
+.css_fac_dias_vigencia_line {text-align:left;}
+.css_fac_dias_vigencia_obj {text-align:left;}
+.css_clientes_label { }
+.css_clientes_line { }
+.css_clientes_obj { }
+.css_detalle_label { }
+.css_detalle_line { }
+.css_detalle_obj { }
+.css_titulo_label {font-size:14px;}
+.css_titulo_line {font-size:14px;color:#FFFFFF;background-color:#0033FF;font-weight:bold;text-align:left;}
+.css_titulo_obj {font-size:14px;color:#FFFFFF;background-color:#0033FF;font-weight:bold;border-width:2px;text-align:left;border-style:solid;}

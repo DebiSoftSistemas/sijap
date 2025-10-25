@@ -1,0 +1,30 @@
+.css_con_ruta_label, .css_con_ruta_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_ruta_grid_line, .css_con_ruta_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_op_fecha_ini_label, .css_op_fecha_ini_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_fecha_ini_grid_line, .css_op_fecha_ini_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_rc_orden_label, .css_rc_orden_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_rc_orden_grid_line, .css_rc_orden_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cl_nombre_label, .css_cl_nombre_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cl_nombre_grid_line, .css_cl_nombre_grid_line:hover {vertical-align: top;text-align: right;}
+.css_con_numero_contrato_label, .css_con_numero_contrato_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_numero_contrato_grid_line, .css_con_numero_contrato_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_con_numero_medidor_label, .css_con_numero_medidor_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_numero_medidor_grid_line, .css_con_numero_medidor_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_meses_deuda_label, .css_meses_deuda_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_meses_deuda_grid_line, .css_meses_deuda_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_total_deuda_label, .css_total_deuda_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_total_deuda_grid_line, .css_total_deuda_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_seleccionar_label, .css_seleccionar_label:hover {text-align:;vertical-align:middle;justify-content:;font-weight:bold;}
+.css_seleccionar_grid_line, .css_seleccionar_grid_line:hover {text-align: right;}
+.css_op_empresa_label, .css_op_empresa_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_empresa_grid_line, .css_op_empresa_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_op_propietario_label, .css_op_propietario_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_propietario_grid_line, .css_op_propietario_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cl_telefono_label, .css_cl_telefono_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cl_telefono_grid_line, .css_cl_telefono_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cl_celular_label, .css_cl_celular_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cl_celular_grid_line, .css_cl_celular_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cl_email_label, .css_cl_email_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cl_email_grid_line, .css_cl_email_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_con_id_label, .css_con_id_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_con_id_grid_line, .css_con_id_grid_line:hover {vertical-align: middle;text-align: right;}

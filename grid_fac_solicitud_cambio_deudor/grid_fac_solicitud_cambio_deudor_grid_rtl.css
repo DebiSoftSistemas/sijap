@@ -1,0 +1,14 @@
+.css_scd_fecha_label, .css_scd_fecha_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_scd_fecha_grid_line, .css_scd_fecha_grid_line:hover {vertical-align: top;text-align: right;}
+.css_scd_propietario_actual_label, .css_scd_propietario_actual_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_scd_propietario_actual_grid_line, .css_scd_propietario_actual_grid_line:hover {vertical-align: top;text-align: right;}
+.css_scd_nuevo_propietario_label, .css_scd_nuevo_propietario_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_scd_nuevo_propietario_grid_line, .css_scd_nuevo_propietario_grid_line:hover {vertical-align: top;text-align: right;}
+.css_scd_motivo_cambio_label, .css_scd_motivo_cambio_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_scd_motivo_cambio_grid_line, .css_scd_motivo_cambio_grid_line:hover {vertical-align: top;text-align: right;}
+.css_scd_usuario_label, .css_scd_usuario_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_scd_usuario_grid_line, .css_scd_usuario_grid_line:hover {vertical-align: top;text-align: right;}
+.css_scd_estado_label, .css_scd_estado_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_scd_estado_grid_line, .css_scd_estado_grid_line:hover {vertical-align: top;text-align: right;}
+.css_scd_id_label, .css_scd_id_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_scd_id_grid_line, .css_scd_id_grid_line:hover {vertical-align: top;text-align: right;}

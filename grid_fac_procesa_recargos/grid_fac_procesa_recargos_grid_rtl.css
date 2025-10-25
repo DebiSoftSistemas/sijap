@@ -1,0 +1,14 @@
+.css_pr_id_label, .css_pr_id_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_pr_id_grid_line, .css_pr_id_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_pr_fecha_label, .css_pr_fecha_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_pr_fecha_grid_line, .css_pr_fecha_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_pr_mes_label, .css_pr_mes_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_pr_mes_grid_line, .css_pr_mes_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_pr_periodo_label, .css_pr_periodo_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_pr_periodo_grid_line, .css_pr_periodo_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_pr_estado_label, .css_pr_estado_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_pr_estado_grid_line, .css_pr_estado_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_pr_empresa_label, .css_pr_empresa_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_pr_empresa_grid_line, .css_pr_empresa_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_pr_usuario_label, .css_pr_usuario_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_pr_usuario_grid_line, .css_pr_usuario_grid_line:hover {vertical-align: middle;text-align: right;}

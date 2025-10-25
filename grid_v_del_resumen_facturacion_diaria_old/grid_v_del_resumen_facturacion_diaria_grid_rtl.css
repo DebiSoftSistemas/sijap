@@ -1,0 +1,25 @@
+.css_fac_fecha_grid_line, .css_fac_fecha_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_fac_tipo_comprobante_grid_line, .css_fac_tipo_comprobante_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_fac_serie_grid_line, .css_fac_serie_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_concepto_factura_grid_line, .css_concepto_factura_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cl_nombre_grid_line, .css_cl_nombre_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_pro_descripcion_grid_line, .css_pro_descripcion_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_df_subtotal_grid_line, .css_df_subtotal_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_df_subtotal_tot_ger, .css_df_subtotal_tot_ger:hover {text-align: ;text-align: right;}
+.css_df_descuento_grid_line, .css_df_descuento_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_df_descuento_tot_ger, .css_df_descuento_tot_ger:hover {text-align: ;text-align: right;}
+.css_df_valor_iva_grid_line, .css_df_valor_iva_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_df_valor_iva_tot_ger, .css_df_valor_iva_tot_ger:hover {text-align: ;text-align: right;}
+.css_df_total_grid_line, .css_df_total_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_df_total_tot_ger, .css_df_total_tot_ger:hover {text-align: ;text-align: right;}
+.css_fac_numero_grid_line, .css_fac_numero_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_fac_empresa_grid_line, .css_fac_empresa_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_fac_secuencial_grid_line, .css_fac_secuencial_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_df_subtotal_S_sub_tot, .css_df_subtotal_S_sub_tot:hover {text-align: right;text-align: right;}
+.css_df_subtotal_S_tot_ger, .css_df_subtotal_S_tot_ger:hover {text-align: right;}
+.css_df_descuento_S_sub_tot, .css_df_descuento_S_sub_tot:hover {text-align: right;text-align: right;}
+.css_df_descuento_S_tot_ger, .css_df_descuento_S_tot_ger:hover {text-align: right;}
+.css_df_valor_iva_S_sub_tot, .css_df_valor_iva_S_sub_tot:hover {text-align: right;text-align: right;}
+.css_df_valor_iva_S_tot_ger, .css_df_valor_iva_S_tot_ger:hover {text-align: right;}
+.css_df_total_S_sub_tot, .css_df_total_S_sub_tot:hover {text-align: right;text-align: right;}
+.css_df_total_S_tot_ger, .css_df_total_S_tot_ger:hover {text-align: right;}

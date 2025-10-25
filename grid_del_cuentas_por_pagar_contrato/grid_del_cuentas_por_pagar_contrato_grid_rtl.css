@@ -1,0 +1,21 @@
+.css_cxp_fecha_label, .css_cxp_fecha_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cxp_fecha_grid_line, .css_cxp_fecha_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cxp_tipo_documento_label, .css_cxp_tipo_documento_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cxp_tipo_documento_grid_line, .css_cxp_tipo_documento_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cxp_documento_label, .css_cxp_documento_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cxp_documento_grid_line, .css_cxp_documento_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cxp_valor_label, .css_cxp_valor_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_cxp_valor_grid_line, .css_cxp_valor_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cxp_valor_tot_ger, .css_cxp_valor_tot_ger:hover {text-align: ;text-align: right;}
+.css_cxp_estado_label, .css_cxp_estado_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cxp_estado_grid_line, .css_cxp_estado_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cxp_contrato_label, .css_cxp_contrato_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_cxp_contrato_grid_line, .css_cxp_contrato_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cxp_cliente_label, .css_cxp_cliente_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_cxp_cliente_grid_line, .css_cxp_cliente_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cxp_empresa_label, .css_cxp_empresa_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cxp_empresa_grid_line, .css_cxp_empresa_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cxp_id_label, .css_cxp_id_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_cxp_id_grid_line, .css_cxp_id_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cxp_valor_S_sub_tot, .css_cxp_valor_S_sub_tot:hover {text-align: right;text-align: right;}
+.css_cxp_valor_S_tot_ger, .css_cxp_valor_S_tot_ger:hover {text-align: right;}

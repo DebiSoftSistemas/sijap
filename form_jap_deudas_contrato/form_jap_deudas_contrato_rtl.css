@@ -1,0 +1,24 @@
+.css_cl_nombre_label { }
+.css_cl_nombre_line { }
+.css_cl_nombre_obj { }
+.css_cl_identificacion_label { }
+.css_cl_identificacion_line { }
+.css_cl_identificacion_obj { }
+.css_cl_direccion_label { }
+.css_cl_direccion_line { }
+.css_cl_direccion_obj { }
+.css_cl_telefono_label { }
+.css_cl_telefono_line { }
+.css_cl_telefono_obj { }
+.css_cl_email_label { }
+.css_cl_email_line { }
+.css_cl_email_obj { }
+.css_titulo_label {font-size:14px;}
+.css_titulo_line {font-size:14px;color:#FFFFFF;background-color:#0033FF;font-weight:bold;text-align:center;}
+.css_titulo_obj {font-size:14px;color:#FFFFFF;background-color:#0033FF;font-weight:bold;border-width:2px;text-align:center;}
+.css_mensaje_label {font-size:14px;color:#FFFFFF;background-color:#FF0033;font-weight:bold;text-align:center;}
+.css_mensaje_line {font-size:14px;color:#FFFFFF;background-color:#FF0033;font-weight:bold;text-align:center;}
+.css_mensaje_obj {font-size:14px;color:#FFFFFF;background-color:#FF0033;font-weight:bold;text-align:center;}
+.css_operaciones_label { }
+.css_operaciones_line { }
+.css_operaciones_obj { }

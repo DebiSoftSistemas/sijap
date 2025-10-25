@@ -1,0 +1,26 @@
+.css_fac_fecha_label, .css_fac_fecha_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_fac_fecha_grid_line, .css_fac_fecha_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_factura_label, .css_factura_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_factura_grid_line, .css_factura_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_fac_cliente_label, .css_fac_cliente_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_fac_cliente_grid_line, .css_fac_cliente_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_fac_comentario_label, .css_fac_comentario_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_fac_comentario_grid_line, .css_fac_comentario_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_fp_valor_label, .css_fp_valor_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_fp_valor_grid_line, .css_fp_valor_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_fp_valor_tot_ger, .css_fp_valor_tot_ger:hover {text-align: ;text-align: right;}
+.css_fp_valor_pago_label, .css_fp_valor_pago_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_fp_valor_pago_grid_line, .css_fp_valor_pago_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_fp_valor_pago_tot_ger, .css_fp_valor_pago_tot_ger:hover {text-align: ;text-align: right;}
+.css_fp_saldo_label, .css_fp_saldo_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_fp_saldo_grid_line, .css_fp_saldo_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_fp_saldo_tot_ger, .css_fp_saldo_tot_ger:hover {text-align: ;text-align: right;}
+.css_pagos_label, .css_pagos_label:hover {text-align:;vertical-align:middle;justify-content:;font-weight:bold;}
+.css_pagos_grid_line, .css_pagos_grid_line:hover {text-align: left;}
+.css_fp_id_label, .css_fp_id_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_fp_id_grid_line, .css_fp_id_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_fac_empresa_label, .css_fac_empresa_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_fac_empresa_grid_line, .css_fac_empresa_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_fp_valor_S_tot_ger, .css_fp_valor_S_tot_ger:hover {text-align: right;}
+.css_fp_valor_pago_S_tot_ger, .css_fp_valor_pago_S_tot_ger:hover {text-align: right;}
+.css_fp_saldo_S_tot_ger, .css_fp_saldo_S_tot_ger:hover {text-align: right;}

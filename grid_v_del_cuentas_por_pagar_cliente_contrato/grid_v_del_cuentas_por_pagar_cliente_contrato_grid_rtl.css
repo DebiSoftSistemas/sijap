@@ -1,0 +1,16 @@
+.css_cl_identificacion_label, .css_cl_identificacion_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cl_identificacion_grid_line, .css_cl_identificacion_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cl_nombre_label, .css_cl_nombre_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cl_nombre_grid_line, .css_cl_nombre_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cl_direccion_label, .css_cl_direccion_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cl_direccion_grid_line, .css_cl_direccion_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cxp_valor_label, .css_cxp_valor_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_cxp_valor_grid_line, .css_cxp_valor_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cxp_valor_tot_ger, .css_cxp_valor_tot_ger:hover {text-align: ;text-align: right;}
+.css_detalles_label, .css_detalles_label:hover {text-align:;vertical-align:middle;justify-content:;font-weight:bold;}
+.css_detalles_grid_line, .css_detalles_grid_line:hover {text-align: right;}
+.css_cxp_empresa_label, .css_cxp_empresa_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cxp_empresa_grid_line, .css_cxp_empresa_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cxp_cliente_label, .css_cxp_cliente_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_cxp_cliente_grid_line, .css_cxp_cliente_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cxp_valor_S_tot_ger, .css_cxp_valor_S_tot_ger:hover {text-align: right;}

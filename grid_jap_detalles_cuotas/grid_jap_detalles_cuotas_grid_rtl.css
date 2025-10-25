@@ -1,0 +1,22 @@
+.css_cc_cuota_label, .css_cc_cuota_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_cc_cuota_grid_line, .css_cc_cuota_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cc_fecha_label, .css_cc_fecha_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cc_fecha_grid_line, .css_cc_fecha_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cc_producto_label, .css_cc_producto_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cc_producto_grid_line, .css_cc_producto_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cc_valor_label, .css_cc_valor_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_cc_valor_grid_line, .css_cc_valor_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cc_valor_tot_ger, .css_cc_valor_tot_ger:hover {text-align: ;text-align: right;}
+.css_cc_iva_label, .css_cc_iva_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_cc_iva_grid_line, .css_cc_iva_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cc_iva_tot_ger, .css_cc_iva_tot_ger:hover {text-align: ;text-align: right;}
+.css_cc_total_label, .css_cc_total_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_cc_total_grid_line, .css_cc_total_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cc_total_tot_ger, .css_cc_total_tot_ger:hover {text-align: ;text-align: right;}
+.css_cc_id_label, .css_cc_id_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_cc_id_grid_line, .css_cc_id_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cc_contrato_label, .css_cc_contrato_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_cc_contrato_grid_line, .css_cc_contrato_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cc_valor_S_tot_ger, .css_cc_valor_S_tot_ger:hover {text-align: right;}
+.css_cc_iva_S_tot_ger, .css_cc_iva_S_tot_ger:hover {text-align: right;}
+.css_cc_total_S_tot_ger, .css_cc_total_S_tot_ger:hover {text-align: right;}

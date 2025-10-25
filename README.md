@@ -1,2 +1,2 @@
 # sijap
-Sistema de Administracion de juntas de Agua Potable
+Sistema de Administracion de Juntas de Agua Potable

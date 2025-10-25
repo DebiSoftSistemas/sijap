@@ -1,0 +1,28 @@
+.css_con_ruta_label, .css_con_ruta_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_ruta_grid_line, .css_con_ruta_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_con_cedula_label, .css_con_cedula_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_cedula_grid_line, .css_con_cedula_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_con_nombre_label, .css_con_nombre_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_nombre_grid_line, .css_con_nombre_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_con_tipo_servicio_label, .css_con_tipo_servicio_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_tipo_servicio_grid_line, .css_con_tipo_servicio_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_con_numero_contrato_label, .css_con_numero_contrato_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_numero_contrato_grid_line, .css_con_numero_contrato_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_con_estado_label, .css_con_estado_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_estado_grid_line, .css_con_estado_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_seleccionar_label, .css_seleccionar_label:hover {text-align:;vertical-align:middle;justify-content:;font-weight:bold;}
+.css_seleccionar_grid_line, .css_seleccionar_grid_line:hover {text-align: left;}
+.css_con_id_label, .css_con_id_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_id_grid_line, .css_con_id_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_con_telefono_label, .css_con_telefono_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_telefono_grid_line, .css_con_telefono_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_con_celular_label, .css_con_celular_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_celular_grid_line, .css_con_celular_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_con_direccion_predio_label, .css_con_direccion_predio_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_direccion_predio_grid_line, .css_con_direccion_predio_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_con_condicion_contrato_label, .css_con_condicion_contrato_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_condicion_contrato_grid_line, .css_con_condicion_contrato_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_con_comunidad_label, .css_con_comunidad_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_comunidad_grid_line, .css_con_comunidad_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_con_sector_label, .css_con_sector_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_sector_grid_line, .css_con_sector_grid_line:hover {vertical-align: middle;text-align: left;}

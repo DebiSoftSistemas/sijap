@@ -1,0 +1,51 @@
+.css_cl_nombre_label { }
+.css_cl_nombre_line { }
+.css_cl_nombre_obj { }
+.css_cl_identificacion_label { }
+.css_cl_identificacion_line { }
+.css_cl_identificacion_obj { }
+.css_cl_direccion_label { }
+.css_cl_direccion_line { }
+.css_cl_direccion_obj { }
+.css_cl_telefono_label { }
+.css_cl_telefono_line { }
+.css_cl_telefono_obj { }
+.css_cl_email_label { }
+.css_cl_email_line { }
+.css_cl_email_obj { }
+.css_libretin_label { }
+.css_libretin_line { }
+.css_libretin_obj { }
+.css_forma_pago_label { }
+.css_forma_pago_line { }
+.css_forma_pago_obj {width:300px;}
+.css_documento_label { }
+.css_documento_line { }
+.css_documento_obj { }
+.css_total_label {background-color:#FF9900;}
+.css_total_line {background-color:#FF9900;}
+.css_total_obj {font-size:18px;background-color:#FF9900;font-weight:bold;}
+.css_valor_pago_label {background-color:#00FF00;font-weight:bold;}
+.css_valor_pago_line {font-size:18px;background-color:#00FF00;font-weight:bold;}
+.css_valor_pago_obj {font-size:18px;background-color:#00FF00;font-weight:bold;text-align:right;}
+.css_titulo_label {font-size:14px;}
+.css_titulo_line {font-size:14px;color:#FFFFFF;background-color:#0033FF;font-weight:bold;text-align:center;}
+.css_titulo_obj {font-size:14px;color:#FFFFFF;background-color:#0033FF;font-weight:bold;border-width:2px;text-align:center;}
+.css_operaciones2_label { }
+.css_operaciones2_line { }
+.css_operaciones2_obj { }
+.css_mensaje_label {font-size:14px;color:#FFFFFF;background-color:#FF0033;font-weight:bold;text-align:center;}
+.css_mensaje_line {font-size:14px;color:#FFFFFF;background-color:#FF0033;font-weight:bold;text-align:center;}
+.css_mensaje_obj {font-size:14px;color:#FFFFFF;background-color:#FF0033;font-weight:bold;text-align:center;}
+.css_tesoreria_label { }
+.css_tesoreria_line { }
+.css_tesoreria_obj {width:300px;}
+.css_saldo_por_pagar_label {background-color:#00FF00;}
+.css_saldo_por_pagar_line {font-size:18px;background-color:#00FF00;font-weight:bold;}
+.css_saldo_por_pagar_obj {font-size:18px;background-color:#00FF00;font-weight:bold;text-align:right;}
+.css_usar_compensacion_label { }
+.css_usar_compensacion_line { }
+.css_usar_compensacion_obj { }
+.css_contrato_label { }
+.css_contrato_line { }
+.css_contrato_obj { }

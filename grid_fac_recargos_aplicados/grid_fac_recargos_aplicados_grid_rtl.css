@@ -1,0 +1,16 @@
+.css_ra_cantidad_label, .css_ra_cantidad_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_ra_cantidad_grid_line, .css_ra_cantidad_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ra_descripcion_label, .css_ra_descripcion_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_ra_descripcion_grid_line, .css_ra_descripcion_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ra_valor_label, .css_ra_valor_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_ra_valor_grid_line, .css_ra_valor_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ra_valor_tot_ger, .css_ra_valor_tot_ger:hover {text-align: ;text-align: right;}
+.css_ra_anio_label, .css_ra_anio_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_ra_anio_grid_line, .css_ra_anio_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ra_mes_label, .css_ra_mes_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_ra_mes_grid_line, .css_ra_mes_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ra_precio_unitario_label, .css_ra_precio_unitario_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_ra_precio_unitario_grid_line, .css_ra_precio_unitario_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ra_producto_aplica_label, .css_ra_producto_aplica_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_ra_producto_aplica_grid_line, .css_ra_producto_aplica_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_ra_valor_S_tot_ger, .css_ra_valor_S_tot_ger:hover {text-align: right;}

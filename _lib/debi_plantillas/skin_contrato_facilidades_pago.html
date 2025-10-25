@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Contrato de Convenio de Pago </title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<script type="text/javascript" src="/debi_plantillas/jquery_qrcode/jquery.qrcode-0.12.0.js"></script>
+<script type="text/javascript" src="/debi_plantillas/jquery_qrcode/jquery.qrcode-0.12.0.min.js"></script>
+<style type="text/css">
+
+   .saltopagina 
+	{
+	PAGE-BREAK-AFTER: always;
+	}
+
+	html, body {
+		margin:0;
+		padding:0;
+		border:0;
+		outline:0;
+		font-size:100%;
+		vertical-align:baseline;
+		background:transparent;
+		background:#e5e5e5;
+	}
+	
+	body {line-height:1;}
+
+	p{
+	font-size: 11px;
+	text-align: justify;
+	}
+	.contenedor{
+		width:800px;
+		margin:0 auto;
+		background:#FFFFFF;
+		//font-family:Arial, Helvetica, sans-serif;
+		font-family:times new roman;
+		font-size:17px;
+		font-weight:normal;
+	}
+	.contenedor .cuerpo{
+	width: 740px;
+	margin: -50px auto;
+	line-height: 20px;
+	text-align: center;		
+	}
+	.cuerpo table td{
+	padding: 5px;
+	font-size: 12px;
+	}
+	
+	header{
+		width:800px;
+		height:147px;
+		margin:0 auto;		
+	}
+	footer{
+		width:800px;
+		height:91px;
+		margin:0 auto;
+	}
+	ul li{
+		text-align:justify;
+	}
+	.img_cabecera{
+		width:90%;
+		margin:0 auto;
+	}
+	
+	.div_cabecera{
+		width:700px;
+		height:155px;		
+	}
+</style>
+</head>
+<body>
+<section class="contenedor">
+	<header><img src="imagenes/cabecera.gif" /></header>
+  <div class="cuerpo">
+  	<h4 align="right" style="color:RED">&nbsp;</h4>
+  	<h4 align="right" style="color:RED">Nro. $Numero</h4>
+  	<h4><strong><u>CONVENIO DE FACILIDADES DE PAGO   DEL SERVICIO COMUNITARIO DE AGUA PARA RIEGO</u></strong></h4>
+  	<table width="740" cellpadding="0" cellspacing="0">              
+      <tr>
+            <td style="text-align:left;font-size:14px;">
+                <strong>Ascazubi, $fecha</strong></td>
+            </tr>
+            <tr>
+                <td style="text-align:leftfont-size:14px;">
+                <p><strong>PRIMERA. - COMPARECIENTES: </strong>Comparecen a la  celebraci&oacute;n del presente convenio de facilidades de pago por deuda del servicio comunitario de agua para riego, por  una parte el  <strong>$nombre_representante</strong>, en su calidad de Presidente y  Representante Legal de la Junta General del Sistema de Riego<strong> $Empresa</strong> (JGSRP),  en calidad de Acreedor; y, por otra parte, el se&ntilde;or(a) <strong>$Propietario</strong>, consumidor  del <strong>$modulo</strong>, <strong>$toma</strong>, por sus propios y personales derechos, portador de la  C.C. No<strong> $identificacion</strong>, en calidad de Deudor.</p>
+                <p><strong>SEGUNDA. - DETALLE DE DEUDA:</strong> El consumidor deudor, al momento de suscribir la presente solicitud de  facilidades de pago, por deuda del servicio comunitario de  agua para riego, reconoce y acepta los valores que debe a la JGSRP y que dichos  valores se detallan a continuaci&oacute;n:</p></td>
+            </tr>
+            <tr>
+          	<td style="text-align:left;font-size:14px;">
+            	$Deudas
+            </td>
+      </tr> 
+            <tr>
+                <td style="text-align:leftfont-size:14px;">
+                <p><strong>TERCERA. - CONVENIO:</strong> El consumidor deudor, se compromete a cancelar la  totalidad del monto, en cuotas mensuales que incluyen multas,  recargos e intereses correspondientes, en caso de haberlos y abonar el pago de la primera cuota al momento de la firma de la presente solicitud.</p></td>
+            </tr>
+          <tr>
+          	<td style="text-align:left;font-size:14px;">
+            	$Pagos
+            </td>
+          </tr> 
+          <tr>
+          	<td  style="text-align:center;font-size:14px;">
+            <hr color="black" size=3>
+            Granja El Pisque. Barrio La Merced. Parroquia Asc&aacute;zubi. Cant&oacute;n Cayambe           	<br> Telfs. 2164121 / 2164198 / 2164413
+            </td>
+          </tr>
+      
+    </table>
+</div>
+</section>
+<p class="saltopagina"></p>
+
+<section class="contenedor">
+	<header><img src="imagenes/cabecera.gif"/></header>
+	<div class="cuerpo">
+	<h4>&nbsp;</h4>
+    <table width="740" cellpadding="0" cellspacing="0">          
+          <tr>
+          	<td style="text-align:justify;font-size:14px;"><p><strong>CUARTA. - SOMETIMIENTO, DOMICILIO Y AUTORIZACI&Oacute;N:</strong> De conformidad con las disposiciones establecidas en Ley  Org&aacute;nica de Recursos H&iacute;dricos, Uso y Aprovechamiento del Agua, en el Art. 47,  literal (e) y (f), Art. 151. Literal (b), numeral 3, y en los Estatutos  vigentes de la JGSRP, en Art. 15,literal (b), Art. 54, &uacute;ltimo inciso, Art. 62  numeral 6, y Art. 66 numeral 9, en caso de que no cancele mis obligaciones  dentro del plazo otorgado, asumo todas y cada una de las responsabilidades que  genere la falta de pago, d&aacute;ndome por notificado para el inicio de los  procedimientos de cobro legales correspondientes que sean impulsados por JGSRP.</p>
+              <p>Declaro bajo  juramento que para futuras notificaciones mi direcci&oacute;n domiciliaria legal  es <strong>$domicilio</strong> de la ciudad de  <strong>$canton,</strong> provincia de <strong>$provincia,</strong> mi n&uacute;mero  telef&oacute;nico personal es <strong>$telefono</strong> y mi correo electr&oacute;nico es <strong>$email</strong><br>
+              Declaro que la informaci&oacute;n  proporcionada es real y autorizo expresamente a la JGSRP para que obtenga de  cualquier fuente incluida bur&oacute;s de informaci&oacute;n crediticia, mis datos sobre  riesgos crediticios, las veces que se estime convenientes.</p>
+              <p><strong>QUINTA. -</strong> Declaro que debo y pagar&eacute; a favor  de la Junta General del Sistema de Riego El Pisque, en el lugar y fecha que me  reconvenga, el valor total expresado en este instrumento, m&aacute;s los intereses  respectivos y el m&aacute;ximo de inter&eacute;s legal permitido en caso de mora, sin  protesto. Ex&iacute;mase de presentaci&oacute;n para el pago, as&iacute; como por falta de este  hecho. Renuncio expresamente a domicilio y fuero y me someto a los jueces  competentes de la ciudad de Quito o Cayambe, y al tr&aacute;mite Ejecutivo o Verbal  Sumario a elecci&oacute;n del actor o sus cesionarios. Acepto que la JGSRP transfiera  en cualquier momento los derechos que emanan del presente instrumento, sin que  sea necesaria notificaci&oacute;n alguna ni nueva aceptaci&oacute;n de mi parte. Acepto los  valores y condiciones expresadas en el presente convenio y en caso de incumplir  el pago de una sola cuota, libre y voluntariamente autorizo al Acreedor de  declarar de plazo vencido la totalidad de la deuda y exigir el pago total por  cualquier v&iacute;a. </p>
+            <p>Para constancia de aceptaci&oacute;n del  presente convenio, firman el presente instrumento los comparecientes.</p></td>
+          </tr>
+                     
+          <tr>
+          	<td  style="text-align:LEFT">
+            	<table>
+                    <tr>
+                    <td width="350" style="text-align:CENTER">
+                    <p><strong>____________________________</strong>
+                    <br><strong>  USUARIO/REPRESENTANTE</strong>
+                    <br><strong>$Propietario</strong>
+                    <br><strong>C.C. $identificacion</strong>
+                    <BR>
+                    </p>
+                    </td>
+                   	<td width="350" style="text-align:CENTER">
+                    <p><strong>____________________________</strong>
+                    <br>
+                    <strong>PRESIENTE J.G.S.R.P.</strong>
+                    <br><strong>$nombre_representante</strong>
+                    <br><strong>C.C. $cedula_representante</strong>
+                    <br>
+                    </p>
+                    </td>
+                    
+                  </tr>
+                </table>
+            </td>
+          </tr>
+          
+          <tr>
+          	<td  style="text-align:center;font-size:14px;">
+            <hr color="black" size=3>
+            Granja El Pisque. Barrio La Merced. Parroquia Asc&aacute;zubi. Cant&oacute;n Cayambe           	<br> Telfs. 2164121 / 2164198 / 2164413
+            </td>
+          </tr>
+          
+    </table>
+  </div>
+</section>
+<p class="saltopagina"></p>
+
+
+</body>
+</html>

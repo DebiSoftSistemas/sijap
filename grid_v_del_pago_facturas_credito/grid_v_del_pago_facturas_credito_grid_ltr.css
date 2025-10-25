@@ -1,0 +1,18 @@
+.css_tc_nombre_label, .css_tc_nombre_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_tc_nombre_grid_line, .css_tc_nombre_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_fac_fecha_label, .css_fac_fecha_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_fac_fecha_grid_line, .css_fac_fecha_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_factura_label, .css_factura_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_factura_grid_line, .css_factura_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_fac_comentario_label, .css_fac_comentario_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_fac_comentario_grid_line, .css_fac_comentario_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_fac_total_label, .css_fac_total_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_fac_total_grid_line, .css_fac_total_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_fac_estado_label, .css_fac_estado_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_fac_estado_grid_line, .css_fac_estado_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_baucher_label, .css_baucher_label:hover {text-align:;vertical-align:middle;justify-content:;font-weight:bold;}
+.css_baucher_grid_line, .css_baucher_grid_line:hover {text-align: center;}
+.css_pfc_id_fp_factura_label, .css_pfc_id_fp_factura_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_pfc_id_fp_factura_grid_line, .css_pfc_id_fp_factura_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_fac_numero_label, .css_fac_numero_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_fac_numero_grid_line, .css_fac_numero_grid_line:hover {vertical-align: middle;text-align: right;}

@@ -1,0 +1,25 @@
+.css_cd_cuota_label, .css_cd_cuota_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cd_cuota_grid_line, .css_cd_cuota_grid_line:hover {vertical-align: top;text-align: left;}
+.css_cd_fecha_label, .css_cd_fecha_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cd_fecha_grid_line, .css_cd_fecha_grid_line:hover {vertical-align: top;text-align: left;}
+.css_cd_producto_label, .css_cd_producto_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cd_producto_grid_line, .css_cd_producto_grid_line:hover {vertical-align: top;text-align: left;}
+.css_cd_capital_label, .css_cd_capital_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_cd_capital_grid_line, .css_cd_capital_grid_line:hover {vertical-align: top;text-align: right;}
+.css_cd_capital_tot_ger, .css_cd_capital_tot_ger:hover {text-align: ;text-align: right;}
+.css_cd_valor_iva_label, .css_cd_valor_iva_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_cd_valor_iva_grid_line, .css_cd_valor_iva_grid_line:hover {vertical-align: top;text-align: right;}
+.css_cd_valor_iva_tot_ger, .css_cd_valor_iva_tot_ger:hover {text-align: ;text-align: right;}
+.css_cd_total_label, .css_cd_total_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_cd_total_grid_line, .css_cd_total_grid_line:hover {vertical-align: top;text-align: right;}
+.css_cd_total_tot_ger, .css_cd_total_tot_ger:hover {text-align: ;text-align: right;}
+.css_cd_id_label, .css_cd_id_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cd_id_grid_line, .css_cd_id_grid_line:hover {vertical-align: top;text-align: left;}
+.css_cd_operacion_label, .css_cd_operacion_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_cd_operacion_grid_line, .css_cd_operacion_grid_line:hover {vertical-align: top;text-align: right;}
+.css_cd_capital_S_sub_tot, .css_cd_capital_S_sub_tot:hover {text-align: left;text-align: right;}
+.css_cd_capital_S_tot_ger, .css_cd_capital_S_tot_ger:hover {text-align: right;}
+.css_cd_valor_iva_S_sub_tot, .css_cd_valor_iva_S_sub_tot:hover {text-align: left;text-align: right;}
+.css_cd_valor_iva_S_tot_ger, .css_cd_valor_iva_S_tot_ger:hover {text-align: right;}
+.css_cd_total_S_sub_tot, .css_cd_total_S_sub_tot:hover {text-align: left;text-align: right;}
+.css_cd_total_S_tot_ger, .css_cd_total_S_tot_ger:hover {text-align: right;}

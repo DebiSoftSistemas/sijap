@@ -1,0 +1,20 @@
+.css_des_orden_label, .css_des_orden_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_des_orden_grid_line, .css_des_orden_grid_line:hover {vertical-align: top;text-align: left;}
+.css_des_propietario_label, .css_des_propietario_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_des_propietario_grid_line, .css_des_propietario_grid_line:hover {vertical-align: top;text-align: left;}
+.css_des_contrato_label, .css_des_contrato_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_des_contrato_grid_line, .css_des_contrato_grid_line:hover {vertical-align: top;text-align: left;}
+.css_des_numero_censo_label, .css_des_numero_censo_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_des_numero_censo_grid_line, .css_des_numero_censo_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_des_numero_medidor_label, .css_des_numero_medidor_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_des_numero_medidor_grid_line, .css_des_numero_medidor_grid_line:hover {vertical-align: top;text-align: left;}
+.css_des_lectura_anterior_label, .css_des_lectura_anterior_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_des_lectura_anterior_grid_line, .css_des_lectura_anterior_grid_line:hover {vertical-align: top;text-align: right;}
+.css_des_lectura_actual_label, .css_des_lectura_actual_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_des_lectura_actual_grid_line, .css_des_lectura_actual_grid_line:hover {vertical-align: top;text-align: right;}
+.css_observacion_label, .css_observacion_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_observacion_grid_line, .css_observacion_grid_line:hover {text-align: right;}
+.css_eliminar_label, .css_eliminar_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_eliminar_grid_line, .css_eliminar_grid_line:hover {text-align: left;}
+.css_des_ruta_label, .css_des_ruta_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_des_ruta_grid_line, .css_des_ruta_grid_line:hover {vertical-align: top;text-align: right;}

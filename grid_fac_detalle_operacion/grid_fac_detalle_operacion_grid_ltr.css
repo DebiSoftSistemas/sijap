@@ -1,0 +1,34 @@
+.css_do_producto_label, .css_do_producto_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_do_producto_grid_line, .css_do_producto_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_do_cantidad_label, .css_do_cantidad_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_do_cantidad_grid_line, .css_do_cantidad_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_do_precio_unitario_label, .css_do_precio_unitario_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_do_precio_unitario_grid_line, .css_do_precio_unitario_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_do_subtotal_label, .css_do_subtotal_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_do_subtotal_grid_line, .css_do_subtotal_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_do_subtotal_tot_ger, .css_do_subtotal_tot_ger:hover {text-align: ;text-align: right;}
+.css_do_valor_iva_label, .css_do_valor_iva_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_do_valor_iva_grid_line, .css_do_valor_iva_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_do_valor_iva_tot_ger, .css_do_valor_iva_tot_ger:hover {text-align: ;text-align: right;}
+.css_do_total_label, .css_do_total_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_do_total_grid_line, .css_do_total_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_do_total_tot_ger, .css_do_total_tot_ger:hover {text-align: ;text-align: right;}
+.css_do_secuencia_label, .css_do_secuencia_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_do_secuencia_grid_line, .css_do_secuencia_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_do_operacion_label, .css_do_operacion_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_do_operacion_grid_line, .css_do_operacion_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_do_descripcion_label, .css_do_descripcion_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_do_descripcion_grid_line, .css_do_descripcion_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_do_descuento_label, .css_do_descuento_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_do_descuento_grid_line, .css_do_descuento_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_do_base_iva_label, .css_do_base_iva_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_do_base_iva_grid_line, .css_do_base_iva_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_do_porcentaje_iva_label, .css_do_porcentaje_iva_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_do_porcentaje_iva_grid_line, .css_do_porcentaje_iva_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_do_estado_label, .css_do_estado_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_do_estado_grid_line, .css_do_estado_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_do_cuenta_x_cobrar_label, .css_do_cuenta_x_cobrar_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_do_cuenta_x_cobrar_grid_line, .css_do_cuenta_x_cobrar_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_do_subtotal_S_tot_ger, .css_do_subtotal_S_tot_ger:hover {text-align: right;}
+.css_do_valor_iva_S_tot_ger, .css_do_valor_iva_S_tot_ger:hover {text-align: right;}
+.css_do_total_S_tot_ger, .css_do_total_S_tot_ger:hover {text-align: right;}

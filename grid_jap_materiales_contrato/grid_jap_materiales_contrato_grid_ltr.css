@@ -1,0 +1,26 @@
+.css_mc_producto_label, .css_mc_producto_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_mc_producto_grid_line, .css_mc_producto_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_mc_unidad_label, .css_mc_unidad_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_mc_unidad_grid_line, .css_mc_unidad_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_mc_cantidad_label, .css_mc_cantidad_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_mc_cantidad_grid_line, .css_mc_cantidad_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_mc_precio_unitario_label, .css_mc_precio_unitario_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_mc_precio_unitario_grid_line, .css_mc_precio_unitario_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_mc_subtotal_label, .css_mc_subtotal_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_mc_subtotal_grid_line, .css_mc_subtotal_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_mc_subtotal_tot_ger, .css_mc_subtotal_tot_ger:hover {text-align: ;text-align: right;}
+.css_mc_iva_label, .css_mc_iva_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_mc_iva_grid_line, .css_mc_iva_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_mc_iva_tot_ger, .css_mc_iva_tot_ger:hover {text-align: ;text-align: right;}
+.css_mc_total_label, .css_mc_total_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_mc_total_grid_line, .css_mc_total_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_mc_total_tot_ger, .css_mc_total_tot_ger:hover {text-align: ;text-align: right;}
+.css_mc_id_label, .css_mc_id_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_mc_id_grid_line, .css_mc_id_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_mc_contrato_label, .css_mc_contrato_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_mc_contrato_grid_line, .css_mc_contrato_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_mc_bodega_label, .css_mc_bodega_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_mc_bodega_grid_line, .css_mc_bodega_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_mc_subtotal_S_tot_ger, .css_mc_subtotal_S_tot_ger:hover {text-align: right;}
+.css_mc_iva_S_tot_ger, .css_mc_iva_S_tot_ger:hover {text-align: right;}
+.css_mc_total_S_tot_ger, .css_mc_total_S_tot_ger:hover {text-align: right;}

@@ -1,0 +1,14 @@
+.css_cantidad_label, .css_cantidad_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_cantidad_grid_line, .css_cantidad_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_do_producto_label, .css_do_producto_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_do_producto_grid_line, .css_do_producto_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_total_deuda_label, .css_total_deuda_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_total_deuda_grid_line, .css_total_deuda_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_total_deuda_tot_ger, .css_total_deuda_tot_ger:hover {text-align: ;text-align: right;}
+.css_op_contrato_label, .css_op_contrato_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_op_contrato_grid_line, .css_op_contrato_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_con_numero_contrato_label, .css_con_numero_contrato_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_numero_contrato_grid_line, .css_con_numero_contrato_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_con_numero_medidor_label, .css_con_numero_medidor_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_numero_medidor_grid_line, .css_con_numero_medidor_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_total_deuda_S_tot_ger, .css_total_deuda_S_tot_ger:hover {text-align: right;}

@@ -1,0 +1,70 @@
+.css_esc_fecha_label, .css_esc_fecha_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_esc_fecha_grid_line, .css_esc_fecha_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_esc_tipo_deuda_label, .css_esc_tipo_deuda_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_esc_tipo_deuda_grid_line, .css_esc_tipo_deuda_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_cl_nombre_label, .css_cl_nombre_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cl_nombre_grid_line, .css_cl_nombre_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_esc_anio_periodo_label, .css_esc_anio_periodo_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_esc_anio_periodo_grid_line, .css_esc_anio_periodo_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_esc_mes_periodo_label, .css_esc_mes_periodo_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_esc_mes_periodo_grid_line, .css_esc_mes_periodo_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_con_numero_contrato_label, .css_con_numero_contrato_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_numero_contrato_grid_line, .css_con_numero_contrato_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_des_total_label, .css_des_total_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_des_total_grid_line, .css_des_total_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_des_total_tot_ger, .css_des_total_tot_ger:hover {text-align: ;text-align: right;}
+.css_op_estado_label, .css_op_estado_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_estado_grid_line, .css_op_estado_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_op_motivo_baja_label, .css_op_motivo_baja_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_motivo_baja_grid_line, .css_op_motivo_baja_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_detalle_deuda_label, .css_detalle_deuda_label:hover {text-align:;vertical-align:middle;justify-content:;font-weight:bold;}
+.css_detalle_deuda_grid_line, .css_detalle_deuda_grid_line:hover {text-align: left;}
+.css_detalles_label, .css_detalles_label:hover {text-align:;vertical-align:middle;justify-content:;font-weight:bold;}
+.css_detalles_grid_line, .css_detalles_grid_line:hover {text-align: left;}
+.css_factura_label, .css_factura_label:hover {text-align:;vertical-align:middle;justify-content:;font-weight:bold;}
+.css_factura_grid_line, .css_factura_grid_line:hover {text-align: left;}
+.css_des_ruta_label, .css_des_ruta_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_des_ruta_grid_line, .css_des_ruta_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_cl_telefono_label, .css_cl_telefono_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cl_telefono_grid_line, .css_cl_telefono_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_cl_celular_label, .css_cl_celular_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cl_celular_grid_line, .css_cl_celular_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_cl_email_label, .css_cl_email_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_cl_email_grid_line, .css_cl_email_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_con_direccion_predio_label, .css_con_direccion_predio_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_con_direccion_predio_grid_line, .css_con_direccion_predio_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_des_contrato_label, .css_des_contrato_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_des_contrato_grid_line, .css_des_contrato_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_con_tipo_servicio_label, .css_con_tipo_servicio_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_con_tipo_servicio_grid_line, .css_con_tipo_servicio_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_con_condicion_contrato_label, .css_con_condicion_contrato_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_con_condicion_contrato_grid_line, .css_con_condicion_contrato_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_des_numero_medidor_label, .css_des_numero_medidor_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_des_numero_medidor_grid_line, .css_des_numero_medidor_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_des_lectura_anterior_label, .css_des_lectura_anterior_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_des_lectura_anterior_grid_line, .css_des_lectura_anterior_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_des_lectura_actual_label, .css_des_lectura_actual_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_des_lectura_actual_grid_line, .css_des_lectura_actual_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_des_consumo_label, .css_des_consumo_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_des_consumo_grid_line, .css_des_consumo_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_des_consumo_tot_ger, .css_des_consumo_tot_ger:hover {text-align: ;text-align: right;}
+.css_des_consumo_base_label, .css_des_consumo_base_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_des_consumo_base_grid_line, .css_des_consumo_base_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_des_consumo_base_tot_ger, .css_des_consumo_base_tot_ger:hover {text-align: ;text-align: right;}
+.css_des_consumo_excedente_label, .css_des_consumo_excedente_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_des_consumo_excedente_grid_line, .css_des_consumo_excedente_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_des_consumo_excedente_tot_ger, .css_des_consumo_excedente_tot_ger:hover {text-align: ;text-align: right;}
+.css_op_asiento_label, .css_op_asiento_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_asiento_grid_line, .css_op_asiento_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_op_asiento_reversa_label, .css_op_asiento_reversa_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_asiento_reversa_grid_line, .css_op_asiento_reversa_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_op_asiento_ingreso_label, .css_op_asiento_ingreso_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_asiento_ingreso_grid_line, .css_op_asiento_ingreso_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_des_total_S_sub_tot, .css_des_total_S_sub_tot:hover {text-align: left;text-align: right;}
+.css_des_total_S_tot_ger, .css_des_total_S_tot_ger:hover {text-align: right;}
+.css_des_consumo_S_sub_tot, .css_des_consumo_S_sub_tot:hover {text-align: left;text-align: right;}
+.css_des_consumo_S_tot_ger, .css_des_consumo_S_tot_ger:hover {text-align: right;}
+.css_des_consumo_base_S_sub_tot, .css_des_consumo_base_S_sub_tot:hover {text-align: left;text-align: right;}
+.css_des_consumo_base_S_tot_ger, .css_des_consumo_base_S_tot_ger:hover {text-align: right;}
+.css_des_consumo_excedente_S_sub_tot, .css_des_consumo_excedente_S_sub_tot:hover {text-align: left;text-align: right;}
+.css_des_consumo_excedente_S_tot_ger, .css_des_consumo_excedente_S_tot_ger:hover {text-align: right;}

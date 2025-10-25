@@ -1,0 +1,20 @@
+.css_dde_cantidad_label, .css_dde_cantidad_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_dde_cantidad_grid_line, .css_dde_cantidad_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_dde_producto_label, .css_dde_producto_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_dde_producto_grid_line, .css_dde_producto_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_dde_valor_label, .css_dde_valor_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_dde_valor_grid_line, .css_dde_valor_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_dde_valor_tot_ger, .css_dde_valor_tot_ger:hover {text-align: ;text-align: right;}
+.css_dde_iva_label, .css_dde_iva_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_dde_iva_grid_line, .css_dde_iva_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_dde_iva_tot_ger, .css_dde_iva_tot_ger:hover {text-align: ;text-align: right;}
+.css_dde_total_label, .css_dde_total_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_dde_total_grid_line, .css_dde_total_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_dde_total_tot_ger, .css_dde_total_tot_ger:hover {text-align: ;text-align: right;}
+.css_dde_id_label, .css_dde_id_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_dde_id_grid_line, .css_dde_id_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_dde_deuda_label, .css_dde_deuda_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_dde_deuda_grid_line, .css_dde_deuda_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_dde_valor_S_tot_ger, .css_dde_valor_S_tot_ger:hover {text-align: right;}
+.css_dde_iva_S_tot_ger, .css_dde_iva_S_tot_ger:hover {text-align: right;}
+.css_dde_total_S_tot_ger, .css_dde_total_S_tot_ger:hover {text-align: right;}

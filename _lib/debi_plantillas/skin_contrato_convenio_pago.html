@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='UTF-8' />
+		<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+		<title>Convenio de Pago</title>
+		<style type='text/css'>
+			.saltopagina {
+				PAGE-BREAK-AFTER: always;
+			}
+			html, body {
+				margin:0;
+				padding:0;
+				border:0;
+				outline:0;
+				font-family: Arial, sans-serif;
+				font-size: 10px;
+				vertical-align:baseline;
+				background:transparent;
+				background:#e5e5e5;
+			}
+			body {line-height:1;}
+			
+			p {
+				margin-bottom: 1px;
+				margin-top: 1px;
+				font-size: 11px;
+				text-align: justify;
+			}
+			.contenedor {
+				width:800px;
+				margin:0 auto;
+				background:#FFFFFF;
+				font-weight:normal;
+			}
+			.contenedor .cuerpo{
+				width: 740px;
+				margin: 0px auto;
+				text-align: center;		
+			}
+			.cuerpo table td{
+				padding: 4px;
+			}
+			footer {
+				border-top: 3px solid black; /* Agregar borde al inicio del footer */
+				padding-top: 10px;
+				text-align: center;
+				font-size: 8px;
+				margin-top: 20px;
+			}
+			
+			
+			.row {
+				display: flex;
+				flex-wrap: wrap;
+				margin-bottom: 15px;
+			}
+			.col {
+				flex: 1;
+				margin-right: 15px;
+			}
+			h2 {
+				font-size: 12px;
+				margin-bottom: 12px;
+			}
+			.col p {
+				font-size: 10px;
+			}
+			.row:first-child .col:first-child p {
+				font-weight: bold;
+				font-size: 10px;
+				margin-bottom: 5px;
+			}
+			.row:first-child .col:last-child p {
+				font-style: italic;
+			}
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				margin-bottom: 10px;
+			}
+			th,
+			td {
+				padding: 4px;
+				text-align: justify;
+			}
+			th {
+				background-color: #f2f2f2;
+				text-align: left;
+			}
+		</style>
+	</head>
+	<body>
+		<section class="contenedor">
+			<div class="cuerpo">
+				<header>
+					<table width="740" cellpadding="0" cellspacing="0">
+						<tr>
+							<td WIDTH="15%" rowspan="4"><img src="imagenes/$ruc_empresa/logo_empresa.png"  width="100" /></td>
+							<td WIDTH="85%" style="text-align:center;font-size:14px;"><strong>$Empresa</strong></td>
+						</tr>
+						<tr>
+							<td width="85%" style="text-align:center;font-size:10px;"><strong>Yakuka kawsaymi kan,rrikuryapashunchik</strong></td>
+						</tr>
+						<tr>
+							<td width="85%" style="text-align:center;font-size:10px;"><strong>Comunidades: Araque, Camuendo, Compañía Alta, La Compañía, Arias Uko,Yakupata, Agato, Quinchuquí, Abatag.</strong></td>
+						</tr>
+						<tr>
+							<td width="85%" style="text-align:center;font-size:14px;"><strong>CONVENIO DE FACILIDADES DE PAGO Nro. $Numero </strong></td>
+						</tr>
+					</table>
+				</header>
+				<table width="740" cellpadding="0" cellspacing="0">              
+					<tr>
+						<td style="text-align:left;font-size:14px;"><p><strong>$canton, $fecha</strong></p></td>
+					</tr>
+					<tr>
+						<td style="text-align:leftfont-size:14px;">
+							<p><strong>PRIMERA. - COMPARECIENTES: </strong>Comparecen a la  celebraci&oacute;n del presente convenio de facilidades de pago, por  una parte el  Sr(a). <strong>$nombre_representante</strong>, en su calidad de Presidente y  Representante Legal de la <strong> $Empresa</strong>,  en calidad de Acreedor; y, por otra parte, el sr(a) <strong>$Propietario</strong>, consumidor del contrato Nro. $nro_contrato, por sus propios y personales derechos, portador de la  C.C. No<strong> $identificacion</strong>, en calidad de Deudor.</p>
+							<br>
+							<p><strong>SEGUNDA. - DETALLE DE DEUDA:</strong> El consumidor deudor, al momento de suscribir el  presente convenio de facilidades de pago, reconoce y acepta los valores que debe a la JAAPS y que dichos  valores se detallan a continuaci&oacute;n:</p>
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:left;font-size:14px;">
+							$Deudas
+						</td>
+					</tr> 
+					<tr>
+						<td style="text-align:leftfont-size:14px;">
+							<p><strong>TERCERA. - CONVENIO:</strong> El consumidor deudor, se compromete a cancelar la  totalidad del monto pendiente de pago, en cuotas mensuales que incluyen multas y recargos correspondientes, en caso de haberlos.</p>
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:left;font-size:14px;">
+							$Pagos
+						</td>
+					</tr> 
+					<tr>
+						<td style="text-align:justify;font-size:14px;">
+							<p><strong>CUARTA. - SOMETIMIENTO, DOMICILIO Y AUTORIZACI&Oacute;N:</strong> De conformidad con las disposiciones establecidas en Ley  Org&aacute;nica de Recursos H&iacute;dricos, Uso y Aprovechamiento del Agua, Art. 44-1, y en los Estatutos  vigentes de la JAAPS, Art. 27, Art. 29 Literal b; en caso de que no cancele mis obligaciones  dentro del plazo otorgado, asumo todas y cada una de las responsabilidades que  genere la falta de pago, d&aacute;ndome por notificado para el inicio de los  procedimientos de cobro legales correspondientes que sean impulsados por la JAAPS.</p>
+							<br>
+							<p><strong>QUINTA. -</strong> Declaro que debo y pagar&eacute; a favor  de la <strong>$Empresa</strong>, en el lugar y fecha que me  reconvenga, el valor total expresado en este instrumento. Acepto que la JAAPS transfiera  en cualquier momento los derechos que emanan del presente instrumento, sin que  sea necesaria notificaci&oacute;n alguna ni nueva aceptaci&oacute;n de mi parte. Acepto los  valores y condiciones expresadas en el presente convenio y en caso de incumplir  el pago de una sola cuota, libre y voluntariamente autorizo al Acreedor de  declarar de plazo vencido la totalidad de la deuda y exigir el pago total por  cualquier v&iacute;a. </p>
+							<p>Para constancia de aceptaci&oacute;n del  presente convenio, firman el presente instrumento los comparecientes.</p>
+						</td>
+					</tr>
+
+				</table>
+				<br>
+				<br>
+				<table width="740" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="350" style="text-align:CENTER">
+							<p><strong>____________________________</strong>
+								<br><strong>  USUARIO/REPRESENTANTE</strong>
+								<br><strong>$Propietario</strong>
+								<br><strong>C.C. $identificacion</strong>
+								<BR>
+							</p>
+						</td>
+						<td width="350" style="text-align:CENTER">
+							<p><strong>____________________________</strong>
+								<br>
+								<strong>PRESIDENTE J.A.A.P.S.</strong>
+								<br><strong>$nombre_representante</strong>
+								<br><strong>C.C. $cedula_representante</strong>
+								<br>
+							</p>
+						</td>
+
+					</tr>
+				</table>
+				
+				<footer>
+					<strong> DIRECCION: </strong>Comunidad La Compañía- Sector Trojaloma (estadio)
+					<br><strong>Tlf.</strong> 2919266 - <strong>PRESIDENCIA</strong> 0981134143 <strong>VOCAL</strong>- 0980555667 <strong>SECRETARIA</strong> 0967904522 <strong>TESORERIA</strong>-0991087777
+					<br><strong>E-mail</strong> sumakyaku@hotamil.com Otavalo-Ecuador
+				</footer>
+				
+			</div>
+		</section>
+		<p class="saltopagina"></p>
+
+		
+	</body>
+</html>

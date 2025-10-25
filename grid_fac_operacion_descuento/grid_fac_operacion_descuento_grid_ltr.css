@@ -1,0 +1,75 @@
+.css_op_fecha_ini_label, .css_op_fecha_ini_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_fecha_ini_grid_line, .css_op_fecha_ini_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_op_comentario_label, .css_op_comentario_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_comentario_grid_line, .css_op_comentario_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_op_subtotal_label, .css_op_subtotal_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_op_subtotal_grid_line, .css_op_subtotal_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_op_subtotal_tot_ger, .css_op_subtotal_tot_ger:hover {text-align: ;text-align: right;}
+.css_op_iva_label, .css_op_iva_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_op_iva_grid_line, .css_op_iva_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_op_iva_tot_ger, .css_op_iva_tot_ger:hover {text-align: ;text-align: right;}
+.css_op_total_label, .css_op_total_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_op_total_grid_line, .css_op_total_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_op_total_tot_ger, .css_op_total_tot_ger:hover {text-align: ;text-align: right;}
+.css_detalles_label, .css_detalles_label:hover {text-align:;vertical-align:middle;justify-content:;font-weight:bold;}
+.css_detalles_grid_line, .css_detalles_grid_line:hover {text-align: left;}
+.css_op_operacion_label, .css_op_operacion_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_op_operacion_grid_line, .css_op_operacion_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_op_empresa_label, .css_op_empresa_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_empresa_grid_line, .css_op_empresa_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_op_fecha_emision_label, .css_op_fecha_emision_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_fecha_emision_grid_line, .css_op_fecha_emision_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_op_fecha_fin_label, .css_op_fecha_fin_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_fecha_fin_grid_line, .css_op_fecha_fin_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_op_modulo_genera_label, .css_op_modulo_genera_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_op_modulo_genera_grid_line, .css_op_modulo_genera_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_op_tipo_cartera_label, .css_op_tipo_cartera_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_tipo_cartera_grid_line, .css_op_tipo_cartera_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_op_propietario_label, .css_op_propietario_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_op_propietario_grid_line, .css_op_propietario_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_op_subtotal_cero_label, .css_op_subtotal_cero_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_op_subtotal_cero_grid_line, .css_op_subtotal_cero_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_op_escenario_label, .css_op_escenario_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_op_escenario_grid_line, .css_op_escenario_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_op_usuario_emite_label, .css_op_usuario_emite_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_usuario_emite_grid_line, .css_op_usuario_emite_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_op_convenio_pago_label, .css_op_convenio_pago_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_op_convenio_pago_grid_line, .css_op_convenio_pago_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_op_dias_vencido_label, .css_op_dias_vencido_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_op_dias_vencido_grid_line, .css_op_dias_vencido_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_op_motivo_baja_label, .css_op_motivo_baja_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_motivo_baja_grid_line, .css_op_motivo_baja_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_op_fecha_baja_label, .css_op_fecha_baja_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_fecha_baja_grid_line, .css_op_fecha_baja_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_op_usuario_baja_label, .css_op_usuario_baja_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_usuario_baja_grid_line, .css_op_usuario_baja_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_op_terminal_label, .css_op_terminal_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_terminal_grid_line, .css_op_terminal_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_op_asiento_label, .css_op_asiento_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_asiento_grid_line, .css_op_asiento_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_op_tipo_comprobante_label, .css_op_tipo_comprobante_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_tipo_comprobante_grid_line, .css_op_tipo_comprobante_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_op_estado_label, .css_op_estado_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_estado_grid_line, .css_op_estado_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_op_contrato_label, .css_op_contrato_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_op_contrato_grid_line, .css_op_contrato_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_op_seleccion_label, .css_op_seleccion_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_seleccion_grid_line, .css_op_seleccion_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_op_usuario_selecciona_label, .css_op_usuario_selecciona_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_usuario_selecciona_grid_line, .css_op_usuario_selecciona_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_op_factura_label, .css_op_factura_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_op_factura_grid_line, .css_op_factura_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_op_asiento_anula_label, .css_op_asiento_anula_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_asiento_anula_grid_line, .css_op_asiento_anula_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_op_subtotal_iva_label, .css_op_subtotal_iva_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_op_subtotal_iva_grid_line, .css_op_subtotal_iva_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_op_total_descuento_label, .css_op_total_descuento_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_op_total_descuento_grid_line, .css_op_total_descuento_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_op_fecha_factura_label, .css_op_fecha_factura_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_op_fecha_factura_grid_line, .css_op_fecha_factura_grid_line:hover {vertical-align: middle;text-align: left;}
+.css_op_subtotal_S_sub_tot, .css_op_subtotal_S_sub_tot:hover {text-align: left;text-align: right;}
+.css_op_subtotal_S_tot_ger, .css_op_subtotal_S_tot_ger:hover {text-align: right;}
+.css_op_iva_S_sub_tot, .css_op_iva_S_sub_tot:hover {text-align: left;text-align: right;}
+.css_op_iva_S_tot_ger, .css_op_iva_S_tot_ger:hover {text-align: right;}
+.css_op_total_S_sub_tot, .css_op_total_S_sub_tot:hover {text-align: left;text-align: right;}
+.css_op_total_S_tot_ger, .css_op_total_S_tot_ger:hover {text-align: right;}

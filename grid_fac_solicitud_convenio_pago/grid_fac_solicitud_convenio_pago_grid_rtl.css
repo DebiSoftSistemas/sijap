@@ -1,0 +1,18 @@
+.css_scp_secuencial_documento_label, .css_scp_secuencial_documento_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_scp_secuencial_documento_grid_line, .css_scp_secuencial_documento_grid_line:hover {vertical-align: top;text-align: right;}
+.css_scp_fecha_label, .css_scp_fecha_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_scp_fecha_grid_line, .css_scp_fecha_grid_line:hover {vertical-align: top;text-align: right;}
+.css_scp_propietario_label, .css_scp_propietario_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_scp_propietario_grid_line, .css_scp_propietario_grid_line:hover {vertical-align: top;text-align: right;}
+.css_scp_monto_label, .css_scp_monto_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_scp_monto_grid_line, .css_scp_monto_grid_line:hover {vertical-align: top;text-align: right;}
+.css_scp_plazo_label, .css_scp_plazo_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_scp_plazo_grid_line, .css_scp_plazo_grid_line:hover {vertical-align: top;text-align: right;}
+.css_scp_taza_label, .css_scp_taza_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_scp_taza_grid_line, .css_scp_taza_grid_line:hover {vertical-align: top;text-align: right;}
+.css_scp_tipo_amortizacion_label, .css_scp_tipo_amortizacion_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_scp_tipo_amortizacion_grid_line, .css_scp_tipo_amortizacion_grid_line:hover {vertical-align: top;text-align: right;}
+.css_scp_estado_label, .css_scp_estado_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_scp_estado_grid_line, .css_scp_estado_grid_line:hover {vertical-align: top;text-align: right;}
+.css_scp_id_label, .css_scp_id_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_scp_id_grid_line, .css_scp_id_grid_line:hover {vertical-align: top;text-align: right;}

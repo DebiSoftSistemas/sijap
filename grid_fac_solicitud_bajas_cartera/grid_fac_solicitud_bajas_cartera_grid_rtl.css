@@ -1,0 +1,12 @@
+.css_sbc_id_label, .css_sbc_id_label:hover {text-align:right;vertical-align:middle;justify-content:right;font-weight:bold;}
+.css_sbc_id_grid_line, .css_sbc_id_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_sbc_fecha_label, .css_sbc_fecha_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_sbc_fecha_grid_line, .css_sbc_fecha_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_sbc_anio_baja_label, .css_sbc_anio_baja_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_sbc_anio_baja_grid_line, .css_sbc_anio_baja_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_sbc_motivo_anulacion_label, .css_sbc_motivo_anulacion_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_sbc_motivo_anulacion_grid_line, .css_sbc_motivo_anulacion_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_sbc_estado_label, .css_sbc_estado_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_sbc_estado_grid_line, .css_sbc_estado_grid_line:hover {vertical-align: middle;text-align: right;}
+.css_sbc_usuario_label, .css_sbc_usuario_label:hover {text-align:left;vertical-align:middle;justify-content:left;font-weight:bold;}
+.css_sbc_usuario_grid_line, .css_sbc_usuario_grid_line:hover {vertical-align: middle;text-align: right;}
